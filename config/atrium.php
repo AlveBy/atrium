@@ -45,6 +45,7 @@ return [
     |
     */
     'modules' => [
+        'alveby/atrium-reviews',
     ],
 
     /*

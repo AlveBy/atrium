@@ -206,7 +206,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/reviews",
-                "reference": "82138bf4de8b043b838d43b276137bc3274e76f4"
+                "reference": "753e15dd7008e462b084ba6cb331b10f88a76b8e"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -222,6 +222,12 @@
             },
             "type": "atrium-module",
             "extra": {
+                "atrium": {
+                    "resources": [
+                        "Atrium\\Reviews\\Models\\Review"
+                    ],
+                    "migrations": "database/migrations"
+                },
                 "laravel": {
                     "providers": [
                         "Atrium\\Reviews\\ReviewsServiceProvider"
