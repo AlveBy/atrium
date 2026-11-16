@@ -8,8 +8,9 @@ name: split
 #
 # Needs the SPLIT_TOKEN secret: a fine-grained token of AlveBy with
 # "Contents: read and write" on the three repositories. Without it the job
-# only says so and passes. With PACKAGIST_TOKEN ("username:safe API token"
-# from packagist.org/profile) it also asks Packagist to read the new code,
+# only says so and passes. With PACKAGIST_TOKEN (the safe API token from
+# packagist.org/profile, as username:token or alone with the
+# PACKAGIST_USERNAME variable) it also asks Packagist to read the new code,
 # so the packages do not wait for a GitHub hook.
 on:
   push:
@@ -73,7 +74,8 @@ jobs:
             ?*:?*) ;;
             *) echo "::error::Set PACKAGIST_TOKEN to username:token, or the token alone and the PACKAGIST_USERNAME variable"; exit 1 ;;
           esac
-          echo "Packagist user ${token%%:*}, token of $(( ${#token} - ${#token%%:*} - 1 )) characters"
+          key="${token#*:}"
+          echo "Packagist user ${token%%:*}, token of ${#key} characters"
           curl -sS --fail-with-body -X POST https://packagist.org/api/update-package \
             -H 'Content-Type: application/json' \
             -H "Authorization: Bearer ${token}" \
