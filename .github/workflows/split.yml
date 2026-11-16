@@ -8,7 +8,9 @@ name: split
 #
 # Needs the SPLIT_TOKEN secret: a fine-grained token of AlveBy with
 # "Contents: read and write" on the three repositories. Without it the job
-# only says so and passes.
+# only says so and passes. With PACKAGIST_TOKEN ("username:safe API token"
+# from packagist.org/profile) it also asks Packagist to read the new code,
+# so the packages do not wait for a GitHub hook.
 on:
   push:
     branches: [main]
@@ -36,6 +38,7 @@ jobs:
             repository: atrium-theme
     env:
       SPLIT_TOKEN: ${{ secrets.SPLIT_TOKEN }}
+      PACKAGIST_TOKEN: ${{ secrets.PACKAGIST_TOKEN }}
     steps:
       - name: No token
         if: env.SPLIT_TOKEN == ''
@@ -57,3 +60,11 @@ jobs:
           else
             git push "$remote" "$sha:refs/heads/main"
           fi
+
+      - name: Update Packagist
+        if: env.SPLIT_TOKEN != '' && env.PACKAGIST_TOKEN != ''
+        run: |
+          curl -fsS -X POST https://packagist.org/api/update-package \
+            -H 'Content-Type: application/json' \
+            -H "Authorization: Bearer ${PACKAGIST_TOKEN}" \
+            -d '{"repository":"https://github.com/AlveBy/${{ matrix.repository }}"}'
