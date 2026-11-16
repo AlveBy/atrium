@@ -468,6 +468,14 @@ The core fires these:
 | `atrium.record.saved` | action | `Model $record`, `string $context` | After it is saved, its relations synced and `afterAdminSave()` run, once the transaction is committed |
 | `atrium.record.deleted` | action | `Model $record` | After a record is deleted in the panel or through the API, once the transaction is committed |
 | `atrium.admin.menu` | filter | `array $items`, `?AdminUser $user` | The panel's menu is built; an item is `['label' => ..., 'route' => ..., 'icon' => ...]`, and items the user may not open are dropped afterwards |
+| `atrium.record.present` | filter | `array $data`, `Model $record`, `string $context` (`form` or `list`) | A record is handed to the edit form or to a list row, the API's included |
+| `atrium.module.fields` | filter | `array $fields`, `string $model` | A module's form fields are read: the form, validation, the API and its documentation, MCP |
+| `atrium.module.columns` | filter | `array $columns`, `string $model` | A module's list columns are read, in the panel and for the API's `search=` |
+| `atrium.module.translatable` | filter | `array $names`, `string $model` | The names of a module's fields that hold a value per content language |
+| `atrium.module.links` | filter | `array $links`, `string $model` | Buttons above a module's list: `['name' => ..., 'label' => ..., 'href' => ...]` |
+| `atrium.query.filter` | filter | `bool $handled`, `Builder $query`, `string $name`, `mixed $value` | A list or the API filters by a name; return `true` once you have added the condition yourself |
+| `atrium.query.sort` | filter | `bool $handled`, `Builder $query`, `string $name`, `string $direction` | The same for sorting |
+| `atrium.query.search` | filter | `bool $handled`, `Builder $query`, `string $name`, `string $search` | The same for one searchable column, inside the search's `or` group |
 | `atrium.module.installed` | action | `Module $module` | `atrium:module:install` has run its migrations and listed it |
 | `atrium.module.removed` | action | `string $package`, `bool $dataDropped` | `atrium:module:remove` has taken it out |
 | `atrium.module.enabled` | action | `Module $module` | a superadmin has switched it on |
