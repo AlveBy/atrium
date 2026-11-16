@@ -16,7 +16,7 @@ Você descreve um módulo uma única vez, como um modelo com seus campos e as co
 
 ## O que ele faz
 
-- **Vários sites.** Um só painel e um só banco de dados para muitos sites, cada um identificado pelo domínio e com seus próprios idiomas.
+- **Vários sites.** Um só painel e um só banco de dados para muitos sites, cada um identificado pelo domínio ou por uma pasta nele (`example.com/site2/`) e com seus próprios idiomas.
 - **Multilíngue.** O painel fala 15 idiomas, e cada administrador escolhe o seu. Os idiomas de conteúdo são adicionados no painel, qualquer coluna de um módulo pode ser traduzível, e cada idioma tem seus próprios endereços (`/de/…`) e `hreflang`.
 - **20 tipos de campo.** Texto, números, datas, listas, vínculos com outros módulos, imagens, galerias, arquivos, um editor visual, mapas, valores repetíveis. Os formulários têm abas, como no 1C-Bitrix.
 - **Papéis e permissões.** Quem vê cada módulo e o que pode fazer nele: ver, criar, editar, excluir.

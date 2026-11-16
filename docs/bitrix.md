@@ -64,9 +64,10 @@ php artisan atrium:bitrix:download:upload
 php artisan atrium:bitrix:migrate
 ```
 
-runs the whole sequence: migrations from the iblocks, `migrate`, models with their admin forms, the data, SEO and the media library. Each step can also run on its own, in this order:
+runs the whole sequence: the sites, migrations from the iblocks, `migrate`, models with their admin forms, the data, SEO and the media library. Each step can also run on its own, in this order:
 
 ```bash
+php artisan atrium:bitrix:migrate:sites
 php artisan atrium:bitrix:generate:migrations
 php artisan migrate
 php artisan atrium:bitrix:generate:models
@@ -76,6 +77,8 @@ php artisan atrium:bitrix:migrate:medialibrary
 ```
 
 Every command asks which iblocks to take; with `--no-interaction` it takes all of them.
+
+`migrate:sites` moves the sites (`b_lang`) with their domains. A site's `DIR` becomes its folder: `/site2/` opens the site at `example.com/site2/` as before. Atrium keeps the default site at the root; if the Bitrix default site lives in a folder (`/ru/`), the command warns, and its old addresses need a redirect.
 
 The models land in `app/Models`. List the ones the editors need in `config/atrium.php` → `resources`, and they are in the admin's menu:
 
@@ -96,7 +99,7 @@ php artisan atrium:bitrix:parity
 php artisan atrium:bitrix:verify
 ```
 
-`parity` compares every iblock and property with the models and the copied rows: counts, columns, field types, required flags, list options, form tabs and order, list columns. An empty report means nothing was lost; `--format=markdown` writes it to a file for the client. `verify` compares counts and spot-checks a few records of every iblock (`--sample=5`).
+`parity` compares every iblock and property with the models and the copied rows: counts, columns, field types, required flags, list options, form tabs and order, list columns, and every site's folder, domains and active flag. An empty report means nothing was lost; `--format=markdown` writes it to a file for the client. `verify` compares counts and spot-checks a few records of every iblock (`--sample=5`).
 
 That checks the data. Whether every page of the old site opens on the new one is checked against the live old site: [MIGRATION-QA.md](../packages/bitrix/MIGRATION-QA.md) is the checklist.
 

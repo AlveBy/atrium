@@ -14,7 +14,7 @@ You describe a module once, as a model with its fields and list columns. Atrium 
 
 ## What it does
 
-- **Multi-site.** One admin and one database for many sites, each picked by its domain and with its own languages.
+- **Multi-site.** One admin and one database for many sites, each picked by its domain or by a folder on it (`example.com/site2/`) and with its own languages.
 - **Multilingual.** The admin speaks 15 languages, and each administrator picks one. Content languages are added in the admin, any column of a module can be translatable, and each language gets its own addresses (`/de/…`) and `hreflang`.
 - **20 field types.** Text, numbers, dates, lists, links to other modules, images, galleries, files, a visual editor, maps, repeatable values. Forms have tabs, as in 1C-Bitrix.
 - **Roles and permissions.** Who sees which module and what they may do in it: view, create, edit, delete.

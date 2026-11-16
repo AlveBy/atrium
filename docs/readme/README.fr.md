@@ -16,7 +16,7 @@ Vous décrivez un module une seule fois, sous la forme d'un modèle avec ses cha
 
 ## Ce qu'il fait
 
-- **Multisite.** Une administration et une base de données pour de nombreux sites, chacun reconnu à son domaine et doté de ses propres langues.
+- **Multisite.** Une administration et une base de données pour de nombreux sites, chacun reconnu à son domaine ou à un dossier de celui-ci (`example.com/site2/`) et doté de ses propres langues.
 - **Multilingue.** L'administration parle 15 langues, et chaque administrateur choisit la sienne. Les langues du contenu s'ajoutent dans l'administration, n'importe quelle colonne d'un module peut être traduisible, et chaque langue a ses propres URL (`/de/…`) et son `hreflang`.
 - **20 types de champs.** Texte, nombres, dates, listes, liens vers d'autres modules, images, galeries, fichiers, un éditeur visuel, des cartes, des valeurs répétables. Les formulaires ont des onglets, comme dans 1C-Bitrix.
 - **Rôles et droits.** Qui voit quel module et ce qu'il peut y faire : voir, créer, modifier, supprimer.

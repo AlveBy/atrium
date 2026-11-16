@@ -16,7 +16,7 @@ Modul bir marta tavsiflanadi: maydonlari va roʻyxat ustunlari bilan model sifat
 
 ## Nimalar qila oladi
 
-- **Koʻp saytlilik.** Koʻplab saytlar uchun bitta administrator paneli va bitta maʼlumotlar bazasi; har bir sayt oʻz domeni orqali aniqlanadi va oʻz tillariga ega.
+- **Koʻp saytlilik.** Koʻplab saytlar uchun bitta administrator paneli va bitta maʼlumotlar bazasi; har bir sayt oʻz domeni yoki undagi papka (`example.com/site2/`) orqali aniqlanadi va oʻz tillariga ega.
 - **Koʻp tillilik.** Administrator paneli 15 tilda ishlaydi, har bir administrator oʻz tilini tanlaydi. Kontent tillari administrator panelida qoʻshiladi, modulning istalgan ustunini tarjima qilinadigan qilish mumkin, har bir tilning esa oʻz manzillari (`/de/…`) va `hreflang` qiymati bor.
 - **20 xil maydon turi.** Matn, sonlar, sanalar, roʻyxatlar, boshqa modullarga bogʻlanishlar, rasmlar, galereyalar, fayllar, vizual muharrir, xaritalar, takrorlanuvchi qiymatlar. Formalar xuddi 1C-Bitrix kabi yorliqlarga boʻlingan.
 - **Rollar va huquqlar.** Kim qaysi modulni koʻradi va unda nima qila oladi: koʻrish, yaratish, tahrirlash, oʻchirish.

@@ -16,7 +16,7 @@ Moduł opisujesz raz: jako model z jego polami i kolumnami listy. Atrium daje mu
 
 ## Co potrafi
 
-- **Wiele witryn.** Jeden panel i jedna baza danych dla wielu witryn; każda jest rozpoznawana po domenie i ma własne języki.
+- **Wiele witryn.** Jeden panel i jedna baza danych dla wielu witryn; każda jest rozpoznawana po domenie lub folderze w niej (`example.com/site2/`) i ma własne języki.
 - **Wielojęzyczność.** Panel mówi w 15 językach, a każdy administrator wybiera swój. Języki treści dodaje się w panelu, każdą kolumnę modułu można oznaczyć jako tłumaczalną, a każdy język dostaje własne adresy (`/de/…`) i `hreflang`.
 - **20 typów pól.** Tekst, liczby, daty, listy, powiązania z innymi modułami, obrazy, galerie, pliki, edytor wizualny, mapy, wartości wielokrotne. Formularze mają karty, jak w 1C-Bitrix.
 - **Role i uprawnienia.** Kto widzi który moduł i co może w nim robić: podgląd, tworzenie, edycja, usuwanie.

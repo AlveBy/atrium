@@ -16,7 +16,7 @@ Describes un módulo una sola vez, como un modelo con sus campos y las columnas 
 
 ## Qué hace
 
-- **Multisitio.** Un solo panel y una sola base de datos para muchos sitios, cada uno identificado por su dominio y con sus propios idiomas.
+- **Multisitio.** Un solo panel y una sola base de datos para muchos sitios, cada uno identificado por su dominio o por una carpeta en él (`example.com/site2/`) y con sus propios idiomas.
 - **Multilingüe.** El panel habla 15 idiomas y cada administrador elige el suyo. Los idiomas de contenido se añaden desde el panel, cualquier columna de un módulo puede ser traducible y cada idioma tiene sus propias direcciones (`/de/…`) y `hreflang`.
 - **20 tipos de campo.** Texto, números, fechas, listas, enlaces a otros módulos, imágenes, galerías, archivos, un editor visual, mapas, valores repetibles. Los formularios tienen pestañas, como en 1C-Bitrix.
 - **Roles y permisos.** Quién ve cada módulo y qué puede hacer en él: ver, crear, editar, eliminar.

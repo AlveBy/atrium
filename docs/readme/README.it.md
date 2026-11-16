@@ -16,7 +16,7 @@ Descrivi un modulo una sola volta, come un modello con i suoi campi e le colonne
 
 ## Cosa fa
 
-- **Multisito.** Un solo pannello e un solo database per molti siti, ognuno riconosciuto dal proprio dominio e con le proprie lingue.
+- **Multisito.** Un solo pannello e un solo database per molti siti, ognuno riconosciuto dal proprio dominio o da una cartella su di esso (`example.com/site2/`) e con le proprie lingue.
 - **Multilingue.** Il pannello parla 15 lingue e ogni amministratore sceglie la sua. Le lingue dei contenuti si aggiungono dal pannello, qualsiasi colonna di un modulo può essere traducibile e ogni lingua ha i propri indirizzi (`/de/…`) e `hreflang`.
 - **20 tipi di campo.** Testo, numeri, date, elenchi, collegamenti ad altri moduli, immagini, gallerie, file, un editor visuale, mappe, valori ripetibili. I form sono divisi in schede, come in 1C-Bitrix.
 - **Ruoli e permessi.** Chi vede quale modulo e cosa può farci: visualizzare, creare, modificare, eliminare.

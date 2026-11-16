@@ -16,7 +16,7 @@ Bir modülü yalnızca bir kez, alanları ve liste sütunlarıyla birlikte bir m
 
 ## Neler yapar
 
-- **Çoklu site.** Birçok site için tek panel ve tek veritabanı; her site alan adına göre seçilir ve kendi dillerine sahiptir.
+- **Çoklu site.** Birçok site için tek panel ve tek veritabanı; her site alan adına veya onun üzerindeki bir klasöre (`example.com/site2/`) göre seçilir ve kendi dillerine sahiptir.
 - **Çok dilli.** Panel 15 dil konuşur ve her yönetici kendi dilini seçer. İçerik dilleri panelden eklenir, bir modülün herhangi bir sütunu çevrilebilir yapılabilir ve her dil kendi adreslerini (`/de/…`) ve `hreflang` etiketlerini alır.
 - **20 alan türü.** Metin, sayılar, tarihler, listeler, diğer modüllere bağlantılar, görseller, galeriler, dosyalar, görsel editör, haritalar, tekrarlanabilir değerler. Formlarda, 1C-Bitrix'te olduğu gibi sekmeler bulunur.
 - **Roller ve izinler.** Kimin hangi modülü göreceği ve orada ne yapabileceği: görüntüleme, oluşturma, düzenleme, silme.

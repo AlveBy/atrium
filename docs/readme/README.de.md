@@ -16,7 +16,7 @@ Ein Modul beschreiben Sie nur einmal: als Modell mit seinen Feldern und Listensp
 
 ## Was es kann
 
-- **Mehrere Websites.** Ein Admin-Bereich und eine Datenbank für viele Websites; jede wird an ihrer Domain erkannt und hat ihre eigenen Sprachen.
+- **Mehrere Websites.** Ein Admin-Bereich und eine Datenbank für viele Websites; jede wird an ihrer Domain oder an einem Ordner darauf (`example.com/site2/`) erkannt und hat ihre eigenen Sprachen.
 - **Mehrsprachig.** Der Admin-Bereich spricht 15 Sprachen, und jeder Administrator wählt seine eigene. Inhaltssprachen werden im Admin-Bereich hinzugefügt, jede Spalte eines Moduls kann übersetzbar sein, und jede Sprache bekommt eigene URLs (`/de/…`) und `hreflang`.
 - **20 Feldtypen.** Text, Zahlen, Datumsangaben, Listen, Verknüpfungen mit anderen Modulen, Bilder, Galerien, Dateien, ein visueller Editor, Karten, wiederholbare Werte. Formulare haben Tabs wie in 1C-Bitrix.
 - **Rollen und Rechte.** Wer welches Modul sieht und was er darin darf: ansehen, anlegen, bearbeiten, löschen.
