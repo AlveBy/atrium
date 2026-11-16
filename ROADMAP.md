@@ -55,7 +55,7 @@ The base for everything after it: the shop, the importers and the integrations a
 | News / Blog | Feed, categories, tags, RSS |
 | Gallery | Photo and video albums on the site |
 | Forms and leads | Form builder, submissions in the admin, e-mails, spam protection |
-| Menus | Site menus by drag and drop, per site and language |
+| Menus | Site menus by drag and drop, per site and language. An item can be dynamic: point it at a module (shop categories, news sections) and it unfolds into that module's tree on the site, always up to date, with a depth limit and a starting section |
 | Banners and sliders | Placements on pages, display schedule |
 | Reviews | With moderation and ratings |
 | FAQ | With structured data for search engines |
