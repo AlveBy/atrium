@@ -129,6 +129,7 @@ O banco de dados do Bitrix é apenas lido. As abas, a ordem dos campos e as colu
 | [`alveby/atrium-theme`](../../packages/theme/README.md) | O tema público |
 | [`alveby/atrium-bitrix`](../../packages/bitrix/README.md) | O migrador do 1C-Bitrix |
 | [`alveby/atrium-ai`](../../packages/ai/README.md) | Ajuda de redação com IA no painel |
+| [`alveby/atrium-docs`](../../packages/docs/README.md) | Documentação a partir de Markdown, com versões e busca |
 
 Quando a 0.1 estiver no Packagist, uma aplicação Laravel 13 existente poderá receber o Atrium com:
 

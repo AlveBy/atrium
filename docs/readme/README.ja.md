@@ -129,6 +129,7 @@ Bitrix のデータベースは読み取るだけです。タブ、フィール�
 | [`alveby/atrium-theme`](../../packages/theme/README.md) | 公開テーマ |
 | [`alveby/atrium-bitrix`](../../packages/bitrix/README.md) | 1C-Bitrix マイグレーター |
 | [`alveby/atrium-ai`](../../packages/ai/README.md) | 管理画面の AI 文章アシスタント |
+| [`alveby/atrium-docs`](../../packages/docs/README.md) | Markdownから作るドキュメント（バージョンと検索つき） |
 
 0.1 が Packagist に公開されたら、既存の Laravel 13 アプリには次のコマンドで Atrium を導入できます。
 

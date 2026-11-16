@@ -129,6 +129,7 @@ php artisan atrium:bitrix:parity
 | [`alveby/atrium-theme`](../../packages/theme/README.md) | Сайт тақырыбы |
 | [`alveby/atrium-bitrix`](../../packages/bitrix/README.md) | 1С-Битрикстен мигратор |
 | [`alveby/atrium-ai`](../../packages/ai/README.md) | Әкімшілік панельдегі мәтіндерге арналған ЖИ-көмекші |
+| [`alveby/atrium-docs`](../../packages/docs/README.md) | Markdown-тан құжаттама: нұсқалар мен іздеу |
 
 0.1 Packagist-те пайда болғанда, Laravel 13-тегі дайын қосымшаға Atrium былай орнатылады:
 

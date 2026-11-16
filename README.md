@@ -127,6 +127,7 @@ The Bitrix database is only read. The tabs, field order and list columns come ou
 | [`alveby/atrium-theme`](packages/theme/README.md) | The public theme |
 | [`alveby/atrium-bitrix`](packages/bitrix/README.md) | The 1C-Bitrix migrator |
 | [`alveby/atrium-ai`](packages/ai/README.md) | AI writing help in the admin |
+| [`alveby/atrium-docs`](packages/docs/README.md) | Documentation pages from Markdown, with versions and search |
 
 Once 0.1 is on Packagist, an existing Laravel 13 app gets Atrium with:
 

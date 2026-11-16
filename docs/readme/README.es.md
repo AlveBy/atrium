@@ -129,6 +129,7 @@ La base de datos de Bitrix solo se lee. Las pestañas, el orden de los campos y 
 | [`alveby/atrium-theme`](../../packages/theme/README.md) | El tema público |
 | [`alveby/atrium-bitrix`](../../packages/bitrix/README.md) | El migrador de 1C-Bitrix |
 | [`alveby/atrium-ai`](../../packages/ai/README.md) | Ayuda de redacción con IA en el panel |
+| [`alveby/atrium-docs`](../../packages/docs/README.md) | Documentación desde Markdown, con versiones y búsqueda |
 
 Cuando la 0.1 esté en Packagist, una aplicación Laravel 13 existente podrá añadir Atrium con:
 

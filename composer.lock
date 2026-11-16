@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ef08e7a09a9e3fa87a70b1977001db58",
+    "content-hash": "499008e74e9a8be418a85f8edd9fc1c1",
     "packages": [
         {
             "name": "alveby/atrium",
@@ -12,7 +12,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/admin",
-                "reference": "b814f9d850bf01995fd7f0e857f4ddc0b4959973"
+                "reference": "94f8cadc7d8f82da04733740cb4ad0d51c0df6bd"
             },
             "require": {
                 "illuminate/database": "^13.0",
@@ -79,7 +79,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/ai",
-                "reference": "246d67058c04eb2a7f38f67344590898255cc6b7"
+                "reference": "d5dfadf8afa066d14798ba079010fd6777e91dcb"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -146,7 +146,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/brands",
-                "reference": "cf9e690163b91bd40f8ec40273967d14fa4929bf"
+                "reference": "cbd8d5450b161c3ddc6c3a8d72db01accc1d18e6"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -212,7 +212,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/catalog",
-                "reference": "5a29bfa695bbc9d03854df4ffee6b9d3f3e987e6"
+                "reference": "1c50a66f9f76f6017d15d3c2b94478ba59b5c86c"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -295,12 +295,76 @@
             }
         },
         {
+            "name": "alveby/atrium-docs",
+            "version": "0.1.x-dev",
+            "dist": {
+                "type": "path",
+                "url": "packages/docs",
+                "reference": "d29bd05e21dd2537bb3126d2d1f0c1be68c063bd"
+            },
+            "require": {
+                "alveby/atrium": "^0.1",
+                "illuminate/support": "^13.0",
+                "league/commonmark": "^2.7",
+                "phiki/phiki": "^2.0",
+                "php": "^8.3"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^11.0",
+                "phpunit/phpunit": "^12.5"
+            },
+            "suggest": {
+                "alveby/atrium-theme": "Draws the documentation inside the site's layout"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Atrium\\Docs\\DocsServiceProvider"
+                    ]
+                },
+                "branch-alias": {
+                    "dev-main": "0.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Atrium\\Docs\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Atrium\\Docs\\Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Documentation pages for Atrium: renders the Markdown of a repository's docs and package READMEs with a sidebar, search, anchors, code highlighting, versions per release and language fallback",
+            "homepage": "https://github.com/AlveBy/atrium",
+            "keywords": [
+                "atrium",
+                "documentation",
+                "i18n",
+                "laravel",
+                "markdown"
+            ],
+            "support": {
+                "issues": "https://github.com/AlveBy/atrium/issues",
+                "source": "https://github.com/AlveBy/atrium"
+            },
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
             "name": "alveby/atrium-faq",
             "version": "0.1.x-dev",
             "dist": {
                 "type": "path",
                 "url": "packages/faq",
-                "reference": "5d3505ef2c4e3da7490e3ba39b1ddfcd339b3293"
+                "reference": "cc802b9c08e02aa7537bdc14658b446c014718c4"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -378,7 +442,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/forms",
-                "reference": "f9813b8a930f29070e6fa796e286a14b815773d3"
+                "reference": "7fe37a40fabcd0630b90a158e5b9f62655940431"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -446,7 +510,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/news",
-                "reference": "01507037e7179580dd19e48706fc5a73c6c304c2"
+                "reference": "c8fc835cb8ab27c3ac9588b36a8edef2ee0606f8"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -519,7 +583,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/pages",
-                "reference": "04bab57eed8b8bef0c99b0a0f8b4a93efc456897"
+                "reference": "fec5aee3d999d4a0cbc522b61d82e64ce67b60be"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -595,7 +659,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/reviews",
-                "reference": "2401861b88281e70b4e75f156fd507fe1f6dad56"
+                "reference": "cb8788001d4da852a4c761513b5a9896ed99311b"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -665,7 +729,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/stores",
-                "reference": "be6e7667f5e4a04e7d09027cecf865a901954c3c"
+                "reference": "b8272d1d00ba677fbed10a68962b84d43de6fc81"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -737,7 +801,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/theme",
-                "reference": "30d002ffb90d0e861092a030962b27aa00621d25"
+                "reference": "16c4a1bbd858b796b91bc0004d4d59be08b1d0df"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -3631,6 +3695,80 @@
                 }
             ],
             "time": "2026-11-07T03:57:16+00:00"
+        },
+        {
+            "name": "phiki/phiki",
+            "version": "v2.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phikiphp/phiki.git",
+                "reference": "0a9ff7efad9d433d9b173aff36b2a1905ef13c57"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phikiphp/phiki/zipball/0a9ff7efad9d433d9b173aff36b2a1905ef13c57",
+                "reference": "0a9ff7efad9d433d9b173aff36b2a1905ef13c57",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": "^8.2",
+                "psr/simple-cache": "^3.0"
+            },
+            "require-dev": {
+                "illuminate/support": "^11.45",
+                "laravel/pint": "^1.18.1",
+                "league/commonmark": "^2.5.3",
+                "orchestra/testbench": "^9.15",
+                "pestphp/pest": "^3.5.1",
+                "phpstan/extension-installer": "^1.4.3",
+                "phpstan/phpstan": "^2.0",
+                "symfony/var-dumper": "^7.1.6"
+            },
+            "suggest": {
+                "league/commonmark": "Required to use the CommonMark adapter (^2.5.3)"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Phiki\\Adapters\\Laravel\\PhikiServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Phiki\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ryan Chandler",
+                    "email": "support@ryangjchandler.co.uk",
+                    "homepage": "https://ryangjchandler.co.uk",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Syntax highlighting using TextMate grammars in PHP.",
+            "support": {
+                "issues": "https://github.com/phikiphp/phiki/issues",
+                "source": "https://github.com/phikiphp/phiki/tree/v2.2.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/sponsors/ryangjchandler",
+                    "type": "github"
+                },
+                {
+                    "url": "https://buymeacoffee.com/ryangjchandler",
+                    "type": "other"
+                }
+            ],
+            "time": "2026-07-22T19:51:40+00:00"
         },
         {
             "name": "phpoption/phpoption",
@@ -7614,7 +7752,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/bitrix",
-                "reference": "635059daeca1ebfe70ce352bbe1da786f685897c"
+                "reference": "977a352ed01140b70e7ce454b4268e0c6fd16a0f"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -10897,6 +11035,7 @@
         "alveby/atrium-bitrix": 20,
         "alveby/atrium-brands": 20,
         "alveby/atrium-catalog": 20,
+        "alveby/atrium-docs": 20,
         "alveby/atrium-faq": 20,
         "alveby/atrium-forms": 20,
         "alveby/atrium-news": 20,

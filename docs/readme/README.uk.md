@@ -129,6 +129,7 @@ php artisan atrium:bitrix:parity
 | [`alveby/atrium-theme`](../../packages/theme/README.md) | Тема для сайту |
 | [`alveby/atrium-bitrix`](../../packages/bitrix/README.md) | Мігратор з 1С-Бітрікс |
 | [`alveby/atrium-ai`](../../packages/ai/README.md) | ШІ-помічник для текстів в адмінці |
+| [`alveby/atrium-docs`](../../packages/docs/README.md) | Документація з Markdown: версії та пошук |
 
 Коли 0.1 з'явиться на Packagist, у готовий застосунок на Laravel 13 Atrium встановлюватиметься так:
 

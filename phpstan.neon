@@ -12,6 +12,7 @@ parameters:
         - packages/bitrix/src
         - packages/brands/src
         - packages/catalog/src
+        - packages/docs/src
         - packages/faq/src
         - packages/forms/src
         - packages/news/src
@@ -25,6 +26,7 @@ parameters:
         - packages/admin/config
         - packages/ai/config
         - packages/bitrix/config
+        - packages/docs/config
         - packages/forms/config
     # Larastan learns model columns from migrations; the package ships its own.
     databaseMigrationsPath:
