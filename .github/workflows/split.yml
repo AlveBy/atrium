@@ -67,7 +67,11 @@ jobs:
           token=$(printf %s "$PACKAGIST_TOKEN" | tr -d '[:space:]')
           case "$token" in
             ?*:?*) ;;
-            *) echo "::error::PACKAGIST_TOKEN must be username:token (${#token} characters, no colon)"; exit 1 ;;
+            *) token="${{ vars.PACKAGIST_USERNAME }}:$token" ;;
+          esac
+          case "$token" in
+            ?*:?*) ;;
+            *) echo "::error::Set PACKAGIST_TOKEN to username:token, or the token alone and the PACKAGIST_USERNAME variable"; exit 1 ;;
           esac
           echo "Packagist user ${token%%:*}, token of $(( ${#token} - ${#token%%:*} - 1 )) characters"
           curl -sS --fail-with-body -X POST https://packagist.org/api/update-package \
