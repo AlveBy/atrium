@@ -64,7 +64,7 @@ jobs:
       - name: Update Packagist
         if: env.SPLIT_TOKEN != '' && env.PACKAGIST_TOKEN != ''
         run: |
-          curl -fsS -X POST https://packagist.org/api/update-package \
+          curl -sS --fail-with-body -X POST https://packagist.org/api/update-package \
             -H 'Content-Type: application/json' \
             -H "Authorization: Bearer ${PACKAGIST_TOKEN}" \
             -d '{"repository":"https://github.com/AlveBy/${{ matrix.repository }}"}'
