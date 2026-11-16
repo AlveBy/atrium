@@ -16,6 +16,7 @@ To try Atrium on your own computer, see [Try it](../README.md#try-it) in the REA
 - [Hosting with a control panel (ISPmanager, cPanel)](#hosting-with-a-control-panel-ispmanager-cpanel)
 - [Docker](#docker)
 - [Updating](#updating)
+- [Into an existing Laravel app](#into-an-existing-laravel-app)
 
 ## Your own server
 
@@ -150,3 +151,21 @@ php artisan view:cache
 ```
 
 `atrium:install` on an installed site runs the new migrations and republishes the admin bundle; it does not touch the content or the administrators. See [CHANGELOG.md](../CHANGELOG.md) for what changed.
+
+## Into an existing Laravel app
+
+The steps above install this repository: a Laravel app with Atrium already in it. The packages also go into any Laravel 13 app:
+
+```bash
+composer require alveby/atrium
+php artisan atrium:install
+```
+
+The public theme and the 1C-Bitrix migrator are packages of their own:
+
+```bash
+composer require alveby/atrium-theme
+composer require alveby/atrium-bitrix --dev
+```
+
+Routes in your `routes/web.php` win over the theme's. A new Laravel app answers `/` with its welcome page from there: delete that route, and the theme draws the home page.

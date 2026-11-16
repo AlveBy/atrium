@@ -5,6 +5,7 @@ All notable changes are listed here. The format follows [Keep a Changelog](https
 ## [Unreleased]
 
 ### Added
+- Each package has its own read-only repository, which Packagist reads: `alveby/atrium` from AlveBy/atrium-admin, `alveby/atrium-theme` and `alveby/atrium-bitrix` from their namesakes. A push to main and every tag copy them from the monorepo with their history (`.github/workflows/split.yml`). The theme and the migrator require `alveby/atrium` `^0.1`.
 - Guides in English and Russian (`docs/`): installation on your own server, on hosting with ISPmanager or cPanel and in Docker; configuration; your own module; moving from 1C-Bitrix. The READMEs link to them.
 - MCP server at `/mcp` (laravel/mcp): an AI assistant (Claude, ChatGPT, Cursor) connects with an API token and gets seven tools — `list_modules`, `describe_module`, `list_records`, `get_record`, `create_record`, `update_record`, `delete_record`. Every call goes through the API itself, so validation, the current site, translations and the rights of the token and of its owner are the same; a refusal comes back as text the assistant can read. Off with `ATRIUM_MCP_ENABLED=false`, the path is `atrium.mcp.path`. Connect, for example, with `claude mcp add --transport http atrium https://example.com/mcp --header "Authorization: Bearer <token>"`.
 - `MultiSelectField` is a searchable list with chips (vue-multiselect) instead of a bare `<select multiple>` that needed Ctrl-click; a selected option carries a check mark, not only a colour.
