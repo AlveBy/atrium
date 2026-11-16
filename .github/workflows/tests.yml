@@ -77,12 +77,22 @@ jobs:
       - run: composer install --no-interaction --no-progress --prefer-dist
       - run: npm ci && npm run build
 
+      # The admin ships a prebuilt bundle. Rebuild it from source and fail if
+      # the committed dist/ is stale, then publish it like `atrium:install` does.
+      - name: Build admin assets
+        working-directory: packages/admin
+        run: |
+          npm ci
+          npm run build
+          git diff --exit-code --stat -- dist || (echo "packages/admin/dist is stale: run npm run build in packages/admin and commit it." && exit 1)
+      - run: php artisan vendor:publish --tag=atrium-assets --force
+
       - name: Prepare app
         run: |
-          cp .env.example .env
+          cp .env.dusk.example .env
           php artisan key:generate
-          touch database/database.sqlite
-          php artisan migrate --force
+          cp .env .env.dusk.local
+          touch database/dusk.sqlite
 
       - run: php artisan dusk:chrome-driver --detect
 
@@ -90,8 +100,6 @@ jobs:
         run: php artisan serve --no-reload > /dev/null 2>&1 &
 
       - run: php artisan dusk
-        env:
-          APP_URL: http://127.0.0.1:8000
 
       - uses: actions/upload-artifact@v4
         if: failure()
