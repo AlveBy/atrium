@@ -468,6 +468,14 @@ Hook::filter('atrium.search.sources', DropDrafts::class, 20); // an invokable cl
 | `atrium.record.saved` | действие | `Model $record`, `string $context` | После сохранения, синхронизации связей и `afterAdminSave()`, когда транзакция зафиксирована |
 | `atrium.record.deleted` | действие | `Model $record` | После удаления записи в панели или через API, когда транзакция зафиксирована |
 | `atrium.admin.menu` | фильтр | `array $items`, `?AdminUser $user` | Строится меню панели; пункт — `['label' => ..., 'route' => ..., 'icon' => ...]`, недоступные пользователю пункты отбрасываются после |
+| `atrium.record.present` | фильтр | `array $data`, `Model $record`, `string $context` (`form` или `list`) | Запись отдаётся в форму редактирования или в строку списка, в том числе в API |
+| `atrium.module.fields` | фильтр | `array $fields`, `string $model` | Читаются поля формы модуля: форма, проверка, API и его документация, MCP |
+| `atrium.module.columns` | фильтр | `array $columns`, `string $model` | Читаются колонки списка модуля, в панели и для `search=` в API |
+| `atrium.module.translatable` | фильтр | `array $names`, `string $model` | Имена полей модуля, у которых своё значение на каждом языке контента |
+| `atrium.module.links` | фильтр | `array $links`, `string $model` | Кнопки над списком модуля: `['name' => ..., 'label' => ..., 'href' => ...]` |
+| `atrium.query.filter` | фильтр | `bool $handled`, `Builder $query`, `string $name`, `mixed $value` | Список или API фильтрует по имени; верните `true`, если условие вы добавили сами |
+| `atrium.query.sort` | фильтр | `bool $handled`, `Builder $query`, `string $name`, `string $direction` | То же для сортировки |
+| `atrium.query.search` | фильтр | `bool $handled`, `Builder $query`, `string $name`, `string $search` | То же для одной колонки поиска, внутри группы `or` поиска |
 | `atrium.module.installed` | действие | `Module $module` | `atrium:module:install` выполнил миграции и внёс модуль в список |
 | `atrium.module.removed` | действие | `string $package`, `bool $dataDropped` | `atrium:module:remove` убрал модуль |
 | `atrium.module.enabled` | действие | `Module $module` | суперадмин включил модуль |
