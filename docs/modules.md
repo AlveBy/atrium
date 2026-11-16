@@ -210,6 +210,30 @@ gives each article the address `/articles/{code}`: the slug field shows it under
 
 To put the module's pages into `sitemap.xml`, implement `Atrium\Admin\Contracts\Sitemapable`: `sitemapQuery()` returns the records that belong there, `sitemapUrl($language)` the address of one.
 
+## Captcha in a public form
+
+A form on the site asks the site's captcha (`ATRIUM_CAPTCHA`, see [Configuring Atrium](configuration.md#captcha)) with a component and a rule; while the captcha is off both are empty:
+
+```blade
+<form method="post" action="...">
+    @csrf
+    ...
+    <x-atrium::captcha />
+    @error('captcha') <p>{{ $message }}</p> @enderror
+</form>
+```
+
+```php
+use Atrium\Admin\Captcha\CaptchaManager;
+
+$request->validate([
+    'text' => ['required', 'string'],
+    ...app(CaptchaManager::class)->rules(),
+]);
+```
+
+Leave the captcha's fields out of what goes back into the form: `->withInput($request->except(CaptchaManager::INPUTS))`. A captcha of another kind (Cloudflare Turnstile, hCaptcha, your own) is a class with `widget()` and `verify($request)` (`Atrium\Admin\Captcha\CaptchaDriver`), added with `app(CaptchaManager::class)->extend('turnstile', fn () => new Turnstile(...))` and chosen with `ATRIUM_CAPTCHA=turnstile`.
+
 ## Interface translations
 
 Labels may be plain text or translation keys. For a module that is used in more than one language, keep them in `lang/{language}/admin.php` and write `->label(__('admin.articles.name'))`.

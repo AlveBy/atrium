@@ -210,6 +210,30 @@ $table->foreignId('site_id')->nullable()->index();
 
 Чтобы страницы модуля попали в `sitemap.xml`, реализуйте `Atrium\Admin\Contracts\Sitemapable`: `sitemapQuery()` возвращает записи, которым там место, `sitemapUrl($language)` — адрес одной из них.
 
+## Капча в публичной форме
+
+Форма на сайте спрашивает капчу сайта (`ATRIUM_CAPTCHA`, см. [Настройка Atrium](configuration.ru.md#капча)) компонентом и правилом; пока капча выключена, оба пустые:
+
+```blade
+<form method="post" action="...">
+    @csrf
+    ...
+    <x-atrium::captcha />
+    @error('captcha') <p>{{ $message }}</p> @enderror
+</form>
+```
+
+```php
+use Atrium\Admin\Captcha\CaptchaManager;
+
+$request->validate([
+    'text' => ['required', 'string'],
+    ...app(CaptchaManager::class)->rules(),
+]);
+```
+
+Поля капчи не возвращайте в форму: `->withInput($request->except(CaptchaManager::INPUTS))`. Капча другого вида (Cloudflare Turnstile, hCaptcha, своя) — класс с `widget()` и `verify($request)` (`Atrium\Admin\Captcha\CaptchaDriver`), который добавляют через `app(CaptchaManager::class)->extend('turnstile', fn () => new Turnstile(...))` и выбирают `ATRIUM_CAPTCHA=turnstile`.
+
 ## Переводы интерфейса
 
 Подписи могут быть обычным текстом или ключами перевода. Для модуля, которым пользуются на нескольких языках, держите их в `lang/{язык}/admin.php` и пишите `->label(__('admin.articles.name'))`.

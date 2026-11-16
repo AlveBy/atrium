@@ -163,6 +163,18 @@ php artisan vendor:publish --tag=atrium-errors
 
 The copies use `<x-atrium-theme::error-page>`, which draws the theme's layout (a 5xx page gets a plain frame that does not read the database); replace it with your own layout if you like. Every error page gets `$siteName`, `$homeUrl` and `$searchUrl`, and is in the language of the address. JSON and API requests still get JSON, and the admin (`/admin`) is not touched by the theme's pages. For maintenance, `php artisan down --render="errors::503"` prerenders the same page.
 
+## Captcha
+
+One captcha guards the public forms of every module that asks for it (the reviews, for one). Off by default; the forms still have their own honeypot and limits.
+
+| Setting | Default | What it does |
+|---|---|---|
+| `ATRIUM_CAPTCHA` | `none` | `image`: the built-in one, a sum such as "7 + 4" drawn as a picture, with no keys and no outside service. `recaptcha`: Google reCAPTCHA v2, the "I'm not a robot" box |
+| `RECAPTCHA_SITE_KEY`, `RECAPTCHA_SECRET_KEY` | | Keys for the site's domains from [the reCAPTCHA admin](https://www.google.com/recaptcha/admin). Without them `recaptcha` uses the built-in one |
+| `captcha.image.ttl` | `10` | Minutes a question of the built-in captcha can be answered |
+
+A question of the built-in captcha is answered once, right or wrong: a wrong answer brings a new picture. With reCAPTCHA the visitor's browser loads Google's script, so mention it in the site's privacy policy.
+
 ## "Made with Atrium" and the licence
 
 The public theme puts a small "Made with Atrium" link in the footer of every page, in the visitor's language, and `<meta name="generator" content="Atrium">` in its head.
