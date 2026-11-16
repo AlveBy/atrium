@@ -132,7 +132,7 @@ After WordPress the order follows requests in Issues.
 
 ## Project website and documentation
 
-Alongside 0.2, as soon as the Pages, Menus and Search modules exist.
+The address is **atrium.alve-soft.com**. Alongside 0.2, as soon as the Pages, Menus and Search modules exist.
 
 - The site runs on Atrium itself: the best demo, and proof that it all works.
 - 15 languages, like the admin.
@@ -154,7 +154,6 @@ Development happens in one repository (a monorepo). On release each package is p
 
 ## Open questions
 
-- The project website's domain.
 - Modules: all free under MIT, or official ones free plus a paid catalogue for third-party developers.
 
 Ideas and votes are welcome in [Issues](https://github.com/AlveBy/atrium/issues).
