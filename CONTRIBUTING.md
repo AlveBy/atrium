@@ -33,9 +33,19 @@ php artisan dusk           # browser tests
 
 ## Translations
 
-Atrium ships in 15 languages. Interface strings live in `lang/{locale}/`. Only English and Russian were written by hand; the rest started as machine translation and need native speakers. Fixing a translation is one of the best first contributions. A test checks that every locale has every key, so a new string must be added to all of them.
+The admin panel speaks 15 languages. Its strings live in `packages/admin/lang/{locale}/*.php`, one file per screen, and the same files feed PHP (`__('atrium::fields.gallery.add')`) and Vue (`$t('fields.gallery.add')`). English is the source. Russian was written by hand; the other 13 languages started as machine translation and each file says so at the top — native speakers are very welcome to fix them. That is one of the best first contributions.
 
-To add a new language, copy `lang/en`, translate it, add the locale to the list in `config/atrium.php` and add a `README.{locale}.md`.
+Rules that the tests check (`packages/admin/tests/Unit/TranslationsTest.php`):
+
+- every language has exactly the keys of English;
+- placeholders (`:name`, `:count`) are the same as in English;
+- plural strings (`':count file|:count files'`) have as many forms as the language needs: 1 for Japanese, Chinese, Turkish, Kazakh and Uzbek, 3 for Russian, Ukrainian, Belarusian and Polish, 2 for the rest.
+
+A new string goes into every language at once; if you can't translate it, put the English text there and mention it in the pull request.
+
+To add a language: copy `packages/admin/lang/en` to the new code, translate it, add the code to `locales` in `packages/admin/config/atrium.php` and its plural count to `TranslationsTest::PLURAL_FORMS`. If Laravel's plural rule for it is not one of the above, add it to `resources/js/Support/plural.js` too — a test compares that file with Laravel.
+
+Sites can override any line without forking: `php artisan vendor:publish --tag=atrium-lang` copies the files to `lang/vendor/atrium`.
 
 ## Commit messages
 
