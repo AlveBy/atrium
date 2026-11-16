@@ -13,6 +13,13 @@
     RewriteCond %{HTTP:x-xsrf-token} .
     RewriteRule .* - [E=HTTP_X_XSRF_TOKEN:%{HTTP:X-XSRF-Token}]
 
+    # Serve photo.jpg.webp in place of photo.jpg to browsers that take webp:
+    # the admin makes these copies on upload (atrium.uploads.webp).
+    RewriteCond %{HTTP_ACCEPT} image/webp
+    RewriteCond %{REQUEST_FILENAME} \.(jpe?g|png)$ [NC]
+    RewriteCond %{REQUEST_FILENAME}.webp -f
+    RewriteRule ^ %{REQUEST_URI}.webp [T=image/webp,L]
+
     # Redirect Trailing Slashes If Not A Folder...
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_URI} (.+)/$
@@ -22,4 +29,15 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
+</IfModule>
+
+# The same address answers jpg or webp by the Accept header: caches must know.
+<IfModule mod_headers.c>
+    <FilesMatch "\.(jpe?g|png)$">
+        Header append Vary Accept
+    </FilesMatch>
+</IfModule>
+
+<IfModule mod_mime.c>
+    AddType image/webp .webp
 </IfModule>
