@@ -52,6 +52,7 @@ All notable changes are listed here. The format follows [Keep a Changelog](https
 - The demo article's page is drawn by the theme; the app's own article controller, its view and Laravel's welcome page are gone.
 
 ### Fixed
+- `atrium:install` left an untracked Sanctum migration in every fresh clone: the skeleton carries it now, and on clones installed earlier it does nothing.
 - The WebP copies of uploaded images were made but never served: `public/.htaccess` lacked the rule that gives `photo.jpg.webp` to browsers that take WebP. It is there now, with `Vary: Accept`; the nginx rule is in `docs/installation.md`.
 - `atrium:install` linked `public/storage` only with `--demo`, so on a plain install the files uploaded in the admin answered 404.
 - A new administrator could not be saved unless someone ticked and unticked "Superadmin": the untouched box arrives empty and the rule wanted true or false.
