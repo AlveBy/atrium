@@ -3,14 +3,41 @@
 
 name: tests
 
+# Every job runs bin/ci, the same command contributors run before a push
+# (docs/testing.md), so a green bin/ci on your machine means a green CI.
+#
+# "ci" is the one check to require in branch protection or a merge queue: it
+# passes only when every other job passed, and its name does not change when
+# jobs are added.
+
 on:
   push:
     branches: [main]
   pull_request:
+  merge_group:
+
+concurrency:
+  group: tests-${{ github.event.pull_request.number || github.sha }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
 
 jobs:
+  lint:
+    name: Lint and static analysis
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          coverage: none
+      - run: composer install --no-interaction --no-progress --prefer-dist
+      - run: bin/ci lint static
+
   phpunit:
-    name: PHP ${{ matrix.php }} · ${{ matrix.db }}
+    name: PHPUnit · PHP ${{ matrix.php }} · ${{ matrix.db }}
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -23,16 +50,19 @@ jobs:
         image: mysql:8.4
         env:
           MYSQL_ROOT_PASSWORD: password
-          MYSQL_DATABASE: atrium
         ports: ['3306:3306']
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=5
       postgres:
         image: postgres:17
         env:
           POSTGRES_PASSWORD: password
-          POSTGRES_DB: atrium
         ports: ['5432:5432']
         options: --health-cmd="pg_isready" --health-interval=10s --health-timeout=5s --health-retries=5
+
+    env:
+      # bin/ci creates a database per package on these servers.
+      ATRIUM_CI_MYSQL_PORT: 3306
+      ATRIUM_CI_PGSQL_PORT: 5432
 
     steps:
       - uses: actions/checkout@v4
@@ -44,21 +74,14 @@ jobs:
           coverage: none
 
       - run: composer install --no-interaction --no-progress --prefer-dist
-
-      - name: Pick database
-        run: |
-          case "${{ matrix.db }}" in
-            mysql) echo "DB_CONNECTION=mysql" >> $GITHUB_ENV; echo "DB_HOST=127.0.0.1" >> $GITHUB_ENV; echo "DB_PORT=3306" >> $GITHUB_ENV; echo "DB_DATABASE=atrium" >> $GITHUB_ENV; echo "DB_USERNAME=root" >> $GITHUB_ENV; echo "DB_PASSWORD=password" >> $GITHUB_ENV ;;
-            pgsql) echo "DB_CONNECTION=pgsql" >> $GITHUB_ENV; echo "DB_HOST=127.0.0.1" >> $GITHUB_ENV; echo "DB_PORT=5432" >> $GITHUB_ENV; echo "DB_DATABASE=atrium" >> $GITHUB_ENV; echo "DB_USERNAME=postgres" >> $GITHUB_ENV; echo "DB_PASSWORD=password" >> $GITHUB_ENV ;;
-          esac
-
       - run: cp .env.example .env && php artisan key:generate
+      - run: bin/ci tests --db=${{ matrix.db }}
 
-      - run: vendor/bin/phpunit
-        env:
-          # phpunit.xml forces in-memory SQLite; these override it for the MySQL/PostgreSQL legs
-          DB_CONNECTION: ${{ env.DB_CONNECTION || 'sqlite' }}
-          DB_DATABASE: ${{ env.DB_DATABASE || ':memory:' }}
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: phpunit-logs-${{ matrix.php }}-${{ matrix.db }}
+          path: build/ci/logs
 
   dusk:
     name: Dusk
@@ -101,10 +124,8 @@ jobs:
 
       - run: php artisan dusk:chrome-driver --detect
 
-      - name: Serve
-        run: php artisan serve --no-reload > /dev/null 2>&1 &
-
-      - run: php artisan dusk
+      # Serves the app and runs Dusk on free ports, as on a contributor's machine.
+      - run: bin/ci dusk
 
       - uses: actions/upload-artifact@v4
         if: failure()
@@ -113,15 +134,17 @@ jobs:
           path: |
             tests/Browser/screenshots
             tests/Browser/console
+            build/ci/logs
 
-  lint:
+  ci:
+    name: ci
+    if: always()
+    needs: [lint, phpunit, dusk]
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.4'
-          coverage: none
-      - run: composer install --no-interaction --no-progress --prefer-dist
-      - run: vendor/bin/pint --test
-      - run: vendor/bin/phpstan analyse --no-progress
+      - name: Every job passed
+        env:
+          RESULTS: ${{ toJSON(needs) }}
+        run: |
+          echo "$RESULTS" | jq -r 'to_entries[] | "| \(.key) | \(.value.result) |"' | { echo '| Job | Result |'; echo '|---|---|'; cat; } >> "$GITHUB_STEP_SUMMARY"
+          echo "$RESULTS" | jq -e 'all(.[]; .result == "success")' > /dev/null

@@ -54,6 +54,7 @@
     "autoload-dev": {
         "psr-4": {
             "Tests\\": "tests/",
+            "Atrium\\Ci\\": "scripts/ci/",
             "Atrium\\Admin\\Tests\\": "packages/admin/tests/",
             "Atrium\\Ai\\Tests\\": "packages/ai/tests/",
             "Atrium\\Bitrix\\Tests\\": "packages/bitrix/tests/",
@@ -83,6 +84,10 @@
         "dev": [
             "Composer\\Config::disableProcessTimeout",
             "@php artisan dev"
+        ],
+        "ci": [
+            "Composer\\Config::disableProcessTimeout",
+            "@php bin/ci"
         ],
         "test": [
             "@php artisan config:clear --ansi @no_additional_args",

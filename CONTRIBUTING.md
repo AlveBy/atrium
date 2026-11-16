@@ -19,16 +19,16 @@ npm install && npm run build
 
 With Docker instead of a local PHP: `docker compose up` installs everything, fills the demo shop and serves it on http://localhost:8000; run commands in it with `docker compose exec app php artisan …` or `docker compose exec app vendor/bin/phpunit`.
 
-## Before you open a pull request
+## Before every push
+
+Run what GitHub Actions runs, on your machine. A push that has not passed it must not reach main:
 
 ```bash
-vendor/bin/pint            # code style, adds the copyright header to PHP files
-php scripts/copyright-header.php --fix  # the same header in Blade, Vue, JS, CSS, shell, YAML
-vendor/bin/phpstan analyse # static analysis
-php artisan test           # PHPUnit: app + all packages
-php artisan serve &        # then, in another terminal:
-php artisan dusk           # browser tests
+vendor/bin/pint && php scripts/copyright-header.php --fix   # fix style and headers first
+bin/ci --changed           # lint, PHPStan, PHPUnit of the packages your change can break
 ```
+
+`bin/ci` runs Pint, the copyright header check, PHPStan and PHPUnit, each package in its own process, on SQLite and — when Docker is running or a server is there — on MySQL and PostgreSQL, in throwaway databases of its own. `--changed` limits PHPUnit to the packages you touched and the ones that require them; without it every package runs, which is what CI does. Add `--dusk` for the browser tests (it serves the app and ChromeDriver on free ports). `bin/ci --help` lists the rest; `composer ci` is the same.
 
 - Tests are PHPUnit, not Pest. Every change that a user can see needs a Dusk test; everything else needs a PHPUnit test.
 - `declare(strict_types=1);` in every PHP file.

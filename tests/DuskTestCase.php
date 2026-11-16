@@ -25,7 +25,8 @@ abstract class DuskTestCase extends BaseTestCase
     public static function prepare(): void
     {
         if (! static::runningInSail()) {
-            static::startChromeDriver(['--port=9515']);
+            // bin/ci --dusk picks a free port, so checkouts can run Dusk side by side.
+            static::startChromeDriver(['--port='.(env('DUSK_CHROMEDRIVER_PORT') ?: 9515)]);
         }
     }
 

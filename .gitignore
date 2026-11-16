@@ -10,6 +10,7 @@
 /.idea
 /.nova
 /.phpunit.cache
+/build
 /.vscode
 /.zed
 /auth.json
@@ -26,6 +27,7 @@ Homestead.json
 Homestead.yaml
 Thumbs.db
 .env.dusk.local
+/.env.dusk.ci
 /database/dusk.sqlite
 
 /public/vendor/atrium

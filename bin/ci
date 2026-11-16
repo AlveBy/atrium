@@ -1,0 +1,28 @@
+#!/usr/bin/env php
+<?php
+
+/*
+ * This file is part of Atrium (https://github.com/AlveBy/atrium).
+ * Copyright (c) 2026 AlveBy. Licensed under the MIT License, see LICENSE.
+ */
+
+declare(strict_types=1);
+
+/*
+ * The checks of GitHub Actions on this machine. Run it before every push:
+ *
+ *   bin/ci --changed
+ *
+ * bin/ci --help lists the steps and options; docs/testing.md has the rules.
+ */
+
+$root = dirname(__DIR__);
+
+if (! is_file($root.'/vendor/autoload.php')) {
+    fwrite(STDERR, "Run composer install first.\n");
+    exit(2);
+}
+
+require $root.'/vendor/autoload.php';
+
+exit((new Atrium\Ci\Ci($root))->run(array_slice($argv, 1)));
