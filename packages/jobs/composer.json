@@ -1,0 +1,76 @@
+{
+    "name": "alveby/atrium-jobs",
+    "description": "Vacancies and job applications for Atrium: a careers page, CV uploads, a hiring pipeline and schema.org JobPosting",
+    "type": "atrium-module",
+    "license": "MIT",
+    "homepage": "https://github.com/AlveBy/atrium",
+    "support": {
+        "issues": "https://github.com/AlveBy/atrium/issues",
+        "source": "https://github.com/AlveBy/atrium"
+    },
+    "keywords": [
+        "laravel",
+        "admin",
+        "cms",
+        "jobs",
+        "vacancies",
+        "careers",
+        "recruiting",
+        "schema.org",
+        "multisite",
+        "i18n"
+    ],
+    "require": {
+        "php": "^8.3",
+        "illuminate/support": "^13.0",
+        "alveby/atrium": "^0.1"
+    },
+    "require-dev": {
+        "alveby/atrium-forms": "^0.1",
+        "alveby/atrium-theme": "^0.1",
+        "orchestra/testbench": "^11.0",
+        "phpunit/phpunit": "^12.5"
+    },
+    "suggest": {
+        "alveby/atrium-theme": "Draws the vacancy list and the vacancy pages on the site",
+        "alveby/atrium-forms": "Extra questions on the application form, set up in the admin"
+    },
+    "autoload": {
+        "psr-4": {
+            "Atrium\\Jobs\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Atrium\\Jobs\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "atrium": {
+            "resources": [
+                "Atrium\\Jobs\\Models\\Vacancy",
+                "Atrium\\Jobs\\Models\\Application",
+                "Atrium\\Jobs\\Models\\Department",
+                "Atrium\\Jobs\\Models\\Location",
+                "Atrium\\Jobs\\Models\\ReplyTemplate"
+            ],
+            "public_urls": {
+                "Atrium\\Jobs\\Models\\Vacancy": {
+                    "prefix": "jobs"
+                }
+            },
+            "migrations": "database/migrations",
+            "demo": "Atrium\\Jobs\\Database\\JobsDemoSeeder"
+        },
+        "laravel": {
+            "providers": [
+                "Atrium\\Jobs\\JobsServiceProvider"
+            ]
+        },
+        "branch-alias": {
+            "dev-main": "0.1.x-dev"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

@@ -20,6 +20,7 @@
             <directory>packages/docs/tests</directory>
             <directory>packages/faq/tests</directory>
             <directory>packages/forms/tests</directory>
+            <directory>packages/jobs/tests</directory>
             <directory>packages/news/tests</directory>
             <directory>packages/pages/tests</directory>
             <directory>packages/reviews/tests</directory>
@@ -40,6 +41,7 @@
             <directory>packages/docs/src</directory>
             <directory>packages/faq/src</directory>
             <directory>packages/forms/src</directory>
+            <directory>packages/jobs/src</directory>
             <directory>packages/news/src</directory>
             <directory>packages/pages/src</directory>
             <directory>packages/reviews/src</directory>

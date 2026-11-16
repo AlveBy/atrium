@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ec785833b05ad8c92c46605d7cb0a031",
+    "content-hash": "25fe3398d44878c36b1527b8f98a1b47",
     "packages": [
         {
             "name": "alveby/atrium",
@@ -12,7 +12,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/admin",
-                "reference": "35a47b81057624053c8b5383c57bb26bd433367e"
+                "reference": "a7618f16260cfc78fe630d537fe0540241a3a1c5"
             },
             "require": {
                 "illuminate/database": "^13.0",
@@ -79,7 +79,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/ai",
-                "reference": "bc1d38e4c39200f90b6ce5dbe9537467c74ae8a5"
+                "reference": "92265ebe13f8c068113cf79aa69dc62ea78ca5a6"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -146,7 +146,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/brands",
-                "reference": "7d311bae332e1f77d877805c173c9d3ca63e76ba"
+                "reference": "4d5ae6e5dbd8106acf52f18803476629c482ae9d"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -212,7 +212,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/catalog",
-                "reference": "44b7a567bd2a2d62c6d21fa8012cf6c608e9be71"
+                "reference": "b55a728567766520c0fb3b8c31159c04eb4225f3"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -301,7 +301,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/docs",
-                "reference": "a805efd81c7568a95a7221e3ff541f33b127bbed"
+                "reference": "ee5039f89d5d93f3ac2dc9c5981a71f9d19eaafc"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -365,7 +365,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/faq",
-                "reference": "7bd5f019d88f198ae0a06949af5d945513547678"
+                "reference": "ddb5023b3c0fee90e7811f66bf89f40e4143df62"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -443,7 +443,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/forms",
-                "reference": "c871284ca3d197bc21bbe7d92e8c460dd1513d94"
+                "reference": "b7d059ebdc25f8ce9c6a47365124e55884c4c6c8"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -506,12 +506,98 @@
             }
         },
         {
+            "name": "alveby/atrium-jobs",
+            "version": "0.1.x-dev",
+            "dist": {
+                "type": "path",
+                "url": "packages/jobs",
+                "reference": "33f7ee64805a3f07f848cea1b783e80baf78eb12"
+            },
+            "require": {
+                "alveby/atrium": "^0.1",
+                "illuminate/support": "^13.0",
+                "php": "^8.3"
+            },
+            "require-dev": {
+                "alveby/atrium-forms": "^0.1",
+                "alveby/atrium-theme": "^0.1",
+                "orchestra/testbench": "^11.0",
+                "phpunit/phpunit": "^12.5"
+            },
+            "suggest": {
+                "alveby/atrium-forms": "Extra questions on the application form, set up in the admin",
+                "alveby/atrium-theme": "Draws the vacancy list and the vacancy pages on the site"
+            },
+            "type": "atrium-module",
+            "extra": {
+                "atrium": {
+                    "resources": [
+                        "Atrium\\Jobs\\Models\\Vacancy",
+                        "Atrium\\Jobs\\Models\\Application",
+                        "Atrium\\Jobs\\Models\\Department",
+                        "Atrium\\Jobs\\Models\\Location",
+                        "Atrium\\Jobs\\Models\\ReplyTemplate"
+                    ],
+                    "public_urls": {
+                        "Atrium\\Jobs\\Models\\Vacancy": {
+                            "prefix": "jobs"
+                        }
+                    },
+                    "migrations": "database/migrations",
+                    "demo": "Atrium\\Jobs\\Database\\JobsDemoSeeder"
+                },
+                "laravel": {
+                    "providers": [
+                        "Atrium\\Jobs\\JobsServiceProvider"
+                    ]
+                },
+                "branch-alias": {
+                    "dev-main": "0.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Atrium\\Jobs\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Atrium\\Jobs\\Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Vacancies and job applications for Atrium: a careers page, CV uploads, a hiring pipeline and schema.org JobPosting",
+            "homepage": "https://github.com/AlveBy/atrium",
+            "keywords": [
+                "admin",
+                "careers",
+                "cms",
+                "i18n",
+                "jobs",
+                "laravel",
+                "multisite",
+                "recruiting",
+                "schema.org",
+                "vacancies"
+            ],
+            "support": {
+                "issues": "https://github.com/AlveBy/atrium/issues",
+                "source": "https://github.com/AlveBy/atrium"
+            },
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
             "name": "alveby/atrium-news",
             "version": "0.1.x-dev",
             "dist": {
                 "type": "path",
                 "url": "packages/news",
-                "reference": "f20af47a4991f3934266d3f8761b90967960d07e"
+                "reference": "b1537c21ff243f5db46158d54a50d00708ba2bbb"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -584,7 +670,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/pages",
-                "reference": "b4ebf9d6e8086be676c7e28cd7535d132713ed1a"
+                "reference": "fb0351ed2eeddf26f8ec327469e2e1dd83db7291"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -660,7 +746,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/reviews",
-                "reference": "dd2a06b23d10953b2ffc714d89736f6f34d01b4f"
+                "reference": "3244451f205dc846e0de1c0102de7de687c27776"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -730,7 +816,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/solutions",
-                "reference": "82190a715bc203b9474764da30a842ddd42bc805"
+                "reference": "69b5f95ab3204da6f759b8568c6657ec6a6a4f71"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -805,7 +891,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/stores",
-                "reference": "9ef19ea431192df451e2ecba3f35a2f45433feb6"
+                "reference": "537ca3f36e5c98762931e0d30765750bdedfb4c2"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -877,7 +963,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/team",
-                "reference": "67cfcb9e84b639c03be9b91f901a54952c3de0b8"
+                "reference": "cdcb23afb55f65c7f983188b26f287c19584ea10"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -955,7 +1041,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/theme",
-                "reference": "c3dbd2ec2b73b6b15b363936bdbab8a444226a0e"
+                "reference": "a17485c70843580c0d1abd12c5edda7af2d22f73"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -7906,7 +7992,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/bitrix",
-                "reference": "50767e77c0ac27fd6caf0bd81ba98d2767af08d0"
+                "reference": "6e7b382ea46ae4254bc9df60ea305c4b7c12f12d"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -11192,6 +11278,7 @@
         "alveby/atrium-docs": 20,
         "alveby/atrium-faq": 20,
         "alveby/atrium-forms": 20,
+        "alveby/atrium-jobs": 20,
         "alveby/atrium-news": 20,
         "alveby/atrium-pages": 20,
         "alveby/atrium-reviews": 20,
