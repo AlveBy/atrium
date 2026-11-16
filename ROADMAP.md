@@ -2,7 +2,7 @@
 
 **English** · [Русский](ROADMAP.ru.md)
 
-Atrium is an admin panel for Laravel that installs with one command, runs any number of sites and speaks 15 languages from day one. This page is where the project goes after the first release. There are no dates, only an order: each version builds on the one before it.
+Atrium is an admin panel for Laravel that installs with one command, runs any number of sites and speaks 15 languages from day one. This page is where the project goes after the first release. There are no dates, only an order: modules → importers from other CMSs → shop → 1C and Bitrix24. Each version builds on the one before it: importers, the shop and integrations are modules themselves.
 
 ## Principles
 
@@ -156,6 +156,5 @@ Development happens in one repository (a monorepo). On release each package is p
 
 - The project website's domain.
 - Modules: all free under MIT, or official ones free plus a paid catalogue for third-party developers.
-- The order of 0.3–0.5. Proposed: modules → importers → shop → 1C and Bitrix24, because importers, the shop and integrations are modules themselves.
 
 Ideas and votes are welcome in [Issues](https://github.com/AlveBy/atrium/issues).
