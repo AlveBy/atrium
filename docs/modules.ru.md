@@ -91,6 +91,7 @@ class Article extends Model implements Administrable
 | `BelongsToManyField` | Привязка к нескольким записям; у модели нужна одноимённая связь `belongsToMany` | `model(Tag::class)`, `sortable()` |
 | `TreeSelectField` | Раздел из дерева | `model(Section::class)`, `parentColumn('parent_id')`, `multiple()` |
 | `MapField` | Точка на карте | `yandex()` или `google()`, `defaultCenter()`, `defaultZoom()` |
+| `DisplayField` | HTML только для чтения, собранный из записи на форме редактирования: строки заказа, сводка, ссылка | `html(fn (Model $record): string => view('…')->render())`; на форме создания нет, не отправляется |
 
 Товар демо-магазина (`packages/catalog/src/Models/Product.php`) использует почти все.
 

@@ -91,6 +91,7 @@ Every field is made with `::make('column')` and takes `label()`, `required()`, `
 | `BelongsToManyField` | Links to several records; the model needs the `belongsToMany` relation of the same name | `model(Tag::class)`, `sortable()` |
 | `TreeSelectField` | A section from a tree | `model(Section::class)`, `parentColumn('parent_id')`, `multiple()` |
 | `MapField` | A point on a map | `yandex()` or `google()`, `defaultCenter()`, `defaultZoom()` |
+| `DisplayField` | Read-only HTML drawn from the record on the edit form: order lines, a summary, a link | `html(fn (Model $record): string => view('…')->render())`; not on the create form, never submitted |
 
 The demo shop's product (`packages/catalog/src/Models/Product.php`) uses nearly all of them.
 
