@@ -119,6 +119,53 @@ final class ThemeTest extends AdminTestCase
         });
     }
 
+    public function test_a_scrolled_list_passes_under_the_header_in_every_theme(): void
+    {
+        $admin = $this->admin();
+
+        foreach (range(1, 14) as $n) {
+            Article::query()->create(['name' => "Article {$n}", 'active' => $n % 3 !== 0]);
+        }
+
+        $this->browse(function (Browser $browser) use ($admin): void {
+            $browser->resize(1280, 420);
+
+            foreach (Themes::THEMES as $theme) {
+                $admin->forceFill(['theme' => $theme])->save();
+
+                $browser->loginAs($admin, 'admin')
+                    ->visit('/admin/articles')
+                    ->waitFor('[data-badge="off"]');
+
+                // Scroll until the table's head row is under the header bar,
+                // then ask what the browser draws on top: over the pinned
+                // actions column and over the middle of the table.
+                $state = $browser->script(<<<'JS'
+                    const head = document.querySelector('thead');
+                    window.scrollTo(0, head.getBoundingClientRect().top + window.scrollY - 20);
+                    const bar = document.querySelector('header');
+                    const actions = document.querySelector('thead th:last-child').getBoundingClientRect();
+                    const middle = head.getBoundingClientRect();
+                    const y = bar.getBoundingClientRect().bottom - 8;
+                    const select = document.querySelector('header select');
+                    return {
+                        headUnderBar: head.getBoundingClientRect().top < bar.getBoundingClientRect().bottom,
+                        overActions: bar.contains(document.elementFromPoint(actions.left + actions.width / 2, y)),
+                        overMiddle: bar.contains(document.elementFromPoint(middle.left + middle.width / 2, y)),
+                        selectAppearance: select ? getComputedStyle(select).appearance : 'none',
+                    };
+                JS)[0];
+
+                $this->assertTrue($state['headUnderBar'], "{$theme}: the list did not scroll under the header");
+                $this->assertTrue($state['overActions'], "{$theme}: the actions column is drawn over the header");
+                $this->assertTrue($state['overMiddle'], "{$theme}: the table is drawn over the header");
+                $this->assertSame('none', $state['selectAppearance'], "{$theme}: the header select is drawn by the system");
+
+                $browser->screenshot("themes/{$theme}-scrolled");
+            }
+        });
+    }
+
     private function theme(Browser $browser): string
     {
         return (string) $browser->script('return document.documentElement.dataset.theme;')[0];
