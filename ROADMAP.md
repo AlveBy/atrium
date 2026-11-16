@@ -16,7 +16,7 @@ Atrium is an admin panel for Laravel that installs with one command, runs any nu
 The admin core is ported and covered by tests. Still to do:
 
 - interface languages (15), switchable per admin;
-- content languages: add a language in the admin, make any field `->translatable()`;
+- ~~content languages~~ done: add a language in the admin, list a model's columns in `$translatable`, each language gets its own addresses (`/de/…`) and `hreflang`;
 - multiple sites in one admin, the site is picked by domain;
 - the 1C-Bitrix migrator (`alveby/atrium-bitrix`);
 - a neutral public theme (`alveby/atrium-theme`), light and dark;

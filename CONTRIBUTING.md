@@ -35,6 +35,8 @@ php artisan dusk           # browser tests
 
 The admin panel speaks 15 languages. Its strings live in `packages/admin/lang/{locale}/*.php`, one file per screen, and the same files feed PHP (`__('atrium::fields.gallery.add')`) and Vue (`$t('fields.gallery.add')`). English is the source. Russian was written by hand; the other 13 languages started as machine translation and each file says so at the top — native speakers are very welcome to fix them. That is one of the best first contributions.
 
+These are the panel's own interface languages. The languages a site's content is written in are something else: they are added by editors in the admin (Languages) and stored in the `admin_languages` table.
+
 Rules that the tests check (`packages/admin/tests/Unit/TranslationsTest.php`):
 
 - every language has exactly the keys of English;

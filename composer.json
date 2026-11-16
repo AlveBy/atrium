@@ -14,10 +14,10 @@
     "license": "MIT",
     "require": {
         "php": "^8.3",
-        "laravel/framework": "^13.17",
-        "laravel/tinker": "^3.0",
         "alveby/atrium": "@dev",
-        "alveby/atrium-theme": "@dev"
+        "alveby/atrium-theme": "@dev",
+        "laravel/framework": "^13.17",
+        "laravel/tinker": "^3.0"
     },
     "require-dev": {
         "alveby/atrium-bitrix": "@dev",

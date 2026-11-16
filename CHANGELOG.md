@@ -16,6 +16,11 @@ All notable changes are listed here. The format follows [Keep a Changelog](https
 - The admin panel speaks 15 languages: en, ru, uk, be, kk, uz, de, fr, es, pt_BR, it, pl, tr, zh_CN, ja. Each admin picks one in the header (it is kept on the account); guests get their browser's language. English and Russian are written by hand, the rest are machine translations awaiting native review.
 - One set of lang files feeds PHP (`__('atrium::…')`) and Vue (`$t()`, `$tc()` with Laravel's plural rules); a site can override any line with `vendor:publish --tag=atrium-lang`. A test checks every language against English: keys, placeholders, plural forms.
 - Menu labels in `config/atrium.php` may be translation keys.
+- Content languages. A built-in "Languages" module (code, name, active, default, sort order) appears in every panel without configuration; a site starts with its `app.locale` as the only, default language.
+- Translatable columns: `use Atrium\Admin\Traits\Translatable` and list them in `protected array $translatable` (JSON columns, spatie/laravel-translatable). The form gets a language switch with error counts per language; only the default language is required, the others fall back to it. Unique rules (such as a page code) apply within one language. The list shows the default language and searches all of them; the API takes either a plain value (default language) or an object keyed by language code, and documents it.
+- `Route::localized(fn () => …)` serves public routes in the default language as is and in other active languages under `/{code}/…`; `ContentLanguages::route()` builds the right address and `<x-atrium::hreflang :urls="…" />` prints the alternates with `x-default`.
+- `atrium:make-module` generates translatable models and JSON columns. The demo `Article` is translatable and has a public page at `/articles/{code}`.
+- Slugs drop accents (`über` → `uber`) instead of turning them into dashes.
 - [ROADMAP.md](ROADMAP.md): installable modules, importers from other CMSs, an online shop, 1C and Bitrix24, a multilingual project site.
 
 ### Fixed
