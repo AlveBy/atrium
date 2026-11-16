@@ -92,6 +92,16 @@ The models land in `app/Models`. List the ones the editors need in `config/atriu
 
 Generated models are meant to be regenerated, not edited: what you change on purpose goes to `config/atrium-bitrix.php` (`extra_fields`, `hidden_list_columns`, `extra_list_columns`), and after a regeneration look at `git diff app/Models`.
 
+Static pages, the `.php` files outside the iblocks (about, contacts), move with the Pages module from the copy of the site's files:
+
+```bash
+composer require alveby/atrium-pages
+php artisan migrate
+php artisan atrium:pages:import-bitrix /path/to/bitrix/site
+```
+
+`/about/index.php` becomes the page `/about`, `/about/team.php` the page `/about/team`; titles, texts and the `title`, `description` and `keywords` properties come along, and the old `.php` addresses redirect to the pages. What is left out and why is in the [module's README](../packages/pages/README.md#moving-from-1c-bitrix).
+
 ## 4. Check
 
 ```bash
@@ -118,6 +128,6 @@ The migrator is a development dependency, so the last `sync` runs where you did 
 
 ## What does not move yet
 
-- **Static pages**: `.php` files outside iblocks (contacts, about). They move with the "Pages" module in version 0.2; until then carry them over by hand. The checklist helps find them.
+- **The home page and component pages**: `/index.php` and pages made of components are not static pages; the new site draws them from the modules.
 - **Templates and components**: the new site is drawn by the public theme (`alveby/atrium-theme`) from the modules' forms, or by your own Blade templates.
 - **Users, orders and the shop**: the migrator moves content. The shop and 1C exchange are on the [roadmap](../ROADMAP.md).

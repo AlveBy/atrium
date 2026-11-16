@@ -10,6 +10,7 @@ parameters:
         - packages/admin/src
         - packages/bitrix/src
         - packages/faq/src
+        - packages/pages/src
         - packages/reviews/src
         - packages/theme/src
     # Package config files read env() like the application's do.
@@ -23,5 +24,6 @@ parameters:
         - packages/admin/database/migrations
         - packages/admin/database/demo
         - packages/faq/database/migrations
+        - packages/pages/database/migrations
         - packages/reviews/database/migrations
         - vendor/laravel/sanctum/database/migrations

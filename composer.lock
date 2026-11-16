@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7898ddf25841e83497dd4aaa1707eec1",
+    "content-hash": "4e072a46e8014ae16150ed2c58a488d4",
     "packages": [
         {
             "name": "alveby/atrium",
@@ -12,7 +12,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/admin",
-                "reference": "35cfe516b90aaf3dd3f3e0e3e2f2b51a3507ff06"
+                "reference": "e489db33245d71538cea39ad2cd21096c2f49f7c"
             },
             "require": {
                 "illuminate/database": "^13.0",
@@ -79,7 +79,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/faq",
-                "reference": "650bd9152ae61fa78fe1ca9cc61bf90f1efd4306"
+                "reference": "55788852e887f44de22e1467627fb1ac1fa88d33"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -139,12 +139,74 @@
             }
         },
         {
+            "name": "alveby/atrium-pages",
+            "version": "0.1.x-dev",
+            "dist": {
+                "type": "path",
+                "url": "packages/pages",
+                "reference": "3ab651cd8a61d47a83a089d091354c1bb5907fd0"
+            },
+            "require": {
+                "alveby/atrium": "^0.1",
+                "alveby/atrium-theme": "^0.1",
+                "illuminate/support": "^13.0",
+                "php": "^8.3"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^11.0",
+                "phpunit/phpunit": "^12.5"
+            },
+            "type": "atrium-module",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Atrium\\Pages\\PagesServiceProvider"
+                    ]
+                },
+                "branch-alias": {
+                    "dev-main": "0.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Atrium\\Pages\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Atrium\\Pages\\Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Static pages for Atrium: a tree per site, translated, with SEO, templates and an import of 1C-Bitrix static pages",
+            "homepage": "https://github.com/AlveBy/atrium",
+            "keywords": [
+                "admin",
+                "bitrix",
+                "cms",
+                "i18n",
+                "laravel",
+                "multisite",
+                "pages"
+            ],
+            "support": {
+                "issues": "https://github.com/AlveBy/atrium/issues",
+                "source": "https://github.com/AlveBy/atrium"
+            },
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
             "name": "alveby/atrium-reviews",
             "version": "0.1.x-dev",
             "dist": {
                 "type": "path",
                 "url": "packages/reviews",
-                "reference": "c5d97d0f5c418f45da0bc67a39d8b374593e31a2"
+                "reference": "82138bf4de8b043b838d43b276137bc3274e76f4"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -208,7 +270,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/theme",
-                "reference": "7e73e10e0c0177c9851b528e50afbef8d3c43985"
+                "reference": "1fe8883c5d4df2c997f92044acba03194b3b59d0"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -6927,7 +6989,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/bitrix",
-                "reference": "32aec901cc394fa71601e2f6af8cab3f8c578ff8"
+                "reference": "964b6fc2c53eb962be90ce099e829ca7cb062771"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -10284,6 +10346,7 @@
         "alveby/atrium": 20,
         "alveby/atrium-bitrix": 20,
         "alveby/atrium-faq": 20,
+        "alveby/atrium-pages": 20,
         "alveby/atrium-reviews": 20,
         "alveby/atrium-theme": 20
     },
