@@ -93,6 +93,8 @@ jobs:
           php artisan key:generate
           cp .env .env.dusk.local
           touch database/dusk.sqlite
+          # The public disk is served through public/storage, as after `atrium:install`.
+          php artisan storage:link
 
       - run: php artisan dusk:chrome-driver --detect
 
