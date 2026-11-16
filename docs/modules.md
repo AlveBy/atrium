@@ -281,6 +281,7 @@ A module for other sites is a Composer package of type `atrium-module`. Its `com
 | `key`, `title` | The module's key in permissions and settings, and its name in the panel (see "Module settings") |
 | `settings` | Its settings class (see "Module settings") |
 | `permissions` | Its own permissions beyond view, create, update and delete (see "Permissions") |
+| `submodules`, `parent` | The submodules it lists, or the module it is a submodule of (see "Submodules") |
 
 Every key is optional. `suggest` lists the modules this one links to softly (see below); their demo content is filled in first.
 
@@ -310,6 +311,20 @@ public function boot(): void
 Leave the migrations to the manifest: loaded with `loadMigrationsFrom()`, they would run for a module that is not installed and bring back the tables of a removed one. Cached config and routes are rebuilt by both commands.
 
 Test it with Orchestra Testbench, as the modules in `packages/` do: list the module in `atrium.modules` in `defineEnvironment()`, and its models, migrations and pages are there as on a site.
+
+### Submodules
+
+A module may have submodules: a shop with its delivery and payment methods. Each is a package of its own, with its own manifest, models, migrations, settings and permissions. The parent lists the ones it knows; a submodule from someone else names its parent:
+
+```json
+"extra": {"atrium": {"submodules": ["vendor/atrium-shop-delivery", "vendor/atrium-shop-payment"]}}
+```
+
+```json
+"extra": {"atrium": {"parent": "vendor/atrium-shop"}}
+```
+
+`atrium:module:install vendor/atrium-shop` installs every submodule of it that Composer has, after it. A submodule can be installed on its own once its parent is. `atrium:module:remove vendor/atrium-shop` removes its submodules first, with the same answer about the data; a submodule removed on its own leaves its parent. The **Modules** screen lists the submodules under their parent, and their demo content is filled in after the parent's.
 
 ## Module settings
 
