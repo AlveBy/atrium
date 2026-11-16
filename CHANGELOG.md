@@ -5,6 +5,7 @@ All notable changes are listed here. The format follows [Keep a Changelog](https
 ## [Unreleased]
 
 ### Added
+- The README in 15 languages (`docs/readme`), with screenshots of the admin and the site. `tests/Unit/ReadmeTest.php` checks that every translation lists all languages, has no broken links and the same commands and code as English.
 - `docker compose up` runs the demo with nothing but Docker: it installs Atrium with the demo shop on the first start and applies migrations and the admin bundle after each `git pull`.
 - Laravel 13 skeleton with PHPUnit 12, Laravel Dusk, Pint and Larastan.
 - Package skeletons: `alveby/atrium`, `alveby/atrium-bitrix`, `alveby/atrium-theme`.

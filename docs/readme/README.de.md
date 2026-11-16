@@ -1,0 +1,151 @@
+# Atrium
+
+[English](../../README.md) · [Русский](README.ru.md) · [Українська](README.uk.md) · [Беларуская](README.be.md) · [Қазақша](README.kk.md) · [Oʻzbekcha](README.uz.md) · **Deutsch** · [Français](README.fr.md) · [Español](README.es.md) · [Português (Brasil)](README.pt-BR.md) · [Italiano](README.it.md) · [Polski](README.pl.md) · [Türkçe](README.tr.md) · [简体中文](README.zh-CN.md) · [日本語](README.ja.md)
+
+[![tests](https://github.com/AlveBy/atrium/actions/workflows/tests.yml/badge.svg)](https://github.com/AlveBy/atrium/actions/workflows/tests.yml)
+
+_Diese Seite wurde maschinell aus dem Englischen übersetzt. Korrekturen sind willkommen, siehe [CONTRIBUTING.md](../../CONTRIBUTING.md)._
+
+Ein Admin-Bereich für beliebig viele mehrsprachige Websites auf Basis von Laravel 13, dazu ein Migrator, der eine bestehende 1C-Bitrix-Website übernimmt.
+
+Ein Modul beschreiben Sie nur einmal: als Modell mit seinen Feldern und Listenspalten. Atrium macht daraus eine Liste mit Suche und Sortierung, ein Formular mit Tabs, einen Menüeintrag, eine API und, zusammen mit dem Theme, öffentliche Seiten.
+
+![Die Produktliste des Demo-Shops](../images/admin-list.png)
+
+> **Vor dem ersten Release.** Atrium funktioniert und ist durch Tests abgedeckt, aber Version 0.1 ist noch nicht erschienen, und die Pakete sind noch nicht auf Packagist. Ausprobieren können Sie es direkt aus diesem Repository.
+
+## Was es kann
+
+- **Mehrere Websites.** Ein Admin-Bereich und eine Datenbank für viele Websites; jede wird an ihrer Domain erkannt und hat ihre eigenen Sprachen.
+- **Mehrsprachig.** Der Admin-Bereich spricht 15 Sprachen, und jeder Administrator wählt seine eigene. Inhaltssprachen werden im Admin-Bereich hinzugefügt, jede Spalte eines Moduls kann übersetzbar sein, und jede Sprache bekommt eigene URLs (`/de/…`) und `hreflang`.
+- **20 Feldtypen.** Text, Zahlen, Datumsangaben, Listen, Verknüpfungen mit anderen Modulen, Bilder, Galerien, Dateien, ein visueller Editor, Karten, wiederholbare Werte. Formulare haben Tabs wie in 1C-Bitrix.
+- **Rollen und Rechte.** Wer welches Modul sieht und was er darin darf: ansehen, anlegen, bearbeiten, löschen.
+- **SEO ohne Code.** Titel und Beschreibungen für jeden Eintrag, sprechende URLs mit Weiterleitungen von den alten, `sitemap.xml` und `robots.txt` für jede Website. Google Tag, Yandex Metrica und Verifizierungscodes werden pro Website im Admin-Bereich eingetragen.
+- **API.** Tokens, die auf ausgewählte Module und Aktionen beschränkt sind; `/api/v1` beschreibt sich selbst.
+- **Anmeldecode per E-Mail.** Die Zwei-Faktor-Anmeldung ist standardmäßig aktiv.
+- **1C-Bitrix-Migrator.** Infoblöcke, Eigenschaften, Bereiche, Formulare, Listenlayouts, SEO und die Medienbibliothek werden zu Laravel-Modellen, Migrationen und Daten, und ein Bericht vergleicht die alte Website mit der neuen.
+- **Öffentliches Theme.** Eine neutrale Website, die jedes Modul anhand seines Formulars im Admin-Bereich darstellt, hell und dunkel, lesbar bei jeder Form des Farbsehens.
+- **Getestet.** PHPUnit auf SQLite, MySQL und PostgreSQL, Browsertests mit Laravel Dusk.
+
+| Das Formular eines Eintrags | Die Website, hell und dunkel |
+|---|---|
+| ![Ein Produktformular mit Tabs](../images/admin-form.png) | ![Eine Produktseite](../images/site-light.png) ![Eine Neuigkeit auf Deutsch, dunkles Theme](../images/site-dark.png) |
+
+## Ausprobieren
+
+Mit Docker brauchen Sie nichts weiter:
+
+```bash
+git clone https://github.com/AlveBy/atrium.git
+cd atrium
+docker compose up
+```
+
+Der erste Start dauert ein paar Minuten. Öffnen Sie dann http://localhost:8000/admin und melden Sie sich als `admin@example.com` mit dem Passwort `password` an (nur für lokale Tests). Die Website läuft unter http://localhost:8000.
+
+Ohne Docker brauchen Sie PHP 8.3 oder neuer und Composer. Als Datenbank dient standardmäßig SQLite, und der Admin-Bereich ist bereits gebaut, sodass weder MySQL noch Node nötig sind:
+
+```bash
+git clone https://github.com/AlveBy/atrium.git
+cd atrium
+composer install
+cp .env.example .env
+php artisan key:generate
+php artisan atrium:install --demo
+php artisan serve
+```
+
+Das Installationsprogramm fragt nach Name, E-Mail-Adresse und Passwort des ersten Administrators. Der Anmeldecode kommt per E-Mail; auf einem lokalen Rechner ohne Mailversand steht er am Ende von `storage/logs/laravel.log`, oder Sie schalten ihn mit `ATRIUM_2FA_ENABLED=false` in der `.env` ab.
+
+`--demo` legt einen kleinen Shop an: Produkte mit allen Feldtypen, Marken, Filialen, Neuigkeiten in drei Sprachen und eine zweite Website. Um neu anzufangen, löschen Sie `database/database.sqlite` und installieren erneut.
+
+## Ihr erstes Modul
+
+```bash
+php artisan atrium:make-module Article
+php artisan migrate
+```
+
+Das erzeugt ein Modell, eine Migration und eine Zeile in `config/atrium.php`, und im Menü erscheint „Articles“. Das Modell beschreibt sein Formular und seine Liste:
+
+```php
+class Article extends Model implements Administrable
+{
+    use InteractsWithAdmin, Translatable;
+
+    protected array $translatable = ['name', 'code', 'preview_text', 'detail_text'];
+
+    public static function getAdministrationFields(): array
+    {
+        return [
+            TextField::make('name')->label('Name')->required(),
+            SlugField::make('code')->label('Code')->from('name')->unique('articles', 'code'),
+            CheckboxField::make('active')->label('Active')->default(true),
+            ContentField::make('detail_text')->label('Detail text'),
+        ];
+    }
+
+    public static function getAdministrationListColumns(): array
+    {
+        return [
+            TextColumn::make('name')->label('Name')->sortable()->searchable(),
+            BooleanColumn::make('active')->label('Active'),
+        ];
+    }
+}
+```
+
+Damit das Modul Seiten auf der Website bekommt, tragen Sie es unter `public_urls` in `config/atrium.php` ein:
+
+```php
+'public_urls' => [
+    App\Models\Article::class => ['prefix' => 'articles'],
+],
+```
+
+## Umzug von 1C-Bitrix
+
+```bash
+composer require alveby/atrium-bitrix --dev
+php artisan atrium:bitrix:migrate
+php artisan atrium:bitrix:parity
+```
+
+Die Bitrix-Datenbank wird nur gelesen. Tabs, Feldreihenfolge und Listenspalten kommen so heraus, wie die Redakteure sie in Bitrix eingerichtet hatten. `atrium:bitrix:sync` holt Änderungen nach, die auf der alten Website noch gemacht werden, solange sie läuft. Schritt für Schritt: [packages/bitrix/README.md](../../packages/bitrix/README.md) (auf Englisch).
+
+## Pakete
+
+| Paket | Was es ist |
+|---|---|
+| [`alveby/atrium`](../../packages/admin) | Der Admin-Bereich |
+| [`alveby/atrium-theme`](../../packages/theme/README.md) | Das öffentliche Theme |
+| [`alveby/atrium-bitrix`](../../packages/bitrix/README.md) | Der 1C-Bitrix-Migrator |
+
+Sobald 0.1 auf Packagist ist, bekommt eine bestehende Laravel-13-Anwendung Atrium so:
+
+```bash
+composer require alveby/atrium
+php artisan atrium:install
+```
+
+## Voraussetzungen
+
+- PHP 8.3 oder neuer
+- Laravel 13
+- SQLite, MySQL 8 oder PostgreSQL
+
+## Sprachen
+
+Der Admin-Bereich spricht Englisch, Russisch, Ukrainisch, Belarussisch, Kasachisch, Usbekisch, Deutsch, Französisch, Spanisch, Portugiesisch (Brasilien), Italienisch, Polnisch, Türkisch, Chinesisch (vereinfacht) und Japanisch. Englisch und Russisch wurden von Hand geschrieben; die übrigen Sprachen begannen als maschinelle Übersetzung, und diese README ebenso. Korrekturen von Muttersprachlern gehören zu den besten ersten Beiträgen: siehe [CONTRIBUTING.md](../../CONTRIBUTING.md) (auf Englisch).
+
+## Wie es weitergeht
+
+Die [Roadmap](../../ROADMAP.md) (auf Englisch): Module, die sich mit einem Befehl installieren lassen, fertige Websites, Importer für WordPress und Drupal, ein Onlineshop, 1C und Bitrix24.
+
+## Mitwirken
+
+[CONTRIBUTING.md](../../CONTRIBUTING.md) erklärt, wie Sie das Projekt einrichten, die Tests ausführen und übersetzen. Sicherheitslücken melden Sie wie in [SECURITY.md](../../SECURITY.md) beschrieben.
+
+## Lizenz
+
+MIT, siehe [LICENSE](../../LICENSE).

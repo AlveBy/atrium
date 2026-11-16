@@ -49,6 +49,8 @@ A new string goes into every language at once; if you can't translate it, put th
 
 To add a language: copy `packages/admin/lang/en` to the new code, translate it, add the code to `locales` in `packages/admin/config/atrium.php` and its plural count to `TranslationsTest::PLURAL_FORMS`. If Laravel's plural rule for it is not one of the above, add it to `resources/js/Support/plural.js` too — a test compares that file with Laravel.
 
+The README is translated too: English is `README.md`, the others are `docs/readme/README.{locale}.md`. Fix a translation freely; a change to the English README goes into every language (`tests/Unit/ReadmeTest.php` fails while the commands, code or links differ).
+
 Sites can override any line without forking: `php artisan vendor:publish --tag=atrium-lang` copies the files to `lang/vendor/atrium`.
 
 ## Commit messages
