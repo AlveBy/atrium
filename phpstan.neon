@@ -18,6 +18,9 @@ parameters:
         - packages/bitrix/src
         - packages/brands/src
         - packages/catalog/src
+        - packages/custom-fields/src
+        # The trait is for apps' models; this one uses it, so it is analysed.
+        - packages/custom-fields/tests/Fixtures
         - packages/docs/src
         - packages/faq/src
         - packages/forms/src
@@ -37,6 +40,7 @@ parameters:
         - packages/ai/config
         - packages/backup/config
         - packages/bitrix/config
+        - packages/custom-fields/config
         - packages/docs/config
         - packages/forms/config
         - packages/solutions/config
@@ -49,6 +53,7 @@ parameters:
         - packages/ai/database/migrations
         - packages/brands/database/migrations
         - packages/catalog/database/migrations
+        - packages/custom-fields/database/migrations
         - packages/faq/database/migrations
         - packages/forms/database/migrations
         - packages/news/database/migrations

@@ -59,6 +59,7 @@ return [
         'alveby/atrium-pages',
         'alveby/atrium-reviews',
         'alveby/atrium-ai',
+        'alveby/atrium-custom-fields',
         'alveby/atrium-team',
         'alveby/atrium-backup',
         'alveby/atrium-2fa',

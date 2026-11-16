@@ -119,6 +119,7 @@ La base de données Bitrix est uniquement lue. Les onglets, l'ordre des champs e
 - [Configuration : e-mail et code de connexion, fichiers, jetons API, assistants IA via MCP](../configuration.md)
 - [Aide à la rédaction par IA : fournisseurs gratuits et payants, descriptions, SEO, textes alt, traductions](../ai.md)
 - [Votre module : champs, colonnes, onglets, droits, langues, tests, paquet](../modules.md)
+- [Champs personnalisés : ajouter des champs à tout module depuis l'administration, filtres et facettes sur 100 000 fiches](../custom-fields.md)
 - [Migrer depuis 1C-Bitrix, pas à pas](../bitrix.md)
 - [Sauvegardes : bases de données et fichiers vers plusieurs destinations, planification, contrôles, restauration](../backup.md)
 - [CDN : images, copies redimensionnées et WebP/AVIF, purge du cache, envois vers S3](../cdn.md)
@@ -131,6 +132,7 @@ La base de données Bitrix est uniquement lue. Les onglets, l'ordre des champs e
 | [`alveby/atrium-theme`](../../packages/theme/README.md) | Le thème public |
 | [`alveby/atrium-bitrix`](../../packages/bitrix/README.md) | Le migrateur 1C-Bitrix |
 | [`alveby/atrium-ai`](../../packages/ai/README.md) | Aide à la rédaction par IA dans l'administration |
+| [`alveby/atrium-custom-fields`](../../packages/custom-fields/README.md) | Champs ajoutés à tout module depuis l'administration, avec filtres et facettes |
 | [`alveby/atrium-docs`](../../packages/docs/README.md) | Documentation à partir de Markdown, avec versions et recherche |
 | [`alveby/atrium-backup`](../../packages/backup/README.md) | Sauvegardes des bases de données et des fichiers, restauration depuis l'administration |
 

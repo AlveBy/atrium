@@ -117,6 +117,7 @@ The Bitrix database is only read. The tabs, field order and list columns come ou
 - [Configuration: mail and the sign-in code, files, API tokens, AI assistants over MCP](docs/configuration.md)
 - [AI writing help: free and paid providers, descriptions, SEO, alt texts, translations](docs/ai.md)
 - [Your own module: fields, columns, tabs, permissions, languages, tests, a package](docs/modules.md)
+- [Custom fields: add fields to any module from the admin, filters and facets on 100 000 records](docs/custom-fields.md)
 - [Moving from 1C-Bitrix, step by step](docs/bitrix.md)
 - [Backups: databases and files to several places, schedules, health checks, restore](docs/backup.md)
 - [CDN: pictures, resized copies and WebP/AVIF, cache purge, uploads to S3](docs/cdn.md)
@@ -131,6 +132,7 @@ The Bitrix database is only read. The tabs, field order and list columns come ou
 | [`alveby/atrium-theme`](packages/theme/README.md) | The public theme |
 | [`alveby/atrium-bitrix`](packages/bitrix/README.md) | The 1C-Bitrix migrator |
 | [`alveby/atrium-ai`](packages/ai/README.md) | AI writing help in the admin |
+| [`alveby/atrium-custom-fields`](packages/custom-fields/README.md) | Fields added to any module from the admin, with filters and facets |
 | [`alveby/atrium-docs`](packages/docs/README.md) | Documentation pages from Markdown, with versions and search |
 | [`alveby/atrium-backup`](packages/backup/README.md) | Backups of the databases and files, restore from the admin |
 | [`alveby/atrium-news`](packages/news/README.md) | News |

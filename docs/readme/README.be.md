@@ -119,6 +119,7 @@ php artisan atrium:bitrix:parity
 - [Налады: пошта і код уваходу, файлы, API-токены, ШІ-асістэнты праз MCP](../configuration.md)
 - [ШІ-памочнік для тэкстаў: бясплатныя і платныя правайдары, апісанні, SEO, alt, пераклады](../ai.md)
 - [Свой модуль: палі, калонкі, укладкі, правы, мовы, тэсты, пакет](../modules.md)
+- [Свае палі: дадаць поле ў любы модуль з адмінкі, фільтры і фасеты на 100 000 запісаў](../custom-fields.md)
 - [Пераезд з 1С-Бітрыкс крок за крокам](../bitrix.md)
 - [Рэзервовыя копіі: базы і файлы ў некалькі месцаў, расклад, праверкі, аднаўленне](../backup.md)
 - [CDN: выявы, паменшаныя копіі і WebP/AVIF, ачыстка кэша, загрузкі ў S3](../cdn.md)
@@ -131,6 +132,7 @@ php artisan atrium:bitrix:parity
 | [`alveby/atrium-theme`](../../packages/theme/README.md) | Тэма для сайта |
 | [`alveby/atrium-bitrix`](../../packages/bitrix/README.md) | Мігратар з 1С-Бітрыкс |
 | [`alveby/atrium-ai`](../../packages/ai/README.md) | ШІ-памочнік для тэкстаў у адмінцы |
+| [`alveby/atrium-custom-fields`](../../packages/custom-fields/README.md) | Палі, якія дадаюць у любы модуль з адмінкі, з фільтрамі і фасетамі |
 | [`alveby/atrium-docs`](../../packages/docs/README.md) | Дакументацыя з Markdown: версіі і пошук |
 | [`alveby/atrium-backup`](../../packages/backup/README.md) | Рэзервовыя копіі баз і файлаў, аднаўленне з адмінкі |
 
