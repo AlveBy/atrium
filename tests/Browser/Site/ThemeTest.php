@@ -41,6 +41,7 @@ final class ThemeTest extends DuskTestCase
             $browser->visit('/')
                 ->assertSeeIn('h2', 'Articles')
                 ->assertSee('The first article.')
+                ->assertSeeIn('.site-footer .credit', 'Made with Atrium')
                 ->clickLink('Hello world')
                 ->assertPathIs('/articles/hello-world')
                 ->assertSeeIn('h1', 'Hello world')
