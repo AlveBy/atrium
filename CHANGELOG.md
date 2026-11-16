@@ -23,11 +23,15 @@ All notable changes are listed here. The format follows [Keep a Changelog](https
 - Multi-site. A built-in "Sites" module (code, name, domains, languages, default language, active, default site); the first site is created from `APP_URL`. A request gets its site by domain (an unknown or inactive domain gets the default site), the admin by the switcher in the header, the API by `?site=code`.
 - `use Atrium\Admin\Traits\BelongsToSite` (plus a `site_id` column) makes a module per-site: lists, forms, search and public pages see the current site's records only, new records get its id, unique rules apply within the site. Modules without it are shared by all sites.
 - A site may limit the content languages and pick its own default language (served without a prefix). An administrator may be limited to some sites.
+- Counters and codes per site, in the admin (Sites → Counters and codes): a Google Tag ID (GA4 or a Tag Manager container), a Yandex Metrica number with Webvisor, Search Console / Yandex Webmaster / Bing verification (the token or the whole meta tag), and free code for `<head>`, the start of `<body>` and before `</body>`. A layout prints them with `<x-atrium::head />`, `<x-atrium::body-start />` and `<x-atrium::body-end />`. Signed-in administrators are not counted unless the site says so; with `atrium.counters.consent` the counters wait until the cookie banner calls `window.atriumConsent()`.
+- `sitemap.xml` of every site: the paths in `atrium.sitemap.paths` plus the public records of modules that implement `Atrium\Admin\Contracts\Sitemapable`, one address per language with `xhtml:link` alternates and `x-default`. Past 50 000 addresses it becomes an index of `sitemap-N.xml` parts. Cached, rebuilt when a record, a site or a language changes.
+- `robots.txt` of every site, edited in the admin; empty means "allow everything", and a `Sitemap:` line is added when missing. Off production it always says `Disallow: /`. `atrium.robots = false` leaves it to `public/robots.txt`; while it is on, `atrium:install` removes Laravel's stock file and the admin warns about any other.
 - Slugs drop accents (`über` → `uber`) instead of turning them into dashes.
 - [ROADMAP.md](ROADMAP.md): installable modules, importers from other CMSs, an online shop, 1C and Bitrix24, a multilingual project site.
 - Issue and pull request templates, Dependabot, and a `release` workflow: pushing a `v*` tag publishes a GitHub release with that version's notes from this file.
 
 ### Fixed
+- Public pages outside `Route::localized()` always got the default site, and page timings for the dashboard were never recorded: the middleware was added to the router's `web` group, which the HTTP kernel overwrites. It is added through the kernel now.
 - Saving an administrator ended in a server error (it redirected to a route that does not exist).
 - The administrator edit page did not open.
 

@@ -27,10 +27,10 @@ class ArticleController extends Controller
         $urls = [];
 
         foreach ($languages->codes() as $language) {
-            $translated = $article->getTranslation('code', $language, false);
+            $url = $article->sitemapUrl($language);
 
-            if ($translated !== null && $translated !== '' && $article->getTranslation('name', $language, false)) {
-                $urls[$language] = $languages->route('articles.show', ['code' => $translated], $language);
+            if ($url !== null) {
+                $urls[$language] = $url;
             }
         }
 

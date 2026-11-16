@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{ $article->name }}</title>
     <x-atrium::hreflang :urls="$urls" />
+    <x-atrium::head />
 </head>
 <body>
+    <x-atrium::body-start />
     @if (count($urls) > 1)
         <nav aria-label="Language">
             @foreach ($urls as $code => $url)
@@ -19,5 +21,7 @@
         <h1>{{ $article->name }}</h1>
         {!! $article->detail_text ?: $article->preview_text !!}
     </article>
+
+    <x-atrium::body-end />
 </body>
 </html>

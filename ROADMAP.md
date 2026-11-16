@@ -21,8 +21,8 @@ The admin core is ported and covered by tests. Still to do:
 - an MCP server on top of the same API and keys: an AI assistant (Claude, ChatGPT, Cursor) connects to the site and reads and edits its modules — "add three news items", "raise prices in this category by 5%" — with exactly the rights of its key;
 - ~~content languages~~ done: add a language in the admin, list a model's columns in `$translatable`, each language gets its own addresses (`/de/…`) and `hreflang`;
 - ~~multiple sites~~ done: sites are added in the admin, picked by domain, each with its own languages; a module becomes per-site with one trait;
-- analytics and verification codes from the admin, per site: Google Tag, Yandex Metrica, Search Console / Webmaster meta tags, any snippet in `<head>` or `<body>` — nobody has to touch the templates;
-- `sitemap.xml` (every site, every language, with `hreflang`) and `robots.txt` built by the core;
+- ~~counters and verification codes~~ done: per site in the admin — Google Tag, Yandex Metrica, Search Console / Webmaster / Bing meta tags, any snippet in `<head>` or `<body>`; nobody has to touch the templates;
+- ~~`sitemap.xml` and `robots.txt`~~ done: built by the core for every site, every language, with `hreflang`; off production robots.txt always says `Disallow: /`;
 - the 1C-Bitrix migrator (`alveby/atrium-bitrix`);
 - a neutral public theme (`alveby/atrium-theme`), light and dark;
 - demo data: `php artisan atrium:install --demo`;
