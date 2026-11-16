@@ -51,6 +51,7 @@ All notable changes are listed here. The format follows [Keep a Changelog](https
 - The demo article's page is drawn by the theme; the app's own article controller, its view and Laravel's welcome page are gone.
 
 ### Fixed
+- `atrium:install` linked `public/storage` only with `--demo`, so on a plain install the files uploaded in the admin answered 404.
 - A new administrator could not be saved unless someone ticked and unticked "Superadmin": the untouched box arrives empty and the rule wanted true or false.
 - The hint and the error of fields that draw their own (relations, colour, slug, content, gallery, map, tree, editor) were shown twice.
 - The demo app was called "Laravel" in the site switcher and page titles: `.env.example` names it Atrium now.
