@@ -117,6 +117,7 @@ Baza danych Bitrixa jest tylko odczytywana. Karty, kolejność pól i kolumny li
 
 - [Instalacja: własny serwer, hosting z ISPmanager lub cPanel, Docker](../installation.md)
 - [Konfiguracja: poczta i kod logowania, pliki, tokeny API, asystenci AI przez MCP](../configuration.md)
+- [Pomoc AI w pisaniu: darmowi i płatni dostawcy, opisy, SEO, teksty alt, tłumaczenia](../ai.md)
 - [Własny moduł: pola, kolumny, zakładki, uprawnienia, języki, testy, pakiet](../modules.md)
 - [Przeprowadzka z 1C-Bitrix krok po kroku](../bitrix.md)
 
@@ -127,6 +128,7 @@ Baza danych Bitrixa jest tylko odczytywana. Karty, kolejność pól i kolumny li
 | [`alveby/atrium`](../../packages/admin) | Panel administracyjny |
 | [`alveby/atrium-theme`](../../packages/theme/README.md) | Motyw publiczny |
 | [`alveby/atrium-bitrix`](../../packages/bitrix/README.md) | Migrator z 1C-Bitrix |
+| [`alveby/atrium-ai`](../../packages/ai/README.md) | Pomoc AI w pisaniu tekstów w panelu |
 
 Gdy 0.1 trafi na Packagist, do istniejącej aplikacji na Laravel 13 dodasz Atrium tak:
 

@@ -117,6 +117,7 @@ Bitrix veritabanından yalnızca okuma yapılır. Sekmeler, alan sırası ve lis
 
 - [Kurulum: kendi sunucunuz, ISPmanager veya cPanel barındırma, Docker](../installation.md)
 - [Yapılandırma: e-posta ve giriş kodu, dosyalar, API tokenları, MCP ile yapay zekâ asistanları](../configuration.md)
+- [Yapay zekâ yazım yardımı: ücretsiz ve ücretli sağlayıcılar, açıklamalar, SEO, alt metinleri, çeviriler](../ai.md)
 - [Kendi modülünüz: alanlar, sütunlar, sekmeler, yetkiler, diller, testler, paket](../modules.md)
 - [1C-Bitrix’ten adım adım taşınma](../bitrix.md)
 
@@ -127,6 +128,7 @@ Bitrix veritabanından yalnızca okuma yapılır. Sekmeler, alan sırası ve lis
 | [`alveby/atrium`](../../packages/admin) | Yönetim paneli |
 | [`alveby/atrium-theme`](../../packages/theme/README.md) | Herkese açık tema |
 | [`alveby/atrium-bitrix`](../../packages/bitrix/README.md) | 1C-Bitrix geçiş aracı |
+| [`alveby/atrium-ai`](../../packages/ai/README.md) | Yönetim panelinde yapay zekâ yazım yardımı |
 
 0.1 Packagist'te yayımlandığında, mevcut bir Laravel 13 uygulamasına Atrium şu şekilde eklenecek:
 

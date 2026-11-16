@@ -115,6 +115,7 @@ php artisan atrium:bitrix:parity
 
 - [Установка: свой сервер, хостинг с ISPmanager или cPanel, Docker](../installation.ru.md)
 - [Настройка: почта и код входа, файлы, API-токены, ИИ-ассистенты через MCP](../configuration.ru.md)
+- [ИИ-помощник для текстов: бесплатные и платные провайдеры, описания, SEO, alt, переводы](../ai.ru.md)
 - [Свой модуль: поля, колонки, вкладки, права, языки, тесты, пакет](../modules.ru.md)
 - [Переезд с 1С-Битрикс по шагам](../bitrix.ru.md)
 
@@ -125,6 +126,7 @@ php artisan atrium:bitrix:parity
 | [`alveby/atrium`](../../packages/admin) | Админка |
 | [`alveby/atrium-theme`](../../packages/theme/README.md) | Тема для сайта |
 | [`alveby/atrium-bitrix`](../../packages/bitrix/README.md) | Переносчик с 1С-Битрикс |
+| [`alveby/atrium-ai`](../../packages/ai/README.md) | ИИ-помощник для текстов в админке |
 
 Когда 0.1 появится на Packagist, в готовое приложение на Laravel 13 Atrium будет ставиться так:
 

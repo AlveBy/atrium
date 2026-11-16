@@ -117,6 +117,7 @@ php artisan atrium:bitrix:parity
 
 - [Орнату: өз серверіңіз, ISPmanager немесе cPanel хостингі, Docker](../installation.md)
 - [Баптау: пошта және кіру коды, файлдар, API-токендер, MCP арқылы ЖИ-көмекшілер](../configuration.md)
+- [Мәтіндерге арналған ЖИ-көмекші: тегін және ақылы провайдерлер, сипаттамалар, SEO, alt, аудармалар](../ai.md)
 - [Өз модуліңіз: өрістер, бағандар, қойындылар, құқықтар, тілдер, тесттер, пакет](../modules.md)
 - [1С-Битрикстен көшу, қадам-қадаммен](../bitrix.md)
 
@@ -127,6 +128,7 @@ php artisan atrium:bitrix:parity
 | [`alveby/atrium`](../../packages/admin) | Әкімшілік панелі |
 | [`alveby/atrium-theme`](../../packages/theme/README.md) | Сайт тақырыбы |
 | [`alveby/atrium-bitrix`](../../packages/bitrix/README.md) | 1С-Битрикстен мигратор |
+| [`alveby/atrium-ai`](../../packages/ai/README.md) | Әкімшілік панельдегі мәтіндерге арналған ЖИ-көмекші |
 
 0.1 Packagist-те пайда болғанда, Laravel 13-тегі дайын қосымшаға Atrium былай орнатылады:
 

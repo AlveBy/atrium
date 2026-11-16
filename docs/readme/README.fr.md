@@ -117,6 +117,7 @@ La base de données Bitrix est uniquement lue. Les onglets, l'ordre des champs e
 
 - [Installation : votre serveur, un hébergement avec ISPmanager ou cPanel, Docker](../installation.md)
 - [Configuration : e-mail et code de connexion, fichiers, jetons API, assistants IA via MCP](../configuration.md)
+- [Aide à la rédaction par IA : fournisseurs gratuits et payants, descriptions, SEO, textes alt, traductions](../ai.md)
 - [Votre module : champs, colonnes, onglets, droits, langues, tests, paquet](../modules.md)
 - [Migrer depuis 1C-Bitrix, pas à pas](../bitrix.md)
 
@@ -127,6 +128,7 @@ La base de données Bitrix est uniquement lue. Les onglets, l'ordre des champs e
 | [`alveby/atrium`](../../packages/admin) | Le panneau d'administration |
 | [`alveby/atrium-theme`](../../packages/theme/README.md) | Le thème public |
 | [`alveby/atrium-bitrix`](../../packages/bitrix/README.md) | Le migrateur 1C-Bitrix |
+| [`alveby/atrium-ai`](../../packages/ai/README.md) | Aide à la rédaction par IA dans l'administration |
 
 Une fois la 0.1 publiée sur Packagist, une application Laravel 13 existante obtiendra Atrium avec :
 

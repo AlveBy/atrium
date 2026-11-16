@@ -117,6 +117,7 @@ O banco de dados do Bitrix é apenas lido. As abas, a ordem dos campos e as colu
 
 - [Instalação: servidor próprio, hospedagem com ISPmanager ou cPanel, Docker](../installation.md)
 - [Configuração: e-mail e código de acesso, arquivos, tokens de API, assistentes de IA via MCP](../configuration.md)
+- [Ajuda de redação com IA: provedores gratuitos e pagos, descrições, SEO, textos alt, traduções](../ai.md)
 - [Seu próprio módulo: campos, colunas, abas, permissões, idiomas, testes, pacote](../modules.md)
 - [Migrar do 1C-Bitrix, passo a passo](../bitrix.md)
 
@@ -127,6 +128,7 @@ O banco de dados do Bitrix é apenas lido. As abas, a ordem dos campos e as colu
 | [`alveby/atrium`](../../packages/admin) | O painel de administração |
 | [`alveby/atrium-theme`](../../packages/theme/README.md) | O tema público |
 | [`alveby/atrium-bitrix`](../../packages/bitrix/README.md) | O migrador do 1C-Bitrix |
+| [`alveby/atrium-ai`](../../packages/ai/README.md) | Ajuda de redação com IA no painel |
 
 Quando a 0.1 estiver no Packagist, uma aplicação Laravel 13 existente poderá receber o Atrium com:
 

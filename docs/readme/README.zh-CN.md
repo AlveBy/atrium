@@ -117,6 +117,7 @@ Bitrix 数据库只读不写。标签页、字段顺序和列表列会保持编�
 
 - [安装：自有服务器、ISPmanager 或 cPanel 虚拟主机、Docker](../installation.md)
 - [配置：邮件与登录验证码、文件、API 令牌、通过 MCP 接入的 AI 助手](../configuration.md)
+- [AI 写作助手：免费与付费服务商、描述、SEO、alt 文本、翻译](../ai.md)
 - [自定义模块：字段、列、标签页、权限、语言、测试、打包](../modules.md)
 - [从 1C-Bitrix 迁移，分步说明](../bitrix.md)
 
@@ -127,6 +128,7 @@ Bitrix 数据库只读不写。标签页、字段顺序和列表列会保持编�
 | [`alveby/atrium`](../../packages/admin) | 管理面板 |
 | [`alveby/atrium-theme`](../../packages/theme/README.md) | 公开主题 |
 | [`alveby/atrium-bitrix`](../../packages/bitrix/README.md) | 1C-Bitrix 迁移工具 |
+| [`alveby/atrium-ai`](../../packages/ai/README.md) | 后台的 AI 写作助手 |
 
 0.1 上架 Packagist 后，现有的 Laravel 13 应用可以这样安装 Atrium：
 

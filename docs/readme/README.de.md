@@ -117,6 +117,7 @@ Die Bitrix-Datenbank wird nur gelesen. Tabs, Feldreihenfolge und Listenspalten k
 
 - [Installation: eigener Server, Hosting mit ISPmanager oder cPanel, Docker](../installation.md)
 - [Konfiguration: E-Mail und Anmeldecode, Dateien, API-Tokens, KI-Assistenten über MCP](../configuration.md)
+- [KI-Schreibhilfe: kostenlose und bezahlte Anbieter, Beschreibungen, SEO, Alt-Texte, Übersetzungen](../ai.md)
 - [Eigenes Modul: Felder, Spalten, Tabs, Rechte, Sprachen, Tests, als Paket](../modules.md)
 - [Umzug von 1C-Bitrix, Schritt für Schritt](../bitrix.md)
 
@@ -127,6 +128,7 @@ Die Bitrix-Datenbank wird nur gelesen. Tabs, Feldreihenfolge und Listenspalten k
 | [`alveby/atrium`](../../packages/admin) | Der Admin-Bereich |
 | [`alveby/atrium-theme`](../../packages/theme/README.md) | Das öffentliche Theme |
 | [`alveby/atrium-bitrix`](../../packages/bitrix/README.md) | Der 1C-Bitrix-Migrator |
+| [`alveby/atrium-ai`](../../packages/ai/README.md) | KI-Schreibhilfe im Admin-Bereich |
 
 Sobald 0.1 auf Packagist ist, bekommt eine bestehende Laravel-13-Anwendung Atrium so:
 
