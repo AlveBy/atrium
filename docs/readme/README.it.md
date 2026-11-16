@@ -118,6 +118,8 @@ Il database di Bitrix viene solo letto. Le schede, l'ordine dei campi e le colon
 - [Installazione: server proprio, hosting con ISPmanager o cPanel, Docker](../installation.md)
 - [Configurazione: e-mail e codice di accesso, file, token API, assistenti IA via MCP](../configuration.md)
 - [Aiuto alla scrittura con IA: fornitori gratuiti e a pagamento, descrizioni, SEO, testi alt, traduzioni](../ai.md)
+- [Menu: intestazione e piè di pagina, un albero di link, voci che espandono un modulo](../menus.md)
+- [Ricerca: la pagina dei risultati, il campo nel pannello, cosa si cerca e come](../search.md)
 - [Il tuo modulo: campi, colonne, schede, permessi, lingue, test, pacchetto](../modules.md)
 - [Campi personalizzati: aggiungere campi a qualsiasi modulo dal pannello, filtri e faccette su 100 000 record](../custom-fields.md)
 - [Cache: pagine veloci con decine di proprietà, Redis, cache delle pagine, intestazioni per CDN](../cache.md)
@@ -140,6 +142,8 @@ Il database di Bitrix viene solo letto. Le schede, l'ordine dei campi e le colon
 | [`alveby/atrium-backup`](../../packages/backup/README.md) | Backup di database e file, ripristino dal pannello |
 | [`alveby/atrium-errors`](../../packages/errors/README.md) | Tracciamento degli errori nel database del sito, avvisi, Sentry |
 | [`alveby/atrium-monitoring`](../../packages/monitoring/README.md) | Velocità del server e dei visitatori, disponibilità e avvisi, senza servizi esterni |
+| [`alveby/atrium-menus`](../../packages/menus/README.md) | Menu creati nel pannello |
+| [`alveby/atrium-search`](../../packages/search/README.md) | Ricerca in tutto il sito, in ogni modulo |
 
 Quando la 0.1 sarà su Packagist, un'app Laravel 13 esistente potrà aggiungere Atrium con:
 

@@ -118,6 +118,8 @@ Bitrix 数据库只读不写。标签页、字段顺序和列表列会保持编�
 - [安装：自有服务器、ISPmanager 或 cPanel 虚拟主机、Docker](../installation.md)
 - [配置：邮件与登录验证码、文件、API 令牌、通过 MCP 接入的 AI 助手](../configuration.md)
 - [AI 写作助手：免费与付费服务商、描述、SEO、alt 文本、翻译](../ai.md)
+- [菜单：页眉与页脚、链接树、展开模块的菜单项](../menus.md)
+- [搜索：结果页、后台搜索框、搜索内容与方式](../search.md)
 - [自定义模块：字段、列、标签页、权限、语言、测试、打包](../modules.md)
 - [自定义字段：在后台为任意模块添加字段，10 万条记录上的筛选与分面](../custom-fields.md)
 - [缓存：带几十个属性也很快的页面、Redis、页面缓存、CDN 头](../cache.md)
@@ -140,6 +142,8 @@ Bitrix 数据库只读不写。标签页、字段顺序和列表列会保持编�
 | [`alveby/atrium-backup`](../../packages/backup/README.md) | 数据库和文件的备份，可在后台恢复 |
 | [`alveby/atrium-errors`](../../packages/errors/README.md) | 在站点数据库中跟踪错误，告警、Sentry |
 | [`alveby/atrium-monitoring`](../../packages/monitoring/README.md) | 服务器与访客的速度、可用性与告警，无需外部服务 |
+| [`alveby/atrium-menus`](../../packages/menus/README.md) | 在后台搭建的菜单 |
+| [`alveby/atrium-search`](../../packages/search/README.md) | 覆盖所有模块的站内搜索 |
 
 0.1 上架 Packagist 后，现有的 Laravel 13 应用可以这样安装 Atrium：
 

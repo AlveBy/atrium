@@ -118,6 +118,8 @@ Baza danych Bitrixa jest tylko odczytywana. Karty, kolejność pól i kolumny li
 - [Instalacja: własny serwer, hosting z ISPmanager lub cPanel, Docker](../installation.md)
 - [Konfiguracja: poczta i kod logowania, pliki, tokeny API, asystenci AI przez MCP](../configuration.md)
 - [Pomoc AI w pisaniu: darmowi i płatni dostawcy, opisy, SEO, teksty alt, tłumaczenia](../ai.md)
+- [Menu: nagłówek i stopka, drzewo linków, pozycje rozwijające moduł](../menus.md)
+- [Wyszukiwanie: strona wyników, pole w panelu, co i jak jest wyszukiwane](../search.md)
 - [Własny moduł: pola, kolumny, zakładki, uprawnienia, języki, testy, pakiet](../modules.md)
 - [Własne pola: dodawanie pól do dowolnego modułu z panelu, filtry i fasety na 100 000 rekordów](../custom-fields.md)
 - [Cache: szybkie strony z dziesiątkami właściwości, Redis, cache stron, nagłówki dla CDN](../cache.md)
@@ -140,6 +142,8 @@ Baza danych Bitrixa jest tylko odczytywana. Karty, kolejność pól i kolumny li
 | [`alveby/atrium-backup`](../../packages/backup/README.md) | Kopie zapasowe baz danych i plików, przywracanie z panelu |
 | [`alveby/atrium-errors`](../../packages/errors/README.md) | Rejestr błędów w bazie strony, powiadomienia, Sentry |
 | [`alveby/atrium-monitoring`](../../packages/monitoring/README.md) | Szybkość serwera i odwiedzających, dostępność i powiadomienia, bez zewnętrznych usług |
+| [`alveby/atrium-menus`](../../packages/menus/README.md) | Menu budowane w panelu |
+| [`alveby/atrium-search`](../../packages/search/README.md) | Wyszukiwanie w całej witrynie, we wszystkich modułach |
 
 Gdy 0.1 trafi na Packagist, do istniejącej aplikacji na Laravel 13 dodasz Atrium tak:
 

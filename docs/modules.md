@@ -90,6 +90,8 @@ Every field is made with `::make('column')` and takes `label()`, `required()`, `
 | `BelongsToField` | A link to a record of another module (`brand_id`) | `model(Brand::class)` |
 | `BelongsToManyField` | Links to several records; the model needs the `belongsToMany` relation of the same name | `model(Tag::class)`, `sortable()` |
 | `TreeSelectField` | A section from a tree | `model(Section::class)`, `parentColumn('parent_id')`, `multiple()` |
+| `TreeField` | A tree of items with fields of their own, edited by dragging (the menus module's items). The value is a nested array with `children`: a JSON column, or the model writes it in `afterAdminSave()` | `fields([...])`, `titleField('title')`, `maxDepth(4)`, `maxItems(500)` |
+| `LinkField` | A link: an address, or a record of any module with pages chosen by name. The value is `{"type": "url", "url": …}` or `{"type": "record", "model": …, "id": …}` | `urlsOnly()` |
 | `MapField` | A point on a map | `yandex()` or `google()`, `defaultCenter()`, `defaultZoom()` |
 | `DisplayField` | Read-only HTML drawn from the record on the edit form: order lines, a summary, a link | `html(fn (Model $record): string => view('…')->render())`; not on the create form, never submitted |
 
@@ -315,13 +317,14 @@ The `composer.json` says what the module brings, in `extra.atrium`:
 | `resources` | The module's models, in menu order: the same as lines in `atrium.resources` |
 | `public_urls` | Their pages on the site, as in `atrium.public_urls`; a rule the site sets for the same model wins |
 | `migrations` | A folder (or a list of them) relative to the package |
+| `search` | What the search module (`alveby/atrium-search`) reads in the models: `{"Vendor\\Reviews\\Review": {"title": "name", "content": ["text"]}}`, or `false` to leave a model out. Without it, a model with pages is found by `name` and the text fields of its form |
 | `demo` | A seeder for `atrium:install --demo` and `atrium:module:install --demo`, best extending `Atrium\Admin\Modules\DemoSeeder` (it copies the package's pictures to the uploads disk). Its `run()` returns `false` when the module has content already and adds nothing then |
 | `key`, `title` | The module's key in permissions and settings, and its name in the panel (see "Module settings") |
 | `settings` | Its settings class (see "Module settings") |
 | `permissions` | Its own permissions beyond view, create, update and delete (see "Permissions") |
 | `submodules`, `parent` | The submodules it lists, or the module it is a submodule of (see "Submodules") |
 
-Every key is optional. `suggest` lists the modules this one links to softly (see below); their demo content is filled in first.
+Every key is optional. A record's page, whichever module draws it, is `app(Atrium\Admin\Support\RecordUrls::class)->url($record, 'de')` (`null` if it has none); the theme answers for `public_urls`, and a module that draws pages of its own adds an answer with `RecordUrls::extend()`. Menus and search link to records through it. `suggest` lists the modules this one links to softly (see below); their demo content is filled in first.
 
 Two commands, after `composer require` and before `composer remove`:
 

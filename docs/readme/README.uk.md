@@ -118,6 +118,8 @@ php artisan atrium:bitrix:parity
 - [Встановлення: власний сервер, хостинг з ISPmanager або cPanel, Docker](../installation.md)
 - [Налаштування: пошта й код входу, файли, API-токени, ШІ-асистенти через MCP](../configuration.md)
 - [ШІ-помічник для текстів: безкоштовні й платні провайдери, описи, SEO, alt, переклади](../ai.md)
+- [Меню: шапка й підвал, дерево посилань, пункти, що розгортають модуль](../menus.md)
+- [Пошук: сторінка результатів, рядок в адмінці, що і як шукається](../search.md)
 - [Власний модуль: поля, колонки, вкладки, права, мови, тести, пакет](../modules.md)
 - [Власні поля: додати поле в будь-який модуль з адмінки, фільтри й фасети на 100 000 записів](../custom-fields.md)
 - [Кеш: швидкі сторінки з десятками властивостей, Redis, кеш сторінок, заголовки для CDN](../cache.md)
@@ -140,6 +142,8 @@ php artisan atrium:bitrix:parity
 | [`alveby/atrium-backup`](../../packages/backup/README.md) | Резервні копії баз і файлів, відновлення з адмінки |
 | [`alveby/atrium-errors`](../../packages/errors/README.md) | Облік помилок у базі сайту, сповіщення, Sentry |
 | [`alveby/atrium-monitoring`](../../packages/monitoring/README.md) | Швидкість сервера й відвідувачів, доступність і сповіщення, без зовнішніх сервісів |
+| [`alveby/atrium-menus`](../../packages/menus/README.md) | Меню, зібрані в адмінці |
+| [`alveby/atrium-search`](../../packages/search/README.md) | Пошук по сайту в усіх модулях |
 
 Коли 0.1 з'явиться на Packagist, у готовий застосунок на Laravel 13 Atrium встановлюватиметься так:
 

@@ -118,6 +118,8 @@ Bitrix のデータベースは読み取るだけです。タブ、フィール�
 - [インストール：自前サーバー、ISPmanager や cPanel のホスティング、Docker](../installation.md)
 - [設定：メールとサインインコード、ファイル、API トークン、MCP 経由の AI アシスタント](../configuration.md)
 - [AI 文章アシスタント：無料・有料のプロバイダー、説明文、SEO、alt テキスト、翻訳](../ai.md)
+- [メニュー：ヘッダーとフッター、リンクのツリー、モジュールを展開する項目](../menus.md)
+- [検索：結果ページ、管理画面の検索ボックス、検索対象と仕組み](../search.md)
 - [独自モジュール：フィールド、列、タブ、権限、言語、テスト、パッケージ化](../modules.md)
 - [カスタムフィールド：管理画面から任意のモジュールにフィールドを追加、10 万件でのフィルターとファセット](../custom-fields.md)
 - [キャッシュ：数十のプロパティでも速いページ、Redis、ページキャッシュ、CDN ヘッダー](../cache.md)
@@ -140,6 +142,8 @@ Bitrix のデータベースは読み取るだけです。タブ、フィール�
 | [`alveby/atrium-backup`](../../packages/backup/README.md) | データベースとファイルのバックアップ、管理画面からの復元 |
 | [`alveby/atrium-errors`](../../packages/errors/README.md) | サイトのデータベースでのエラー追跡、通知、Sentry |
 | [`alveby/atrium-monitoring`](../../packages/monitoring/README.md) | サーバーと訪問者の速度、稼働状況と通知、外部サービスなし |
+| [`alveby/atrium-menus`](../../packages/menus/README.md) | 管理画面で作るメニュー |
+| [`alveby/atrium-search`](../../packages/search/README.md) | 全モジュール対象のサイト内検索 |
 
 0.1 が Packagist に公開されたら、既存の Laravel 13 アプリには次のコマンドで Atrium を導入できます。
 
