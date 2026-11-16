@@ -32,9 +32,17 @@ All notable changes are listed here. The format follows [Keep a Changelog](https
 - Standard field and tab labels of generated models (`atrium::fields.standard.*`) in all 15 languages; labels taken from Bitrix stay as they were.
 - A full migration test on a made-up Bitrix database: every command, then `atrium:bitrix:parity` must report nothing, on SQLite, MySQL and PostgreSQL.
 - [ROADMAP.md](ROADMAP.md): installable modules, importers from other CMSs, an online shop, documents and contracts, 1C and Bitrix24, a multilingual project site.
+- Public theme (`alveby/atrium-theme`): a neutral site that draws every module listed in `atrium.public_urls`, migrated Bitrix iblocks included, with no template per module. Home page, module lists with sections and pagination, sections, record pages built from the admin form's fields (properties, HTML, galleries, files, select labels, links to other records); hidden and out-of-period records are 404, an old address of a record gets a 301 to its current one. Canonical, `hreflang`, Open Graph and the site's counters on every page; the theme's pages go into `sitemap.xml`. A language switcher and a light/dark switch (follows the system, remembered per visitor) are components of their own. Colours are custom properties with WCAG AA contrast checked by a test. The app's own routes and its own home page win over the theme's; `ATRIUM_THEME_ROUTES=false` turns them off.
+- `Atrium\Admin\Support\MediaUrl::to()`: one address for a stored file, whether it is a full URL, a path from the site root (`/upload/…`) or a disk path.
+- `Sitemap::extend()` adds addresses from outside `Sitemapable` modules.
+- `BelongsToField` exposes its model and columns (`getModelClass()`, `getDisplayColumn()`, `getValueColumn()`).
 - Issue and pull request templates, Dependabot, and a `release` workflow: pushing a `v*` tag publishes a GitHub release with that version's notes from this file.
 
+### Changed
+- The demo article's page is drawn by the theme; the app's own article controller, its view and Laravel's welcome page are gone.
+
 ### Fixed
+- `og:image` of a record with a picture under `/upload/…` (as migrated from Bitrix) pointed to `storage/upload/…`.
 - `seo_meta` lacked the columns its model and the SEO tab already used (page heading, picture ALT/TITLE/file name, tags), so saving them failed; `keywords` is text now.
 - Bitrix migrator, compared with the code it was ported from: multiple values of version-2 iblocks were read from the cache column instead of `b_iblock_element_prop_mN`; a link table could be created before the table it points at, and links to an iblock migrated later were lost on PostgreSQL; a highload block value was written as its `UF_XML_ID` into a key column; `verify` counted version-1 links as zero; commands asked questions when run without a terminal.
 - Public pages outside `Route::localized()` always got the default site, and page timings for the dashboard were never recorded: the middleware was added to the router's `web` group, which the HTTP kernel overwrites. It is added through the kernel now.

@@ -8,20 +8,21 @@ use Atrium\Admin\Columns\BooleanColumn;
 use Atrium\Admin\Columns\DateColumn;
 use Atrium\Admin\Columns\TextColumn;
 use Atrium\Admin\Contracts\Administrable;
-use Atrium\Admin\Contracts\Sitemapable;
 use Atrium\Admin\Fields\CheckboxField;
 use Atrium\Admin\Fields\ContentField;
 use Atrium\Admin\Fields\NumberField;
 use Atrium\Admin\Fields\SlugField;
 use Atrium\Admin\Fields\TextField;
-use Atrium\Admin\Support\ContentLanguages;
 use Atrium\Admin\Traits\BelongsToSite;
 use Atrium\Admin\Traits\InteractsWithAdmin;
 use Atrium\Admin\Traits\Translatable;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 
-class Article extends Model implements Administrable, Sitemapable
+/**
+ * The demo module. Its pages come from the theme: see `public_urls` in
+ * config/atrium.php.
+ */
+class Article extends Model implements Administrable
 {
     use BelongsToSite, InteractsWithAdmin, Translatable;
 
@@ -63,25 +64,5 @@ class Article extends Model implements Administrable, Sitemapable
             BooleanColumn::make('active')->label('Active'),
             DateColumn::make('updated_at')->label('Updated')->sortable(),
         ];
-    }
-
-    public static function sitemapQuery(): Builder
-    {
-        return static::query()->where('active', true);
-    }
-
-    /**
-     * The article's page in a language it is written in: it needs both a
-     * name and an address there.
-     */
-    public function sitemapUrl(string $language): ?string
-    {
-        $code = $this->getTranslation('code', $language, false);
-
-        if ($code === null || $code === '' || ! $this->getTranslation('name', $language, false)) {
-            return null;
-        }
-
-        return app(ContentLanguages::class)->route('articles.show', ['code' => $code], $language);
     }
 }

@@ -2,15 +2,6 @@
 
 declare(strict_types=1);
 
-use App\Http\Controllers\ArticleController;
-use Illuminate\Support\Facades\Route;
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
-// Every route in here also answers under a language prefix (/de/articles/…)
-// for each content language added in the admin.
-Route::localized(function () {
-    Route::get('articles/{code}', [ArticleController::class, 'show'])->name('articles.show');
-});
+// The public pages come from the theme (alveby/atrium-theme): the home page
+// and every module listed in config('atrium.public_urls'), in every content
+// language. Routes added here take precedence over the theme's.
