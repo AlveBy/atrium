@@ -159,3 +159,5 @@ La [roadmap](../../ROADMAP.md) (in inglese): moduli che si installano con un sol
 ## Licenza
 
 MIT, vedi [LICENSE](../../LICENSE).
+
+Se Atrium ti è stato utile, lascia per favore il link «Realizzato con Atrium» nel piè di pagina del tuo sito. È una richiesta, non una condizione della licenza: MIT chiede solo di conservare l’avviso di copyright nelle copie del codice.

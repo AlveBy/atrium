@@ -157,3 +157,5 @@ The [roadmap](ROADMAP.md): modules that install with one command, ready-made sit
 ## License
 
 MIT, see [LICENSE](LICENSE).
+
+If Atrium helped you, please keep the "Made with Atrium" link in the footer of your site. This is a request, not a condition of the licence: MIT only requires that the copyright notice stays in copies of the code.

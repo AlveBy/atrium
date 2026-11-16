@@ -159,3 +159,5 @@ Yönetim paneli İngilizce, Rusça, Ukraynaca, Belarusça, Kazakça, Özbekçe, 
 ## Lisans
 
 MIT, bkz. [LICENSE](../../LICENSE).
+
+Atrium işinize yaradıysa lütfen sitenizin alt bilgisindeki “Atrium ile yapıldı” bağlantısını koruyun. Bu bir rica, lisans koşulu değil: MIT yalnızca kodun kopyalarında telif hakkı bildiriminin korunmasını şart koşar.

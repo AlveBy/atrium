@@ -159,3 +159,5 @@ Administrator paneli ingliz, rus, ukrain, belarus, qozoq, oʻzbek, nemis, fransu
 ## Litsenziya
 
 MIT, qarang: [LICENSE](../../LICENSE).
+
+Agar Atrium sizga yordam bergan bo‘lsa, iltimos, sayt pastki qismidagi “Atrium asosida yaratilgan” havolasini qoldiring. Bu litsenziya sharti emas, balki iltimos: MIT faqat kod nusxalarida mualliflik huquqi haqidagi bildirishnomani saqlashni talab qiladi.

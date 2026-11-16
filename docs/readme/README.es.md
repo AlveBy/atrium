@@ -159,3 +159,5 @@ La [hoja de ruta](../../ROADMAP.md) (en inglés): módulos que se instalan con u
 ## Licencia
 
 MIT, consulta [LICENSE](../../LICENSE).
+
+Si Atrium te ha ayudado, por favor deja el enlace «Hecho con Atrium» en el pie de tu sitio. Es una petición, no una condición de la licencia: MIT solo exige conservar el aviso de copyright en las copias del código.

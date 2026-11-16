@@ -159,3 +159,5 @@ Panel administracyjny mówi po angielsku, rosyjsku, ukraińsku, białorusku, kaz
 ## Licencja
 
 MIT, zobacz [LICENSE](../../LICENSE).
+
+Jeśli Atrium Ci pomógł, zostaw proszę link „Zbudowane na Atrium” w stopce swojej strony. To prośba, a nie warunek licencji: MIT wymaga jedynie zachowania informacji o prawach autorskich w kopiach kodu.

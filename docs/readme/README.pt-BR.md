@@ -159,3 +159,5 @@ O [CONTRIBUTING.md](../../CONTRIBUTING.md) explica como preparar o projeto, roda
 ## Licença
 
 MIT, veja [LICENSE](../../LICENSE).
+
+Se o Atrium ajudou você, por favor mantenha o link “Feito com Atrium” no rodapé do seu site. É um pedido, não uma condição da licença: a MIT exige apenas que o aviso de copyright permaneça nas cópias do código.

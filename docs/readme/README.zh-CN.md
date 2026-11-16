@@ -159,3 +159,5 @@ php artisan atrium:install
 ## 许可证
 
 MIT，参见 [LICENSE](../../LICENSE)。
+
+如果 Atrium 对你有帮助，请保留网站页脚中的“使用 Atrium 构建”链接。这只是请求，并非许可证条件：MIT 许可证只要求在代码副本中保留版权声明。

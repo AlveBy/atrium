@@ -159,3 +159,5 @@ La [feuille de route](../../ROADMAP.md) (en anglais) : des modules qui s'install
 ## Licence
 
 MIT, voir [LICENSE](../../LICENSE).
+
+Si Atrium vous a été utile, merci de garder le lien « Réalisé avec Atrium » dans le pied de page de votre site. C’est une demande, pas une condition de la licence : MIT exige seulement de conserver la mention de copyright dans les copies du code.

@@ -159,3 +159,5 @@ Die [Roadmap](../../ROADMAP.md) (auf Englisch): Module, die sich mit einem Befeh
 ## Lizenz
 
 MIT, siehe [LICENSE](../../LICENSE).
+
+Wenn Atrium Ihnen geholfen hat, lassen Sie bitte den Link „Erstellt mit Atrium“ in der Fußzeile Ihrer Website stehen. Das ist eine Bitte, keine Lizenzbedingung: MIT verlangt nur, dass der Urheberrechtsvermerk in Kopien des Codes erhalten bleibt.

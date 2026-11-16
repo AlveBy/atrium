@@ -124,3 +124,15 @@ Other clients take the same two things in their MCP settings: the address `https
 | `sitemap.paths` | `['/']` | Addresses that are not module records |
 | `ATRIUM_COUNTERS_CONSENT` | `false` | Start Google Tag and Yandex Metrica only after the cookie banner calls `window.atriumConsent()` |
 | `YANDEX_MAPS_API_KEY`, `GOOGLE_MAPS_API_KEY` | | Keys for the map fields |
+
+## "Made with Atrium" and the licence
+
+The public theme puts a small "Made with Atrium" link in the footer of every page, in the visitor's language, and `<meta name="generator" content="Atrium">` in its head.
+
+| Setting | Default | What it does |
+|---|---|---|
+| `ATRIUM_THEME_CREDIT` | `true` | Show the "Made with Atrium" link (`config/atrium-theme.php` → `credit`) |
+
+Atrium is free under the MIT License, so the link is yours to switch off. If Atrium helped you, please keep it: it is how other people find the project. This is a request, not a condition of the licence.
+
+What MIT does require is that the copyright notice stays in copies of the code: keep the `LICENSE` file and the header at the top of each source file (`This file is part of Atrium …`) when you copy, fork or publish the packages. Your own code, including the files `atrium:make-module` creates in your application, is yours and needs no header.
