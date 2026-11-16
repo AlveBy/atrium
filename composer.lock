@@ -156,7 +156,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/forms",
-                "reference": "c0031e3542c81d40ce890a96138f374dc4d24058"
+                "reference": "48702bb3d569a8424dec786ef36047630aed4362"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -169,6 +169,14 @@
             },
             "type": "atrium-module",
             "extra": {
+                "atrium": {
+                    "resources": [
+                        "Atrium\\Forms\\Models\\Form",
+                        "Atrium\\Forms\\Models\\FormField",
+                        "Atrium\\Forms\\Models\\FormSubmission"
+                    ],
+                    "migrations": "database/migrations"
+                },
                 "laravel": {
                     "providers": [
                         "Atrium\\Forms\\FormsServiceProvider"
@@ -216,7 +224,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/pages",
-                "reference": "390d210577d626675d4bc8feb92f246490a71406"
+                "reference": "68ce395fe65a9907a8e4fa2afeae0145f73941c5"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -230,6 +238,19 @@
             },
             "type": "atrium-module",
             "extra": {
+                "atrium": {
+                    "resources": [
+                        "Atrium\\Pages\\Models\\Page"
+                    ],
+                    "public_urls": {
+                        "Atrium\\Pages\\Models\\Page": {
+                            "prefix": "",
+                            "tree": "Atrium\\Pages\\Models\\Page",
+                            "parent": "parent_id"
+                        }
+                    },
+                    "migrations": "database/migrations"
+                },
                 "laravel": {
                     "providers": [
                         "Atrium\\Pages\\PagesServiceProvider"

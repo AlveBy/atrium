@@ -96,7 +96,7 @@ Static pages, the `.php` files outside the iblocks (about, contacts), move with 
 
 ```bash
 composer require alveby/atrium-pages
-php artisan migrate
+php artisan atrium:module:install alveby/atrium-pages
 php artisan atrium:pages:import-bitrix /path/to/bitrix/site
 ```
 

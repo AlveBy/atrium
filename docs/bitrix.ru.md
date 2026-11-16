@@ -96,7 +96,7 @@ php artisan atrium:bitrix:migrate:medialibrary
 
 ```bash
 composer require alveby/atrium-pages
-php artisan migrate
+php artisan atrium:module:install alveby/atrium-pages
 php artisan atrium:pages:import-bitrix /path/to/bitrix/site
 ```
 
