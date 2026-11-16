@@ -117,6 +117,8 @@ The Bitrix database is only read. The tabs, field order and list columns come ou
 - [Configuration: mail and the sign-in code, files, API tokens, AI assistants over MCP](docs/configuration.md)
 - [AI writing help: free and paid providers, descriptions, SEO, alt texts, translations](docs/ai.md)
 - [SEO: titles, hreflang, sitemaps, schema.org, redirects, the SEO check](docs/seo.md)
+- [Menus: header and footer, a tree of links, items that unfold a module](docs/menus.md)
+- [Search: the results page, the admin box, what is searched and how](docs/search.md)
 - [Your own module: fields, columns, tabs, permissions, languages, tests, a package](docs/modules.md)
 - [Custom fields: add fields to any module from the admin, filters and facets on 100 000 records](docs/custom-fields.md)
 - [Cache: fast pages with dozens of properties, Redis, the page cache, CDN headers](docs/cache.md)
@@ -154,6 +156,8 @@ The Bitrix database is only read. The tabs, field order and list columns come ou
 | [`alveby/atrium-2fa`](packages/two-factor/README.md) | Two-factor and passwordless sign-in |
 | [`alveby/atrium-social-login`](packages/social-login/README.md) | Sign-in with Google, Microsoft, Apple, GitHub, Telegram and others |
 | [`alveby/atrium-solutions`](packages/solutions/README.md) | Ready-made sites installed in one command |
+| [`alveby/atrium-menus`](packages/menus/README.md) | Menus built in the admin |
+| [`alveby/atrium-search`](packages/search/README.md) | Site search across every module |
 
 Once 0.1 is on Packagist, an existing Laravel 13 app gets Atrium with:
 

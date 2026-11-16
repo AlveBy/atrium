@@ -90,6 +90,8 @@ class Article extends Model implements Administrable
 | `BelongsToField` | Привязка к записи другого модуля (`brand_id`) | `model(Brand::class)` |
 | `BelongsToManyField` | Привязка к нескольким записям; у модели нужна одноимённая связь `belongsToMany` | `model(Tag::class)`, `sortable()` |
 | `TreeSelectField` | Раздел из дерева | `model(Section::class)`, `parentColumn('parent_id')`, `multiple()` |
+| `TreeField` | Дерево пунктов со своими полями, правится перетаскиванием (пункты модуля меню). Значение — вложенный массив с `children`: JSON-колонка, или модель пишет его сама в `afterAdminSave()` | `fields([...])`, `titleField('title')`, `maxDepth(4)`, `maxItems(500)` |
+| `LinkField` | Ссылка: адрес или запись любого модуля со страницами, выбранная по названию. Значение — `{"type": "url", "url": …}` или `{"type": "record", "model": …, "id": …}` | `urlsOnly()` |
 | `MapField` | Точка на карте | `yandex()` или `google()`, `defaultCenter()`, `defaultZoom()` |
 | `DisplayField` | HTML только для чтения, собранный из записи на форме редактирования: строки заказа, сводка, ссылка | `html(fn (Model $record): string => view('…')->render())`; на форме создания нет, не отправляется |
 
@@ -315,13 +317,14 @@ php artisan atrium:make-package acme/atrium-reviews
 | `resources` | Модели модуля в порядке меню: то же, что строки в `atrium.resources` |
 | `public_urls` | Их страницы на сайте, как в `atrium.public_urls`; правило сайта для той же модели важнее |
 | `migrations` | Папка (или список папок) относительно пакета |
+| `search` | Что модуль поиска (`alveby/atrium-search`) читает в моделях: `{"Vendor\\Reviews\\Review": {"title": "name", "content": ["text"]}}` или `false`, чтобы модель не искалась. Без него модель со страницами находится по `name` и текстовым полям своей формы |
 | `demo` | Сидер для `atrium:install --demo` и `atrium:module:install --demo`; удобнее всего наследовать `Atrium\Admin\Modules\DemoSeeder` (он копирует картинки пакета на диск загрузок). Его `run()` возвращает `false`, если в модуле уже есть данные, и тогда ничего не добавляет |
 | `key`, `title` | Ключ модуля в правах и настройках и его название в панели (см. «Настройки модуля») |
 | `settings` | Класс его настроек (см. «Настройки модуля») |
 | `permissions` | Его собственные права сверх просмотра, создания, изменения и удаления (см. «Права») |
 | `submodules`, `parent` | Его подмодули или модуль, подмодулем которого он является (см. «Подмодули») |
 
-Все ключи необязательны. В `suggest` — модули, с которыми этот связан мягко (см. ниже); их демо-данные заполняются раньше.
+Все ключи необязательны. Страница записи, какой бы модуль её ни рисовал, — `app(Atrium\Admin\Support\RecordUrls::class)->url($record, 'de')` (`null`, если страницы нет); за `public_urls` отвечает тема, а модуль со своими страницами добавляет ответ через `RecordUrls::extend()`. Через него на записи ссылаются меню и поиск. В `suggest` — модули, с которыми этот связан мягко (см. ниже); их демо-данные заполняются раньше.
 
 Две команды — после `composer require` и перед `composer remove`:
 

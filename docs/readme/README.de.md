@@ -118,6 +118,8 @@ Die Bitrix-Datenbank wird nur gelesen. Tabs, Feldreihenfolge und Listenspalten k
 - [Installation: eigener Server, Hosting mit ISPmanager oder cPanel, Docker](../installation.md)
 - [Konfiguration: E-Mail und Anmeldecode, Dateien, API-Tokens, KI-Assistenten über MCP](../configuration.md)
 - [KI-Schreibhilfe: kostenlose und bezahlte Anbieter, Beschreibungen, SEO, Alt-Texte, Übersetzungen](../ai.md)
+- [Menüs: Kopf- und Fußzeile, ein Linkbaum, Einträge, die ein Modul aufklappen](../menus.md)
+- [Suche: die Ergebnisseite, das Suchfeld im Admin-Bereich, was und wie gesucht wird](../search.md)
 - [Eigenes Modul: Felder, Spalten, Tabs, Rechte, Sprachen, Tests, als Paket](../modules.md)
 - [Eigene Felder: Felder für jedes Modul im Admin-Bereich anlegen, Filter und Facetten bei 100 000 Einträgen](../custom-fields.md)
 - [Cache: schnelle Seiten mit Dutzenden Eigenschaften, Redis, Seiten-Cache, CDN-Header](../cache.md)
@@ -140,6 +142,8 @@ Die Bitrix-Datenbank wird nur gelesen. Tabs, Feldreihenfolge und Listenspalten k
 | [`alveby/atrium-backup`](../../packages/backup/README.md) | Backups der Datenbanken und Dateien, Wiederherstellung im Admin-Bereich |
 | [`alveby/atrium-errors`](../../packages/errors/README.md) | Fehlererfassung in der Datenbank der Website, Benachrichtigungen, Sentry |
 | [`alveby/atrium-monitoring`](../../packages/monitoring/README.md) | Geschwindigkeit von Server und Besuchern, Erreichbarkeit und Benachrichtigungen, ohne externe Dienste |
+| [`alveby/atrium-menus`](../../packages/menus/README.md) | Menüs, im Admin-Bereich gebaut |
+| [`alveby/atrium-search`](../../packages/search/README.md) | Suche über alle Module der Website |
 
 Sobald 0.1 auf Packagist ist, bekommt eine bestehende Laravel-13-Anwendung Atrium so:
 

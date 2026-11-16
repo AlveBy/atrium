@@ -118,6 +118,8 @@ La base de données Bitrix est uniquement lue. Les onglets, l'ordre des champs e
 - [Installation : votre serveur, un hébergement avec ISPmanager ou cPanel, Docker](../installation.md)
 - [Configuration : e-mail et code de connexion, fichiers, jetons API, assistants IA via MCP](../configuration.md)
 - [Aide à la rédaction par IA : fournisseurs gratuits et payants, descriptions, SEO, textes alt, traductions](../ai.md)
+- [Menus : en-tête et pied de page, arbre de liens, éléments qui déplient un module](../menus.md)
+- [Recherche : la page de résultats, le champ de l'administration, ce qui est cherché et comment](../search.md)
 - [Votre module : champs, colonnes, onglets, droits, langues, tests, paquet](../modules.md)
 - [Champs personnalisés : ajouter des champs à tout module depuis l'administration, filtres et facettes sur 100 000 fiches](../custom-fields.md)
 - [Cache : des pages rapides avec des dizaines de propriétés, Redis, cache de pages, en-têtes CDN](../cache.md)
@@ -140,6 +142,8 @@ La base de données Bitrix est uniquement lue. Les onglets, l'ordre des champs e
 | [`alveby/atrium-backup`](../../packages/backup/README.md) | Sauvegardes des bases de données et des fichiers, restauration depuis l'administration |
 | [`alveby/atrium-errors`](../../packages/errors/README.md) | Suivi des erreurs dans la base du site, alertes, Sentry |
 | [`alveby/atrium-monitoring`](../../packages/monitoring/README.md) | Vitesse du serveur et des visiteurs, disponibilité et alertes, sans service externe |
+| [`alveby/atrium-menus`](../../packages/menus/README.md) | Menus construits dans l'administration |
+| [`alveby/atrium-search`](../../packages/search/README.md) | Recherche sur tout le site, dans chaque module |
 
 Une fois la 0.1 publiée sur Packagist, une application Laravel 13 existante obtiendra Atrium avec :
 

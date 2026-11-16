@@ -118,6 +118,8 @@ Bitrix veritabanından yalnızca okuma yapılır. Sekmeler, alan sırası ve lis
 - [Kurulum: kendi sunucunuz, ISPmanager veya cPanel barındırma, Docker](../installation.md)
 - [Yapılandırma: e-posta ve giriş kodu, dosyalar, API tokenları, MCP ile yapay zekâ asistanları](../configuration.md)
 - [Yapay zekâ yazım yardımı: ücretsiz ve ücretli sağlayıcılar, açıklamalar, SEO, alt metinleri, çeviriler](../ai.md)
+- [Menüler: üst ve alt bilgi, bağlantı ağacı, bir modülü açan öğeler](../menus.md)
+- [Arama: sonuç sayfası, yönetim panelindeki kutu, neyin nasıl arandığı](../search.md)
 - [Kendi modülünüz: alanlar, sütunlar, sekmeler, yetkiler, diller, testler, paket](../modules.md)
 - [Özel alanlar: yönetim panelinden her modüle alan ekleme, 100 000 kayıtta filtreler ve faset sayıları](../custom-fields.md)
 - [Önbellek: onlarca özellikli hızlı sayfalar, Redis, sayfa önbelleği, CDN başlıkları](../cache.md)
@@ -140,6 +142,8 @@ Bitrix veritabanından yalnızca okuma yapılır. Sekmeler, alan sırası ve lis
 | [`alveby/atrium-backup`](../../packages/backup/README.md) | Veritabanı ve dosya yedekleri, yönetim panelinden geri yükleme |
 | [`alveby/atrium-errors`](../../packages/errors/README.md) | Sitenin veritabanında hata takibi, uyarılar, Sentry |
 | [`alveby/atrium-monitoring`](../../packages/monitoring/README.md) | Sunucu ve ziyaretçi hızı, erişilebilirlik ve uyarılar, dış hizmet olmadan |
+| [`alveby/atrium-menus`](../../packages/menus/README.md) | Yönetim panelinde kurulan menüler |
+| [`alveby/atrium-search`](../../packages/search/README.md) | Tüm modüllerde site içi arama |
 
 0.1 Packagist'te yayımlandığında, mevcut bir Laravel 13 uygulamasına Atrium şu şekilde eklenecek:
 
