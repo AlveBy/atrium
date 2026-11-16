@@ -519,7 +519,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/pages",
-                "reference": "9749d3831b1de22c9490c7cca618535a3e4e0ed7"
+                "reference": "04bab57eed8b8bef0c99b0a0f8b4a93efc456897"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -544,7 +544,8 @@
                             "parent": "parent_id"
                         }
                     },
-                    "migrations": "database/migrations"
+                    "migrations": "database/migrations",
+                    "demo": "Atrium\\Pages\\Database\\PagesDemoSeeder"
                 },
                 "laravel": {
                     "providers": [
