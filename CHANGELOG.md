@@ -5,6 +5,7 @@ All notable changes are listed here. The format follows [Keep a Changelog](https
 ## [Unreleased]
 
 ### Added
+- Buttons on a record that open the create form filled from it: `CreateFromRecord::make('subpage')->label('Subpage')->fill(['parent_id' => 'id'])` in `getAdministrationActions()` shows one in the list row and on the form. Pages use it for "Subpage".
 - Modules as packages. A Composer package of type `atrium-module` describes what it brings in `extra.atrium` (`resources`, `public_urls`, `migrations`, `demo`). `php artisan atrium:module:install vendor/name` runs its migrations and lists it in `atrium.modules` (config/atrium.php): its models enter the menu, the role form, the API and MCP. `atrium:module:remove` asks whether to keep the data, drops the tables if not and takes the module out of the roles. A required module that is not installed stays out of the panel. Neither command runs Composer.
 - Soft links between modules: `Atrium\Admin\Modules\Soft::when(Brand::class, fn () => [...])` puts fields, columns or tabs into a form or a list only when the other module is installed; `Atrium\Admin\Traits\HasSoftRelations` gives `softBelongsTo()`, `softBelongsToMany()`, `softHasMany()` and `softMorphTo()`, relations that find nothing (and query no missing table) without it. `Soft::targets()` lists the modules a review or a comment can be attached to.
 - A list column may show an attribute of a related record: `TextColumn::make('brand.name')`.

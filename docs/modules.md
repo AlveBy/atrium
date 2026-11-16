@@ -116,6 +116,21 @@ To narrow the list or load relations, override `scopeAdminList(Builder $query)`.
 
 A column may show an attribute of a related record: `TextColumn::make('brand.name')` loads the `brand` relation for the page and shows the brand's name. Such a column is neither sorted nor searched by.
 
+A button on a record, in its list row and on its form, opens the create form filled from it. A subpage gets the page as its parent:
+
+```php
+use Atrium\Admin\Actions\CreateFromRecord;
+
+public static function getAdministrationActions(): array
+{
+    return [
+        CreateFromRecord::make('subpage')->label('Subpage')->fill(['parent_id' => 'id']),
+    ];
+}
+```
+
+`fill()` maps form fields to attributes of the record: the button opens `/admin/pages/create?parent_id=12`, and only the fields it names are taken from the address. Administrators who may not create records here do not see it.
+
 ## Tabs
 
 Add `HasAdminTabs`, list the tabs and put each field on one with `tab()`:

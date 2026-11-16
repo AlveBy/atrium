@@ -116,6 +116,21 @@ public static function getDefaultSortDirection(): string
 
 Колонка может показывать поле связанной записи: `TextColumn::make('brand.name')` подгружает связь `brand` для страницы и выводит название бренда. По такой колонке не сортируют и не ищут.
 
+Кнопка у записи, в строке списка и на её форме, открывает форму создания, заполненную из этой записи. Подстраница получает страницу родителем:
+
+```php
+use Atrium\Admin\Actions\CreateFromRecord;
+
+public static function getAdministrationActions(): array
+{
+    return [
+        CreateFromRecord::make('subpage')->label('Подстраница')->fill(['parent_id' => 'id']),
+    ];
+}
+```
+
+`fill()` сопоставляет поля формы полям записи: кнопка открывает `/admin/pages/create?parent_id=12`, и из адреса берутся только названные в ней поля. Администратор без права создавать записи здесь кнопку не видит.
+
 ## Вкладки
 
 Подключите `HasAdminTabs`, перечислите вкладки и разложите поля через `tab()`:
