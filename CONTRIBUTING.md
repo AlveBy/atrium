@@ -17,6 +17,8 @@ php artisan migrate
 npm install && npm run build
 ```
 
+With Docker instead of a local PHP: `docker compose up` installs everything, fills the demo shop and serves it on http://localhost:8000; run commands in it with `docker compose exec app php artisan …` or `docker compose exec app vendor/bin/phpunit`.
+
 ## Before you open a pull request
 
 ```bash

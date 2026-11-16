@@ -1,0 +1,26 @@
+# Try Atrium with nothing but Docker:
+#
+#   docker compose up
+#
+# then open http://localhost:8000/admin and sign in as admin@example.com with
+# the password "password". The first start installs the demo shop; after a
+# `git pull`, start it again and it migrates and republishes the admin.
+# For local trials only: the admin's password is public and the sign-in code
+# is off.
+services:
+  app:
+    build: docker
+    command: sh docker/start.sh
+    working_dir: /app
+    user: "${UID:-1000}:${GID:-1000}"
+    volumes:
+      - .:/app
+    ports:
+      - "${ATRIUM_PORT:-8000}:8000"
+    environment:
+      ATRIUM_PORT: "${ATRIUM_PORT:-8000}"
+      ATRIUM_ADMIN_NAME: Admin
+      ATRIUM_ADMIN_EMAIL: admin@example.com
+      ATRIUM_ADMIN_PASSWORD: password
+      # The code would go to storage/logs/laravel.log: there is no mail here.
+      ATRIUM_2FA_ENABLED: "false"

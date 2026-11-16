@@ -18,6 +18,16 @@ To see it with content, install with the demo shop: a catalog with every field t
 php artisan atrium:install --demo
 ```
 
+Or try it with nothing but Docker:
+
+```bash
+git clone https://github.com/AlveBy/atrium.git
+cd atrium
+docker compose up
+```
+
+Then open http://localhost:8000/admin and sign in as `admin@example.com` with the password `password` (for local trials only). After a `git pull`, run `docker compose up` again: it applies new migrations and the admin bundle. To start over, delete `database/database.sqlite`.
+
 What comes next — modules you just install, importers from WordPress and Drupal, an online shop, 1C and Bitrix24 — is in the [roadmap](ROADMAP.md).
 
 ## License

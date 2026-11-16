@@ -5,6 +5,7 @@ All notable changes are listed here. The format follows [Keep a Changelog](https
 ## [Unreleased]
 
 ### Added
+- `docker compose up` runs the demo with nothing but Docker: it installs Atrium with the demo shop on the first start and applies migrations and the admin bundle after each `git pull`.
 - Laravel 13 skeleton with PHPUnit 12, Laravel Dusk, Pint and Larastan.
 - Package skeletons: `alveby/atrium`, `alveby/atrium-bitrix`, `alveby/atrium-theme`.
 - CI on PHP 8.3 and 8.4 against SQLite, MySQL and PostgreSQL, plus a Dusk job.
@@ -46,6 +47,7 @@ All notable changes are listed here. The format follows [Keep a Changelog](https
 - The demo article's page is drawn by the theme; the app's own article controller, its view and Laravel's welcome page are gone.
 
 ### Fixed
+- The demo app was called "Laravel" in the site switcher and page titles: `.env.example` names it Atrium now.
 - An image column of a list showed a broken picture for a file on the public disk (`demo/laptop.svg`): the path was used as it is stored, relative to the admin page. It is loaded from `/storage` now, as in the form and on the site.
 - A `BelongsToField` was drawn as a bare number input: it waited for a record search that the panel does not have. Without a search route it is a list of the other module's records now.
 - The theme's record page listed several related records as plain text; each is a link to its page now.
