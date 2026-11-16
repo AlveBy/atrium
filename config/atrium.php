@@ -35,6 +35,20 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Installed module packages
+    |--------------------------------------------------------------------------
+    |
+    | Composer packages of type "atrium-module" that are installed, in menu
+    | order. `php artisan atrium:module:install vendor/name` adds one here
+    | and runs its migrations, `atrium:module:remove` takes it out. A module
+    | that is required but not listed stays out of the panel.
+    |
+    */
+    'modules' => [
+    ],
+
+    /*
+    |--------------------------------------------------------------------------
     | Demo
     |--------------------------------------------------------------------------
     |

@@ -15,6 +15,7 @@
 - [Переводы интерфейса](#переводы-интерфейса)
 - [Тесты](#тесты)
 - [Модуль пакетом](#модуль-пакетом)
+- [Связи с другими модулями](#связи-с-другими-модулями)
 
 ## Начало
 
@@ -113,6 +114,8 @@ public static function getDefaultSortDirection(): string
 
 Чтобы сузить список или подгрузить связи, переопределите `scopeAdminList(Builder $query)`.
 
+Колонка может показывать поле связанной записи: `TextColumn::make('brand.name')` подгружает связь `brand` для страницы и выводит название бренда. По такой колонке не сортируют и не ищут.
+
 ## Вкладки
 
 Подключите `HasAdminTabs`, перечислите вкладки и разложите поля через `tab()`:
@@ -208,19 +211,132 @@ public function test_an_editor_creates_an_article(): void
 
 ## Модуль пакетом
 
-Модуль для чужих сайтов — пакет Composer с моделью, её миграцией и переводами. Его сервис-провайдер добавляет модель в админку:
+Модуль для чужих сайтов — пакет Composer с типом `atrium-module`. Что он приносит, написано в его `composer.json`, в `extra.atrium`:
+
+```json
+{
+    "name": "vendor/atrium-reviews",
+    "type": "atrium-module",
+    "require": {
+        "php": "^8.3",
+        "alveby/atrium": "^0.1"
+    },
+    "suggest": {
+        "alveby/atrium-catalog": "Reviews of products"
+    },
+    "extra": {
+        "atrium": {
+            "resources": ["Vendor\\Reviews\\Review"],
+            "public_urls": {
+                "Vendor\\Reviews\\Review": {"prefix": "reviews"}
+            },
+            "migrations": "database/migrations",
+            "demo": "Vendor\\Reviews\\Database\\ReviewsDemoSeeder"
+        },
+        "laravel": {
+            "providers": ["Vendor\\Reviews\\ReviewsServiceProvider"]
+        }
+    }
+}
+```
+
+| Ключ | Что это |
+|---|---|
+| `resources` | Модели модуля в порядке меню: то же, что строки в `atrium.resources` |
+| `public_urls` | Их страницы на сайте, как в `atrium.public_urls`; правило сайта для той же модели важнее |
+| `migrations` | Папка (или список папок) относительно пакета |
+| `demo` | Сидер (`Illuminate\Database\Seeder`) для `atrium:install --demo` и `atrium:module:install --demo`. Возвращает `false`, если в модуле уже есть данные, и тогда ничего не добавляет |
+
+Все ключи необязательны. В `suggest` — модули, с которыми этот связан мягко (см. ниже); их демо-данные заполняются раньше.
+
+Две команды — после `composer require` и перед `composer remove`:
+
+```bash
+composer require vendor/atrium-reviews
+php artisan atrium:module:install vendor/atrium-reviews
+
+php artisan atrium:module:remove vendor/atrium-reviews
+composer remove vendor/atrium-reviews
+```
+
+`atrium:module:install` запускает миграции модуля и добавляет его в список `modules` в `config/atrium.php`; с этого момента его модели есть в меню, в форме роли, в API и MCP, его миграции идут вместе с `php artisan migrate`, его страницы — на сайте. Composer команда не запускает: пакет должен быть уже подключён. `--demo` заполняет модуль демо-данными.
+
+`atrium:module:remove` спрашивает, оставить ли данные. Если нет, миграции модуля откатываются и его таблицы удаляются; в любом случае его права уходят из ролей, а сам он — из списка. В скриптах на вопрос отвечают `--keep-data` и `--delete-data`. Если снова установить модуль, у которого данные оставили, записи вернутся.
+
+Подключённый, но не установленный модуль в админке не виден нигде, даже если его сервис-провайдер добавляет модели в `atrium.resources`. Поэтому провайдеру нужно только то, чего нет в манифесте:
 
 ```php
-public function register(): void
-{
-    config()->push('atrium.resources', \Vendor\Reviews\Review::class);
-}
-
 public function boot(): void
 {
-    $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
     $this->loadTranslationsFrom(__DIR__.'/../lang', 'reviews');
 }
 ```
 
-`composer require vendor/reviews` и `php artisan migrate` — и модуль в меню. Тестируйте его через Orchestra Testbench, как `packages/admin`. В версии 0.2 появятся `atrium:module:install`, экран «Модули» и шаблон-репозиторий: см. [план развития](../ROADMAP.ru.md).
+Миграции оставьте манифесту: через `loadMigrationsFrom()` они запустились бы и для неустановленного модуля и вернули бы таблицы удалённого. Закешированные конфиг и маршруты обе команды собирают заново.
+
+Тестируйте модуль через Orchestra Testbench, как модули в `packages/`: укажите его в `atrium.modules` в `defineEnvironment()` — и модели, миграции и страницы будут на месте, как на сайте.
+
+## Связи с другими модулями
+
+Модули связаны мягко: товары работают без брендов, а поле и колонка «Бренд» появляются, только когда установлен модуль брендов. Ничто в `require` Composer не заставляет один модуль ставить другой.
+
+**Поля, колонки, вкладки.** `Atrium\Admin\Modules\Soft::when()` возвращает элементы, если модель доступна — класс есть и его модуль установлен, — и пустой список иначе. Разверните его в списке:
+
+```php
+use Atrium\Admin\Modules\Soft;
+use Atrium\Brands\Brand;
+
+public static function getAdministrationFields(): array
+{
+    return [
+        TextField::make('name')->label('Name')->required(),
+        ...Soft::when(Brand::class, fn () => [
+            BelongsToField::make('brand_id')->label('Brand')->model(Brand::class),
+        ]),
+    ];
+}
+
+public static function getAdministrationListColumns(): array
+{
+    return [
+        TextColumn::make('name')->label('Name')->sortable()->searchable(),
+        ...Soft::when(Brand::class, fn () => [
+            TextColumn::make('brand.name')->label('Brand'),
+        ]),
+    ];
+}
+```
+
+`Brand::class` — просто строка: класс не загружается, так что пакета может не быть вовсе. `Soft::when([A::class, B::class], …)` требует оба, `Soft::available(Brand::class)` отвечает на сам вопрос.
+
+**Связи Eloquent.** `Atrium\Admin\Traits\HasSoftRelations` даёт `softBelongsTo()`, `softBelongsToMany()` и `softHasMany()` с аргументами как у Laravel (у `softBelongsToMany()` промежуточная таблица указывается всегда). С установленным модулем это обычные связи Laravel. Без него они ничего не находят: `$product->brand` — null, `$product->stores` пуст, `with()` и `whereHas()` работают, и ни одна таблица отсутствующего модуля не запрашивается.
+
+```php
+use HasSoftRelations;
+
+/** @return BelongsTo<covariant Model,$this> */
+public function brand(): BelongsTo
+{
+    return $this->softBelongsTo(Brand::class, 'brand_id');
+}
+
+/** @return BelongsToMany<covariant Model,$this> */
+public function stores(): BelongsToMany
+{
+    return $this->softBelongsToMany(Store::class, 'catalog_product_store', 'product_id', 'store_id');
+}
+```
+
+Колонка связи (`brand_id`) и промежуточная таблица принадлежат модулю, который объявляет связь, и есть с другим модулем и без него. Не делайте внешних ключей на таблицы другого модуля: их могут удалить.
+
+**Привязка к записи любого модуля.** Отзывы, комментарии и подобное хранят `{name}_type` (класс модели) и `{name}_id` и используют `softMorphTo()`:
+
+```php
+/** @return MorphTo<covariant Model,$this> */
+public function reviewable(): MorphTo
+{
+    return $this->softMorphTo();
+}
+```
+
+Отзыв о товаре возвращает товар; когда каталог удалят, он вернёт null вместо ошибки, в том числе через `with('reviewable')`. `Soft::targets()` перечисляет, к чему можно привязать запись, — класс модели => название каждого контентного модуля админки — для выпадающего списка колонки типа; `TextColumn::make('reviewable.name')` показывает запись в списке.

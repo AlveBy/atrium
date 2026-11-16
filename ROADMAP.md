@@ -41,8 +41,8 @@ Docs for the release (Markdown in the repo, `docs/`, in English and Russian), ~~
 The base for everything after it: the shop, the importers and the integrations are modules themselves.
 
 **Mechanics**
-- A module is a Composer package with `"type": "atrium-module"` and a description in `extra.atrium`: what it registers (resources, menu, permissions, settings, migrations, demo seeder).
-- `php artisan atrium:module:install {name}` / `atrium:module:remove {name}`: migrations, assets, permissions, menu entry; removal asks whether to keep the data.
+- ~~A module is a Composer package with `"type": "atrium-module"` and a description in `extra.atrium`~~ done: resources, public pages, migrations, demo seeder ([docs](docs/modules.md#a-module-as-a-package)); settings come with module settings below.
+- ~~`php artisan atrium:module:install {name}` / `atrium:module:remove {name}`~~ done: migrations, permissions, menu entry; removal asks whether to keep the data. Modules link to each other softly ([docs](docs/modules.md#links-to-other-modules)). Assets of a module's own come with the first module that needs them.
 - A "Modules" screen in the admin: installed modules (enable, disable, configure) and available ones, a catalogue read from Packagist by the `atrium-module` type, described in the admin's language, with the install command.
 - A module template repository: structure, tests, CI, translations — press "Use this template" and start writing.
 - **Submodules.** A module can extend another one without touching its code: add fields and tabs to its form, columns to its list, its own screens inside the parent's menu section, its own settings on the parent's settings screen. A submodule installs only next to its parent and goes away with it. Payment methods, carriers and discounts are submodules of the shop; "Ratings" can be a submodule of "Reviews".

@@ -15,6 +15,7 @@ A module is an Eloquent model that describes its admin form and list. Listed in 
 - [Interface translations](#interface-translations)
 - [Tests](#tests)
 - [A module as a package](#a-module-as-a-package)
+- [Links to other modules](#links-to-other-modules)
 
 ## Start
 
@@ -113,6 +114,8 @@ public static function getDefaultSortDirection(): string
 
 To narrow the list or load relations, override `scopeAdminList(Builder $query)`.
 
+A column may show an attribute of a related record: `TextColumn::make('brand.name')` loads the `brand` relation for the page and shows the brand's name. Such a column is neither sorted nor searched by.
+
 ## Tabs
 
 Add `HasAdminTabs`, list the tabs and put each field on one with `tab()`:
@@ -208,19 +211,132 @@ Atrium's own tests (`packages/admin/tests`) show more: permissions, the API, bro
 
 ## A module as a package
 
-A module for other sites is a Composer package with the model, its migration and translations. Its service provider adds the model to the panel:
+A module for other sites is a Composer package of type `atrium-module`. Its `composer.json` says what it brings, in `extra.atrium`:
+
+```json
+{
+    "name": "vendor/atrium-reviews",
+    "type": "atrium-module",
+    "require": {
+        "php": "^8.3",
+        "alveby/atrium": "^0.1"
+    },
+    "suggest": {
+        "alveby/atrium-catalog": "Reviews of products"
+    },
+    "extra": {
+        "atrium": {
+            "resources": ["Vendor\\Reviews\\Review"],
+            "public_urls": {
+                "Vendor\\Reviews\\Review": {"prefix": "reviews"}
+            },
+            "migrations": "database/migrations",
+            "demo": "Vendor\\Reviews\\Database\\ReviewsDemoSeeder"
+        },
+        "laravel": {
+            "providers": ["Vendor\\Reviews\\ReviewsServiceProvider"]
+        }
+    }
+}
+```
+
+| Key | What it is |
+|---|---|
+| `resources` | The module's models, in menu order: the same as lines in `atrium.resources` |
+| `public_urls` | Their pages on the site, as in `atrium.public_urls`; a rule the site sets for the same model wins |
+| `migrations` | A folder (or a list of them) relative to the package |
+| `demo` | A seeder (`Illuminate\Database\Seeder`) for `atrium:install --demo` and `atrium:module:install --demo`. It returns `false` when the module has content already and adds nothing then |
+
+Every key is optional. `suggest` lists the modules this one links to softly (see below); their demo content is filled in first.
+
+Two commands, after `composer require` and before `composer remove`:
+
+```bash
+composer require vendor/atrium-reviews
+php artisan atrium:module:install vendor/atrium-reviews
+
+php artisan atrium:module:remove vendor/atrium-reviews
+composer remove vendor/atrium-reviews
+```
+
+`atrium:module:install` runs the module's migrations and adds it to the `modules` list in `config/atrium.php`; from then on its models are in the menu, the role form, the API and MCP, its migrations run with `php artisan migrate`, its pages are on the site. Composer is not run: the package must be required already. `--demo` fills it with its demo content.
+
+`atrium:module:remove` asks whether to keep the data. If not, the module's migrations are rolled back and its tables dropped; either way its permissions leave the roles and it leaves the list. `--keep-data` and `--delete-data` answer the question in scripts. Installed again, a module with kept data has its records back.
+
+A module that is required but not installed is nowhere in the panel, even if its service provider pushes its models to `atrium.resources`. So the provider needs only what the manifest does not cover:
 
 ```php
-public function register(): void
-{
-    config()->push('atrium.resources', \Vendor\Reviews\Review::class);
-}
-
 public function boot(): void
 {
-    $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
     $this->loadTranslationsFrom(__DIR__.'/../lang', 'reviews');
 }
 ```
 
-`composer require vendor/reviews` and `php artisan migrate`, and the module is in the menu. Test it with Orchestra Testbench, as `packages/admin` does. Version 0.2 adds `atrium:module:install`, a "Modules" screen and a template repository: see the [roadmap](../ROADMAP.md).
+Leave the migrations to the manifest: loaded with `loadMigrationsFrom()`, they would run for a module that is not installed and bring back the tables of a removed one. Cached config and routes are rebuilt by both commands.
+
+Test it with Orchestra Testbench, as the modules in `packages/` do: list the module in `atrium.modules` in `defineEnvironment()`, and its models, migrations and pages are there as on a site.
+
+## Links to other modules
+
+Modules link to each other softly: products work without brands, and the "Brand" field and column appear only when the Brands module is installed. Nothing in Composer's `require` makes one module install another.
+
+**Fields, columns, tabs.** `Atrium\Admin\Modules\Soft::when()` returns the items when the model is available — its class is there and its module installed — and an empty list otherwise. Spread it into the list:
+
+```php
+use Atrium\Admin\Modules\Soft;
+use Atrium\Brands\Brand;
+
+public static function getAdministrationFields(): array
+{
+    return [
+        TextField::make('name')->label('Name')->required(),
+        ...Soft::when(Brand::class, fn () => [
+            BelongsToField::make('brand_id')->label('Brand')->model(Brand::class),
+        ]),
+    ];
+}
+
+public static function getAdministrationListColumns(): array
+{
+    return [
+        TextColumn::make('name')->label('Name')->sortable()->searchable(),
+        ...Soft::when(Brand::class, fn () => [
+            TextColumn::make('brand.name')->label('Brand'),
+        ]),
+    ];
+}
+```
+
+`Brand::class` is only a string: the class is not loaded, so the package may be missing altogether. `Soft::when([A::class, B::class], …)` wants both, `Soft::available(Brand::class)` answers the question itself.
+
+**Relations.** `Atrium\Admin\Traits\HasSoftRelations` gives `softBelongsTo()`, `softBelongsToMany()` and `softHasMany()`, with the arguments of Laravel's own (the pivot table of `softBelongsToMany()` must be named). With the module installed they are Laravel's relations. Without it they find nothing: `$product->brand` is null, `$product->stores` is empty, `with()` and `whereHas()` work and no table of the missing module is queried.
+
+```php
+use HasSoftRelations;
+
+/** @return BelongsTo<covariant Model,$this> */
+public function brand(): BelongsTo
+{
+    return $this->softBelongsTo(Brand::class, 'brand_id');
+}
+
+/** @return BelongsToMany<covariant Model,$this> */
+public function stores(): BelongsToMany
+{
+    return $this->softBelongsToMany(Store::class, 'catalog_product_store', 'product_id', 'store_id');
+}
+```
+
+The link column (`brand_id`) and the pivot table belong to the module that declares the relation and are there with or without the other one. Make no foreign keys to the other module's tables: they may be dropped.
+
+**Attached to a record of any module.** Reviews, comments and the like keep `{name}_type` (the model class) and `{name}_id` and use `softMorphTo()`:
+
+```php
+/** @return MorphTo<covariant Model,$this> */
+public function reviewable(): MorphTo
+{
+    return $this->softMorphTo();
+}
+```
+
+A review of a product reads as the product; once the catalog is removed, it reads as null instead of failing, also with `with('reviewable')`. `Soft::targets()` lists what a record can be attached to — model class => label of every content module in the panel — for a select of the type column; `TextColumn::make('reviewable.name')` shows the record in the list.
