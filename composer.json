@@ -107,7 +107,12 @@
             "type": "path",
             "url": "packages/*",
             "options": {
-                "symlink": true
+                "symlink": true,
+                "versions": {
+                    "alveby/atrium": "0.1.x-dev",
+                    "alveby/atrium-bitrix": "0.1.x-dev",
+                    "alveby/atrium-theme": "0.1.x-dev"
+                }
             }
         }
     ]

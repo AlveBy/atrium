@@ -1,0 +1,59 @@
+name: split
+
+# Copies each package folder, with its history, to its own read-only
+# repository, which is what Packagist reads: packages/admin → AlveBy/atrium-admin
+# (alveby/atrium), packages/bitrix → AlveBy/atrium-bitrix, packages/theme →
+# AlveBy/atrium-theme. A push to main updates their main branch, a tag v1.2.3
+# tags them too.
+#
+# Needs the SPLIT_TOKEN secret: a fine-grained token of AlveBy with
+# "Contents: read and write" on the three repositories. Without it the job
+# only says so and passes.
+on:
+  push:
+    branches: [main]
+    tags: ['v*.*.*']
+
+concurrency:
+  group: split
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
+jobs:
+  split:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - folder: admin
+            repository: atrium-admin
+          - folder: bitrix
+            repository: atrium-bitrix
+          - folder: theme
+            repository: atrium-theme
+    env:
+      SPLIT_TOKEN: ${{ secrets.SPLIT_TOKEN }}
+    steps:
+      - name: No token
+        if: env.SPLIT_TOKEN == ''
+        run: echo "::notice::SPLIT_TOKEN is not set, packages/${{ matrix.folder }} is not copied to AlveBy/${{ matrix.repository }}."
+
+      - uses: actions/checkout@v4
+        if: env.SPLIT_TOKEN != ''
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Split and push
+        if: env.SPLIT_TOKEN != ''
+        run: |
+          sha=$(git subtree split --prefix="packages/${{ matrix.folder }}")
+          remote="https://x-access-token:${SPLIT_TOKEN}@github.com/AlveBy/${{ matrix.repository }}.git"
+          if [ "$GITHUB_REF_TYPE" = tag ]; then
+            git push "$remote" "$sha:refs/tags/$GITHUB_REF_NAME"
+          else
+            git push "$remote" "$sha:refs/heads/main"
+          fi
