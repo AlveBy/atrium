@@ -119,6 +119,7 @@ Bitrix のデータベースは読み取るだけです。タブ、フィール�
 - [設定：メールとサインインコード、ファイル、API トークン、MCP 経由の AI アシスタント](../configuration.md)
 - [AI 文章アシスタント：無料・有料のプロバイダー、説明文、SEO、alt テキスト、翻訳](../ai.md)
 - [独自モジュール：フィールド、列、タブ、権限、言語、テスト、パッケージ化](../modules.md)
+- [カスタムフィールド：管理画面から任意のモジュールにフィールドを追加、10 万件でのフィルターとファセット](../custom-fields.md)
 - [1C-Bitrix からの移行（手順）](../bitrix.md)
 - [バックアップ：データベースとファイルを複数の保存先へ、スケジュール、ヘルスチェック、復元](../backup.md)
 - [CDN：画像、リサイズしたコピーと WebP/AVIF、キャッシュの削除、S3 へのアップロード](../cdn.md)
@@ -131,6 +132,7 @@ Bitrix のデータベースは読み取るだけです。タブ、フィール�
 | [`alveby/atrium-theme`](../../packages/theme/README.md) | 公開テーマ |
 | [`alveby/atrium-bitrix`](../../packages/bitrix/README.md) | 1C-Bitrix マイグレーター |
 | [`alveby/atrium-ai`](../../packages/ai/README.md) | 管理画面の AI 文章アシスタント |
+| [`alveby/atrium-custom-fields`](../../packages/custom-fields/README.md) | 管理画面から任意のモジュールに追加するフィールド（フィルターとファセット付き） |
 | [`alveby/atrium-docs`](../../packages/docs/README.md) | Markdownから作るドキュメント（バージョンと検索つき） |
 | [`alveby/atrium-backup`](../../packages/backup/README.md) | データベースとファイルのバックアップ、管理画面からの復元 |
 

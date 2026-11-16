@@ -119,6 +119,7 @@ Il database di Bitrix viene solo letto. Le schede, l'ordine dei campi e le colon
 - [Configurazione: e-mail e codice di accesso, file, token API, assistenti IA via MCP](../configuration.md)
 - [Aiuto alla scrittura con IA: fornitori gratuiti e a pagamento, descrizioni, SEO, testi alt, traduzioni](../ai.md)
 - [Il tuo modulo: campi, colonne, schede, permessi, lingue, test, pacchetto](../modules.md)
+- [Campi personalizzati: aggiungere campi a qualsiasi modulo dal pannello, filtri e faccette su 100 000 record](../custom-fields.md)
 - [Migrare da 1C-Bitrix, passo per passo](../bitrix.md)
 - [Backup: database e file in più destinazioni, pianificazione, controlli, ripristino](../backup.md)
 - [CDN: immagini, copie ridimensionate e WebP/AVIF, svuotamento della cache, caricamenti su S3](../cdn.md)
@@ -131,6 +132,7 @@ Il database di Bitrix viene solo letto. Le schede, l'ordine dei campi e le colon
 | [`alveby/atrium-theme`](../../packages/theme/README.md) | Il tema pubblico |
 | [`alveby/atrium-bitrix`](../../packages/bitrix/README.md) | Il migratore da 1C-Bitrix |
 | [`alveby/atrium-ai`](../../packages/ai/README.md) | Aiuto alla scrittura con IA nel pannello |
+| [`alveby/atrium-custom-fields`](../../packages/custom-fields/README.md) | Campi aggiunti a qualsiasi modulo dal pannello, con filtri e faccette |
 | [`alveby/atrium-docs`](../../packages/docs/README.md) | Documentazione da Markdown, con versioni e ricerca |
 | [`alveby/atrium-backup`](../../packages/backup/README.md) | Backup di database e file, ripristino dal pannello |
 

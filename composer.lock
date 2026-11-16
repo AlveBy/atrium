@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3bc5396cd54cc0a6b4228e4a823a775a",
+    "content-hash": "29fb4070ede66bc47497a4d733ae1443",
     "packages": [
         {
             "name": "alveby/atrium",
@@ -12,7 +12,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/admin",
-                "reference": "2be39539f0a1af91b58213e0417b2ee7ff9d9716"
+                "reference": "71269fe3018b16d55909e9f610bd898da33622d4"
             },
             "require": {
                 "illuminate/database": "^13.0",
@@ -79,7 +79,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/two-factor",
-                "reference": "0d8219f04ebc452727da2d4f4bb715902416ff92"
+                "reference": "48218b50ee7f5b5da08d511032dac5ace6bf0612"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -152,7 +152,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/ai",
-                "reference": "89b6c27b67d48cddb614abd1c2a8db6f5c795b60"
+                "reference": "0afe8363306195ccbc8e015e945993664e8b97c1"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -219,7 +219,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/backup",
-                "reference": "bdd952669988c23ef96143d74e67a460dbb0fe11"
+                "reference": "885d6146b91d3a48774292bc323ae27c56ecc022"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -293,7 +293,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/brands",
-                "reference": "38cb70f1f031c35bf865acc1dc2b39b5ac30650c"
+                "reference": "a0082e53c72a9871214c96aa5aad81363d64bb60"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -359,7 +359,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/catalog",
-                "reference": "f025e5da67e8e36a7971d1f1546b103633ff526b"
+                "reference": "076abd8b985dbe4113c2bfbe2451207abaa8f519"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -443,12 +443,85 @@
             }
         },
         {
+            "name": "alveby/atrium-custom-fields",
+            "version": "0.1.x-dev",
+            "dist": {
+                "type": "path",
+                "url": "packages/custom-fields",
+                "reference": "1c06363f1dca62586bdcd39a5f4841df39d39548"
+            },
+            "require": {
+                "alveby/atrium": "^0.1",
+                "illuminate/support": "^13.0",
+                "php": "^8.3"
+            },
+            "require-dev": {
+                "alveby/atrium-brands": "^0.1",
+                "alveby/atrium-catalog": "^0.1",
+                "orchestra/testbench": "^11.0",
+                "phpunit/phpunit": "^12.5"
+            },
+            "suggest": {
+                "alveby/atrium-catalog": "The demo shop: its products get five filterable fields"
+            },
+            "type": "atrium-module",
+            "extra": {
+                "atrium": {
+                    "resources": [
+                        "Atrium\\CustomFields\\Models\\CustomField"
+                    ],
+                    "migrations": "database/migrations",
+                    "demo": "Atrium\\CustomFields\\Database\\CustomFieldsDemoSeeder"
+                },
+                "laravel": {
+                    "providers": [
+                        "Atrium\\CustomFields\\CustomFieldsServiceProvider"
+                    ]
+                },
+                "branch-alias": {
+                    "dev-main": "0.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Atrium\\CustomFields\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Atrium\\CustomFields\\Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Custom fields for any Atrium module, set up in the admin: JSON values plus a typed index for fast filters, facets and sorting",
+            "homepage": "https://github.com/AlveBy/atrium",
+            "keywords": [
+                "admin",
+                "cms",
+                "custom-fields",
+                "facets",
+                "filters",
+                "laravel",
+                "shop"
+            ],
+            "support": {
+                "issues": "https://github.com/AlveBy/atrium/issues",
+                "source": "https://github.com/AlveBy/atrium"
+            },
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
             "name": "alveby/atrium-docs",
             "version": "0.1.x-dev",
             "dist": {
                 "type": "path",
                 "url": "packages/docs",
-                "reference": "f66fd24ee08bc7f98fa9889be64016c265eb58b7"
+                "reference": "1abb5965e18a58d71eaf1df550cb1319154a6833"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -512,7 +585,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/faq",
-                "reference": "d6e58242b5ac25eea005d3ce0dc21c55355b6f62"
+                "reference": "f25d0a5d091102c095d045cc692e54a2cc7bd17f"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -590,7 +663,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/forms",
-                "reference": "199fa576f36513c6f4e46367818d599a97dd3866"
+                "reference": "fb654c28fde099dea326f53720a5d9e78b3bed14"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -658,7 +731,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/news",
-                "reference": "dca9bc85bea6758d4d26d3ea519279b7538cd98e"
+                "reference": "a952a875aa55dbb02fefa96d64d54aa764f128c0"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -731,7 +804,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/pages",
-                "reference": "8dc56a65ad468c2713fb4bc84322c5c34a324f4c"
+                "reference": "1bf96fd2459902c43aa72cfff385b86fbb21838b"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -807,7 +880,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/reviews",
-                "reference": "17bb800fc2d1ea06b0f8a7a2473bfe93a5479d7c"
+                "reference": "ffcbb0849f3cb6d49730c2657b376709a3f1b120"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -877,7 +950,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/social-login",
-                "reference": "eed6a41d222a5753485f263d72c7f62ed03074cd"
+                "reference": "39c16a67addf55b62aaae5f91643c909c44664fd"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -955,7 +1028,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/solutions",
-                "reference": "efe19838465c69eaae9fbef93d84153092ba4b38"
+                "reference": "5ff7579b5ea53de01aed9b4e6d0008558ee0f8c2"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -1030,7 +1103,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/stores",
-                "reference": "daddc5d2c073b8ef47e380ff0a35af67ed3abae5"
+                "reference": "a06ecb1e58153f084dec4f6e8a3a75802eff3248"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -1102,7 +1175,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/team",
-                "reference": "83cb2d964353bfb591b5e1797e3757df0ecb1255"
+                "reference": "a4ad30f876bfaa512fd4a960f9a341fcb71a66dd"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -1180,7 +1253,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/theme",
-                "reference": "1dc64b74ebb282cd152d99172583801c120b8df0"
+                "reference": "6d001969a05aa523b46b44f0caf2fbdece0ba200"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -9427,7 +9500,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/bitrix",
-                "reference": "53e4b41afaa469cbe2e2e0e02aed90fb8f1dd386"
+                "reference": "c189d2056d7be7e42a960c5a0b0dfe50d09b8709"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -14510,6 +14583,7 @@
         "alveby/atrium-bitrix": 20,
         "alveby/atrium-brands": 20,
         "alveby/atrium-catalog": 20,
+        "alveby/atrium-custom-fields": 20,
         "alveby/atrium-docs": 20,
         "alveby/atrium-faq": 20,
         "alveby/atrium-forms": 20,

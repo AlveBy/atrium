@@ -117,6 +117,7 @@ php artisan atrium:bitrix:parity
 - [Настройка: почта и код входа, файлы, API-токены, ИИ-ассистенты через MCP](../configuration.ru.md)
 - [ИИ-помощник для текстов: бесплатные и платные провайдеры, описания, SEO, alt, переводы](../ai.ru.md)
 - [Свой модуль: поля, колонки, вкладки, права, языки, тесты, пакет](../modules.ru.md)
+- [Свои поля: добавить поле в любой модуль из админки, фильтры и фасеты на 100 000 записей](../custom-fields.ru.md)
 - [Переезд с 1С-Битрикс по шагам](../bitrix.ru.md)
 - [Резервные копии: базы и файлы в несколько мест, расписание, проверки, восстановление](../backup.ru.md)
 - [CDN: картинки, уменьшенные копии и WebP/AVIF, сброс кеша, загрузки в S3](../cdn.ru.md)
@@ -129,6 +130,7 @@ php artisan atrium:bitrix:parity
 | [`alveby/atrium-theme`](../../packages/theme/README.md) | Тема для сайта |
 | [`alveby/atrium-bitrix`](../../packages/bitrix/README.md) | Переносчик с 1С-Битрикс |
 | [`alveby/atrium-ai`](../../packages/ai/README.md) | ИИ-помощник для текстов в админке |
+| [`alveby/atrium-custom-fields`](../../packages/custom-fields/README.md) | Поля, которые добавляют в любой модуль из админки, с фильтрами и фасетами |
 | [`alveby/atrium-docs`](../../packages/docs/README.md) | Документация из Markdown: версии и поиск |
 | [`alveby/atrium-backup`](../../packages/backup/README.md) | Резервные копии баз и файлов, восстановление из админки |
 
