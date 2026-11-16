@@ -16,7 +16,9 @@ Atrium is an admin panel for Laravel that installs with one command, runs any nu
 
 The admin core is ported and covered by tests. Still to do:
 
-- interface languages (15), switchable per admin;
+- ~~interface languages~~ done: 15 of them, each admin picks one in the header;
+- ~~API keys~~ already there: an "API tokens" screen issues a key limited to chosen modules and actions, and `/api/v1` describes itself;
+- an MCP server on top of the same API and keys: an AI assistant (Claude, ChatGPT, Cursor) connects to the site and reads and edits its modules — "add three news items", "raise prices in this category by 5%" — with exactly the rights of its key;
 - ~~content languages~~ done: add a language in the admin, list a model's columns in `$translatable`, each language gets its own addresses (`/de/…`) and `hreflang`;
 - ~~multiple sites~~ done: sites are added in the admin, picked by domain, each with its own languages; a module becomes per-site with one trait;
 - analytics and verification codes from the admin, per site: Google Tag, Yandex Metrica, Search Console / Webmaster meta tags, any snippet in `<head>` or `<body>` — nobody has to touch the templates;
@@ -42,11 +44,16 @@ The base for everything after it: the shop, the importers and the integrations a
 - `php artisan atrium:module:install {name}` / `atrium:module:remove {name}`: migrations, assets, permissions, menu entry; removal asks whether to keep the data.
 - A "Modules" screen in the admin: installed modules (enable, disable, configure) and available ones, a catalogue read from Packagist by the `atrium-module` type, described in the admin's language, with the install command.
 - A module template repository: structure, tests, CI, translations — press "Use this template" and start writing.
+- **Submodules.** A module can extend another one without touching its code: add fields and tabs to its form, columns to its list, its own screens inside the parent's menu section, its own settings on the parent's settings screen. A submodule installs only next to its parent and goes away with it. Payment methods, carriers and discounts are submodules of the shop; "Ratings" can be a submodule of "Reviews".
 
 **What modules need from the core**
 - Roles and permissions: who sees which module and what they may do (view, edit, delete), optionally limited to some sites.
 - Module settings: a settings screen the module describes with fields, the same way it describes a record form.
-- Events and hooks: "record saved", "form submitted", "order paid", so modules can talk without knowing about each other.
+- Hooks, as in WordPress but built on Laravel events, so modules and the site itself change behaviour without editing anyone's code:
+  - **actions** — react to something: `Atrium::on('articles.saved', …)`, "form submitted", "order paid", "site switched";
+  - **filters** — change something on its way: the fields and tabs of a form, the columns and query of a list, the data of a record before it is saved (mutators) and after it is read, an API response, the menu, the sitemap, the page `<head>`;
+  - every hook point is listed in the docs, generated from the code, so the list never goes stale.
+- Map fields that are maps: pick a point on Yandex Maps or Google Maps, find it by address, draw an area; keys are set in the admin. On the site, a `<x-atrium::map>` component shows one or many records (offices, shops, properties) on the chosen map.
 - Queues and a log: background jobs for modules, with retries and an error screen.
 
 **Official modules**
@@ -59,10 +66,23 @@ The base for everything after it: the shop, the importers and the integrations a
 | Menus | Site menus by drag and drop, per site and language. An item can be dynamic: point it at a module (shop categories, news sections) and it unfolds into that module's tree on the site, always up to date, with a depth limit and a starting section |
 | Banners and sliders | Placements on pages, display schedule |
 | Reviews | With moderation and ratings |
+| Classifieds | A board of ads posted by visitors: categories, photos, moderation, the author's account, expiry; paid placement later as a submodule |
+| Analytics | Beyond the counters of 0.1: visits and sources from Yandex Metrica and Google Analytics on the dashboard, goals sent by themselves when a form is submitted or an order is placed |
 | FAQ | With structured data for search engines |
 | SEO | Redirects, meta tag templates, broken link report (sitemap.xml and robots.txt are in the core) |
 | Search | Across all modules of a site, language-aware |
 | Media library | A shared file library with folders (part of the core today) |
+
+## Ready-made sites
+
+A ready-made site is a set of modules, theme settings and demo content installed with one command: `php artisan atrium:install --preset=realty`. Each appears as soon as the modules it needs are there.
+
+| Site | What is in it |
+|---|---|
+| Real estate | Properties (sale, rent, new builds) with a filter by type, rooms, area, price and district, every property on a map, agents, viewing requests; export feeds for property portals |
+| Catalogue site | Products or services with sections and a filter, no cart: "request a price" and "order" buttons go to Forms. The shop's catalogue (0.4) without the rest of the shop |
+| Classifieds | The Classifieds module with a theme for it: rubrics, search, the author's account |
+| Company site | Pages, news, services, team, contacts with a map, forms |
 
 ## 0.3 — moving from other CMSs
 
@@ -90,7 +110,7 @@ After WordPress the order follows requests in Issues.
 
 ## 0.4 — online shop
 
-`alveby/atrium-shop` and its modules. Each installs on its own: if you only need a catalogue with enquiries, install only the catalogue.
+`alveby/atrium-shop` and its submodules. Each installs on its own: if you only need a catalogue with enquiries, install only the catalogue. Everything below except the core is a submodule of the shop, so a third party can add a payment method or a discount rule the same way.
 
 **Core**
 - Catalogue: products, categories, properties, filters, variants (size, colour), stock per warehouse.
@@ -114,6 +134,14 @@ After WordPress the order follows requests in Issues.
 | Product reviews | Ratings, photos, only buyers can review |
 | Abandoned carts | Reminder e-mails |
 | Feeds | Yandex Market (YML), Google Merchant |
+
+**Running the shop**
+| Submodule | What it does |
+|---|---|
+| Import and export | Products, prices and stock from and to CSV and Excel, on a schedule or by hand |
+| Notifications | New orders and status changes to Telegram and e-mail for the staff |
+| Documents | Invoices, receipts, delivery notes from templates |
+| E-commerce analytics | Views, cart and purchases sent to Yandex Metrica and Google Analytics as e-commerce events |
 
 **Moving a shop** from Bitrix (its e-commerce module), WooCommerce and OpenCart: products, variants, prices, stock, customers, orders.
 
