@@ -107,7 +107,7 @@ TextField::make('picture_alt')->label('Picture alt')->ai('alt', from: 'picture')
 
 Without arguments it writes the field from everything else in the form. `preview`, `seo_title`, `seo_description`, `seo_keywords` and `alt` are the other tasks; `from` names the fields to work from.
 
-A translatable field also gets **Translate** when the site has more than one content language: it translates the language being edited into the others.
+A translatable field also gets **Translate** when the site has more than one content language: it translates the language being edited into the others. Every Atrium language works, and the model is told the script where it matters (Uzbek in Latin, Kazakh and Belarusian in Cyrillic).
 
 The prompts are Blade views. To change the tone or add rules ("always mention free delivery"):
 
