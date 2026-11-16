@@ -46,6 +46,7 @@ All notable changes are listed here. The format follows [Keep a Changelog](https
 - Issue and pull request templates, Dependabot, and a `release` workflow: pushing a `v*` tag publishes a GitHub release with that version's notes from this file.
 
 ### Changed
+- The dashboard's speed and performance tiles were copies of the 1C-Bitrix gadgets (green gradient cards, coloured bands, a glossy button). They are plain admin cards now: the site speed is a grey scale filled up to the median with the band named in words, the details button is an ordinary one.
 - The demo article's page is drawn by the theme; the app's own article controller, its view and Laravel's welcome page are gone.
 
 ### Fixed
