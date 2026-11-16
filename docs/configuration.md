@@ -13,6 +13,7 @@ After changing either on a live site, run `php artisan config:cache` again.
 - [API tokens](#api-tokens)
 - [AI assistants (MCP)](#ai-assistants-mcp)
 - [Public addresses, sitemap and robots.txt](#public-addresses-sitemap-and-robotstxt)
+- [Your own error pages](#your-own-error-pages)
 
 ## The main settings
 
@@ -142,6 +143,25 @@ Other clients take the same two things in their MCP settings: the address `https
 | `sitemap.paths` | `['/']` | Addresses that are not module records |
 | `ATRIUM_COUNTERS_CONSENT` | `false` | Start Google Tag and Yandex Metrica only after the cookie banner calls `window.atriumConsent()` |
 | `YANDEX_MAPS_API_KEY`, `GOOGLE_MAPS_API_KEY` | | Keys for the map fields |
+
+## Your own error pages
+
+With the theme installed, "not found" (404), "access denied" (403), "page expired" (419), "too many requests" (429), "server error" (500) and maintenance (503) are drawn in the site's design and language; other codes get a general 4xx or 5xx page. The 404 page has a link home and, when the site has a search, a search box.
+
+Your own page works the Laravel way: put a Blade file into `resources/views/errors` and it wins over the theme. Your files are part of your app, so `composer update` never touches them. The order:
+
+1. `resources/views/errors/{site code}/404.blade.php`, then `…/4xx.blade.php` — for one site of several;
+2. `resources/views/errors/404.blade.php`, then `4xx.blade.php` (`5xx.blade.php` for server errors);
+3. the theme's page;
+4. Laravel's own.
+
+To start from the theme's pages:
+
+```bash
+php artisan vendor:publish --tag=atrium-errors
+```
+
+The copies use `<x-atrium-theme::error-page>`, which draws the theme's layout (a 5xx page gets a plain frame that does not read the database); replace it with your own layout if you like. Every error page gets `$siteName`, `$homeUrl` and `$searchUrl`, and is in the language of the address. JSON and API requests still get JSON, and the admin (`/admin`) is not touched by the theme's pages. For maintenance, `php artisan down --render="errors::503"` prerenders the same page.
 
 ## "Made with Atrium" and the licence
 
