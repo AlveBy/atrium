@@ -26,13 +26,20 @@ abstract class AdminTestCase extends DuskTestCase
         }
     }
 
+    /**
+     * A superadmin: may do everything, like every administrator before roles.
+     */
     protected function admin(): AdminUser
     {
-        return AdminUser::query()->create([
+        $admin = AdminUser::query()->create([
             'name' => 'Ada Admin',
             'email' => 'ada@example.com',
             'password' => 'correct-horse',
             'is_active' => true,
         ]);
+
+        $admin->forceFill(['is_superadmin' => true])->save();
+
+        return $admin;
     }
 }

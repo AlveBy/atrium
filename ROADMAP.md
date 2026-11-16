@@ -18,6 +18,7 @@ The admin core is ported and covered by tests. Still to do:
 
 - ~~interface languages~~ done: 15 of them, each admin picks one in the header;
 - ~~API keys~~ already there: an "API tokens" screen issues a key limited to chosen modules and actions, and `/api/v1` describes itself;
+- ~~roles and permissions~~ done: a role says which modules an administrator may view, create, edit and delete, the panel's own sites, languages and administrators included; the menu, the buttons and the API follow it, and a token never has more rights than its owner today. Superadmins need no role and are the only ones who manage roles;
 - an MCP server on top of the same API and keys: an AI assistant (Claude, ChatGPT, Cursor) connects to the site and reads and edits its modules — "add three news items", "raise prices in this category by 5%" — with exactly the rights of its key;
 - ~~content languages~~ done: add a language in the admin, list a model's columns in `$translatable`, each language gets its own addresses (`/de/…`) and `hreflang`;
 - ~~multiple sites~~ done: sites are added in the admin, picked by domain, each with its own languages; a module becomes per-site with one trait;
@@ -47,7 +48,7 @@ The base for everything after it: the shop, the importers and the integrations a
 - **Submodules.** A module can extend another one without touching its code: add fields and tabs to its form, columns to its list, its own screens inside the parent's menu section, its own settings on the parent's settings screen. A submodule installs only next to its parent and goes away with it. Payment methods, carriers and discounts are submodules of the shop; "Ratings" can be a submodule of "Reviews".
 
 **What modules need from the core**
-- Roles and permissions: who sees which module and what they may do (view, edit, delete), optionally limited to some sites.
+- Permissions for installed modules: a module declares its own actions beyond view, create, edit and delete ("publish", "export"), and they appear in the role form. Roles per site: the same administrator edits one site and only reads another (roles themselves are in 0.1).
 - Module settings: a settings screen the module describes with fields, the same way it describes a record form.
 - Hooks, as in WordPress but built on Laravel events, so modules and the site itself change behaviour without editing anyone's code:
   - **actions** — react to something: `Atrium::on('articles.saved', …)`, "form submitted", "order paid", "site switched";
