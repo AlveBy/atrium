@@ -64,7 +64,13 @@ jobs:
       - name: Update Packagist
         if: env.SPLIT_TOKEN != '' && env.PACKAGIST_TOKEN != ''
         run: |
+          token=$(printf %s "$PACKAGIST_TOKEN" | tr -d '[:space:]')
+          case "$token" in
+            ?*:?*) ;;
+            *) echo "::error::PACKAGIST_TOKEN must be username:token (${#token} characters, no colon)"; exit 1 ;;
+          esac
+          echo "Packagist user ${token%%:*}, token of $(( ${#token} - ${#token%%:*} - 1 )) characters"
           curl -sS --fail-with-body -X POST https://packagist.org/api/update-package \
             -H 'Content-Type: application/json' \
-            -H "Authorization: Bearer ${PACKAGIST_TOKEN}" \
+            -H "Authorization: Bearer ${token}" \
             -d '{"repository":"https://github.com/AlveBy/${{ matrix.repository }}"}'
