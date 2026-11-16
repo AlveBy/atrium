@@ -25,7 +25,10 @@ All notable changes are listed here. The format follows [Keep a Changelog](https
 - A site may limit the content languages and pick its own default language (served without a prefix). An administrator may be limited to some sites.
 - Slugs drop accents (`über` → `uber`) instead of turning them into dashes.
 - [ROADMAP.md](ROADMAP.md): installable modules, importers from other CMSs, an online shop, 1C and Bitrix24, a multilingual project site.
+- Issue and pull request templates, Dependabot, and a `release` workflow: pushing a `v*` tag publishes a GitHub release with that version's notes from this file.
 
 ### Fixed
 - Saving an administrator ended in a server error (it redirected to a route that does not exist).
 - The administrator edit page did not open.
+
+[Unreleased]: https://github.com/AlveBy/atrium/commits/main

@@ -51,4 +51,14 @@ Sites can override any line without forking: `php artisan vendor:publish --tag=a
 
 ## Commit messages
 
-Describe what changed for the user, not which file you touched.
+English, in the [Conventional Commits](https://www.conventionalcommits.org/) form: `feat(admin): …`, `fix(bitrix): …`, `docs: …`, `test: …`, `chore: …`. The scope is the package (`admin`, `bitrix`, `theme`) or left out. Describe what changed for the user, not which file you touched.
+
+## Versions and releases
+
+Atrium follows [Semantic Versioning](https://semver.org/). Until 1.0 a minor version (0.2 → 0.3) may break things and says so in the changelog; a patch (0.2.0 → 0.2.1) never does.
+
+All packages are released together under one version. To release:
+
+1. Move the `[Unreleased]` notes in `CHANGELOG.md` under `## [x.y.z] - YYYY-MM-DD` and add the compare link at the bottom.
+2. Commit (`chore: release x.y.z`), tag `vx.y.z`, push the tag.
+3. The `release` workflow publishes the GitHub release with those notes; Packagist picks up the tag.

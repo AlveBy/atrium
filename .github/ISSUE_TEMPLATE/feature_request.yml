@@ -1,0 +1,20 @@
+name: Feature request
+description: Something Atrium should do, or a module it should have.
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What you are trying to do
+      description: The task, not the solution. "Editors need to schedule a news item" rather than "add a cron field".
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: How you see it working
+  - type: textarea
+    id: now
+    attributes:
+      label: How you do it today
+      description: In Atrium, in another CMS, or by hand.
