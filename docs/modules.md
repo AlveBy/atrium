@@ -173,6 +173,21 @@ Rules come from the fields (`required()`, `unique()`, `rules()`). To replace the
 
 Every module gets four permissions by its key: `articles.view`, `articles.create`, `articles.update`, `articles.delete`. They appear in the role form by themselves; the menu, the buttons, the API and the MCP tools follow them. Superadmins have them all.
 
+A module package that checks more than that declares its own permissions in the manifest:
+
+```json
+"extra": {
+    "atrium": {
+        "permissions": {
+            "refund": "atrium-shop::permissions.refund",
+            "orders.export": {"label": "atrium-shop::permissions.export", "with": "orders.view"}
+        }
+    }
+}
+```
+
+A name is `{section}.{action}`; a bare action belongs to the module's key (`refund` → `shop.refund`). The label is text or a translation key. While the module is installed, each permission is a checkbox in its section's row of the role form (in the "Other" column, or a row of its own), and the module checks it with `$user->hasAdminPermission('shop.refund')`. `with` names a permission it comes with: when the module is installed, every role that has `orders.view` gets `orders.export` too. `atrium:module:remove` takes them out of the roles.
+
 ## Content languages and sites
 
 **Languages.** With `Translatable` and the columns listed in `$translatable`, the form gets a language switch and each value is kept per language. The columns must be JSON (`$table->json('name')`). Only the default language is required; the others fall back to it.
@@ -265,6 +280,7 @@ A module for other sites is a Composer package of type `atrium-module`. Its `com
 | `demo` | A seeder for `atrium:install --demo` and `atrium:module:install --demo`, best extending `Atrium\Admin\Modules\DemoSeeder` (it copies the package's pictures to the uploads disk). Its `run()` returns `false` when the module has content already and adds nothing then |
 | `key`, `title` | The module's key in permissions and settings, and its name in the panel (see "Module settings") |
 | `settings` | Its settings class (see "Module settings") |
+| `permissions` | Its own permissions beyond view, create, update and delete (see "Permissions") |
 
 Every key is optional. `suggest` lists the modules this one links to softly (see below); their demo content is filled in first.
 
