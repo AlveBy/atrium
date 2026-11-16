@@ -23,7 +23,7 @@ The admin core is ported and covered by tests. Still to do:
 - ~~multiple sites~~ done: sites are added in the admin, picked by domain, each with its own languages; a module becomes per-site with one trait;
 - ~~counters and verification codes~~ done: per site in the admin — Google Tag, Yandex Metrica, Search Console / Webmaster / Bing meta tags, any snippet in `<head>` or `<body>`; nobody has to touch the templates;
 - ~~`sitemap.xml` and `robots.txt`~~ done: built by the core for every site, every language, with `hreflang`; off production robots.txt always says `Disallow: /`;
-- the 1C-Bitrix migrator (`alveby/atrium-bitrix`);
+- ~~the 1C-Bitrix migrator~~ done (`alveby/atrium-bitrix`): models, migrations and admin forms are built from the Bitrix database (tabs, field order and list columns as the editors had them in Bitrix); data, files, SEO and the media library move over; `atrium:bitrix:parity` checks before against after, `atrium:bitrix:sync` catches up with edits while the old site is still live; tested on MySQL, PostgreSQL and SQLite. Static pages move with the Pages module in 0.2;
 - a neutral public theme (`alveby/atrium-theme`), light and dark;
 - demo data: `php artisan atrium:install --demo`;
 - the README in 15 languages.
@@ -59,7 +59,7 @@ The base for everything after it: the shop, the importers and the integrations a
 **Official modules**
 | Module | What it does |
 |---|---|
-| Pages | Static pages with a tree and templates |
+| Pages | Static pages with a tree and templates; imports Bitrix static pages |
 | News / Blog | Feed, categories, tags, RSS |
 | Gallery | Photo and video albums on the site |
 | Forms and leads | Form builder, submissions in the admin, e-mails, spam protection |
@@ -140,8 +140,15 @@ After WordPress the order follows requests in Issues.
 |---|---|
 | Import and export | Products, prices and stock from and to CSV and Excel, on a schedule or by hand |
 | Notifications | New orders and status changes to Telegram and e-mail for the staff |
-| Documents | Invoices, receipts, delivery notes from templates |
+| Documents | Invoices, receipts and delivery notes for orders, from the Documents module (below) |
 | E-commerce analytics | Views, cart and purchases sent to Yandex Metrica and Google Analytics as e-commerce events |
+
+**Documents** (`alveby/atrium-documents`) installs without the shop too: people who sell services need invoices and contracts as well.
+- Templates: built in the admin with the same visual editor, or uploaded as a ready DOCX with fields like `{{ client.name }}`. Data comes from any record — an order, a client, a lead, a deal. Output is PDF and DOCX.
+- Contracts: from a template for a client, with their own numbering, statuses (draft, sent, signed), a term and a renewal reminder, amendments and annexes, a scan of the signed copy.
+- Invoices: for an order or by hand — lines, taxes, currency, the amount in words in the document's language, a payment link through the payment modules; marked paid by itself when the money arrives.
+- Counterparties: companies and sole traders with their details, each with their contracts and invoices.
+- National forms come as per-country submodules so they stay out of everyone else's way: the Russian VAT invoice (счёт-фактура), UPD and acceptance act, the Belarusian act and waybill, EU VAT invoices. E-invoicing networks later, on request.
 
 **Moving a shop** from Bitrix (its e-commerce module), WooCommerce and OpenCart: products, variants, prices, stock, customers, orders.
 

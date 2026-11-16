@@ -10,6 +10,11 @@ parameters:
         - packages/admin/src
         - packages/bitrix/src
         - packages/theme/src
+    # Package config files read env() like the application's do.
+    configDirectories:
+        - config
+        - packages/admin/config
+        - packages/bitrix/config
     # Larastan learns model columns from migrations; the package ships its own.
     databaseMigrationsPath:
         - database/migrations

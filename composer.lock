@@ -6708,11 +6708,14 @@
             "dist": {
                 "type": "path",
                 "url": "packages/bitrix",
-                "reference": "17f23636f0de4b705f16675ae5a521817c3b8460"
+                "reference": "3983d3c1593e37b25c506c61b0ea5dcb88ff3bae"
             },
             "require": {
                 "alveby/atrium": "@dev",
+                "illuminate/console": "^13.0",
+                "illuminate/database": "^13.0",
                 "illuminate/support": "^13.0",
+                "nette/php-generator": "^4.1",
                 "php": "^8.3"
             },
             "require-dev": {
@@ -7663,6 +7666,77 @@
                 }
             ],
             "time": "2026-08-11T10:17:44+00:00"
+        },
+        {
+            "name": "nette/php-generator",
+            "version": "v4.2.4",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/nette/php-generator.git",
+                "reference": "19818e4924f9620d016b874e5b7518e78dbb3b24"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/nette/php-generator/zipball/19818e4924f9620d016b874e5b7518e78dbb3b24",
+                "reference": "19818e4924f9620d016b874e5b7518e78dbb3b24",
+                "shasum": ""
+            },
+            "require": {
+                "nette/utils": "^4.0.6",
+                "php": "8.1 - 8.6"
+            },
+            "require-dev": {
+                "jetbrains/phpstorm-attributes": "^1.2",
+                "nette/phpstan-rules": "^1.0",
+                "nette/tester": "^2.6",
+                "nikic/php-parser": "^5.0",
+                "phpstan/extension-installer": "^1.4@stable",
+                "phpstan/phpstan": "^2.1.40@stable",
+                "tracy/tracy": "^2.8"
+            },
+            "suggest": {
+                "nikic/php-parser": "to use ClassType::from(withBodies: true) & ClassType::fromCode()"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.2-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Nette\\": "src"
+                },
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause",
+                "GPL-2.0-only",
+                "GPL-3.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "David Grudl",
+                    "homepage": "https://davidgrudl.com"
+                }
+            ],
+            "description": "🐘 Nette PHP Generator: generates PHP code from objects. Classes, enums, functions and whole files, with namespaces resolved for you, and always up to date with the latest PHP.",
+            "homepage": "https://doc.nette.org/php-generator",
+            "keywords": [
+                "code generation",
+                "code generator",
+                "codegen",
+                "nette",
+                "scaffolding"
+            ],
+            "support": {
+                "issues": "https://github.com/nette/php-generator/issues",
+                "source": "https://github.com/nette/php-generator/tree/v4.2.4"
+            },
+            "time": "2026-10-26T22:16:39+00:00"
         },
         {
             "name": "nunomaduro/collision",

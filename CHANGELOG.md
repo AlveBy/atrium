@@ -27,10 +27,16 @@ All notable changes are listed here. The format follows [Keep a Changelog](https
 - `sitemap.xml` of every site: the paths in `atrium.sitemap.paths` plus the public records of modules that implement `Atrium\Admin\Contracts\Sitemapable`, one address per language with `xhtml:link` alternates and `x-default`. Past 50 000 addresses it becomes an index of `sitemap-N.xml` parts. Cached, rebuilt when a record, a site or a language changes.
 - `robots.txt` of every site, edited in the admin; empty means "allow everything", and a `Sitemap:` line is added when missing. Off production it always says `Disallow: /`. `atrium.robots = false` leaves it to `public/robots.txt`; while it is on, `atrium:install` removes Laravel's stock file and the admin warns about any other.
 - Slugs drop accents (`über` → `uber`) instead of turning them into dashes.
-- [ROADMAP.md](ROADMAP.md): installable modules, importers from other CMSs, an online shop, 1C and Bitrix24, a multilingual project site.
+- 1C-Bitrix migrator (`alveby/atrium-bitrix`): `atrium:bitrix:analyze`, `generate:migrations`, `generate:models`, `migrate:data`, `migrate:seo`, `migrate:medialibrary`, `download:upload`, `parity`, `verify`, `sync`, and `atrium:bitrix:migrate` for the whole run. Admin forms follow the Bitrix form layout (tabs, field order), list columns follow the saved list settings, captions come from `b_iblock_messages`; section user fields (`UF_*`), highload blocks, SEO templates and picture ALT/TITLE, tags and the media library move over.
+- `config/atrium-bitrix.php`: `strip_prefixes` (cut a theme prefix from table and model names), where generated models and migrations go (`model_path`, `reference_path`, `migration_path`), columns of your own that survive regeneration (`extra_fields`), list column overrides, link targets for "any iblock" properties, columns the catch-up sync never overwrites.
+- Standard field and tab labels of generated models (`atrium::fields.standard.*`) in all 15 languages; labels taken from Bitrix stay as they were.
+- A full migration test on a made-up Bitrix database: every command, then `atrium:bitrix:parity` must report nothing, on SQLite, MySQL and PostgreSQL.
+- [ROADMAP.md](ROADMAP.md): installable modules, importers from other CMSs, an online shop, documents and contracts, 1C and Bitrix24, a multilingual project site.
 - Issue and pull request templates, Dependabot, and a `release` workflow: pushing a `v*` tag publishes a GitHub release with that version's notes from this file.
 
 ### Fixed
+- `seo_meta` lacked the columns its model and the SEO tab already used (page heading, picture ALT/TITLE/file name, tags), so saving them failed; `keywords` is text now.
+- Bitrix migrator, compared with the code it was ported from: multiple values of version-2 iblocks were read from the cache column instead of `b_iblock_element_prop_mN`; a link table could be created before the table it points at, and links to an iblock migrated later were lost on PostgreSQL; a highload block value was written as its `UF_XML_ID` into a key column; `verify` counted version-1 links as zero; commands asked questions when run without a terminal.
 - Public pages outside `Route::localized()` always got the default site, and page timings for the dashboard were never recorded: the middleware was added to the router's `web` group, which the HTTP kernel overwrites. It is added through the kernel now.
 - Saving an administrator ended in a server error (it redirected to a route that does not exist).
 - The administrator edit page did not open.
