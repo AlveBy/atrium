@@ -5,6 +5,7 @@ All notable changes are listed here. The format follows [Keep a Changelog](https
 ## [Unreleased]
 
 ### Added
+- `MultiSelectField` is a searchable list with chips (vue-multiselect) instead of a bare `<select multiple>` that needed Ctrl-click; a selected option carries a check mark, not only a colour.
 - The README in 15 languages (`docs/readme`), with screenshots of the admin and the site. `tests/Unit/ReadmeTest.php` checks that every translation lists all languages, has no broken links and the same commands and code as English.
 - `docker compose up` runs the demo with nothing but Docker: it installs Atrium with the demo shop on the first start and applies migrations and the admin bundle after each `git pull`.
 - Laravel 13 skeleton with PHPUnit 12, Laravel Dusk, Pint and Larastan.
@@ -48,6 +49,8 @@ All notable changes are listed here. The format follows [Keep a Changelog](https
 - The demo article's page is drawn by the theme; the app's own article controller, its view and Laravel's welcome page are gone.
 
 ### Fixed
+- A new administrator could not be saved unless someone ticked and unticked "Superadmin": the untouched box arrives empty and the rule wanted true or false.
+- The hint and the error of fields that draw their own (relations, colour, slug, content, gallery, map, tree, editor) were shown twice.
 - The demo app was called "Laravel" in the site switcher and page titles: `.env.example` names it Atrium now.
 - An image column of a list showed a broken picture for a file on the public disk (`demo/laptop.svg`): the path was used as it is stored, relative to the admin page. It is loaded from `/storage` now, as in the form and on the site.
 - A `BelongsToField` was drawn as a bare number input: it waited for a record search that the panel does not have. Without a search route it is a list of the other module's records now.

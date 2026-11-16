@@ -37,7 +37,11 @@ final class SitesTest extends AdminTestCase
                 ->click('[data-field="domains"] [data-action="repeatable-add"]')
                 ->waitFor('[data-field="domains"] [data-repeatable-item="0"] input')
                 ->type('[data-field="domains"] [data-repeatable-item="0"] input', 'localhost')
-                ->select('#languages', 'de')
+                ->click('[data-multiselect="languages"]')
+                ->waitFor('[data-multiselect="languages"] [data-option-value="de"]')
+                ->click('[data-multiselect="languages"] [data-option-value="de"]')
+                ->waitFor('[data-multiselect="languages"] [data-selected-value="de"]')
+                ->keys('#languages', '{escape}')
                 ->press('[data-action="save"]')
                 ->waitForLocation('/admin/sites')
                 ->waitForText('Deutschland');
