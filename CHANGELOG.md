@@ -36,12 +36,16 @@ All notable changes are listed here. The format follows [Keep a Changelog](https
 - `Atrium\Admin\Support\MediaUrl::to()`: one address for a stored file, whether it is a full URL, a path from the site root (`/upload/…`) or a disk path.
 - `Sitemap::extend()` adds addresses from outside `Sitemapable` modules.
 - `BelongsToField` exposes its model and columns (`getModelClass()`, `getDisplayColumn()`, `getValueColumn()`).
+- Demo shop: `php artisan atrium:install --demo` (or `ATRIUM_DEMO=true`) turns on five demo modules in the core — products, catalog sections, brands, news, stores — and fills them: a catalog with every one of the 20 field types, a related-products link, an attached manual, SEO meta, news in English, German and Russian on two sites (the second one German by default, on its own domain), pictures and a PDF copied to the uploads disk. Seeding again adds nothing; without the flag the demo has no tables, menu entries or pages. Demo modules use `HasAdminSlug`, `HasAdminSeo`, `HasAdminFiles` and `HasAdminTabs`, so the traits are covered by tests and PHPStan now.
 - Issue and pull request templates, Dependabot, and a `release` workflow: pushing a `v*` tag publishes a GitHub release with that version's notes from this file.
 
 ### Changed
 - The demo article's page is drawn by the theme; the app's own article controller, its view and Laravel's welcome page are gone.
 
 ### Fixed
+- A `BelongsToField` was drawn as a bare number input: it waited for a record search that the panel does not have. Without a search route it is a list of the other module's records now.
+- The theme's record page listed several related records as plain text; each is a link to its page now.
+- `findBySlug()`, `findByFullPath()` and `findRedirect()` of `HasAdminSlug` could return a record of another model; the relations of `HasAdminFiles` and `HasAdminSeo` are typed.
 - `og:image` of a record with a picture under `/upload/…` (as migrated from Bitrix) pointed to `storage/upload/…`.
 - `seo_meta` lacked the columns its model and the SEO tab already used (page heading, picture ALT/TITLE/file name, tags), so saving them failed; `keywords` is text now.
 - Bitrix migrator, compared with the code it was ported from: multiple values of version-2 iblocks were read from the cache column instead of `b_iblock_element_prop_mN`; a link table could be created before the table it points at, and links to an iblock migrated later were lost on PostgreSQL; a highload block value was written as its `UF_XML_ID` into a key column; `verify` counted version-1 links as zero; commands asked questions when run without a terminal.

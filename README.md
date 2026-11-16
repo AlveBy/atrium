@@ -11,6 +11,12 @@ One admin panel for any number of multilingual sites, built on Laravel 13 — wi
 - **Public theme** — a neutral site that renders every module out of the box.
 - **Tested** — PHPUnit and Laravel Dusk.
 
+To see it with content, install with the demo shop: a catalog with every field type, news in three languages and a second site.
+
+```bash
+php artisan atrium:install --demo
+```
+
 What comes next — modules you just install, importers from WordPress and Drupal, an online shop, 1C and Bitrix24 — is in the [roadmap](ROADMAP.md).
 
 ## License

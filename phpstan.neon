@@ -19,9 +19,5 @@ parameters:
     databaseMigrationsPath:
         - database/migrations
         - packages/admin/database/migrations
+        - packages/admin/database/demo
         - vendor/laravel/sanctum/database/migrations
-    ignoreErrors:
-        # Package traits are used by applications, not by the package itself.
-        -
-            identifier: trait.unused
-            path: packages/*/src/Traits/*
