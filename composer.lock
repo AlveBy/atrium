@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "002b6670b1363b3123a9a090dc8ca195",
+    "content-hash": "ef08e7a09a9e3fa87a70b1977001db58",
     "packages": [
         {
             "name": "alveby/atrium",
@@ -12,7 +12,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/admin",
-                "reference": "78536035fcd163a07f582f587fb3c419fe75aef9"
+                "reference": "b814f9d850bf01995fd7f0e857f4ddc0b4959973"
             },
             "require": {
                 "illuminate/database": "^13.0",
@@ -74,12 +74,79 @@
             }
         },
         {
+            "name": "alveby/atrium-ai",
+            "version": "0.1.x-dev",
+            "dist": {
+                "type": "path",
+                "url": "packages/ai",
+                "reference": "246d67058c04eb2a7f38f67344590898255cc6b7"
+            },
+            "require": {
+                "alveby/atrium": "^0.1",
+                "illuminate/support": "^13.0",
+                "laravel/ai": "^1.4",
+                "php": "^8.3"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^11.0",
+                "phpunit/phpunit": "^12.5"
+            },
+            "type": "atrium-module",
+            "extra": {
+                "atrium": {
+                    "migrations": "database/migrations"
+                },
+                "laravel": {
+                    "providers": [
+                        "Atrium\\Ai\\AiServiceProvider"
+                    ]
+                },
+                "branch-alias": {
+                    "dev-main": "0.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Atrium\\Ai\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Atrium\\Ai\\Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "AI for Atrium: generate descriptions, previews, SEO tags, alt text and translations with any provider of the Laravel AI SDK",
+            "homepage": "https://github.com/AlveBy/atrium",
+            "keywords": [
+                "admin",
+                "ai",
+                "cms",
+                "gemini",
+                "i18n",
+                "laravel",
+                "llm",
+                "ollama",
+                "seo"
+            ],
+            "support": {
+                "issues": "https://github.com/AlveBy/atrium/issues",
+                "source": "https://github.com/AlveBy/atrium"
+            },
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
             "name": "alveby/atrium-brands",
             "version": "0.1.x-dev",
             "dist": {
                 "type": "path",
                 "url": "packages/brands",
-                "reference": "e8ea1e40b9033afcced3c07f11aca7bd57234c47"
+                "reference": "cf9e690163b91bd40f8ec40273967d14fa4929bf"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -145,7 +212,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/catalog",
-                "reference": "73aaff0b7e90a8c170981f5c43bb0886b0ab5c7e"
+                "reference": "5a29bfa695bbc9d03854df4ffee6b9d3f3e987e6"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -233,7 +300,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/faq",
-                "reference": "7b98584d333ffa56c2a1f555f51423c527496cee"
+                "reference": "5d3505ef2c4e3da7490e3ba39b1ddfcd339b3293"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -311,7 +378,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/forms",
-                "reference": "3a2a6c4a47c06a04f09ce76ec941f50102315d35"
+                "reference": "f9813b8a930f29070e6fa796e286a14b815773d3"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -379,7 +446,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/news",
-                "reference": "f37c0e5e3197513c7551708c869dfc36db7f410b"
+                "reference": "01507037e7179580dd19e48706fc5a73c6c304c2"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -452,7 +519,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/pages",
-                "reference": "358da3860770d7133a6f8bb0b9237983fe445e9f"
+                "reference": "9749d3831b1de22c9490c7cca618535a3e4e0ed7"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -527,7 +594,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/reviews",
-                "reference": "6412784d7c61f4fe353e740dacb27891a0a17f64"
+                "reference": "2401861b88281e70b4e75f156fd507fe1f6dad56"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -597,7 +664,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/stores",
-                "reference": "67cfe6307c3902b83a78746742780bf8ed999ef9"
+                "reference": "be6e7667f5e4a04e7d09027cecf865a901954c3c"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -669,7 +736,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/theme",
-                "reference": "0a926552863e2a5fc74370e337e61fe3de7d9697"
+                "reference": "30d002ffb90d0e861092a030962b27aa00621d25"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -1850,6 +1917,88 @@
                 "source": "https://github.com/inertiajs/inertia-laravel/tree/v3.7.0"
             },
             "time": "2026-11-02T10:29:10+00:00"
+        },
+        {
+            "name": "laravel/ai",
+            "version": "v1.4.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/ai.git",
+                "reference": "307b218665592ab5532f682175e9dfa52e5647ee"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/ai/zipball/307b218665592ab5532f682175e9dfa52e5647ee",
+                "reference": "307b218665592ab5532f682175e9dfa52e5647ee",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/console": "^12.0|^13.0",
+                "illuminate/container": "^12.0|^13.0",
+                "illuminate/contracts": "^12.0|^13.0",
+                "illuminate/database": "^12.0|^13.0",
+                "illuminate/filesystem": "^12.0|^13.0",
+                "illuminate/json-schema": "^12.62|^13.15",
+                "illuminate/support": "^12.0|^13.0",
+                "laravel/prompts": "^0.3.6",
+                "laravel/serializable-closure": "^2.0",
+                "php": "^8.3",
+                "symfony/yaml": "^7.2|^8.0"
+            },
+            "conflict": {
+                "aws/aws-sdk-php": "<3.369.1",
+                "laravel/mcp": "<1.0"
+            },
+            "require-dev": {
+                "aws/aws-sdk-php": "^3.369.1",
+                "driftingly/rector-laravel": "^2.5",
+                "jasonmccreary/double": "^1.0",
+                "laravel/mcp": "^1.0",
+                "laravel/pint": "^1.26",
+                "orchestra/testbench": "^10.6|^11.0",
+                "pestphp/pest": "^3.0|^4.0",
+                "pestphp/pest-plugin-laravel": "^3.0|^4.0",
+                "phpstan/phpstan": "^2.1",
+                "rector/rector": "^2.5"
+            },
+            "suggest": {
+                "aws/aws-sdk-php": "Required to use the Bedrock provider.",
+                "laravel/mcp": "Required to use MCP client tools or MCP server tools with Laravel AI agents."
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Ai\\AiServiceProvider"
+                    ]
+                },
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "functions.php"
+                ],
+                "psr-4": {
+                    "Laravel\\Ai\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "The official AI SDK for Laravel.",
+            "homepage": "https://github.com/laravel/ai",
+            "keywords": [
+                "ai",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/laravel/ai/issues",
+                "source": "https://github.com/laravel/ai"
+            },
+            "time": "2026-11-09T13:10:36+00:00"
         },
         {
             "name": "laravel/framework",
@@ -7098,6 +7247,82 @@
             "time": "2026-10-25T21:04:04+00:00"
         },
         {
+            "name": "symfony/yaml",
+            "version": "v7.4.23",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/yaml.git",
+                "reference": "1e601207ffe627a2e621faa9d661f1d32dcf1cec"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/1e601207ffe627a2e621faa9d661f1d32dcf1cec",
+                "reference": "1e601207ffe627a2e621faa9d661f1d32dcf1cec",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.2",
+                "symfony/deprecation-contracts": "^2.5|^3",
+                "symfony/polyfill-ctype": "^1.8"
+            },
+            "conflict": {
+                "symfony/console": "<6.4"
+            },
+            "require-dev": {
+                "symfony/console": "^6.4|^7.0|^8.0"
+            },
+            "bin": [
+                "Resources/bin/yaml-lint"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Yaml\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Loads and dumps YAML files",
+            "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/yaml/tree/v7.4.23"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/nicolas-grekas",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2026-11-04T08:27:22+00:00"
+        },
+        {
             "name": "tightenco/ziggy",
             "version": "v2.7.0",
             "source": {
@@ -7388,7 +7613,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/bitrix",
-                "reference": "343194535be6c85fc09322df7188d6fd948245fd"
+                "reference": "635059daeca1ebfe70ce352bbe1da786f685897c"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -10613,82 +10838,6 @@
             "time": "2024-10-20T05:08:20+00:00"
         },
         {
-            "name": "symfony/yaml",
-            "version": "v7.4.23",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/yaml.git",
-                "reference": "1e601207ffe627a2e621faa9d661f1d32dcf1cec"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/1e601207ffe627a2e621faa9d661f1d32dcf1cec",
-                "reference": "1e601207ffe627a2e621faa9d661f1d32dcf1cec",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=8.2",
-                "symfony/deprecation-contracts": "^2.5|^3",
-                "symfony/polyfill-ctype": "^1.8"
-            },
-            "conflict": {
-                "symfony/console": "<6.4"
-            },
-            "require-dev": {
-                "symfony/console": "^6.4|^7.0|^8.0"
-            },
-            "bin": [
-                "Resources/bin/yaml-lint"
-            ],
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Component\\Yaml\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Loads and dumps YAML files",
-            "homepage": "https://symfony.com",
-            "support": {
-                "source": "https://github.com/symfony/yaml/tree/v7.4.23"
-            },
-            "funding": [
-                {
-                    "url": "https://symfony.com/sponsor",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/fabpot",
-                    "type": "github"
-                },
-                {
-                    "url": "https://github.com/nicolas-grekas",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2026-11-04T08:27:22+00:00"
-        },
-        {
             "name": "theseer/tokenizer",
             "version": "2.0.1",
             "source": {
@@ -10743,6 +10892,7 @@
     "minimum-stability": "stable",
     "stability-flags": {
         "alveby/atrium": 20,
+        "alveby/atrium-ai": 20,
         "alveby/atrium-bitrix": 20,
         "alveby/atrium-brands": 20,
         "alveby/atrium-catalog": 20,

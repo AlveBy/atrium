@@ -15,6 +15,7 @@
     "require": {
         "php": "^8.3",
         "alveby/atrium": "@dev",
+        "alveby/atrium-ai": "@dev",
         "alveby/atrium-brands": "@dev",
         "alveby/atrium-catalog": "@dev",
         "alveby/atrium-faq": "@dev",
@@ -51,6 +52,7 @@
         "psr-4": {
             "Tests\\": "tests/",
             "Atrium\\Admin\\Tests\\": "packages/admin/tests/",
+            "Atrium\\Ai\\Tests\\": "packages/ai/tests/",
             "Atrium\\Bitrix\\Tests\\": "packages/bitrix/tests/",
             "Atrium\\Brands\\Tests\\": "packages/brands/tests/",
             "Atrium\\Catalog\\Tests\\": "packages/catalog/tests/",
@@ -126,6 +128,7 @@
                 "symlink": true,
                 "versions": {
                     "alveby/atrium": "0.1.x-dev",
+                    "alveby/atrium-ai": "0.1.x-dev",
                     "alveby/atrium-bitrix": "0.1.x-dev",
                     "alveby/atrium-brands": "0.1.x-dev",
                     "alveby/atrium-catalog": "0.1.x-dev",

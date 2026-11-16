@@ -53,6 +53,7 @@ return [
         'alveby/atrium-forms',
         'alveby/atrium-pages',
         'alveby/atrium-reviews',
+        'alveby/atrium-ai',
     ],
 
     /*

@@ -8,6 +8,7 @@ parameters:
     paths:
         - app
         - packages/admin/src
+        - packages/ai/src
         - packages/bitrix/src
         - packages/brands/src
         - packages/catalog/src
@@ -22,12 +23,14 @@ parameters:
     configDirectories:
         - config
         - packages/admin/config
+        - packages/ai/config
         - packages/bitrix/config
         - packages/forms/config
     # Larastan learns model columns from migrations; the package ships its own.
     databaseMigrationsPath:
         - database/migrations
         - packages/admin/database/migrations
+        - packages/ai/database/migrations
         - packages/brands/database/migrations
         - packages/catalog/database/migrations
         - packages/faq/database/migrations

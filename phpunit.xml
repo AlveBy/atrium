@@ -13,6 +13,7 @@
         </testsuite>
         <testsuite name="Packages">
             <directory>packages/admin/tests</directory>
+            <directory>packages/ai/tests</directory>
             <directory>packages/bitrix/tests</directory>
             <directory>packages/brands/tests</directory>
             <directory>packages/catalog/tests</directory>
@@ -29,6 +30,7 @@
         <include>
             <directory>app</directory>
             <directory>packages/admin/src</directory>
+            <directory>packages/ai/src</directory>
             <directory>packages/bitrix/src</directory>
             <directory>packages/brands/src</directory>
             <directory>packages/catalog/src</directory>
