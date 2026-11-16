@@ -92,7 +92,7 @@ class Article extends Model implements Administrable
 | `TreeSelectField` | Раздел из дерева | `model(Section::class)`, `parentColumn('parent_id')`, `multiple()` |
 | `MapField` | Точка на карте | `yandex()` или `google()`, `defaultCenter()`, `defaultZoom()` |
 
-Демо-товар (`packages/admin/src/Demo/Models/Product.php`) использует почти все.
+Товар демо-магазина (`packages/catalog/src/Models/Product.php`) использует почти все.
 
 ## Колонки списка
 
@@ -246,7 +246,7 @@ public function test_an_editor_creates_an_article(): void
 | `resources` | Модели модуля в порядке меню: то же, что строки в `atrium.resources` |
 | `public_urls` | Их страницы на сайте, как в `atrium.public_urls`; правило сайта для той же модели важнее |
 | `migrations` | Папка (или список папок) относительно пакета |
-| `demo` | Сидер (`Illuminate\Database\Seeder`) для `atrium:install --demo` и `atrium:module:install --demo`. Возвращает `false`, если в модуле уже есть данные, и тогда ничего не добавляет |
+| `demo` | Сидер для `atrium:install --demo` и `atrium:module:install --demo`; удобнее всего наследовать `Atrium\Admin\Modules\DemoSeeder` (он копирует картинки пакета на диск загрузок). Его `run()` возвращает `false`, если в модуле уже есть данные, и тогда ничего не добавляет |
 
 Все ключи необязательны. В `suggest` — модули, с которыми этот связан мягко (см. ниже); их демо-данные заполняются раньше.
 
@@ -279,13 +279,13 @@ public function boot(): void
 
 ## Связи с другими модулями
 
-Модули связаны мягко: товары работают без брендов, а поле и колонка «Бренд» появляются, только когда установлен модуль брендов. Ничто в `require` Composer не заставляет один модуль ставить другой.
+Модули связаны мягко: товары работают без брендов, а поле и колонка «Бренд» появляются, только когда установлен модуль брендов. Ничто в `require` Composer не заставляет один модуль ставить другой. Так устроен демо-магазин: `alveby/atrium-catalog` ссылается на `alveby/atrium-brands` и `alveby/atrium-stores` (`packages/catalog/src/Models/Product.php`).
 
 **Поля, колонки, вкладки.** `Atrium\Admin\Modules\Soft::when()` возвращает элементы, если модель доступна — класс есть и его модуль установлен, — и пустой список иначе. Разверните его в списке:
 
 ```php
 use Atrium\Admin\Modules\Soft;
-use Atrium\Brands\Brand;
+use Atrium\Brands\Models\Brand;
 
 public static function getAdministrationFields(): array
 {

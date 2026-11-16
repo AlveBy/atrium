@@ -92,7 +92,7 @@ Every field is made with `::make('column')` and takes `label()`, `required()`, `
 | `TreeSelectField` | A section from a tree | `model(Section::class)`, `parentColumn('parent_id')`, `multiple()` |
 | `MapField` | A point on a map | `yandex()` or `google()`, `defaultCenter()`, `defaultZoom()` |
 
-The demo product (`packages/admin/src/Demo/Models/Product.php`) uses nearly all of them.
+The demo shop's product (`packages/catalog/src/Models/Product.php`) uses nearly all of them.
 
 ## List columns
 
@@ -246,7 +246,7 @@ A module for other sites is a Composer package of type `atrium-module`. Its `com
 | `resources` | The module's models, in menu order: the same as lines in `atrium.resources` |
 | `public_urls` | Their pages on the site, as in `atrium.public_urls`; a rule the site sets for the same model wins |
 | `migrations` | A folder (or a list of them) relative to the package |
-| `demo` | A seeder (`Illuminate\Database\Seeder`) for `atrium:install --demo` and `atrium:module:install --demo`. It returns `false` when the module has content already and adds nothing then |
+| `demo` | A seeder for `atrium:install --demo` and `atrium:module:install --demo`, best extending `Atrium\Admin\Modules\DemoSeeder` (it copies the package's pictures to the uploads disk). Its `run()` returns `false` when the module has content already and adds nothing then |
 
 Every key is optional. `suggest` lists the modules this one links to softly (see below); their demo content is filled in first.
 
@@ -279,13 +279,13 @@ Test it with Orchestra Testbench, as the modules in `packages/` do: list the mod
 
 ## Links to other modules
 
-Modules link to each other softly: products work without brands, and the "Brand" field and column appear only when the Brands module is installed. Nothing in Composer's `require` makes one module install another.
+Modules link to each other softly: products work without brands, and the "Brand" field and column appear only when the Brands module is installed. Nothing in Composer's `require` makes one module install another. The demo shop is built this way: `alveby/atrium-catalog` links to `alveby/atrium-brands` and `alveby/atrium-stores` (`packages/catalog/src/Models/Product.php`).
 
 **Fields, columns, tabs.** `Atrium\Admin\Modules\Soft::when()` returns the items when the model is available — its class is there and its module installed — and an empty list otherwise. Spread it into the list:
 
 ```php
 use Atrium\Admin\Modules\Soft;
-use Atrium\Brands\Brand;
+use Atrium\Brands\Models\Brand;
 
 public static function getAdministrationFields(): array
 {

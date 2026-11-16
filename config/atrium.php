@@ -45,24 +45,15 @@ return [
     |
     */
     'modules' => [
+        'alveby/atrium-catalog',
+        'alveby/atrium-brands',
+        'alveby/atrium-news',
+        'alveby/atrium-stores',
+        'alveby/atrium-faq',
         'alveby/atrium-forms',
         'alveby/atrium-pages',
         'alveby/atrium-reviews',
     ],
-
-    /*
-    |--------------------------------------------------------------------------
-    | Demo
-    |--------------------------------------------------------------------------
-    |
-    | A small shop to look around: a catalog shaped like a migrated Bitrix
-    | iblock, brands, news in three languages on two sites, stores, between
-    | them every field type. `php artisan atrium:install --demo` turns it on
-    | and fills it in; set to false and the demo leaves the menu and the site
-    | (its tables stay).
-    |
-    */
-    'demo' => (bool) env('ATRIUM_DEMO', false),
 
     /*
     |--------------------------------------------------------------------------

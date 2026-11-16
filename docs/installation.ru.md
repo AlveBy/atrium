@@ -34,7 +34,6 @@ php artisan key:generate
 APP_ENV=production
 APP_DEBUG=false
 APP_URL=https://example.com
-ATRIUM_DEMO=false
 
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1

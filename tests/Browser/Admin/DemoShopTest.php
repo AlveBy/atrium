@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace Tests\Browser\Admin;
 
-use Atrium\Admin\Demo\DemoSeeder;
-use Atrium\Admin\Demo\Models\Product;
+use Atrium\Admin\Modules\Modules;
+use Atrium\Catalog\Models\Product;
 use Laravel\Dusk\Browser;
 
 /**
@@ -17,18 +17,23 @@ final class DemoShopTest extends AdminTestCase
     public function test_edit_a_demo_product_and_see_it_on_the_site(): void
     {
         $admin = $this->admin();
-        (new DemoSeeder)->run();
+        $modules = app(Modules::class);
+
+        foreach ($modules->dependencyOrder($modules->installed()) as $module) {
+            $modules->seedDemo($module);
+        }
+
         $product = Product::query()->where('code', 'aero-14')->sole();
 
         $this->browse(function (Browser $browser) use ($admin, $product): void {
             $browser->loginAs($admin, 'admin')
-                ->visit('/admin/demo_products')
+                ->visit('/admin/catalog_products')
                 ->waitForText('Aero 16 Pro')
                 ->assertSee('Aero 14')
                 // The preview pictures are on the public disk: the list has to
                 // load them from /storage, not from /admin/demo/....
                 ->waitUntil("[...document.querySelectorAll('tbody img')].length > 0 && [...document.querySelectorAll('tbody img')].every(img => img.complete && img.naturalWidth > 0)")
-                ->visit("/admin/demo_products/{$product->id}/edit")
+                ->visit("/admin/catalog_products/{$product->id}/edit")
                 ->waitFor('[data-tab="seo"]')
                 ->assertSeeIn('[data-tab="params"]', 'General')
                 ->assertSelected('#brand_id', (string) $product->brand_id)
@@ -41,7 +46,7 @@ final class DemoShopTest extends AdminTestCase
                 ->clear('#price')
                 ->type('#price', '1099')
                 ->press('[data-action="save"]')
-                ->waitForLocation('/admin/demo_products');
+                ->waitForLocation('/admin/catalog_products');
 
             $this->assertSame('1099.00', $product->fresh()?->price);
 

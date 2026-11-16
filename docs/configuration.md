@@ -19,12 +19,12 @@ After changing either on a live site, run `php artisan config:cache` again.
 |---|---|---|---|
 | `prefix` | config | `admin` | The admin's address: `/admin` |
 | `resources` | config | `[]` | The modules: Eloquent models that implement `Administrable`. See [Your own module](modules.md) |
+| `modules` | config | `[]` | The installed module packages, in menu order. `atrium:module:install` and `atrium:module:remove` edit it. See [A module as a package](modules.md#a-module-as-a-package) |
 | `menu` | config | dashboard, administrators, roles, sites, languages, API tokens | Fixed menu entries; modules not listed here are added after the first entry. A label may be a translation key |
 | `ATRIUM_NAME`, `ATRIUM_LOGO`, `ATRIUM_FAVICON` | .env | `Atrium` | The name and pictures in the admin's header and tab |
 | `ATRIUM_LOCALE` | .env | `en` | The admin's language for guests whose browser language is not in `locales`; each administrator picks their own in the header |
 | `locales` | config | 15 languages | The admin's languages; remove an entry to hide it from the switcher |
 | `pagination` | config | 20 per page | List page sizes |
-| `ATRIUM_DEMO` | .env | `false` | The demo shop. Turned off, it leaves the menu and the site; its tables stay |
 | `ATRIUM_TIMINGS` | .env | `true` | Record how long public pages take, for the two speed tiles on the dashboard. `ATRIUM_TIMINGS_SAMPLE_RATE=0.1` records every tenth page |
 
 Any line of the admin's interface can be reworded:
