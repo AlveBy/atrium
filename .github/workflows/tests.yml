@@ -83,6 +83,47 @@ jobs:
           name: phpunit-logs-${{ matrix.php }}-${{ matrix.db }}
           path: build/ci/logs
 
+  coverage:
+    name: Coverage
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # The gate compares with the commit before the push.
+          fetch-depth: 0
+
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: pdo_sqlite, intl, gd, exif
+          # Xdebug, as on contributors' machines, so the baselines match.
+          coverage: xdebug
+
+      - run: composer install --no-interaction --no-progress --prefer-dist
+      - run: cp .env.example .env && php artisan key:generate
+
+      - name: Find what the push changed
+        id: base
+        env:
+          PULL_REQUEST: ${{ github.event.pull_request.base.sha }}
+          MERGE_GROUP: ${{ github.event.merge_group.base_sha }}
+          BEFORE: ${{ github.event.before }}
+        run: |
+          base="${PULL_REQUEST:-${MERGE_GROUP:-$BEFORE}}"
+          # A new branch has no commit before it.
+          if [ -z "$base" ] || ! git cat-file -e "$base^{commit}" 2>/dev/null; then base=$(git rev-parse HEAD~1); fi
+          echo "sha=$base" >> "$GITHUB_OUTPUT"
+
+      - run: bin/ci coverage --base=${{ steps.base.outputs.sha }}
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: coverage
+          path: |
+            build/ci/coverage
+            build/ci/logs
+
   dusk:
     name: Dusk
     runs-on: ubuntu-latest
@@ -139,7 +180,7 @@ jobs:
   ci:
     name: ci
     if: always()
-    needs: [lint, phpunit, dusk]
+    needs: [lint, phpunit, coverage, dusk]
     runs-on: ubuntu-latest
     steps:
       - name: Every job passed

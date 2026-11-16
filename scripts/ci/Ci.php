@@ -21,7 +21,7 @@ final class Ci
 {
     public const STEPS = ['lint', 'static', 'tests', 'coverage', 'mutation', 'dusk'];
 
-    public const DEFAULT_STEPS = ['lint', 'static', 'tests'];
+    public const DEFAULT_STEPS = ['lint', 'static', 'tests', 'coverage'];
 
     /** The mutation score the changed code must reach. */
     public const MIN_MSI = 85;
@@ -29,7 +29,7 @@ final class Ci
     private const USAGE = <<<'TXT'
         Usage: bin/ci [step ...] [options]
 
-        Steps (default: lint static tests):
+        Steps (default: lint static tests coverage):
           lint       Pint and the copyright header
           static     PHPStan
           tests      PHPUnit of every package, one process each, on every --db
