@@ -263,6 +263,8 @@ A module for other sites is a Composer package of type `atrium-module`. Its `com
 | `public_urls` | Their pages on the site, as in `atrium.public_urls`; a rule the site sets for the same model wins |
 | `migrations` | A folder (or a list of them) relative to the package |
 | `demo` | A seeder for `atrium:install --demo` and `atrium:module:install --demo`, best extending `Atrium\Admin\Modules\DemoSeeder` (it copies the package's pictures to the uploads disk). Its `run()` returns `false` when the module has content already and adds nothing then |
+| `key`, `title` | The module's key in permissions and settings, and its name in the panel (see "Module settings") |
+| `settings` | Its settings class (see "Module settings") |
 
 Every key is optional. `suggest` lists the modules this one links to softly (see below); their demo content is filled in first.
 
@@ -292,6 +294,64 @@ public function boot(): void
 Leave the migrations to the manifest: loaded with `loadMigrationsFrom()`, they would run for a module that is not installed and bring back the tables of a removed one. Cached config and routes are rebuilt by both commands.
 
 Test it with Orchestra Testbench, as the modules in `packages/` do: list the module in `atrium.modules` in `defineEnvironment()`, and its models, migrations and pages are there as on a site.
+
+## Module settings
+
+A module that needs something set by the site's owner — a currency, the number of products on a page, an address for notices — names a settings class in its manifest:
+
+```json
+"extra": {
+    "atrium": {
+        "key": "shop",
+        "title": "atrium-shop::shop.title",
+        "settings": "Vendor\\Shop\\ShopSettings"
+    }
+}
+```
+
+The class extends `Atrium\Admin\Modules\ModuleSettings` and lists its fields with the admin's own field types, rules and defaults included:
+
+```php
+use Atrium\Admin\Fields\NumberField;
+use Atrium\Admin\Fields\SelectField;
+use Atrium\Admin\Modules\ModuleSettings;
+
+final class ShopSettings extends ModuleSettings
+{
+    public bool $perSite = true;
+
+    public function fields(): array
+    {
+        return [
+            SelectField::make('currency')->label(__('atrium-shop::settings.currency'))
+                ->options(['EUR' => 'EUR', 'USD' => 'USD'])->default('EUR')->required(),
+            NumberField::make('free_delivery_from')->label(__('atrium-shop::settings.free_delivery_from'))
+                ->rules(['nullable', 'integer', 'min:0']),
+        ];
+    }
+}
+```
+
+Read a value anywhere with the `Setting` facade:
+
+```php
+use Atrium\Admin\Facades\Setting;
+
+Setting::get('shop.currency');              // the current site's value, or the field's default
+Setting::get('shop.free_delivery_from', 0); // 0 when nobody set it and the field has no default
+Setting::get('shop.currency', null, $site); // another site (a Site or its id)
+Setting::all('shop');                       // every field by name
+```
+
+A field nobody filled in gives its `default()`, then the second argument. A module that is not installed has no settings: `get()` gives the second argument. The values are kept in the `admin_module_settings` table and read once per request.
+
+`$perSite = true` keeps a set of values for every site, set on the screen of the site chosen in the panel's header; `false` (the default) is one set for all sites. `description()` returns a line shown under the screen's title.
+
+The panel lists the installed modules under **Modules** in the menu, with a **Settings** button for those that have them. Settings need the `{key}.settings` permission (`shop.settings`), which the role form shows in the module's row; superadmins have it. `atrium:module:remove` takes it out of the roles and, when the data is dropped, drops the settings too.
+
+`key` in the manifest is the module's key in permissions and in `Setting::get()`; without it, the package name without `atrium-` (`vendor/atrium-shop` → `shop`). `title` is its name in the panel (a translation key or text).
+
+The catalog has one: `per_page`, products on a page of a section, per site (`packages/catalog/src/CatalogSettings.php`); the theme reads it with `Setting::get('catalog.per_page')`.
 
 ## Links to other modules
 

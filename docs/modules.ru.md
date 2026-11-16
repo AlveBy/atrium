@@ -263,6 +263,8 @@ public function test_an_editor_creates_an_article(): void
 | `public_urls` | Их страницы на сайте, как в `atrium.public_urls`; правило сайта для той же модели важнее |
 | `migrations` | Папка (или список папок) относительно пакета |
 | `demo` | Сидер для `atrium:install --demo` и `atrium:module:install --demo`; удобнее всего наследовать `Atrium\Admin\Modules\DemoSeeder` (он копирует картинки пакета на диск загрузок). Его `run()` возвращает `false`, если в модуле уже есть данные, и тогда ничего не добавляет |
+| `key`, `title` | Ключ модуля в правах и настройках и его название в панели (см. «Настройки модуля») |
+| `settings` | Класс его настроек (см. «Настройки модуля») |
 
 Все ключи необязательны. В `suggest` — модули, с которыми этот связан мягко (см. ниже); их демо-данные заполняются раньше.
 
@@ -292,6 +294,64 @@ public function boot(): void
 Миграции оставьте манифесту: через `loadMigrationsFrom()` они запустились бы и для неустановленного модуля и вернули бы таблицы удалённого. Закешированные конфиг и маршруты обе команды собирают заново.
 
 Тестируйте модуль через Orchestra Testbench, как модули в `packages/`: укажите его в `atrium.modules` в `defineEnvironment()` — и модели, миграции и страницы будут на месте, как на сайте.
+
+## Настройки модуля
+
+Модуль, которому нужно что-то от владельца сайта — валюта, число товаров на странице, адрес для уведомлений, — называет класс настроек в манифесте:
+
+```json
+"extra": {
+    "atrium": {
+        "key": "shop",
+        "title": "atrium-shop::shop.title",
+        "settings": "Vendor\\Shop\\ShopSettings"
+    }
+}
+```
+
+Класс наследует `Atrium\Admin\Modules\ModuleSettings` и перечисляет поля теми же типами полей, что и в админке, с правилами и значениями по умолчанию:
+
+```php
+use Atrium\Admin\Fields\NumberField;
+use Atrium\Admin\Fields\SelectField;
+use Atrium\Admin\Modules\ModuleSettings;
+
+final class ShopSettings extends ModuleSettings
+{
+    public bool $perSite = true;
+
+    public function fields(): array
+    {
+        return [
+            SelectField::make('currency')->label(__('atrium-shop::settings.currency'))
+                ->options(['EUR' => 'EUR', 'USD' => 'USD'])->default('EUR')->required(),
+            NumberField::make('free_delivery_from')->label(__('atrium-shop::settings.free_delivery_from'))
+                ->rules(['nullable', 'integer', 'min:0']),
+        ];
+    }
+}
+```
+
+Значение читается где угодно фасадом `Setting`:
+
+```php
+use Atrium\Admin\Facades\Setting;
+
+Setting::get('shop.currency');              // the current site's value, or the field's default
+Setting::get('shop.free_delivery_from', 0); // 0 when nobody set it and the field has no default
+Setting::get('shop.currency', null, $site); // another site (a Site or its id)
+Setting::all('shop');                       // every field by name
+```
+
+Незаполненное поле даёт свой `default()`, затем второй аргумент. У неустановленного модуля настроек нет: `get()` вернёт второй аргумент. Значения хранятся в таблице `admin_module_settings` и читаются один раз за запрос.
+
+`$perSite = true` хранит свой набор значений для каждого сайта — его задают на экране сайта, выбранного в шапке панели; `false` (по умолчанию) — один набор на все сайты. `description()` возвращает строку под заголовком экрана.
+
+Установленные модули перечислены в меню панели в разделе **Модули**, у тех, что с настройками, — кнопка **Настройки**. Для настроек нужно право `{key}.settings` (`shop.settings`), оно есть в строке модуля в форме роли; у суперадминов оно есть. `atrium:module:remove` убирает его из ролей, а при удалении данных удаляет и настройки.
+
+`key` в манифесте — ключ модуля в правах и в `Setting::get()`; без него это имя пакета без `atrium-` (`vendor/atrium-shop` → `shop`). `title` — его название в панели (ключ перевода или текст).
+
+Пример — каталог: `per_page`, товаров на странице раздела, для каждого сайта (`packages/catalog/src/CatalogSettings.php`); тема читает его через `Setting::get('catalog.per_page')`.
 
 ## Связи с другими модулями
 
