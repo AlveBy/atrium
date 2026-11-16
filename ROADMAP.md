@@ -6,6 +6,7 @@ Atrium is an admin panel for Laravel that installs with one command, runs any nu
 
 ## Principles
 
+- **Free and open.** The core and every official module are free, under MIT.
 - **Everything beyond the core is a module.** The shop, the gallery, the WordPress importer, the 1C connector are separate packages. The core stays small; you install only what you use.
 - **A module is installed, not wired in.** `composer require` plus one command: the module shows up in the menu, its tables exist, demo data is there. No code changes in your project.
 - **Every module can do what the core does:** 15 interface languages, translatable content, multiple sites, PHPUnit and Dusk tests.
@@ -141,6 +142,7 @@ The address is **atrium.alve-soft.com**. Alongside 0.2, as soon as the Pages, Me
 - The docs are the same Markdown files from the repo's `docs/`; the site renders them with a Docs module, versioned per release. Fixing a typo is a pull request.
 - A live admin demo: no sign-up, touch anything, the database resets every hour.
 - A module catalogue: official and community modules, with languages, versions and the install command.
+- "Order a module": describe what you need, and the Atrium team builds it as a module.
 - Until the site is up, the docs live on GitHub.
 
 ## 1.0 — stable
@@ -153,9 +155,5 @@ The address is **atrium.alve-soft.com**. Alongside 0.2, as soon as the Pages, Me
 ## How packages reach Packagist
 
 Development happens in one repository (a monorepo). On release each package is pushed automatically to its own read-only repository (`AlveBy/atrium-shop` and so on), which Packagist reads. Users install only what they need.
-
-## Open questions
-
-- Modules: all free under MIT, or official ones free plus a paid catalogue for third-party developers.
 
 Ideas and votes are welcome in [Issues](https://github.com/AlveBy/atrium/issues).
