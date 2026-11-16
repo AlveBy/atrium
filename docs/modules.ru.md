@@ -353,6 +353,53 @@ Setting::all('shop');                       // every field by name
 
 Пример — каталог: `per_page`, товаров на странице раздела, для каждого сайта (`packages/catalog/src/CatalogSettings.php`); тема читает его через `Setting::get('catalog.per_page')`.
 
+## Хуки
+
+Модули встречаются в хуках — именованных точках, где один модуль сообщает остальным, что произошло, или даёт им изменить значение. Напрямую друг друга они не вызывают, поэтому любого из них может не быть.
+
+**Действие** (action) сообщает, что что-то произошло. Каждый слушатель получает аргументы, обратно ничего не возвращается:
+
+```php
+use Atrium\Admin\Facades\Hook;
+
+// The shop, when an order is paid:
+Hook::fire('atrium.order.paid', $order);
+
+// Any module, in its service provider's boot():
+Hook::on('atrium.order.paid', fn (Order $order) => $order->customer->notify(new OrderPaid($order)));
+Hook::on('atrium.order.paid', SendReceipt::class); // a class with handle(), may implement ShouldQueue
+```
+
+Действия — это события Laravel с именем-строкой, поэтому `Event::listen('atrium.order.paid', ...)` равносилен `Hook::on()`, а слушатель с очередью выполняется в очереди.
+
+**Фильтр** (filter) даёт модулям изменить значение. Каждый обработчик получает то, что вернул предыдущий, и остальные аргументы хука и возвращает значение:
+
+```php
+// The search module asks which sources there are:
+$sources = Hook::apply('atrium.search.sources', [], $site);
+
+// A module adds its own:
+Hook::filter('atrium.search.sources', fn (array $sources) => [...$sources, ProductSource::class]);
+Hook::filter('atrium.search.sources', DropDrafts::class, 20); // an invokable class, later than the default 10
+```
+
+Меньший приоритет выполняется раньше; по умолчанию 10. `Hook::has('atrium.order.paid')` отвечает, слушает ли кто-нибудь. Хук без слушателей стоит одного поиска в массиве, так что вызывайте смело.
+
+Называйте хук `atrium.{модуль}.{что}`: действия — в прошедшем времени (`atrium.order.paid`), фильтры — по значению, которое фильтруют (`atrium.menu.items`). Регистрируйте слушателей, только когда модуль установлен (`app(Modules::class)->isInstalled('vendor/atrium-shop')`), и перечислите хуки модуля с аргументами в его README.
+
+Ядро вызывает такие:
+
+| Хук | Вид | Аргументы | Когда |
+|---|---|---|---|
+| `atrium.record.data` | фильтр | `array $data`, `Model $record`, `string $context` (`create` или `edit`) | Запись сохраняется в панели или через API, после `transformAdminData()` и до `fill()` |
+| `atrium.record.saved` | действие | `Model $record`, `string $context` | После сохранения, синхронизации связей и `afterAdminSave()` |
+| `atrium.record.deleted` | действие | `Model $record` | После удаления записи в панели или через API |
+| `atrium.admin.menu` | фильтр | `array $items`, `?AdminUser $user` | Строится меню панели; пункт — `['label' => ..., 'route' => ..., 'icon' => ...]`, недоступные пользователю пункты отбрасываются после |
+| `atrium.module.installed` | действие | `Module $module` | `atrium:module:install` выполнил миграции и внёс модуль в список |
+| `atrium.module.removed` | действие | `string $package`, `bool $dataDropped` | `atrium:module:remove` убрал модуль |
+
+Хуки записей видят только то, что сохраняют панель и API; сидер или импорт, пишущий через Eloquent, их не вызывает (для этого слушайте события самого Eloquent).
+
 ## Связи с другими модулями
 
 Модули связаны мягко: товары работают без брендов, а поле и колонка «Бренд» появляются, только когда установлен модуль брендов. Ничто в `require` Composer не заставляет один модуль ставить другой. Так устроен демо-магазин: `alveby/atrium-catalog` ссылается на `alveby/atrium-brands` и `alveby/atrium-stores` (`packages/catalog/src/Models/Product.php`).

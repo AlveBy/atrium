@@ -353,6 +353,53 @@ The panel lists the installed modules under **Modules** in the menu, with a **Se
 
 The catalog has one: `per_page`, products on a page of a section, per site (`packages/catalog/src/CatalogSettings.php`); the theme reads it with `Setting::get('catalog.per_page')`.
 
+## Hooks
+
+Modules meet at hooks, named points where one module tells the others what happened or lets them change a value. They never call each other directly, so either one may be missing.
+
+An **action** says that something happened. Every listener is called with the arguments, and nothing comes back:
+
+```php
+use Atrium\Admin\Facades\Hook;
+
+// The shop, when an order is paid:
+Hook::fire('atrium.order.paid', $order);
+
+// Any module, in its service provider's boot():
+Hook::on('atrium.order.paid', fn (Order $order) => $order->customer->notify(new OrderPaid($order)));
+Hook::on('atrium.order.paid', SendReceipt::class); // a class with handle(), may implement ShouldQueue
+```
+
+Actions are Laravel events named by a string, so `Event::listen('atrium.order.paid', ...)` is the same as `Hook::on()`, and a queued listener runs on the queue.
+
+A **filter** lets modules change a value. Each callback gets what the one before returned and the hook's other arguments, and returns the value:
+
+```php
+// The search module asks which sources there are:
+$sources = Hook::apply('atrium.search.sources', [], $site);
+
+// A module adds its own:
+Hook::filter('atrium.search.sources', fn (array $sources) => [...$sources, ProductSource::class]);
+Hook::filter('atrium.search.sources', DropDrafts::class, 20); // an invokable class, later than the default 10
+```
+
+Lower priority runs first; the default is 10. `Hook::has('atrium.order.paid')` says whether anything listens. A hook nobody listens to costs one array lookup, so fire freely.
+
+Name a hook `atrium.{module}.{what}`: actions in the past tense (`atrium.order.paid`), filters by the value they filter (`atrium.menu.items`). Register listeners only when your module is installed (`app(Modules::class)->isInstalled('vendor/atrium-shop')`), and list the hooks your module fires in its README, with their arguments.
+
+The core fires these:
+
+| Hook | Kind | Arguments | When |
+|---|---|---|---|
+| `atrium.record.data` | filter | `array $data`, `Model $record`, `string $context` (`create` or `edit`) | A record is saved in the panel or through the API, after `transformAdminData()` and before `fill()` |
+| `atrium.record.saved` | action | `Model $record`, `string $context` | After it is saved, its relations synced and `afterAdminSave()` run |
+| `atrium.record.deleted` | action | `Model $record` | After a record is deleted in the panel or through the API |
+| `atrium.admin.menu` | filter | `array $items`, `?AdminUser $user` | The panel's menu is built; an item is `['label' => ..., 'route' => ..., 'icon' => ...]`, and items the user may not open are dropped afterwards |
+| `atrium.module.installed` | action | `Module $module` | `atrium:module:install` has run its migrations and listed it |
+| `atrium.module.removed` | action | `string $package`, `bool $dataDropped` | `atrium:module:remove` has taken it out |
+
+The record hooks see only what the panel and the API save; a seeder or an import that writes with Eloquent does not fire them (listen to Eloquent's own events for that).
+
 ## Links to other modules
 
 Modules link to each other softly: products work without brands, and the "Brand" field and column appear only when the Brands module is installed. Nothing in Composer's `require` makes one module install another. The demo shop is built this way: `alveby/atrium-catalog` links to `alveby/atrium-brands` and `alveby/atrium-stores` (`packages/catalog/src/Models/Product.php`).
