@@ -99,8 +99,8 @@ final class ContentLanguagesTest extends AdminTestCase
                 ->assertSeeIn('[data-content-locale="en"] span', '1')
                 ->assertPathIs('/admin/articles/create')
                 ->click('[data-content-locale="en"]')
-                ->waitFor('[data-field="name"] .text-red-600')
-                ->assertSeeIn('[data-field="name"] .text-red-600', 'English');
+                ->waitFor('[data-field="name"] [data-error]')
+                ->assertSeeIn('[data-field="name"] [data-error]', 'English');
         });
 
         $this->assertSame(0, Article::query()->count());

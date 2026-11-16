@@ -78,7 +78,7 @@ final class ArticleCrudTest extends AdminTestCase
             // …and the server says the same when the browser check is out of the way.
             $browser->script('document.querySelector("#name").removeAttribute("required");');
             $browser->press('[data-action="save"]')
-                ->waitFor('.text-red-600')
+                ->waitFor('[data-error]')
                 ->assertPathIs('/admin/articles/create');
         });
 

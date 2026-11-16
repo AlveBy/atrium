@@ -40,7 +40,7 @@ final class LoginTest extends AdminTestCase
                 ->type('#email', 'ada@example.com')
                 ->type('#password', 'wrong-password')
                 ->press('button[type="submit"]')
-                ->waitFor('.text-red-600')
+                ->waitFor('[data-error]')
                 ->assertPathIs('/admin/login');
         });
     }

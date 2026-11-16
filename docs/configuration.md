@@ -7,6 +7,7 @@ Most of what a site owner changes lives in the admin itself: sites and their dom
 After changing either on a live site, run `php artisan config:cache` again.
 
 - [The main settings](#the-main-settings)
+- [Colour themes](#colour-themes)
 - [Mail and the sign-in code](#mail-and-the-sign-in-code)
 - [Files and images](#files-and-images)
 - [API tokens](#api-tokens)
@@ -21,7 +22,8 @@ After changing either on a live site, run `php artisan config:cache` again.
 | `resources` | config | `[]` | The modules: Eloquent models that implement `Administrable`. See [Your own module](modules.md) |
 | `modules` | config | `[]` | The installed module packages, in menu order. `atrium:module:install` and `atrium:module:remove` edit it. See [A module as a package](modules.md#a-module-as-a-package) |
 | `menu` | config | dashboard, administrators, roles, sites, languages, API tokens | Fixed menu entries; modules not listed here are added after the first entry. A label may be a translation key |
-| `ATRIUM_NAME`, `ATRIUM_LOGO`, `ATRIUM_FAVICON` | .env | `Atrium` | The name and pictures in the admin's header and tab |
+| `ATRIUM_NAME`, `ATRIUM_LOGO`, `ATRIUM_FAVICON` | .env | `Atrium` | The name and pictures in the admin's header and tab. Without a logo the admin shows the Atrium arch; without a favicon, the Atrium icon |
+| `ATRIUM_ADMIN_THEME` | .env | `graphite` | The admin's colours until an administrator picks their own. See [Colour themes](#colour-themes) |
 | `ATRIUM_LOCALE` | .env | `en` | The admin's language for guests whose browser language is not in `locales`; each administrator picks their own in the header |
 | `locales` | config | 15 languages | The admin's languages; remove an entry to hide it from the switcher |
 | `pagination` | config | 20 per page | List page sizes |
@@ -34,6 +36,22 @@ php artisan vendor:publish --tag=atrium-lang
 ```
 
 The files land in `lang/vendor/atrium/{language}/`; change the lines you need and delete the rest.
+
+## Colour themes
+
+The admin comes in five themes:
+
+| Theme | Looks like |
+|---|---|
+| `graphite` | A dark sidebar and a light page. The default |
+| `day` | Light all over |
+| `night` | Dark all over |
+| `sand` | Warm and light, with a brown sidebar |
+| `contrast` | Black on white with a yellow selection and thick borders, for poor sight |
+
+Each administrator picks one in the menu under their name, or "As the system": then the admin follows the computer's light or dark mode (graphite or night). The choice is kept with the administrator and applies on every device they sign in from. Until they pick, the admin uses `ATRIUM_ADMIN_THEME` (`atrium.admin.theme` in `config/atrium.php`); the sign-in page always uses it.
+
+Every theme passes WCAG AA: text has a contrast of at least 4.5:1, borders, the focus ring and the selection at least 3:1. The selected menu entry is also bold and has a bar on the left, and an active record has a filled dot where a hidden one has a ring, so nothing depends on colour alone. `packages/admin/tests/Unit/ThemeContrastTest.php` measures every pair from `packages/admin/resources/css/atrium.css`, where the themes are defined.
 
 ## Mail and the sign-in code
 
