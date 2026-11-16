@@ -25,6 +25,9 @@ final class DemoShopTest extends AdminTestCase
                 ->visit('/admin/demo_products')
                 ->waitForText('Aero 16 Pro')
                 ->assertSee('Aero 14')
+                // The preview pictures are on the public disk: the list has to
+                // load them from /storage, not from /admin/demo/....
+                ->waitUntil("[...document.querySelectorAll('tbody img')].length > 0 && [...document.querySelectorAll('tbody img')].every(img => img.complete && img.naturalWidth > 0)")
                 ->visit("/admin/demo_products/{$product->id}/edit")
                 ->waitFor('[data-tab="seo"]')
                 ->assertSeeIn('[data-tab="params"]', 'General')

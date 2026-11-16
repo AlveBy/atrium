@@ -46,6 +46,7 @@ All notable changes are listed here. The format follows [Keep a Changelog](https
 - The demo article's page is drawn by the theme; the app's own article controller, its view and Laravel's welcome page are gone.
 
 ### Fixed
+- An image column of a list showed a broken picture for a file on the public disk (`demo/laptop.svg`): the path was used as it is stored, relative to the admin page. It is loaded from `/storage` now, as in the form and on the site.
 - A `BelongsToField` was drawn as a bare number input: it waited for a record search that the panel does not have. Without a search route it is a list of the other module's records now.
 - The theme's record page listed several related records as plain text; each is a link to its page now.
 - `findBySlug()`, `findByFullPath()` and `findRedirect()` of `HasAdminSlug` could return a record of another model; the relations of `HasAdminFiles` and `HasAdminSeo` are typed.
