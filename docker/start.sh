@@ -1,4 +1,7 @@
 #!/bin/sh
+# This file is part of Atrium (https://github.com/AlveBy/atrium).
+# Copyright (c) 2026 AlveBy. Licensed under the MIT License, see LICENSE.
+
 # Brings the checkout up to date and serves it. `atrium:install` is safe to
 # repeat: the first start creates the admin and the demo shop, every later one
 # only applies what `git pull` brought (migrations, the admin bundle).

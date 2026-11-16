@@ -1,3 +1,6 @@
+# This file is part of Atrium (https://github.com/AlveBy/atrium).
+# Copyright (c) 2026 AlveBy. Licensed under the MIT License, see LICENSE.
+
 # The PHP that `compose.yaml` runs Atrium with: PHP and Composer, nothing else.
 # The database is SQLite in database/database.sqlite and the admin bundle is
 # prebuilt, so neither MySQL nor Node is needed to try it.
