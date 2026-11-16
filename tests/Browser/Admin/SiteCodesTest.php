@@ -68,7 +68,7 @@ final class SiteCodesTest extends AdminTestCase
             $browser->visit('/robots.txt')->assertSee('Disallow: /')->assertDontSee('/search');
 
             $browser->visit('/sitemap.xml');
-            $this->assertStringContainsString('<loc>http://127.0.0.1:8000</loc>', $browser->driver->getPageSource());
+            $this->assertStringContainsString('<loc>'.rtrim((string) config('app.url'), '/').'</loc>', $browser->driver->getPageSource());
         });
     }
 }

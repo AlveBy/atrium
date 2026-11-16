@@ -15,7 +15,7 @@ use Laravel\Dusk\Browser;
 
 /**
  * Several sites on one domain: a second site set up in the admin in the
- * folder /site2/ of the same 127.0.0.1:8000. Its pages open there, and a
+ * folder /site2/ of the same domain. Its pages open there, and a
  * link on them stays inside the folder.
  */
 final class FolderSitesTest extends AdminTestCase
@@ -42,7 +42,7 @@ final class FolderSitesTest extends AdminTestCase
             $browser->visit('/admin/articles')
                 ->waitFor('[data-site-switcher]')
                 ->select('[data-site-switcher]', (string) $site->id)
-                ->waitUsing(5, 100, fn () => $browser->attribute('[data-action="visit-site"]', 'href') === 'http://127.0.0.1:8000/site2')
+                ->waitUsing(5, 100, fn () => $browser->attribute('[data-action="visit-site"]', 'href') === rtrim((string) config('app.url'), '/').'/site2')
                 ->visit('/admin/articles/create')
                 ->waitFor('#name')
                 ->type('#name', 'Folder news')

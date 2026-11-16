@@ -28,7 +28,11 @@ final class SitesTest extends AdminTestCase
         $admin = $this->admin();
         Language::query()->create(['code' => 'de', 'name' => 'Deutsch', 'sort' => 200]);
 
-        $this->browse(function (Browser $browser) use ($admin): void {
+        // The same server under its other name; bin/ci serves it on any port.
+        $main = rtrim((string) config('app.url'), '/');
+        $german = str_replace('127.0.0.1', 'localhost', $main);
+
+        $this->browse(function (Browser $browser) use ($admin, $main, $german): void {
             // One site: no switcher in the header.
             $browser->loginAs($admin, 'admin')
                 ->visit('/admin/sites')
@@ -60,7 +64,7 @@ final class SitesTest extends AdminTestCase
             $browser->visit('/admin/articles')
                 ->waitFor('[data-site-switcher]')
                 ->select('[data-site-switcher]', (string) $site->id)
-                ->waitUsing(5, 100, fn () => $browser->attribute('[data-action="visit-site"]', 'href') === 'http://localhost:8000')
+                ->waitUsing(5, 100, fn () => $browser->attribute('[data-action="visit-site"]', 'href') === $german)
                 ->visit('/admin/articles/create')
                 ->waitFor('#name')
                 ->assertMissing('[data-content-locale]')
@@ -71,9 +75,9 @@ final class SitesTest extends AdminTestCase
                 ->waitForText('Hallo Welt');
 
             // Back on the main site the German article is not in the list.
-            $main = Site::query()->where('code', 'main')->sole();
-            $browser->select('[data-site-switcher]', (string) $main->id)
-                ->waitUsing(5, 100, fn () => $browser->attribute('[data-action="visit-site"]', 'href') === 'http://127.0.0.1:8000')
+            $mainSite = Site::query()->where('code', 'main')->sole();
+            $browser->select('[data-site-switcher]', (string) $mainSite->id)
+                ->waitUsing(5, 100, fn () => $browser->attribute('[data-action="visit-site"]', 'href') === $main)
                 ->assertDontSee('Hallo Welt')
                 ->visit('/admin/articles/create')
                 ->waitFor('[data-content-locale="de"]')
@@ -85,21 +89,21 @@ final class SitesTest extends AdminTestCase
                 ->assertDontSee('Hallo Welt');
 
             $this->assertSame($site->id, Article::query()->withoutGlobalScopes()->where('code->de', 'hallo-welt')->sole()->site_id);
-            $this->assertSame($main->id, Article::query()->withoutGlobalScopes()->where('code->en', 'hello-world')->sole()->site_id);
+            $this->assertSame($mainSite->id, Article::query()->withoutGlobalScopes()->where('code->en', 'hello-world')->sole()->site_id);
 
             // The German site: its article, in German, without a language prefix.
-            $browser->visit('http://localhost:8000/articles/hallo-welt')
+            $browser->visit($german.'/articles/hallo-welt')
                 ->assertSeeIn('h1', 'Hallo Welt');
             $this->assertSame('de', $browser->script('return document.documentElement.lang;')[0]);
 
-            $browser->visit('http://localhost:8000/articles/hello-world')->assertSee('404');
+            $browser->visit($german.'/articles/hello-world')->assertSee('404');
 
             // The main site: its own article only.
-            $browser->visit('http://127.0.0.1:8000/articles/hello-world')
+            $browser->visit($main.'/articles/hello-world')
                 ->assertSeeIn('h1', 'Hello world');
             $this->assertSame('en', $browser->script('return document.documentElement.lang;')[0]);
 
-            $browser->visit('http://127.0.0.1:8000/de/articles/hallo-welt')->assertSee('404');
+            $browser->visit($main.'/de/articles/hallo-welt')->assertSee('404');
         });
     }
 }
