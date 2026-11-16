@@ -12,6 +12,9 @@ return new class extends Migration
     {
         Schema::create('articles', function (Blueprint $table) {
             $table->id();
+            // Each article belongs to one site; the admin and the public
+            // pages only see the current site's articles.
+            $table->foreignId('site_id')->nullable()->index();
             // Translatable columns hold {"en": "…", "de": "…"}; the code is
             // unique per language, which the admin checks on save.
             $table->json('name');

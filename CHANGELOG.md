@@ -20,6 +20,9 @@ All notable changes are listed here. The format follows [Keep a Changelog](https
 - Translatable columns: `use Atrium\Admin\Traits\Translatable` and list them in `protected array $translatable` (JSON columns, spatie/laravel-translatable). The form gets a language switch with error counts per language; only the default language is required, the others fall back to it. Unique rules (such as a page code) apply within one language. The list shows the default language and searches all of them; the API takes either a plain value (default language) or an object keyed by language code, and documents it.
 - `Route::localized(fn () => …)` serves public routes in the default language as is and in other active languages under `/{code}/…`; `ContentLanguages::route()` builds the right address and `<x-atrium::hreflang :urls="…" />` prints the alternates with `x-default`.
 - `atrium:make-module` generates translatable models and JSON columns. The demo `Article` is translatable and has a public page at `/articles/{code}`.
+- Multi-site. A built-in "Sites" module (code, name, domains, languages, default language, active, default site); the first site is created from `APP_URL`. A request gets its site by domain (an unknown or inactive domain gets the default site), the admin by the switcher in the header, the API by `?site=code`.
+- `use Atrium\Admin\Traits\BelongsToSite` (plus a `site_id` column) makes a module per-site: lists, forms, search and public pages see the current site's records only, new records get its id, unique rules apply within the site. Modules without it are shared by all sites.
+- A site may limit the content languages and pick its own default language (served without a prefix). An administrator may be limited to some sites.
 - Slugs drop accents (`über` → `uber`) instead of turning them into dashes.
 - [ROADMAP.md](ROADMAP.md): installable modules, importers from other CMSs, an online shop, 1C and Bitrix24, a multilingual project site.
 

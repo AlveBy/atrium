@@ -17,7 +17,9 @@ The admin core is ported and covered by tests. Still to do:
 
 - interface languages (15), switchable per admin;
 - ~~content languages~~ done: add a language in the admin, list a model's columns in `$translatable`, each language gets its own addresses (`/de/…`) and `hreflang`;
-- multiple sites in one admin, the site is picked by domain;
+- ~~multiple sites~~ done: sites are added in the admin, picked by domain, each with its own languages; a module becomes per-site with one trait;
+- analytics and verification codes from the admin, per site: Google Tag, Yandex Metrica, Search Console / Webmaster meta tags, any snippet in `<head>` or `<body>` — nobody has to touch the templates;
+- `sitemap.xml` (every site, every language, with `hreflang`) and `robots.txt` built by the core;
 - the 1C-Bitrix migrator (`alveby/atrium-bitrix`);
 - a neutral public theme (`alveby/atrium-theme`), light and dark;
 - demo data: `php artisan atrium:install --demo`;
@@ -57,7 +59,7 @@ The base for everything after it: the shop, the importers and the integrations a
 | Banners and sliders | Placements on pages, display schedule |
 | Reviews | With moderation and ratings |
 | FAQ | With structured data for search engines |
-| SEO | Redirects, sitemap.xml, robots.txt, meta tag templates |
+| SEO | Redirects, meta tag templates, broken link report (sitemap.xml and robots.txt are in the core) |
 | Search | Across all modules of a site, language-aware |
 | Media library | A shared file library with folders (part of the core today) |
 

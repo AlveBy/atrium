@@ -13,13 +13,14 @@ use Atrium\Admin\Fields\ContentField;
 use Atrium\Admin\Fields\NumberField;
 use Atrium\Admin\Fields\SlugField;
 use Atrium\Admin\Fields\TextField;
+use Atrium\Admin\Traits\BelongsToSite;
 use Atrium\Admin\Traits\InteractsWithAdmin;
 use Atrium\Admin\Traits\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
 class Article extends Model implements Administrable
 {
-    use InteractsWithAdmin, Translatable;
+    use BelongsToSite, InteractsWithAdmin, Translatable;
 
     /** @var array<int,string> */
     protected array $translatable = ['name', 'code', 'preview_text', 'detail_text'];
