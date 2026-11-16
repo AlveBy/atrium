@@ -9,6 +9,7 @@ parameters:
         - app
         - packages/admin/src
         - packages/bitrix/src
+        - packages/faq/src
         - packages/theme/src
     # Package config files read env() like the application's do.
     configDirectories:
@@ -20,4 +21,5 @@ parameters:
         - database/migrations
         - packages/admin/database/migrations
         - packages/admin/database/demo
+        - packages/faq/database/migrations
         - vendor/laravel/sanctum/database/migrations

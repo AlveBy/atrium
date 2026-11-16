@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b43b98137fe57a984be8bd280da5b394",
+    "content-hash": "6f5bbd7e42a314f201673c618d53d440",
     "packages": [
         {
             "name": "alveby/atrium",
@@ -12,7 +12,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/admin",
-                "reference": "82669d52d03f13b9e645f6ce7e3160479e997414"
+                "reference": "1c2d34c06d407ebce00e32df0864c9400b034313"
             },
             "require": {
                 "illuminate/database": "^13.0",
@@ -74,12 +74,77 @@
             }
         },
         {
+            "name": "alveby/atrium-faq",
+            "version": "0.1.x-dev",
+            "dist": {
+                "type": "path",
+                "url": "packages/faq",
+                "reference": "259bf25ef93b3e0317a376a9a7168b97ba234a65"
+            },
+            "require": {
+                "alveby/atrium": "^0.1",
+                "illuminate/support": "^13.0",
+                "php": "^8.3"
+            },
+            "require-dev": {
+                "alveby/atrium-theme": "^0.1",
+                "orchestra/testbench": "^11.0",
+                "phpunit/phpunit": "^12.5"
+            },
+            "suggest": {
+                "alveby/atrium-theme": "Draws the FAQ page on the site"
+            },
+            "type": "atrium-module",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Atrium\\Faq\\FaqServiceProvider"
+                    ]
+                },
+                "branch-alias": {
+                    "dev-main": "0.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Atrium\\Faq\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Atrium\\Faq\\Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Questions and answers for Atrium: categories, languages, sites and FAQPage structured data",
+            "homepage": "https://github.com/AlveBy/atrium",
+            "keywords": [
+                "admin",
+                "cms",
+                "faq",
+                "i18n",
+                "laravel",
+                "multisite",
+                "schema.org"
+            ],
+            "support": {
+                "issues": "https://github.com/AlveBy/atrium/issues",
+                "source": "https://github.com/AlveBy/atrium"
+            },
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
             "name": "alveby/atrium-theme",
             "version": "0.1.x-dev",
             "dist": {
                 "type": "path",
                 "url": "packages/theme",
-                "reference": "1ee9e8e2452c849914c28b01f9a3f0bf5482ae4e"
+                "reference": "3d5ce7a7ca35bb6784e4c5b8e5eb5d3028c38843"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -6798,7 +6863,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/bitrix",
-                "reference": "cd1ff336a8e2a43648a174ce8ef07e1c75d75fab"
+                "reference": "436cecd05993b8f2896bf261eaf7fe54d3b4697f"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -10154,6 +10219,7 @@
     "stability-flags": {
         "alveby/atrium": 20,
         "alveby/atrium-bitrix": 20,
+        "alveby/atrium-faq": 20,
         "alveby/atrium-theme": 20
     },
     "prefer-stable": true,

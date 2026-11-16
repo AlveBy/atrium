@@ -14,6 +14,7 @@
         <testsuite name="Packages">
             <directory>packages/admin/tests</directory>
             <directory>packages/bitrix/tests</directory>
+            <directory>packages/faq/tests</directory>
             <directory>packages/theme/tests</directory>
         </testsuite>
     </testsuites>
@@ -22,6 +23,7 @@
             <directory>app</directory>
             <directory>packages/admin/src</directory>
             <directory>packages/bitrix/src</directory>
+            <directory>packages/faq/src</directory>
             <directory>packages/theme/src</directory>
         </include>
     </source>
