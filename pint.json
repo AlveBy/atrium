@@ -1,6 +1,12 @@
 {
     "preset": "laravel",
     "rules": {
-        "declare_strict_types": true
+        "declare_strict_types": true,
+        "header_comment": {
+            "header": "This file is part of Atrium (https://github.com/AlveBy/atrium).\nCopyright (c) 2026 AlveBy. Licensed under the MIT License, see LICENSE.",
+            "comment_type": "comment",
+            "location": "after_open",
+            "separate": "both"
+        }
     }
 }

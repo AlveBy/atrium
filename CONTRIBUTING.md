@@ -22,7 +22,8 @@ With Docker instead of a local PHP: `docker compose up` installs everything, fil
 ## Before you open a pull request
 
 ```bash
-vendor/bin/pint            # code style
+vendor/bin/pint            # code style, adds the copyright header to PHP files
+php scripts/copyright-header.php --fix  # the same header in Blade, Vue, JS, CSS, shell, YAML
 vendor/bin/phpstan analyse # static analysis
 php artisan test           # PHPUnit: app + all packages
 php artisan serve &        # then, in another terminal:
@@ -31,6 +32,7 @@ php artisan dusk           # browser tests
 
 - Tests are PHPUnit, not Pest. Every change that a user can see needs a Dusk test; everything else needs a PHPUnit test.
 - `declare(strict_types=1);` in every PHP file.
+- Every source file starts with the Atrium copyright header (`This file is part of Atrium …`). Pint writes it into PHP files, `php scripts/copyright-header.php --fix` into the rest, and `tests/Unit/CopyrightHeaderTest.php` fails without it. Translations get it too; built bundles (`dist`), JSON, XML, Markdown, SVG and the stubs that `atrium:make-module` copies into your application do not.
 - Never commit data from a real site. Bitrix fixtures are synthetic.
 
 ## Translations
