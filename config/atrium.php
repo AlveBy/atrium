@@ -59,6 +59,8 @@ return [
         'alveby/atrium-forms',
         'alveby/atrium-pages',
         'alveby/atrium-reviews',
+        'alveby/atrium-menus',
+        'alveby/atrium-search',
         'alveby/atrium-ai',
         'alveby/atrium-custom-fields',
         'alveby/atrium-team',
