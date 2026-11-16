@@ -233,7 +233,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/faq",
-                "reference": "fc035c923261ded6d4eda8e8bac5dc297e315cf6"
+                "reference": "7b98584d333ffa56c2a1f555f51423c527496cee"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -260,7 +260,8 @@
                             "prefix": "faq"
                         }
                     },
-                    "migrations": "database/migrations"
+                    "migrations": "database/migrations",
+                    "demo": "Atrium\\Faq\\Database\\FaqDemoSeeder"
                 },
                 "laravel": {
                     "providers": [
