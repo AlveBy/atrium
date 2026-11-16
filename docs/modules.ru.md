@@ -151,6 +151,7 @@ ContentField::make('detail_text')->label('Detail text')->tab('detail'),
 | `afterAdminSave(array $data): void` | После сохранения: связанные записи, кеш |
 | `beforeAdminDelete(): bool` | Перед удалением; `false` отменяет |
 | `canEdit(): bool`, `canDelete(): bool` | Можно ли править или удалять эту запись |
+| `isCreatableInAdmin(): bool`, `isEditableInAdmin(): bool` (static) | `false` для записей, которые приходят извне, например заявок с форм: нет «Добавить» и «Сохранить», маршруты и API отвечают 403 |
 
 ## Права
 

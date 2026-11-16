@@ -15,6 +15,7 @@
             <directory>packages/admin/tests</directory>
             <directory>packages/bitrix/tests</directory>
             <directory>packages/faq/tests</directory>
+            <directory>packages/forms/tests</directory>
             <directory>packages/pages/tests</directory>
             <directory>packages/reviews/tests</directory>
             <directory>packages/theme/tests</directory>
@@ -26,6 +27,7 @@
             <directory>packages/admin/src</directory>
             <directory>packages/bitrix/src</directory>
             <directory>packages/faq/src</directory>
+            <directory>packages/forms/src</directory>
             <directory>packages/pages/src</directory>
             <directory>packages/reviews/src</directory>
             <directory>packages/theme/src</directory>

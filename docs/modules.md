@@ -151,6 +151,7 @@ Rules come from the fields (`required()`, `unique()`, `rules()`). To replace the
 | `afterAdminSave(array $data): void` | After saving: related records, cache |
 | `beforeAdminDelete(): bool` | Before deleting; `false` cancels |
 | `canEdit(): bool`, `canDelete(): bool` | Whether this record may be edited or deleted |
+| `isCreatableInAdmin(): bool`, `isEditableInAdmin(): bool` (static) | `false` for records that come from elsewhere, such as form submissions: no "Add" or "Save", the routes and the API answer 403 |
 
 ## Permissions
 

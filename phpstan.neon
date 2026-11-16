@@ -10,6 +10,7 @@ parameters:
         - packages/admin/src
         - packages/bitrix/src
         - packages/faq/src
+        - packages/forms/src
         - packages/pages/src
         - packages/reviews/src
         - packages/theme/src
@@ -18,12 +19,14 @@ parameters:
         - config
         - packages/admin/config
         - packages/bitrix/config
+        - packages/forms/config
     # Larastan learns model columns from migrations; the package ships its own.
     databaseMigrationsPath:
         - database/migrations
         - packages/admin/database/migrations
         - packages/admin/database/demo
         - packages/faq/database/migrations
+        - packages/forms/database/migrations
         - packages/pages/database/migrations
         - packages/reviews/database/migrations
         - vendor/laravel/sanctum/database/migrations
