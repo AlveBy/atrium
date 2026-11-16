@@ -111,6 +111,13 @@ php artisan atrium:bitrix:parity
 
 The Bitrix database is only read. The tabs, field order and list columns come out as the editors had them in Bitrix. `atrium:bitrix:sync` catches up with edits made on the old site while it is still live. Step by step: [packages/bitrix/README.md](packages/bitrix/README.md).
 
+## Documentation
+
+- [Installation: your own server, hosting with ISPmanager or cPanel, Docker](docs/installation.md)
+- [Configuration: mail and the sign-in code, files, API tokens, AI assistants over MCP](docs/configuration.md)
+- [Your own module: fields, columns, tabs, permissions, languages, tests, a package](docs/modules.md)
+- [Moving from 1C-Bitrix, step by step](docs/bitrix.md)
+
 ## Packages
 
 | Package | What it is |

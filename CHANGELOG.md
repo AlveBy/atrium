@@ -5,6 +5,7 @@ All notable changes are listed here. The format follows [Keep a Changelog](https
 ## [Unreleased]
 
 ### Added
+- Guides in English and Russian (`docs/`): installation on your own server, on hosting with ISPmanager or cPanel and in Docker; configuration; your own module; moving from 1C-Bitrix. The READMEs link to them.
 - MCP server at `/mcp` (laravel/mcp): an AI assistant (Claude, ChatGPT, Cursor) connects with an API token and gets seven tools — `list_modules`, `describe_module`, `list_records`, `get_record`, `create_record`, `update_record`, `delete_record`. Every call goes through the API itself, so validation, the current site, translations and the rights of the token and of its owner are the same; a refusal comes back as text the assistant can read. Off with `ATRIUM_MCP_ENABLED=false`, the path is `atrium.mcp.path`. Connect, for example, with `claude mcp add --transport http atrium https://example.com/mcp --header "Authorization: Bearer <token>"`.
 - `MultiSelectField` is a searchable list with chips (vue-multiselect) instead of a bare `<select multiple>` that needed Ctrl-click; a selected option carries a check mark, not only a colour.
 - The README in 15 languages (`docs/readme`), with screenshots of the admin and the site. `tests/Unit/ReadmeTest.php` checks that every translation lists all languages, has no broken links and the same commands and code as English.
@@ -51,6 +52,7 @@ All notable changes are listed here. The format follows [Keep a Changelog](https
 - The demo article's page is drawn by the theme; the app's own article controller, its view and Laravel's welcome page are gone.
 
 ### Fixed
+- The WebP copies of uploaded images were made but never served: `public/.htaccess` lacked the rule that gives `photo.jpg.webp` to browsers that take WebP. It is there now, with `Vary: Accept`; the nginx rule is in `docs/installation.md`.
 - `atrium:install` linked `public/storage` only with `--demo`, so on a plain install the files uploaded in the admin answered 404.
 - A new administrator could not be saved unless someone ticked and unticked "Superadmin": the untouched box arrives empty and the rule wanted true or false.
 - The hint and the error of fields that draw their own (relations, colour, slug, content, gallery, map, tree, editor) were shown twice.

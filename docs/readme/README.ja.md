@@ -113,6 +113,13 @@ php artisan atrium:bitrix:parity
 
 Bitrix のデータベースは読み取るだけです。タブ、フィールドの順序、一覧の列は、編集者が Bitrix で設定していたとおりに再現されます。`atrium:bitrix:sync` は、旧サイトが稼働している間にそこで行われた編集を後から取り込みます。手順は [packages/bitrix/README.md](../../packages/bitrix/README.md)（英語）をご覧ください。
 
+## ドキュメント
+
+- [インストール：自前サーバー、ISPmanager や cPanel のホスティング、Docker](../installation.md)
+- [設定：メールとサインインコード、ファイル、API トークン、MCP 経由の AI アシスタント](../configuration.md)
+- [独自モジュール：フィールド、列、タブ、権限、言語、テスト、パッケージ化](../modules.md)
+- [1C-Bitrix からの移行（手順）](../bitrix.md)
+
 ## パッケージ
 
 | パッケージ | 内容 |

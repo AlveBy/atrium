@@ -113,6 +113,13 @@ php artisan atrium:bitrix:parity
 
 Bitrix 数据库只读不写。标签页、字段顺序和列表列会保持编辑们在 Bitrix 中的设置。在旧站点仍在运行期间，`atrium:bitrix:sync` 可以补上在旧站点上做出的修改。分步说明：[packages/bitrix/README.md](../../packages/bitrix/README.md)（英文）。
 
+## 文档
+
+- [安装：自有服务器、ISPmanager 或 cPanel 虚拟主机、Docker](../installation.md)
+- [配置：邮件与登录验证码、文件、API 令牌、通过 MCP 接入的 AI 助手](../configuration.md)
+- [自定义模块：字段、列、标签页、权限、语言、测试、打包](../modules.md)
+- [从 1C-Bitrix 迁移，分步说明](../bitrix.md)
+
 ## 软件包
 
 | 包 | 说明 |

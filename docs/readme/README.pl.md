@@ -113,6 +113,13 @@ php artisan atrium:bitrix:parity
 
 Baza danych Bitrixa jest tylko odczytywana. Karty, kolejność pól i kolumny list wychodzą takie, jakie ustawili sobie redaktorzy w Bitrixie. `atrium:bitrix:sync` nadrabia zmiany wprowadzane na starej witrynie, dopóki ta jeszcze działa. Krok po kroku: [packages/bitrix/README.md](../../packages/bitrix/README.md) (po angielsku).
 
+## Dokumentacja
+
+- [Instalacja: własny serwer, hosting z ISPmanager lub cPanel, Docker](../installation.md)
+- [Konfiguracja: poczta i kod logowania, pliki, tokeny API, asystenci AI przez MCP](../configuration.md)
+- [Własny moduł: pola, kolumny, zakładki, uprawnienia, języki, testy, pakiet](../modules.md)
+- [Przeprowadzka z 1C-Bitrix krok po kroku](../bitrix.md)
+
 ## Pakiety
 
 | Pakiet | Co to jest |

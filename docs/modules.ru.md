@@ -1,0 +1,226 @@
+# Свой модуль
+
+[English](modules.md) · [Русский](modules.ru.md)
+
+Модуль — модель Eloquent, которая описывает свою форму и список в админке. Стоит указать её в `config/atrium.php` → `resources`, и всё остальное появится само: маршруты, список с поиском и сортировкой, форма, пункт меню, права в форме роли, API и инструменты MCP.
+
+- [Начало](#начало)
+- [Поля](#поля)
+- [Колонки списка](#колонки-списка)
+- [Вкладки](#вкладки)
+- [Проверка и обработчики](#проверка-и-обработчики)
+- [Права](#права)
+- [Языки контента и сайты](#языки-контента-и-сайты)
+- [Страницы на сайте](#страницы-на-сайте)
+- [Переводы интерфейса](#переводы-интерфейса)
+- [Тесты](#тесты)
+- [Модуль пакетом](#модуль-пакетом)
+
+## Начало
+
+```bash
+php artisan atrium:make-module Article
+php artisan migrate
+```
+
+Команда пишет `app/Models/Article.php`, миграцию таблицы `articles` и строку в `config/atrium.php`. В меню появляются «Articles» по адресу `/admin/articles`. `--label="Новости"` задаёт подпись в меню, `--no-migration` — без миграции.
+
+Сгенерированная модель — отправная точка, в ней можно менять всё:
+
+```php
+class Article extends Model implements Administrable
+{
+    use InteractsWithAdmin, Translatable;
+
+    protected array $translatable = ['name', 'code', 'preview_text', 'detail_text'];
+
+    protected $fillable = ['name', 'code', 'active', 'sort', 'preview_text', 'detail_text'];
+
+    public static function getAdminLabel(): string
+    {
+        return 'Articles';
+    }
+
+    public static function getAdministrationFields(): array
+    {
+        return [
+            TextField::make('name')->label('Name')->required(),
+            SlugField::make('code')->label('Code')->from('name')->unique('articles', 'code'),
+            CheckboxField::make('active')->label('Active')->default(true),
+            NumberField::make('sort')->label('Sort')->default(500),
+            ContentField::make('preview_text')->label('Preview text'),
+            ContentField::make('detail_text')->label('Detail text'),
+        ];
+    }
+
+    public static function getAdministrationListColumns(): array
+    {
+        return [
+            TextColumn::make('id')->label('ID')->sortable(),
+            TextColumn::make('name')->label('Name')->sortable()->searchable(),
+            BooleanColumn::make('active')->label('Active'),
+            DateColumn::make('updated_at')->label('Updated')->sortable(),
+        ];
+    }
+}
+```
+
+Поле пишет в одноимённую колонку, поэтому у каждого поля должна быть колонка в миграции и место в `$fillable`.
+
+## Поля
+
+Каждое поле создаётся через `::make('колонка')` и умеет `label()`, `required()`, `hint()`, `default()`, `placeholder()`, `rules([...])`, `unique('таблица', 'колонка')`, `readonly()`, `tab()` и `hideOnCreate()` / `hideOnEdit()`.
+
+| Поле | Для чего | Частые настройки |
+|---|---|---|
+| `TextField`, `TextareaField` | Текст | `minLength()` |
+| `NumberField` | Числа | `min()`, `max()`, `step()`, `decimals()`, `money()`, `suffix('кг')` |
+| `CheckboxField` | Да / нет | `checkedValue('Y')`, если в колонке код, а не boolean |
+| `SelectField` | Одно значение из списка | `options([...])`, `fromEnum(Status::class)`, `fromModel(Brand::class)` |
+| `MultiSelectField` | Несколько значений из списка, хранятся JSON-массивом | `options([...])` |
+| `DateField`, `DateTimeField` | Даты | `minDate()`, `maxDate()` |
+| `ColorField` | Цвет | |
+| `SlugField` | Адрес страницы | `from('name')`, `unique('таблица', 'code')` |
+| `ContentField` | Текст с переключателем: текст, HTML, визуальный редактор | `modes(['text', 'html'])`, `defaultMode('html')` |
+| `WysiwygField` | Только визуальный редактор | |
+| `ImageField`, `FileField` | Один файл | `directory('articles')`, `maxSize(2048)`, `acceptedTypes([...])` |
+| `GalleryField` | Несколько картинок | `maxFiles(20)`, `sortable()` |
+| `RepeatableField` | Список значений: даты, телефоны, ссылки | `itemType('date')`, `maxItems(20)`, `addLabel('Добавить дату')` |
+| `BelongsToField` | Привязка к записи другого модуля (`brand_id`) | `model(Brand::class)` |
+| `BelongsToManyField` | Привязка к нескольким записям; у модели нужна одноимённая связь `belongsToMany` | `model(Tag::class)`, `sortable()` |
+| `TreeSelectField` | Раздел из дерева | `model(Section::class)`, `parentColumn('parent_id')`, `multiple()` |
+| `MapField` | Точка на карте | `yandex()` или `google()`, `defaultCenter()`, `defaultZoom()` |
+
+Демо-товар (`packages/admin/src/Demo/Models/Product.php`) использует почти все.
+
+## Колонки списка
+
+`TextColumn`, `BooleanColumn`, `DateColumn` и `ImageColumn`, у каждой `label()`, `sortable()`, `searchable()`, `width()` и `alignRight()`. Поиск ищет по всем колонкам с `searchable()`.
+
+Сортировка по умолчанию:
+
+```php
+public static function getDefaultSortColumn(): string
+{
+    return 'sort';
+}
+
+public static function getDefaultSortDirection(): string
+{
+    return 'asc';
+}
+```
+
+Чтобы сузить список или подгрузить связи, переопределите `scopeAdminList(Builder $query)`.
+
+## Вкладки
+
+Подключите `HasAdminTabs`, перечислите вкладки и разложите поля через `tab()`:
+
+```php
+use HasAdminTabs;
+
+public static function getAdminTabs(): array
+{
+    return [
+        ['name' => 'params', 'label' => 'Main'],
+        ['name' => 'detail', 'label' => 'Detail'],
+        ['name' => 'seo', 'label' => 'SEO'],
+    ];
+}
+
+// in getAdministrationFields():
+TextField::make('name')->label('Name')->required()->tab('params'),
+ContentField::make('detail_text')->label('Detail text')->tab('detail'),
+```
+
+Поле без `tab()` попадает в `params`. `HasAdminSeo` сам добавляет на вкладку `seo` мета-заголовок, описание и ключевые слова.
+
+## Проверка и обработчики
+
+Правила берутся из полей (`required()`, `unique()`, `rules()`). Чтобы заменить их целиком, верните свои из `getCreateValidationRules()` и `getUpdateValidationRules()`.
+
+В `InteractsWithAdmin` есть методы, которые можно переопределить, если поведение по умолчанию не подходит:
+
+| Метод | Когда |
+|---|---|
+| `transformAdminData(array $data): array` | Перед сохранением: поправить то, что прислала форма |
+| `afterAdminSave(array $data): void` | После сохранения: связанные записи, кеш |
+| `beforeAdminDelete(): bool` | Перед удалением; `false` отменяет |
+| `canEdit(): bool`, `canDelete(): bool` | Можно ли править или удалять эту запись |
+
+## Права
+
+У каждого модуля четыре права по его ключу: `articles.view`, `articles.create`, `articles.update`, `articles.delete`. Они сами появляются в форме роли; по ним строятся меню, кнопки, API и инструменты MCP. У суперадмина есть все.
+
+## Языки контента и сайты
+
+**Языки.** С `Translatable` и колонками в `$translatable` в форме появляется переключатель языка, и каждое значение хранится по языкам. Колонки должны быть JSON (`$table->json('name')`). Обязателен только язык по умолчанию, остальные берут значение из него.
+
+**Сайты.** С `BelongsToSite` и колонкой `site_id` модуль становится «по сайтам»: список, форма, поиск и страницы на сайте видят только записи текущего сайта, новая запись получает текущий сайт. Без трейта модуль общий для всех сайтов.
+
+```php
+$table->foreignId('site_id')->nullable()->index();
+```
+
+## Страницы на сайте
+
+```php
+'public_urls' => [
+    App\Models\Article::class => ['prefix' => 'articles'],
+],
+```
+
+даёт каждой статье адрес `/articles/{code}`: поле символьного кода показывает его под кодом, API отдаёт в `public_url`, а тема сайта (`alveby/atrium-theme`) рисует страницу по форме модуля. Записи в разделах и страницы самих разделов описаны в комментарии над `public_urls` в `config/atrium.php`.
+
+Чтобы страницы модуля попали в `sitemap.xml`, реализуйте `Atrium\Admin\Contracts\Sitemapable`: `sitemapQuery()` возвращает записи, которым там место, `sitemapUrl($language)` — адрес одной из них.
+
+## Переводы интерфейса
+
+Подписи могут быть обычным текстом или ключами перевода. Для модуля, которым пользуются на нескольких языках, держите их в `lang/{язык}/admin.php` и пишите `->label(__('admin.articles.name'))`.
+
+## Тесты
+
+Маршруты админки названы по ключу модуля (`admin.articles.index`, `admin.articles.store`, …), поэтому feature-тест входит администратором и отправляет форму:
+
+```php
+use Atrium\Admin\Models\AdminUser;
+
+public function test_an_editor_creates_an_article(): void
+{
+    $admin = AdminUser::query()->create([
+        'name' => 'Editor',
+        'email' => 'editor@example.com',
+        'password' => 'a long password',
+        'is_active' => true,
+    ]);
+    $admin->forceFill(['is_superadmin' => true])->save();
+
+    $this->actingAs($admin, 'admin')
+        ->post(route('admin.articles.store'), ['name' => 'Hello', 'code' => 'hello', 'active' => true])
+        ->assertSessionHasNoErrors();
+
+    $this->assertDatabaseHas('articles', ['code' => 'hello']);
+}
+```
+
+Больше примеров — в тестах самого Atrium (`packages/admin/tests`): права, API, браузерные тесты на Dusk.
+
+## Модуль пакетом
+
+Модуль для чужих сайтов — пакет Composer с моделью, её миграцией и переводами. Его сервис-провайдер добавляет модель в админку:
+
+```php
+public function register(): void
+{
+    config()->push('atrium.resources', \Vendor\Reviews\Review::class);
+}
+
+public function boot(): void
+{
+    $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
+    $this->loadTranslationsFrom(__DIR__.'/../lang', 'reviews');
+}
+```
+
+`composer require vendor/reviews` и `php artisan migrate` — и модуль в меню. Тестируйте его через Orchestra Testbench, как `packages/admin`. В версии 0.2 появятся `atrium:module:install`, экран «Модули» и шаблон-репозиторий: см. [план развития](../ROADMAP.ru.md).

@@ -113,6 +113,13 @@ php artisan atrium:bitrix:parity
 
 Bitrix veritabanından yalnızca okuma yapılır. Sekmeler, alan sırası ve liste sütunları, editörlerin Bitrix'te ayarladığı şekliyle aktarılır. `atrium:bitrix:sync`, eski site hâlâ yayındayken orada yapılan düzenlemeleri sonradan aktarır. Adım adım anlatım: [packages/bitrix/README.md](../../packages/bitrix/README.md) (İngilizce).
 
+## Belgeler
+
+- [Kurulum: kendi sunucunuz, ISPmanager veya cPanel barındırma, Docker](../installation.md)
+- [Yapılandırma: e-posta ve giriş kodu, dosyalar, API tokenları, MCP ile yapay zekâ asistanları](../configuration.md)
+- [Kendi modülünüz: alanlar, sütunlar, sekmeler, yetkiler, diller, testler, paket](../modules.md)
+- [1C-Bitrix’ten adım adım taşınma](../bitrix.md)
+
 ## Paketler
 
 | Paket | Nedir |

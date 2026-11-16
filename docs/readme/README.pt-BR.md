@@ -113,6 +113,13 @@ php artisan atrium:bitrix:parity
 
 O banco de dados do Bitrix é apenas lido. As abas, a ordem dos campos e as colunas das listas ficam do jeito que os editores as tinham no Bitrix. `atrium:bitrix:sync` traz as edições feitas no site antigo enquanto ele ainda está no ar. Passo a passo: [packages/bitrix/README.md](../../packages/bitrix/README.md) (em inglês).
 
+## Documentação
+
+- [Instalação: servidor próprio, hospedagem com ISPmanager ou cPanel, Docker](../installation.md)
+- [Configuração: e-mail e código de acesso, arquivos, tokens de API, assistentes de IA via MCP](../configuration.md)
+- [Seu próprio módulo: campos, colunas, abas, permissões, idiomas, testes, pacote](../modules.md)
+- [Migrar do 1C-Bitrix, passo a passo](../bitrix.md)
+
 ## Pacotes
 
 | Pacote | O que é |

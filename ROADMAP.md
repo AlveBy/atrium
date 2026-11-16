@@ -29,12 +29,12 @@ The admin core is ported and covered by tests. Still to do:
 - ~~demo data~~ done: `php artisan atrium:install --demo` adds a small shop with every field type, news in three languages and a second site;
 - ~~the README in 15 languages~~ done: English and Russian by hand, the rest machine-translated, with screenshots; a test keeps the commands and links of every translation in step with English.
 
-Docs for the release (Markdown in the repo, `docs/`):
+Docs for the release (Markdown in the repo, `docs/`, in English and Russian), ~~all four~~ done:
 
-- **Installation:** on your own server, on shared hosting with a control panel (cPanel, ISPmanager: no Docker, no Node on the server), in Docker.
-- **Configuration:** config, mail, two-factor sign-in, API tokens, files.
-- **Writing a module:** from `atrium:make-module` to a package on Packagist: fields, columns, tabs, permissions, translations, tests.
-- **Moving from Bitrix:** step by step, checked with `atrium:bitrix:parity`.
+- [**Installation:**](docs/installation.md) on your own server, on shared hosting with a control panel (cPanel, ISPmanager: no Docker, no Node on the server), in Docker.
+- [**Configuration:**](docs/configuration.md) config, mail, two-factor sign-in, API tokens, files.
+- [**Writing a module:**](docs/modules.md) from `atrium:make-module` to a package on Packagist: fields, columns, tabs, permissions, translations, tests.
+- [**Moving from Bitrix:**](docs/bitrix.md) step by step, checked with `atrium:bitrix:parity`.
 
 ## 0.2 — modules that just install
 

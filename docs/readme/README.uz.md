@@ -113,6 +113,13 @@ php artisan atrium:bitrix:parity
 
 Bitrix maʼlumotlar bazasi faqat oʻqiladi. Yorliqlar, maydonlar tartibi va roʻyxat ustunlari muharrirlar ularni Bitrix tizimida qanday sozlagan boʻlsa, xuddi shunday oʻtadi. `atrium:bitrix:sync` eski sayt hali ishlab turganda unga kiritilgan tahrirlarni ham yetkazib turadi. Bosqichma-bosqich: [packages/bitrix/README.md](../../packages/bitrix/README.md) (ingliz tilida).
 
+## Hujjatlar
+
+- [Oʻrnatish: oʻz serveringiz, ISPmanager yoki cPanel hostingi, Docker](../installation.md)
+- [Sozlash: pochta va kirish kodi, fayllar, API tokenlar, MCP orqali SI-yordamchilar](../configuration.md)
+- [Oʻz modulingiz: maydonlar, ustunlar, yorliqlar, huquqlar, tillar, testlar, paket](../modules.md)
+- [1C-Bitrixdan koʻchish, qadamma-qadam](../bitrix.md)
+
 ## Paketlar
 
 | Paket | Bu nima |

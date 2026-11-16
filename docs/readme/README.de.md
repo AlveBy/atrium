@@ -113,6 +113,13 @@ php artisan atrium:bitrix:parity
 
 Die Bitrix-Datenbank wird nur gelesen. Tabs, Feldreihenfolge und Listenspalten kommen so heraus, wie die Redakteure sie in Bitrix eingerichtet hatten. `atrium:bitrix:sync` holt Änderungen nach, die auf der alten Website noch gemacht werden, solange sie läuft. Schritt für Schritt: [packages/bitrix/README.md](../../packages/bitrix/README.md) (auf Englisch).
 
+## Dokumentation
+
+- [Installation: eigener Server, Hosting mit ISPmanager oder cPanel, Docker](../installation.md)
+- [Konfiguration: E-Mail und Anmeldecode, Dateien, API-Tokens, KI-Assistenten über MCP](../configuration.md)
+- [Eigenes Modul: Felder, Spalten, Tabs, Rechte, Sprachen, Tests, als Paket](../modules.md)
+- [Umzug von 1C-Bitrix, Schritt für Schritt](../bitrix.md)
+
 ## Pakete
 
 | Paket | Was es ist |
