@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "499008e74e9a8be418a85f8edd9fc1c1",
+    "content-hash": "ec785833b05ad8c92c46605d7cb0a031",
     "packages": [
         {
             "name": "alveby/atrium",
@@ -12,7 +12,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/admin",
-                "reference": "94f8cadc7d8f82da04733740cb4ad0d51c0df6bd"
+                "reference": "35a47b81057624053c8b5383c57bb26bd433367e"
             },
             "require": {
                 "illuminate/database": "^13.0",
@@ -79,7 +79,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/ai",
-                "reference": "d5dfadf8afa066d14798ba079010fd6777e91dcb"
+                "reference": "bc1d38e4c39200f90b6ce5dbe9537467c74ae8a5"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -146,7 +146,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/brands",
-                "reference": "cbd8d5450b161c3ddc6c3a8d72db01accc1d18e6"
+                "reference": "7d311bae332e1f77d877805c173c9d3ca63e76ba"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -212,7 +212,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/catalog",
-                "reference": "1c50a66f9f76f6017d15d3c2b94478ba59b5c86c"
+                "reference": "44b7a567bd2a2d62c6d21fa8012cf6c608e9be71"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -251,7 +251,8 @@
                         }
                     },
                     "migrations": "database/migrations",
-                    "demo": "Atrium\\Catalog\\Database\\CatalogDemoSeeder"
+                    "demo": "Atrium\\Catalog\\Database\\CatalogDemoSeeder",
+                    "settings": "Atrium\\Catalog\\CatalogSettings"
                 },
                 "laravel": {
                     "providers": [
@@ -300,7 +301,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/docs",
-                "reference": "d29bd05e21dd2537bb3126d2d1f0c1be68c063bd"
+                "reference": "a805efd81c7568a95a7221e3ff541f33b127bbed"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -364,7 +365,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/faq",
-                "reference": "cc802b9c08e02aa7537bdc14658b446c014718c4"
+                "reference": "7bd5f019d88f198ae0a06949af5d945513547678"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -442,7 +443,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/forms",
-                "reference": "7fe37a40fabcd0630b90a158e5b9f62655940431"
+                "reference": "c871284ca3d197bc21bbe7d92e8c460dd1513d94"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -510,7 +511,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/news",
-                "reference": "c8fc835cb8ab27c3ac9588b36a8edef2ee0606f8"
+                "reference": "f20af47a4991f3934266d3f8761b90967960d07e"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -583,7 +584,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/pages",
-                "reference": "fec5aee3d999d4a0cbc522b61d82e64ce67b60be"
+                "reference": "b4ebf9d6e8086be676c7e28cd7535d132713ed1a"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -659,7 +660,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/reviews",
-                "reference": "cb8788001d4da852a4c761513b5a9896ed99311b"
+                "reference": "dd2a06b23d10953b2ffc714d89736f6f34d01b4f"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -724,12 +725,87 @@
             }
         },
         {
+            "name": "alveby/atrium-solutions",
+            "version": "0.1.x-dev",
+            "dist": {
+                "type": "path",
+                "url": "packages/solutions",
+                "reference": "82190a715bc203b9474764da30a842ddd42bc805"
+            },
+            "require": {
+                "alveby/atrium": "^0.1",
+                "alveby/atrium-theme": "^0.1",
+                "illuminate/support": "^13.0",
+                "php": "^8.3"
+            },
+            "require-dev": {
+                "alveby/atrium-faq": "^0.1",
+                "alveby/atrium-forms": "^0.1",
+                "alveby/atrium-news": "^0.1",
+                "alveby/atrium-pages": "^0.1",
+                "alveby/atrium-reviews": "^0.1",
+                "alveby/atrium-stores": "^0.1",
+                "alveby/atrium-team": "^0.1",
+                "orchestra/testbench": "^11.0",
+                "phpunit/phpunit": "^12.5"
+            },
+            "suggest": {
+                "alveby/atrium-forms": "Contact and request forms",
+                "alveby/atrium-news": "News of most solutions",
+                "alveby/atrium-pages": "Static pages of every solution",
+                "alveby/atrium-team": "People: lawyers, designers, volunteers"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Atrium\\Solutions\\SolutionsServiceProvider"
+                    ]
+                },
+                "branch-alias": {
+                    "dev-main": "0.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Atrium\\Solutions\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Atrium\\Solutions\\Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Ready-made sites for Atrium: a law firm, an agency, a charity and more, each installed in one command with its modules, look and content",
+            "homepage": "https://github.com/AlveBy/atrium",
+            "keywords": [
+                "admin",
+                "cms",
+                "i18n",
+                "laravel",
+                "multisite",
+                "site templates",
+                "starter"
+            ],
+            "support": {
+                "issues": "https://github.com/AlveBy/atrium/issues",
+                "source": "https://github.com/AlveBy/atrium"
+            },
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
             "name": "alveby/atrium-stores",
             "version": "0.1.x-dev",
             "dist": {
                 "type": "path",
                 "url": "packages/stores",
-                "reference": "b8272d1d00ba677fbed10a68962b84d43de6fc81"
+                "reference": "9ef19ea431192df451e2ecba3f35a2f45433feb6"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -796,12 +872,90 @@
             }
         },
         {
+            "name": "alveby/atrium-team",
+            "version": "0.1.x-dev",
+            "dist": {
+                "type": "path",
+                "url": "packages/team",
+                "reference": "67cfcb9e84b639c03be9b91f901a54952c3de0b8"
+            },
+            "require": {
+                "alveby/atrium": "^0.1",
+                "illuminate/support": "^13.0",
+                "php": "^8.3"
+            },
+            "require-dev": {
+                "alveby/atrium-theme": "^0.1",
+                "orchestra/testbench": "^11.0",
+                "phpunit/phpunit": "^12.5"
+            },
+            "suggest": {
+                "alveby/atrium-theme": "Draws the team page and a page per person on the site"
+            },
+            "type": "atrium-module",
+            "extra": {
+                "atrium": {
+                    "resources": [
+                        "Atrium\\Team\\Models\\Member",
+                        "Atrium\\Team\\Models\\Department"
+                    ],
+                    "public_urls": {
+                        "Atrium\\Team\\Models\\Member": {
+                            "prefix": "team"
+                        }
+                    },
+                    "migrations": "database/migrations",
+                    "demo": "Atrium\\Team\\Database\\TeamDemoSeeder"
+                },
+                "laravel": {
+                    "providers": [
+                        "Atrium\\Team\\TeamServiceProvider"
+                    ]
+                },
+                "branch-alias": {
+                    "dev-main": "0.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Atrium\\Team\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Atrium\\Team\\Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "People of an organisation for Atrium: lawyers, doctors, teachers, staff, with departments, photos and contacts",
+            "homepage": "https://github.com/AlveBy/atrium",
+            "keywords": [
+                "admin",
+                "cms",
+                "i18n",
+                "laravel",
+                "multisite",
+                "staff",
+                "team"
+            ],
+            "support": {
+                "issues": "https://github.com/AlveBy/atrium/issues",
+                "source": "https://github.com/AlveBy/atrium"
+            },
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
             "name": "alveby/atrium-theme",
             "version": "0.1.x-dev",
             "dist": {
                 "type": "path",
                 "url": "packages/theme",
-                "reference": "16c4a1bbd858b796b91bc0004d4d59be08b1d0df"
+                "reference": "c3dbd2ec2b73b6b15b363936bdbab8a444226a0e"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -7752,7 +7906,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/bitrix",
-                "reference": "977a352ed01140b70e7ce454b4268e0c6fd16a0f"
+                "reference": "50767e77c0ac27fd6caf0bd81ba98d2767af08d0"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -11041,7 +11195,9 @@
         "alveby/atrium-news": 20,
         "alveby/atrium-pages": 20,
         "alveby/atrium-reviews": 20,
+        "alveby/atrium-solutions": 20,
         "alveby/atrium-stores": 20,
+        "alveby/atrium-team": 20,
         "alveby/atrium-theme": 20
     },
     "prefer-stable": true,

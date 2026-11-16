@@ -24,7 +24,9 @@
         "alveby/atrium-news": "@dev",
         "alveby/atrium-pages": "@dev",
         "alveby/atrium-reviews": "@dev",
+        "alveby/atrium-solutions": "@dev",
         "alveby/atrium-stores": "@dev",
+        "alveby/atrium-team": "@dev",
         "alveby/atrium-theme": "@dev",
         "laravel/framework": "^13.17",
         "laravel/tinker": "^3.0"
@@ -63,7 +65,9 @@
             "Atrium\\News\\Tests\\": "packages/news/tests/",
             "Atrium\\Pages\\Tests\\": "packages/pages/tests/",
             "Atrium\\Reviews\\Tests\\": "packages/reviews/tests/",
+            "Atrium\\Solutions\\Tests\\": "packages/solutions/tests/",
             "Atrium\\Stores\\Tests\\": "packages/stores/tests/",
+            "Atrium\\Team\\Tests\\": "packages/team/tests/",
             "Atrium\\Theme\\Tests\\": "packages/theme/tests/"
         }
     },
@@ -140,7 +144,9 @@
                     "alveby/atrium-news": "0.1.x-dev",
                     "alveby/atrium-pages": "0.1.x-dev",
                     "alveby/atrium-reviews": "0.1.x-dev",
+                    "alveby/atrium-solutions": "0.1.x-dev",
                     "alveby/atrium-stores": "0.1.x-dev",
+                    "alveby/atrium-team": "0.1.x-dev",
                     "alveby/atrium-theme": "0.1.x-dev"
                 }
             }

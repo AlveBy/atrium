@@ -23,7 +23,9 @@
             <directory>packages/news/tests</directory>
             <directory>packages/pages/tests</directory>
             <directory>packages/reviews/tests</directory>
+            <directory>packages/solutions/tests</directory>
             <directory>packages/stores/tests</directory>
+            <directory>packages/team/tests</directory>
             <directory>packages/theme/tests</directory>
         </testsuite>
     </testsuites>
@@ -41,7 +43,9 @@
             <directory>packages/news/src</directory>
             <directory>packages/pages/src</directory>
             <directory>packages/reviews/src</directory>
+            <directory>packages/solutions/src</directory>
             <directory>packages/stores/src</directory>
+            <directory>packages/team/src</directory>
             <directory>packages/theme/src</directory>
         </include>
     </source>

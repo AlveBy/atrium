@@ -18,7 +18,9 @@ parameters:
         - packages/news/src
         - packages/pages/src
         - packages/reviews/src
+        - packages/solutions/src
         - packages/stores/src
+        - packages/team/src
         - packages/theme/src
     # Package config files read env() like the application's do.
     configDirectories:
@@ -28,6 +30,7 @@ parameters:
         - packages/bitrix/config
         - packages/docs/config
         - packages/forms/config
+        - packages/solutions/config
     # Larastan learns model columns from migrations; the package ships its own.
     databaseMigrationsPath:
         - database/migrations
@@ -41,4 +44,5 @@ parameters:
         - packages/pages/database/migrations
         - packages/reviews/database/migrations
         - packages/stores/database/migrations
+        - packages/team/database/migrations
         - vendor/laravel/sanctum/database/migrations
