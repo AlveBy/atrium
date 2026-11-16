@@ -24,6 +24,8 @@
             <directory>packages/faq/tests</directory>
             <directory>packages/forms/tests</directory>
             <directory>packages/monitoring/tests</directory>
+            <directory>packages/menus/tests</directory>
+            <directory>packages/search/tests</directory>
             <directory>packages/news/tests</directory>
             <directory>packages/pages/tests</directory>
             <directory>packages/reviews/tests</directory>
@@ -52,6 +54,8 @@
             <directory>packages/faq/src</directory>
             <directory>packages/forms/src</directory>
             <directory>packages/monitoring/src</directory>
+            <directory>packages/menus/src</directory>
+            <directory>packages/search/src</directory>
             <directory>packages/news/src</directory>
             <directory>packages/pages/src</directory>
             <directory>packages/reviews/src</directory>

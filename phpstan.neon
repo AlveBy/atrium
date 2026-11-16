@@ -26,6 +26,8 @@ parameters:
         - packages/faq/src
         - packages/forms/src
         - packages/monitoring/src
+        - packages/menus/src
+        - packages/search/src
         - packages/news/src
         - packages/pages/src
         - packages/reviews/src
@@ -66,6 +68,8 @@ parameters:
         - packages/faq/database/migrations
         - packages/forms/database/migrations
         - packages/monitoring/database/migrations
+        - packages/menus/database/migrations
+        - packages/search/database/migrations
         - packages/news/database/migrations
         - packages/pages/database/migrations
         - packages/reviews/database/migrations
