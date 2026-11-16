@@ -19,7 +19,7 @@ The admin core is ported and covered by tests. Still to do:
 - ~~interface languages~~ done: 15 of them, each admin picks one in the header;
 - ~~API keys~~ already there: an "API tokens" screen issues a key limited to chosen modules and actions, and `/api/v1` describes itself;
 - ~~roles and permissions~~ done: a role says which modules an administrator may view, create, edit and delete, the panel's own sites, languages and administrators included; the menu, the buttons and the API follow it, and a token never has more rights than its owner today. Superadmins need no role and are the only ones who manage roles;
-- an MCP server on top of the same API and keys: an AI assistant (Claude, ChatGPT, Cursor) connects to the site and reads and edits its modules — "add three news items", "raise prices in this category by 5%" — with exactly the rights of its key;
+- ~~an MCP server on top of the same API and keys~~ done: an AI assistant (Claude, ChatGPT, Cursor) connects to `/mcp` with an API token and reads and edits the modules — "add three news items", "raise prices in this category by 5%" — with exactly the rights of its key;
 - ~~content languages~~ done: add a language in the admin, list a model's columns in `$translatable`, each language gets its own addresses (`/de/…`) and `hreflang`;
 - ~~multiple sites~~ done: sites are added in the admin, picked by domain, each with its own languages; a module becomes per-site with one trait;
 - ~~counters and verification codes~~ done: per site in the admin — Google Tag, Yandex Metrica, Search Console / Webmaster / Bing meta tags, any snippet in `<head>` or `<body>`; nobody has to touch the templates;

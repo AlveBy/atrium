@@ -21,7 +21,7 @@ Bir modülü yalnızca bir kez, alanları ve liste sütunlarıyla birlikte bir m
 - **20 alan türü.** Metin, sayılar, tarihler, listeler, diğer modüllere bağlantılar, görseller, galeriler, dosyalar, görsel editör, haritalar, tekrarlanabilir değerler. Formlarda, 1C-Bitrix'te olduğu gibi sekmeler bulunur.
 - **Roller ve izinler.** Kimin hangi modülü göreceği ve orada ne yapabileceği: görüntüleme, oluşturma, düzenleme, silme.
 - **Kod yazmadan SEO.** Her kayıt için başlık ve açıklama, eski adreslerden yönlendirmeli okunabilir adresler, her site için `sitemap.xml` ve `robots.txt`. Google Tag, Yandex Metrica ve doğrulama kodları panelde her site için ayrı ayarlanır.
-- **API.** Seçilen modüller ve işlemlerle sınırlı tokenlar; `/api/v1` kendini kendisi tanımlar.
+- **API.** Seçilen modüller ve işlemlerle sınırlı tokenlar; `/api/v1` kendini kendisi tanımlar. Yapay zekâ asistanları (Claude, ChatGPT, Cursor) aynı token ile ve tam olarak onun yetkileriyle `/mcp` adresine bağlanır.
 - **E-postayla giriş kodu.** İki adımlı giriş varsayılan olarak açıktır.
 - **1C-Bitrix geçiş aracı.** Bilgi blokları, özellikler, bölümler, formlar, liste düzenleri, SEO ve medya kütüphanesi Laravel modellerine, migration'lara ve verilere dönüşür; bir rapor da eski siteyi yenisiyle karşılaştırır.
 - **Herkese açık tema.** Her modülü paneldeki formuna göre çizen sade bir site; açık ve koyu modu vardır ve her türlü renk görüşüyle okunabilir.

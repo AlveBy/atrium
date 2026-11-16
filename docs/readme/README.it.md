@@ -21,7 +21,7 @@ Descrivi un modulo una sola volta, come un modello con i suoi campi e le colonne
 - **20 tipi di campo.** Testo, numeri, date, elenchi, collegamenti ad altri moduli, immagini, gallerie, file, un editor visuale, mappe, valori ripetibili. I form sono divisi in schede, come in 1C-Bitrix.
 - **Ruoli e permessi.** Chi vede quale modulo e cosa può farci: visualizzare, creare, modificare, eliminare.
 - **SEO senza codice.** Titoli e descrizioni per ogni record, indirizzi leggibili con reindirizzamenti da quelli vecchi, `sitemap.xml` e `robots.txt` per ogni sito. Google Tag, Yandex Metrica e i codici di verifica si impostano per sito nel pannello.
-- **API.** Token limitati ai moduli e alle azioni scelti; `/api/v1` descrive sé stessa.
+- **API.** Token limitati ai moduli e alle azioni scelti; `/api/v1` descrive sé stessa. Gli assistenti IA (Claude, ChatGPT, Cursor) si collegano a `/mcp` con lo stesso token ed esattamente i suoi permessi.
 - **Codice di accesso via email.** L'accesso in due passaggi è attivo per impostazione predefinita.
 - **Migratore da 1C-Bitrix.** Infoblock, proprietà, sezioni, form, layout degli elenchi, SEO e libreria multimediale diventano modelli, migrazioni e dati Laravel, e un report confronta il vecchio sito con quello nuovo.
 - **Tema pubblico.** Un sito neutro che disegna ogni modulo a partire dal suo form nel pannello, chiaro e scuro, leggibile con qualsiasi tipo di visione dei colori.

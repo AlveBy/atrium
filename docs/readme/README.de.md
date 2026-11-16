@@ -21,7 +21,7 @@ Ein Modul beschreiben Sie nur einmal: als Modell mit seinen Feldern und Listensp
 - **20 Feldtypen.** Text, Zahlen, Datumsangaben, Listen, Verknüpfungen mit anderen Modulen, Bilder, Galerien, Dateien, ein visueller Editor, Karten, wiederholbare Werte. Formulare haben Tabs wie in 1C-Bitrix.
 - **Rollen und Rechte.** Wer welches Modul sieht und was er darin darf: ansehen, anlegen, bearbeiten, löschen.
 - **SEO ohne Code.** Titel und Beschreibungen für jeden Eintrag, sprechende URLs mit Weiterleitungen von den alten, `sitemap.xml` und `robots.txt` für jede Website. Google Tag, Yandex Metrica und Verifizierungscodes werden pro Website im Admin-Bereich eingetragen.
-- **API.** Tokens, die auf ausgewählte Module und Aktionen beschränkt sind; `/api/v1` beschreibt sich selbst.
+- **API.** Tokens, die auf ausgewählte Module und Aktionen beschränkt sind; `/api/v1` beschreibt sich selbst. KI-Assistenten (Claude, ChatGPT, Cursor) verbinden sich mit `/mcp` über denselben Token und genau mit dessen Rechten.
 - **Anmeldecode per E-Mail.** Die Zwei-Faktor-Anmeldung ist standardmäßig aktiv.
 - **1C-Bitrix-Migrator.** Infoblöcke, Eigenschaften, Bereiche, Formulare, Listenlayouts, SEO und die Medienbibliothek werden zu Laravel-Modellen, Migrationen und Daten, und ein Bericht vergleicht die alte Website mit der neuen.
 - **Öffentliches Theme.** Eine neutrale Website, die jedes Modul anhand seines Formulars im Admin-Bereich darstellt, hell und dunkel, lesbar bei jeder Form des Farbsehens.

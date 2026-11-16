@@ -19,7 +19,7 @@ You describe a module once, as a model with its fields and list columns. Atrium 
 - **20 field types.** Text, numbers, dates, lists, links to other modules, images, galleries, files, a visual editor, maps, repeatable values. Forms have tabs, as in 1C-Bitrix.
 - **Roles and permissions.** Who sees which module and what they may do in it: view, create, edit, delete.
 - **SEO without code.** Titles and descriptions for every record, readable addresses with redirects from old ones, `sitemap.xml` and `robots.txt` for each site. Google Tag, Yandex Metrica and verification codes are set per site in the admin.
-- **API.** Tokens limited to chosen modules and actions; `/api/v1` describes itself.
+- **API.** Tokens limited to chosen modules and actions; `/api/v1` describes itself. AI assistants (Claude, ChatGPT, Cursor) connect to `/mcp` with the same token and exactly its rights.
 - **Sign-in code by email.** Two-factor sign-in is on by default.
 - **1C-Bitrix migrator.** Infoblocks, properties, sections, forms, list layouts, SEO and the media library become Laravel models, migrations and data, and a report compares the old site with the new one.
 - **Public theme.** A neutral site that draws every module from its admin form, light and dark, readable with any kind of colour vision.

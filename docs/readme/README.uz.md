@@ -21,7 +21,7 @@ Modul bir marta tavsiflanadi: maydonlari va roʻyxat ustunlari bilan model sifat
 - **20 xil maydon turi.** Matn, sonlar, sanalar, roʻyxatlar, boshqa modullarga bogʻlanishlar, rasmlar, galereyalar, fayllar, vizual muharrir, xaritalar, takrorlanuvchi qiymatlar. Formalar xuddi 1C-Bitrix kabi yorliqlarga boʻlingan.
 - **Rollar va huquqlar.** Kim qaysi modulni koʻradi va unda nima qila oladi: koʻrish, yaratish, tahrirlash, oʻchirish.
 - **Kod yozmasdan SEO.** Har bir yozuv uchun sarlavha va tavsif, eski manzillardan qayta yoʻnaltiriladigan tushunarli manzillar, har bir sayt uchun `sitemap.xml` va `robots.txt`. Google Tag, Yandex Metrica va tasdiqlash kodlari administrator panelida har bir sayt uchun alohida sozlanadi.
-- **API.** Faqat tanlangan modullar va amallar bilan cheklangan tokenlar; `/api/v1` oʻzini oʻzi tavsiflaydi.
+- **API.** Faqat tanlangan modullar va amallar bilan cheklangan tokenlar; `/api/v1` oʻzini oʻzi tavsiflaydi. SI-yordamchilar (Claude, ChatGPT, Cursor) `/mcp` ga xuddi shu token bilan va aynan uning huquqlari bilan ulanadi.
 - **E-pochtaga keladigan kirish kodi.** Ikki bosqichli kirish sukut boʻyicha yoqilgan.
 - **1C-Bitrix migratori.** Infobloklar, xususiyatlar, boʻlimlar, formalar, roʻyxat koʻrinishlari, SEO va media kutubxona Laravel modellari, migratsiyalar va maʼlumotlarga aylanadi, hisobot esa eski saytni yangisi bilan solishtiradi.
 - **Sayt mavzusi.** Har bir modulni administrator panelidagi formasi asosida chizadigan neytral sayt: yorugʻ va qorongʻi, ranglarni har qanday idrok etishda ham oson oʻqiladi.

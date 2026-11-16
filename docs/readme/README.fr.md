@@ -21,7 +21,7 @@ Vous décrivez un module une seule fois, sous la forme d'un modèle avec ses cha
 - **20 types de champs.** Texte, nombres, dates, listes, liens vers d'autres modules, images, galeries, fichiers, un éditeur visuel, des cartes, des valeurs répétables. Les formulaires ont des onglets, comme dans 1C-Bitrix.
 - **Rôles et droits.** Qui voit quel module et ce qu'il peut y faire : voir, créer, modifier, supprimer.
 - **SEO sans code.** Titres et descriptions pour chaque fiche, URL lisibles avec redirection depuis les anciennes, `sitemap.xml` et `robots.txt` pour chaque site. Google Tag, Yandex Metrica et les codes de vérification se règlent par site dans l'administration.
-- **API.** Des jetons limités aux modules et aux actions choisis ; `/api/v1` se décrit lui-même.
+- **API.** Des jetons limités aux modules et aux actions choisis ; `/api/v1` se décrit lui-même. Les assistants IA (Claude, ChatGPT, Cursor) se connectent à `/mcp` avec le même jeton et exactement ses droits.
 - **Code de connexion par e-mail.** La connexion à deux facteurs est activée par défaut.
 - **Migrateur 1C-Bitrix.** Infoblocs, propriétés, rubriques, formulaires, dispositions des listes, SEO et médiathèque deviennent des modèles Laravel, des migrations et des données, et un rapport compare l'ancien site au nouveau.
 - **Thème public.** Un site neutre qui affiche chaque module d'après son formulaire d'administration, en clair et en sombre, lisible quelle que soit la perception des couleurs.

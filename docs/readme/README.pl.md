@@ -21,7 +21,7 @@ Moduł opisujesz raz: jako model z jego polami i kolumnami listy. Atrium daje mu
 - **20 typów pól.** Tekst, liczby, daty, listy, powiązania z innymi modułami, obrazy, galerie, pliki, edytor wizualny, mapy, wartości wielokrotne. Formularze mają karty, jak w 1C-Bitrix.
 - **Role i uprawnienia.** Kto widzi który moduł i co może w nim robić: podgląd, tworzenie, edycja, usuwanie.
 - **SEO bez programisty.** Tytuły i opisy dla każdego rekordu, czytelne adresy z przekierowaniami ze starych, `sitemap.xml` i `robots.txt` dla każdej witryny. Google Tag, Yandex Metrica i kody weryfikacyjne ustawia się w panelu osobno dla każdej witryny.
-- **API.** Tokeny ograniczone do wybranych modułów i akcji; `/api/v1` sam opisuje, co zawiera.
+- **API.** Tokeny ograniczone do wybranych modułów i akcji; `/api/v1` sam opisuje, co zawiera. Asystenci AI (Claude, ChatGPT, Cursor) łączą się z `/mcp` tym samym tokenem i dokładnie z jego uprawnieniami.
 - **Kod logowania e-mailem.** Logowanie dwuetapowe jest domyślnie włączone.
 - **Migrator z 1C-Bitrix.** Infobloki, właściwości, sekcje, formularze, układy list, SEO i biblioteka mediów stają się modelami Laravel, migracjami i danymi, a raport porównuje starą witrynę z nową.
 - **Motyw publiczny.** Neutralna witryna, która rysuje każdy moduł na podstawie jego formularza w panelu, w wersji jasnej i ciemnej, czytelna przy każdym rodzaju widzenia barw.

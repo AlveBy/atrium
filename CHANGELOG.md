@@ -5,6 +5,7 @@ All notable changes are listed here. The format follows [Keep a Changelog](https
 ## [Unreleased]
 
 ### Added
+- MCP server at `/mcp` (laravel/mcp): an AI assistant (Claude, ChatGPT, Cursor) connects with an API token and gets seven tools — `list_modules`, `describe_module`, `list_records`, `get_record`, `create_record`, `update_record`, `delete_record`. Every call goes through the API itself, so validation, the current site, translations and the rights of the token and of its owner are the same; a refusal comes back as text the assistant can read. Off with `ATRIUM_MCP_ENABLED=false`, the path is `atrium.mcp.path`. Connect, for example, with `claude mcp add --transport http atrium https://example.com/mcp --header "Authorization: Bearer <token>"`.
 - `MultiSelectField` is a searchable list with chips (vue-multiselect) instead of a bare `<select multiple>` that needed Ctrl-click; a selected option carries a check mark, not only a colour.
 - The README in 15 languages (`docs/readme`), with screenshots of the admin and the site. `tests/Unit/ReadmeTest.php` checks that every translation lists all languages, has no broken links and the same commands and code as English.
 - `docker compose up` runs the demo with nothing but Docker: it installs Atrium with the demo shop on the first start and applies migrations and the admin bundle after each `git pull`.
