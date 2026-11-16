@@ -4,14 +4,17 @@
 name: split
 
 # Copies each package folder, with its history, to its own read-only
-# repository, which is what Packagist reads: packages/admin → AlveBy/atrium-admin
-# (alveby/atrium), packages/bitrix → AlveBy/atrium-bitrix, packages/theme →
-# AlveBy/atrium-theme. A push to main updates their main branch, a tag v1.2.3
-# tags them too.
+# repository, which is what Packagist reads: packages/<folder> →
+# AlveBy/atrium-<folder> (packages/admin → AlveBy/atrium-admin, the package
+# alveby/atrium). The list of packages is every folder in packages/ with a
+# composer.json, so a new package needs no change here, only its repository.
+# A push to main updates their main branch, a tag v1.2.3 tags them too.
 #
 # Needs the SPLIT_TOKEN secret: a fine-grained token of AlveBy with
-# "Contents: read and write" on the three repositories. Without it the job
-# only says so and passes. With PACKAGIST_TOKEN (the safe API token from
+# "Contents: read and write" on the package repositories (best "All
+# repositories", so new packages work at once). Without it the job only says
+# so and passes. A package whose repository does not exist yet gets a warning
+# and is skipped. With PACKAGIST_TOKEN (the safe API token from
 # packagist.org/profile, as username:token or alone with the
 # PACKAGIST_USERNAME variable) it also asks Packagist to read the new code,
 # so the packages do not wait for a GitHub hook.
@@ -28,25 +31,37 @@ permissions:
   contents: read
 
 jobs:
+  packages:
+    runs-on: ubuntu-latest
+    outputs:
+      folders: ${{ steps.list.outputs.folders }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - name: List packages
+        id: list
+        run: |
+          folders=$(ls -d packages/*/composer.json | cut -d/ -f2 | jq -R . | jq -cs .)
+          echo "folders=$folders" >> "$GITHUB_OUTPUT"
+          echo "$folders"
+
   split:
+    needs: packages
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        include:
-          - folder: admin
-            repository: atrium-admin
-          - folder: bitrix
-            repository: atrium-bitrix
-          - folder: theme
-            repository: atrium-theme
+        folder: ${{ fromJson(needs.packages.outputs.folders) }}
     env:
+      REPOSITORY: atrium-${{ matrix.folder }}
       SPLIT_TOKEN: ${{ secrets.SPLIT_TOKEN }}
       PACKAGIST_TOKEN: ${{ secrets.PACKAGIST_TOKEN }}
     steps:
       - name: No token
         if: env.SPLIT_TOKEN == ''
-        run: echo "::notice::SPLIT_TOKEN is not set, packages/${{ matrix.folder }} is not copied to AlveBy/${{ matrix.repository }}."
+        run: echo "::notice::SPLIT_TOKEN is not set, packages/${{ matrix.folder }} is not copied to AlveBy/${REPOSITORY}."
 
       - uses: actions/checkout@v4
         if: env.SPLIT_TOKEN != ''
@@ -57,8 +72,13 @@ jobs:
       - name: Split and push
         if: env.SPLIT_TOKEN != ''
         run: |
+          remote="https://x-access-token:${SPLIT_TOKEN}@github.com/AlveBy/${REPOSITORY}.git"
+          if ! git ls-remote "$remote" >/dev/null 2>&1; then
+            echo "::warning::AlveBy/${REPOSITORY} does not exist or SPLIT_TOKEN cannot reach it, packages/${{ matrix.folder }} is not copied."
+            echo "skip=1" >> "$GITHUB_ENV"
+            exit 0
+          fi
           sha=$(git subtree split --prefix="packages/${{ matrix.folder }}")
-          remote="https://x-access-token:${SPLIT_TOKEN}@github.com/AlveBy/${{ matrix.repository }}.git"
           if [ "$GITHUB_REF_TYPE" = tag ]; then
             git push "$remote" "$sha:refs/tags/$GITHUB_REF_NAME"
           else
@@ -66,7 +86,7 @@ jobs:
           fi
 
       - name: Update Packagist
-        if: env.SPLIT_TOKEN != '' && env.PACKAGIST_TOKEN != ''
+        if: env.SPLIT_TOKEN != '' && env.PACKAGIST_TOKEN != '' && env.skip != '1'
         run: |
           token=$(printf %s "$PACKAGIST_TOKEN" | tr -d '[:space:]')
           case "$token" in
@@ -82,4 +102,5 @@ jobs:
           curl -sS --fail-with-body -X POST https://packagist.org/api/update-package \
             -H 'Content-Type: application/json' \
             -H "Authorization: Bearer ${token}" \
-            -d '{"repository":"https://github.com/AlveBy/${{ matrix.repository }}"}'
+            -d "{\"repository\":\"https://github.com/AlveBy/${REPOSITORY}\"}" \
+            || echo "::warning::Packagist did not update packages/${{ matrix.folder }}. A new package is submitted once at https://packagist.org/packages/submit with https://github.com/AlveBy/${REPOSITORY}."

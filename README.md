@@ -128,6 +128,16 @@ The Bitrix database is only read. The tabs, field order and list columns come ou
 | [`alveby/atrium-bitrix`](packages/bitrix/README.md) | The 1C-Bitrix migrator |
 | [`alveby/atrium-ai`](packages/ai/README.md) | AI writing help in the admin |
 | [`alveby/atrium-docs`](packages/docs/README.md) | Documentation pages from Markdown, with versions and search |
+| [`alveby/atrium-news`](packages/news/README.md) | News |
+| [`alveby/atrium-pages`](packages/pages/README.md) | Static pages, with an import of 1C-Bitrix pages |
+| [`alveby/atrium-catalog`](packages/catalog/README.md) | Product catalog with nested sections |
+| [`alveby/atrium-brands`](packages/brands/README.md) | Brands with logos |
+| [`alveby/atrium-stores`](packages/stores/README.md) | Stores and offices on a map |
+| [`alveby/atrium-team`](packages/team/README.md) | People, departments and contacts |
+| [`alveby/atrium-faq`](packages/faq/README.md) | Questions and answers |
+| [`alveby/atrium-forms`](packages/forms/README.md) | Form builder and submissions |
+| [`alveby/atrium-reviews`](packages/reviews/README.md) | Reviews and ratings with moderation |
+| [`alveby/atrium-solutions`](packages/solutions/README.md) | Ready-made sites installed in one command |
 
 Once 0.1 is on Packagist, an existing Laravel 13 app gets Atrium with:
 
