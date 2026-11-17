@@ -24,18 +24,22 @@ final class Ci
     public const DEFAULT_STEPS = ['lint', 'static', 'tests', 'coverage', 'mutation'];
 
     /** The mutation score the changed code must reach. */
-    public const MIN_MSI = 85;
+    public const MIN_MSI = 100;
+
+    /** Infection runs at a time on this machine, across every checkout. */
+    public const MUTATION_SLOTS = 2;
 
     private const USAGE = <<<'TXT'
         Usage: bin/ci [step ...] [options]
 
         Steps (default: all but dusk):
-          lint       Pint and the copyright header
+          lint       Pint, the copyright header, no coverage or mutation ignores
           static     PHPStan
           tests      PHPUnit of every package, one process each, on every --db
           coverage   PHPUnit with coverage on SQLite: changed lines 100% covered,
                      no package with more uncovered lines than .ci/coverage says
-          mutation   Infection on the changed lines: MSI at least 85%
+          mutation   Infection on the changed lines: MSI 100%, two runs at a
+                     time per machine (ATRIUM_CI_MUTATION_SLOTS)
           dusk       browser tests (needs .env.dusk.local and Chrome)
 
         Options:
@@ -261,6 +265,10 @@ final class Ci
         if (in_array('lint', $this->steps, true)) {
             $jobs[] = ['lint', 'pint', [PHP_BINARY, 'vendor/bin/pint', '--test'], ['XDEBUG_MODE' => 'off']];
             $jobs[] = ['lint', 'copyright header', [PHP_BINARY, 'scripts/copyright-header.php'], ['XDEBUG_MODE' => 'off']];
+
+            foreach (EscapeHatches::find($this->root) as $hatch) {
+                $this->results[] = ['lint', "{$hatch}: no line is taken out of the coverage or the mutation gate", false, 0.0];
+            }
         }
 
         if (in_array('static', $this->steps, true)) {
@@ -438,7 +446,13 @@ final class Ci
             // PAO_DISABLE: laravel/pao turns PHPUnit's output into JSON when an
             // AI agent runs it, Infection then cannot tell a passing run, and
             // every mutant would count as killed.
+            $slot = $this->mutationSlot();
             $this->pool([['mutation', $target, $command, ['XDEBUG_MODE' => 'off', 'PAO_DISABLE' => '1', ...$this->databaseEnv('sqlite', $target)]]], 1);
+
+            if ($slot !== null) {
+                flock($slot, LOCK_UN);
+                fclose($slot);
+            }
             $summary = "{$this->build}/infection/{$target}/summary.json";
             $stats = is_file($summary) ? json_decode((string) file_get_contents($summary), true) : null;
 
@@ -461,6 +475,41 @@ final class Ci
         }
 
         $this->summary($markdown);
+    }
+
+    /**
+     * Waits for one of the machine's mutation slots: Infection is the heaviest
+     * step, and many checkouts run bin/ci at once. CI runners are not shared.
+     *
+     * @return resource|null
+     */
+    private function mutationSlot(): mixed
+    {
+        $slots = (int) (getenv('ATRIUM_CI_MUTATION_SLOTS') ?: self::MUTATION_SLOTS);
+
+        if (getenv('CI') !== false || $slots < 1) {
+            return null;
+        }
+
+        for ($waited = 0; ; $waited++) {
+            for ($i = 0; $i < $slots; $i++) {
+                $handle = fopen(sys_get_temp_dir()."/atrium-ci-mutation-{$i}.lock", 'c');
+
+                if ($handle !== false && flock($handle, LOCK_EX | LOCK_NB)) {
+                    return $handle;
+                }
+
+                if ($handle !== false) {
+                    fclose($handle);
+                }
+            }
+
+            if ($waited === 0) {
+                $this->say("mutation: {$slots} runs already going on this machine, waiting for one to finish");
+            }
+
+            sleep(5);
+        }
     }
 
     private function dusk(): void
