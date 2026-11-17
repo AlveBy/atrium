@@ -32,6 +32,7 @@
             <directory>packages/theme/tests</directory>
             <directory>packages/two-factor/tests</directory>
             <directory>packages/social-login/tests</directory>
+            <directory>packages/wordpress/tests</directory>
         </testsuite>
     </testsuites>
     <source>
@@ -57,6 +58,7 @@
             <directory>packages/theme/src</directory>
             <directory>packages/two-factor/src</directory>
             <directory>packages/social-login/src</directory>
+            <directory>packages/wordpress/src</directory>
         </include>
     </source>
     <php>

@@ -91,7 +91,7 @@ A ready-made site is a set of modules, theme settings and demo content installed
 
 ## 0.3 — moving from other CMSs
 
-The Bitrix migrator becomes `alveby/atrium-import`: one pipeline, many sources.
+One pipeline, many sources. Each importer starts as a package of its own (`alveby/atrium-bitrix`, `alveby/atrium-wordpress`); what they really share moves to `alveby/atrium-import` once a third one shows it.
 
 **One pipeline for every source**
 1. Analyse: what the old database holds — content types, fields, categories, languages, sites.
@@ -105,7 +105,7 @@ The Bitrix migrator becomes `alveby/atrium-import`: one pipeline, many sources.
 | CMS | What moves |
 |---|---|
 | 1C-Bitrix | already there: iblocks, sections, properties, form layouts, media library, SEO |
-| WordPress | from a WXR export or straight from the database: posts, pages, categories, tags, custom post types, ACF, Yoast/Rank Math, WPML/Polylang languages |
+| ~~WordPress~~ | done (`alveby/atrium-wordpress`, [Moving from WordPress](docs/wordpress.md)): straight from the database — posts to News, pages to Pages, custom post types to generated modules, categories, tags, authors, attachments, ACF, Yoast/Rank Math, WPML/Polylang languages; `atrium:wordpress:parity` checks before against after, `atrium:wordpress:redirects` writes the 301 map, `atrium:wordpress:sync` catches up; tested on MySQL, PostgreSQL and SQLite. From a WXR export: later |
 | Drupal | 7 (end of life, so the most people want out) and 10/11: nodes, taxonomy, fields, path aliases |
 | Joomla | articles, categories, menus |
 | MODX | resources, template variables |

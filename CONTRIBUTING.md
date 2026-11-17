@@ -7,6 +7,7 @@ Thanks for helping. Atrium is a monorepo: the demo app lives in the root, the pa
 | Admin panel | `packages/admin` | `alveby/atrium` |
 | 1C-Bitrix migrator | `packages/bitrix` | `alveby/atrium-bitrix` |
 | Public theme | `packages/theme` | `alveby/atrium-theme` |
+| WordPress importer | `packages/wordpress` | `alveby/atrium-wordpress` |
 
 ## Setup
 
@@ -48,7 +49,7 @@ The queue sets the merge method itself, tests the pull request on top of the lat
 - Every line you add or change is covered, and every condition both ways. Write the positive tests (what should work does, and saves what it should) and the negative ones (wrong or empty input, no permission, a missing record, another site's data, an outside service that fails or times out). A test that still passes when you break the line it covers does not count: break the line once and watch the test go red.
 - `declare(strict_types=1);` in every PHP file.
 - Every source file starts with the Atrium copyright header (`This file is part of Atrium …`). Pint writes it into PHP files, `php scripts/copyright-header.php --fix` into the rest, and `tests/Unit/CopyrightHeaderTest.php` fails without it. Translations get it too; built bundles (`dist`), JSON, XML, Markdown, SVG and the stubs that `atrium:make-module` copies into your application do not.
-- Never commit data from a real site. Bitrix fixtures are synthetic.
+- Never commit data from a real site. Bitrix and WordPress fixtures are synthetic.
 
 ## Writing to the database
 
