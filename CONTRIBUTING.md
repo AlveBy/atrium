@@ -1,6 +1,6 @@
 # Contributing to Atrium
 
-Thanks for helping. Atrium is a monorepo: the demo app lives in the root, the packages in `packages/`.
+Thanks for helping. Atrium is a monorepo: the demo app lives in the root, the packages in `packages/`. Questions and ideas go to [Discussions](https://github.com/AlveBy/atrium/discussions); anything you'd rather not post in public, to atrium@alve.by.
 
 | Package | Path | Packagist |
 |---|---|---|
