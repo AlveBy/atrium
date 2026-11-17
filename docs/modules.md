@@ -350,6 +350,16 @@ A module may have submodules: a shop with its delivery and payment methods. Each
 
 `atrium:module:install vendor/atrium-shop` installs every submodule of it that Composer has, after it. A submodule can be installed on its own once its parent is. `atrium:module:remove vendor/atrium-shop` removes its submodules first, with the same answer about the data; a submodule removed on its own leaves its parent. The **Modules** screen lists the submodules under their parent, and their demo content is filled in after the parent's.
 
+### The Modules screen
+
+**Modules** in the menu lists the installed modules, with a button to the settings of each one that has any. A superadmin sees more there:
+
+- **Switch off** and **Switch on**. A module that is switched off keeps its tables, records and settings, but everything else treats it as not installed: its models leave the menu, the role form and the API, and its pages leave the site. `Modules::isInstalled()` is false for it, so a service provider that checks it needs no change. Switching a module off switches off its submodules too, and switching it on brings them back. A submodule can't be switched on while its parent is off. Switching on runs any migrations the module got while it was off. The list is kept in `atrium.disabled_modules` in config/atrium.php. `atrium:module:install` switches a module back on, and `atrium:module:remove` also removes a module that is off.
+- **Required, not installed**: the packages Composer has but `atrium.modules` doesn't list, each shown with the command that installs it.
+- **Catalogue**: the Atrium modules published on Packagist, with packages of type `atrium-module` or the keyword `atrium-module`. alveby's come first, then the most downloaded. Each shows whether it is installed, off, required or available, and the commands that add it (`composer require` and `atrium:module:install`). Packagist is asked at most every six hours, after the page has loaded. When it doesn't answer, the screen says so.
+
+Publishing a module of your own: set `"type": "atrium-module"` in its composer.json, or add `atrium-module` to `keywords`, and submit it to Packagist. It shows up in the catalogue of every site.
+
 ## Module settings
 
 A module that needs something set by the site's owner — a currency, the number of products on a page, an address for notices — names a settings class in its manifest:
@@ -452,6 +462,8 @@ The core fires these:
 | `atrium.admin.menu` | filter | `array $items`, `?AdminUser $user` | The panel's menu is built; an item is `['label' => ..., 'route' => ..., 'icon' => ...]`, and items the user may not open are dropped afterwards |
 | `atrium.module.installed` | action | `Module $module` | `atrium:module:install` has run its migrations and listed it |
 | `atrium.module.removed` | action | `string $package`, `bool $dataDropped` | `atrium:module:remove` has taken it out |
+| `atrium.module.enabled` | action | `Module $module` | a superadmin has switched it on |
+| `atrium.module.disabled` | action | `Module $module` | a superadmin has switched it off |
 
 The record hooks see only what the panel and the API save; a seeder or an import that writes with Eloquent does not fire them (listen to Eloquent's own events for that).
 
