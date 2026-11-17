@@ -109,6 +109,7 @@ All notable changes are listed here. The format follows [Keep a Changelog](https
 - The administrator edit page did not open.
 - Revoking an API token at an address that is not a token number (`/admin/api-tokens/robot`) ended in a server error; it answers 404 now.
 - Searching the lists of the panel, the API, MCP and the media library took `%` and `_` as wildcards ("50%" found "500 rooms") and, on PostgreSQL, minded capitals; the media library search found nothing on SQLite once the words held `%` or `_`. The search now takes the words as typed and ignores case on every database.
+- An old address whose last segment was a former code of a page in a folder redirected to the folder stitched in (`/shop/install` → `/shop/guides/setup`) and could redirect a page to itself; the last segment is replaced by the current code only.
 
 ### Security
 - API tokens and MCP keep to the sites their administrator may work with, as the panel does: records of other sites are not listed, read, changed or deleted, `?site=` naming another site answers 404, and new records go to an allowed site. Neither the API nor the panel takes `site_id` from the request any more, so a record cannot be moved to another site.
