@@ -112,6 +112,7 @@ All notable changes are listed here. The format follows [Keep a Changelog](https
 - An old address whose last segment was a former code of a page in a folder redirected to the folder stitched in (`/shop/install` → `/shop/guides/setup`) and could redirect a page to itself; the last segment is replaced by the current code only.
 - `atrium:slug:regenerate` regenerated nothing for models that use `HasAdminSlug` without declaring `HasSlug`, which is every model of the modules and of the Bitrix migrator, and still reported success with 0. Such models are regenerated now.
 - `atrium:media:index --path=` with a folder that does not exist reported the error and still exited successfully, so a deploy script went on; it exits with a failure now.
+- A module with a many-to-many field that has no relation on its model saved (the field left out) but its edit page and its records in the API answered with a server error; they open now, the field left out as on saving.
 
 ### Security
 - API tokens and MCP keep to the sites their administrator may work with, as the panel does: records of other sites are not listed, read, changed or deleted, `?site=` naming another site answers 404, and new records go to an allowed site. Neither the API nor the panel takes `site_id` from the request any more, so a record cannot be moved to another site.
