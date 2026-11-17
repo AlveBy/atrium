@@ -120,6 +120,7 @@ Il database di Bitrix viene solo letto. Le schede, l'ordine dei campi e le colon
 - [Aiuto alla scrittura con IA: fornitori gratuiti e a pagamento, descrizioni, SEO, testi alt, traduzioni](../ai.md)
 - [Il tuo modulo: campi, colonne, schede, permessi, lingue, test, pacchetto](../modules.md)
 - [Campi personalizzati: aggiungere campi a qualsiasi modulo dal pannello, filtri e faccette su 100 000 record](../custom-fields.md)
+- [Cache: pagine veloci con decine di proprietà, Redis, cache delle pagine, intestazioni per CDN](../cache.md)
 - [Migrare da 1C-Bitrix, passo per passo](../bitrix.md)
 - [Backup: database e file in più destinazioni, pianificazione, controlli, ripristino](../backup.md)
 - [CDN: immagini, copie ridimensionate e WebP/AVIF, svuotamento della cache, caricamenti su S3](../cdn.md)

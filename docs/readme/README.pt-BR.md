@@ -120,6 +120,7 @@ O banco de dados do Bitrix é apenas lido. As abas, a ordem dos campos e as colu
 - [Ajuda de redação com IA: provedores gratuitos e pagos, descrições, SEO, textos alt, traduções](../ai.md)
 - [Seu próprio módulo: campos, colunas, abas, permissões, idiomas, testes, pacote](../modules.md)
 - [Campos personalizados: adicionar campos a qualquer módulo pelo painel, filtros e facetas com 100 000 registros](../custom-fields.md)
+- [Cache: páginas rápidas com dezenas de propriedades, Redis, cache de páginas, cabeçalhos para CDN](../cache.md)
 - [Migrar do 1C-Bitrix, passo a passo](../bitrix.md)
 - [Backups: bancos de dados e arquivos em vários destinos, agendamento, verificações, restauração](../backup.md)
 - [CDN: imagens, cópias redimensionadas e WebP/AVIF, limpeza de cache, uploads para S3](../cdn.md)

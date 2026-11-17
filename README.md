@@ -119,6 +119,7 @@ The Bitrix database is only read. The tabs, field order and list columns come ou
 - [SEO: titles, hreflang, sitemaps, schema.org, redirects, the SEO check](docs/seo.md)
 - [Your own module: fields, columns, tabs, permissions, languages, tests, a package](docs/modules.md)
 - [Custom fields: add fields to any module from the admin, filters and facets on 100 000 records](docs/custom-fields.md)
+- [Cache: fast pages with dozens of properties, Redis, the page cache, CDN headers](docs/cache.md)
 - [Moving from 1C-Bitrix, step by step](docs/bitrix.md)
 - [Backups: databases and files to several places, schedules, health checks, restore](docs/backup.md)
 - [CDN: pictures, resized copies and WebP/AVIF, cache purge, uploads to S3](docs/cdn.md)

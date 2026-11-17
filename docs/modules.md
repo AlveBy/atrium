@@ -236,6 +236,10 @@ $request->validate([
 
 Leave the captcha's fields out of what goes back into the form: `->withInput($request->except(CaptchaManager::INPUTS))`. A captcha of another kind (Cloudflare Turnstile, hCaptcha, your own) is a class with `widget()` and `verify($request)` (`Atrium\Admin\Captcha\CaptchaDriver`), added with `app(CaptchaManager::class)->extend('turnstile', fn () => new Turnstile(...))` and chosen with `ATRIUM_CAPTCHA=turnstile`.
 
+## Cache
+
+Public pages draw records from the record cache. Add `implements Cacheable` and `use CachesRecords` to the model, and read lists through `->cachedIds()` / `->cachedPaginate()` / `->cachedCards()` instead of `->get()`: a list then asks the database only for IDs, and each record comes from its card, one multi-get for a whole page. Saves through Eloquent drop what they touch; code that writes with `DB::table()` calls `app(RecordCache::class)->flushClass(Article::class)`, and an import runs inside `bulk()`. Everything else, step by step: [cache.md](cache.md).
+
 ## Interface translations
 
 Labels may be plain text or translation keys. For a module that is used in more than one language, keep them in `lang/{language}/admin.php` and write `->label(__('admin.articles.name'))`.

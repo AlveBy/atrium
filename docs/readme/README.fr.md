@@ -120,6 +120,7 @@ La base de données Bitrix est uniquement lue. Les onglets, l'ordre des champs e
 - [Aide à la rédaction par IA : fournisseurs gratuits et payants, descriptions, SEO, textes alt, traductions](../ai.md)
 - [Votre module : champs, colonnes, onglets, droits, langues, tests, paquet](../modules.md)
 - [Champs personnalisés : ajouter des champs à tout module depuis l'administration, filtres et facettes sur 100 000 fiches](../custom-fields.md)
+- [Cache : des pages rapides avec des dizaines de propriétés, Redis, cache de pages, en-têtes CDN](../cache.md)
 - [Migrer depuis 1C-Bitrix, pas à pas](../bitrix.md)
 - [Sauvegardes : bases de données et fichiers vers plusieurs destinations, planification, contrôles, restauration](../backup.md)
 - [CDN : images, copies redimensionnées et WebP/AVIF, purge du cache, envois vers S3](../cdn.md)
