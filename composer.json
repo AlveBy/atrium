@@ -15,6 +15,7 @@
     "require": {
         "php": "^8.3",
         "alveby/atrium": "@dev",
+        "alveby/atrium-2fa": "@dev",
         "alveby/atrium-ai": "@dev",
         "alveby/atrium-backup": "@dev",
         "alveby/atrium-brands": "@dev",
@@ -25,6 +26,7 @@
         "alveby/atrium-news": "@dev",
         "alveby/atrium-pages": "@dev",
         "alveby/atrium-reviews": "@dev",
+        "alveby/atrium-social-login": "@dev",
         "alveby/atrium-solutions": "@dev",
         "alveby/atrium-stores": "@dev",
         "alveby/atrium-team": "@dev",
@@ -75,7 +77,9 @@
             "Atrium\\Solutions\\Tests\\": "packages/solutions/tests/",
             "Atrium\\Stores\\Tests\\": "packages/stores/tests/",
             "Atrium\\Team\\Tests\\": "packages/team/tests/",
-            "Atrium\\Theme\\Tests\\": "packages/theme/tests/"
+            "Atrium\\Theme\\Tests\\": "packages/theme/tests/",
+            "Atrium\\TwoFactor\\Tests\\": "packages/two-factor/tests/",
+            "Atrium\\SocialLogin\\Tests\\": "packages/social-login/tests/"
         }
     },
     "scripts": {
@@ -146,6 +150,7 @@
                 "symlink": true,
                 "versions": {
                     "alveby/atrium": "0.1.x-dev",
+                    "alveby/atrium-2fa": "0.1.x-dev",
                     "alveby/atrium-ai": "0.1.x-dev",
                     "alveby/atrium-backup": "0.1.x-dev",
                     "alveby/atrium-bitrix": "0.1.x-dev",
@@ -157,6 +162,7 @@
                     "alveby/atrium-news": "0.1.x-dev",
                     "alveby/atrium-pages": "0.1.x-dev",
                     "alveby/atrium-reviews": "0.1.x-dev",
+                    "alveby/atrium-social-login": "0.1.x-dev",
                     "alveby/atrium-solutions": "0.1.x-dev",
                     "alveby/atrium-stores": "0.1.x-dev",
                     "alveby/atrium-team": "0.1.x-dev",

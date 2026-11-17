@@ -28,6 +28,8 @@ parameters:
         - packages/stores/src
         - packages/team/src
         - packages/theme/src
+        - packages/two-factor/src
+        - packages/social-login/src
     # Package config files read env() like the application's do.
     configDirectories:
         - config
@@ -38,6 +40,8 @@ parameters:
         - packages/docs/config
         - packages/forms/config
         - packages/solutions/config
+        - packages/two-factor/config
+        - packages/social-login/config
     # Larastan learns model columns from migrations; the package ships its own.
     databaseMigrationsPath:
         - database/migrations
@@ -52,4 +56,6 @@ parameters:
         - packages/reviews/database/migrations
         - packages/stores/database/migrations
         - packages/team/database/migrations
+        - packages/two-factor/database/migrations
+        - packages/social-login/database/migrations
         - vendor/laravel/sanctum/database/migrations

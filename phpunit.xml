@@ -28,6 +28,8 @@
             <directory>packages/stores/tests</directory>
             <directory>packages/team/tests</directory>
             <directory>packages/theme/tests</directory>
+            <directory>packages/two-factor/tests</directory>
+            <directory>packages/social-login/tests</directory>
         </testsuite>
     </testsuites>
     <source>
@@ -49,6 +51,8 @@
             <directory>packages/stores/src</directory>
             <directory>packages/team/src</directory>
             <directory>packages/theme/src</directory>
+            <directory>packages/two-factor/src</directory>
+            <directory>packages/social-login/src</directory>
         </include>
     </source>
     <php>
