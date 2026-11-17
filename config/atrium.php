@@ -153,6 +153,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Developer credit
+    |--------------------------------------------------------------------------
+    |
+    | A small "Made by AlveSoft Solutions" link with the AlveSoft logo at the
+    | bottom of the sidebar and under the sign-in form. Atrium is MIT
+    | licensed and nothing requires it: set false to hide it.
+    |
+    */
+    'credit' => (bool) env('ATRIUM_CREDIT', true),
+
+    /*
+    |--------------------------------------------------------------------------
     | Menu Items
     |--------------------------------------------------------------------------
     |

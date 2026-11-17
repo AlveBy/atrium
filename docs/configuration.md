@@ -182,10 +182,13 @@ A question of the built-in captcha is answered once, right or wrong: a wrong ans
 
 The public theme puts a small "Made with Atrium" link in the footer of every page, in the visitor's language, and `<meta name="generator" content="Atrium">` in its head.
 
+The admin shows "Made by AlveSoft Solutions", the company that builds Atrium, with the AlveSoft logo at the bottom of the sidebar and under the sign-in form. It links to [alve.by/en](https://alve.by/en/) in a new tab and speaks the admin's language. On a dark background it shows the white logo.
+
 | Setting | Default | What it does |
 |---|---|---|
 | `ATRIUM_THEME_CREDIT` | `true` | Show the "Made with Atrium" link (`config/atrium-theme.php` → `credit`) |
+| `ATRIUM_CREDIT` | `true` | Show "Made by AlveSoft Solutions" in the admin (`config/atrium.php` → `credit`) |
 
-Atrium is free under the MIT License, so the link is yours to switch off. If Atrium helped you, please keep it: it is how other people find the project. This is a request, not a condition of the licence.
+Atrium is free under the MIT License, so both links are yours to switch off. If Atrium helped you, please keep them: it is how other people find the project. This is a request, not a condition of the licence.
 
 What MIT does require is that the copyright notice stays in copies of the code: keep the `LICENSE` file and the header at the top of each source file (`This file is part of Atrium …`) when you copy, fork or publish the packages. Your own code, including the files `atrium:make-module` creates in your application, is yours and needs no header.
