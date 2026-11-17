@@ -1,3 +1,7 @@
+{{--
+    This file is part of Atrium (https://github.com/AlveBy/atrium).
+    Copyright (c) 2026 AlveBy. Licensed under the MIT License, see LICENSE.
+--}}
 {{-- Colours: white on #2563eb 5.17:1, #333 on white 12.63:1, #555 on white 7.46:1. --}}
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">

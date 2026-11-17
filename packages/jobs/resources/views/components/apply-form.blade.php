@@ -1,4 +1,8 @@
 {{--
+    This file is part of Atrium (https://github.com/AlveBy/atrium).
+    Copyright (c) 2026 AlveBy. Licensed under the MIT License, see LICENSE.
+--}}
+{{--
     The application form. Colours come from the theme's custom properties
     (text on --bg, the button --bg on --accent: 6.7:1 light, 8.87:1 dark);
     errors are #b91c1c in light (6.47:1 on white) and #fca5a5 in dark

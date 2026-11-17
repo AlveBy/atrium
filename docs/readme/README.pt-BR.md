@@ -120,6 +120,7 @@ O banco de dados do Bitrix é apenas lido. As abas, a ordem dos campos e as colu
 - [Ajuda de redação com IA: provedores gratuitos e pagos, descrições, SEO, textos alt, traduções](../ai.md)
 - [Seu próprio módulo: campos, colunas, abas, permissões, idiomas, testes, pacote](../modules.md)
 - [Migrar do 1C-Bitrix, passo a passo](../bitrix.md)
+- [Vagas e candidaturas: página de carreiras, currículos, etapas, dados pessoais](../jobs.md)
 
 ## Pacotes
 
@@ -130,6 +131,7 @@ O banco de dados do Bitrix é apenas lido. As abas, a ordem dos campos e as colu
 | [`alveby/atrium-bitrix`](../../packages/bitrix/README.md) | O migrador do 1C-Bitrix |
 | [`alveby/atrium-ai`](../../packages/ai/README.md) | Ajuda de redação com IA no painel |
 | [`alveby/atrium-docs`](../../packages/docs/README.md) | Documentação a partir de Markdown, com versões e busca |
+| [`alveby/atrium-jobs`](../../packages/jobs/README.md) | Vagas e candidaturas, com etapas de seleção |
 
 Quando a 0.1 estiver no Packagist, uma aplicação Laravel 13 existente poderá receber o Atrium com:
 

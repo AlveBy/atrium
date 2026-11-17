@@ -120,6 +120,7 @@ php artisan atrium:bitrix:parity
 - [ШІ-помічник для текстів: безкоштовні й платні провайдери, описи, SEO, alt, переклади](../ai.md)
 - [Власний модуль: поля, колонки, вкладки, права, мови, тести, пакет](../modules.md)
 - [Переїзд з 1С-Бітрікс крок за кроком](../bitrix.md)
+- [Вакансії та відгуки: сторінка кар’єри, резюме, воронка, персональні дані](../jobs.md)
 
 ## Пакети
 
@@ -130,6 +131,7 @@ php artisan atrium:bitrix:parity
 | [`alveby/atrium-bitrix`](../../packages/bitrix/README.md) | Мігратор з 1С-Бітрікс |
 | [`alveby/atrium-ai`](../../packages/ai/README.md) | ШІ-помічник для текстів в адмінці |
 | [`alveby/atrium-docs`](../../packages/docs/README.md) | Документація з Markdown: версії та пошук |
+| [`alveby/atrium-jobs`](../../packages/jobs/README.md) | Вакансії та відгуки з воронкою підбору |
 
 Коли 0.1 з'явиться на Packagist, у готовий застосунок на Laravel 13 Atrium встановлюватиметься так:
 

@@ -1,4 +1,8 @@
 {{--
+    This file is part of Atrium (https://github.com/AlveBy/atrium).
+    Copyright (c) 2026 AlveBy. Licensed under the MIT License, see LICENSE.
+--}}
+{{--
     The vacancies: a filter (department, city, type, remote) over the open
     ones, cards with what a candidate looks for first, and the "send us
     your CV" form when nothing is open. The theme passes the frame's data;

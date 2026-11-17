@@ -120,6 +120,7 @@ php artisan atrium:bitrix:parity
 - [Мәтіндерге арналған ЖИ-көмекші: тегін және ақылы провайдерлер, сипаттамалар, SEO, alt, аудармалар](../ai.md)
 - [Өз модуліңіз: өрістер, бағандар, қойындылар, құқықтар, тілдер, тесттер, пакет](../modules.md)
 - [1С-Битрикстен көшу, қадам-қадаммен](../bitrix.md)
+- [Бос орындар мен өтінімдер: мансап беті, түйіндеме, кезеңдер, жеке деректер](../jobs.md)
 
 ## Пакеттер
 
@@ -130,6 +131,7 @@ php artisan atrium:bitrix:parity
 | [`alveby/atrium-bitrix`](../../packages/bitrix/README.md) | 1С-Битрикстен мигратор |
 | [`alveby/atrium-ai`](../../packages/ai/README.md) | Әкімшілік панельдегі мәтіндерге арналған ЖИ-көмекші |
 | [`alveby/atrium-docs`](../../packages/docs/README.md) | Markdown-тан құжаттама: нұсқалар мен іздеу |
+| [`alveby/atrium-jobs`](../../packages/jobs/README.md) | Бос орындар мен өтінімдер, іріктеу кезеңдерімен |
 
 0.1 Packagist-те пайда болғанда, Laravel 13-тегі дайын қосымшаға Atrium былай орнатылады:
 

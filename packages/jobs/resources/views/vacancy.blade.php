@@ -1,4 +1,8 @@
 {{--
+    This file is part of Atrium (https://github.com/AlveBy/atrium).
+    Copyright (c) 2026 AlveBy. Licensed under the MIT License, see LICENSE.
+--}}
+{{--
     A vacancy: what, where and for how much, the texts, the contact person
     and the application form. The JobPosting structured data comes from
     JobsServiceProvider.

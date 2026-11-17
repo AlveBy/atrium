@@ -1,3 +1,7 @@
+{{--
+    This file is part of Atrium (https://github.com/AlveBy/atrium).
+    Copyright (c) 2026 AlveBy. Licensed under the MIT License, see LICENSE.
+--}}
 {{-- #333 on white: 12.63:1. The text is the template's, escaped, with its line breaks. --}}
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">

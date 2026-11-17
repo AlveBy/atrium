@@ -120,6 +120,7 @@ Baza danych Bitrixa jest tylko odczytywana. Karty, kolejność pól i kolumny li
 - [Pomoc AI w pisaniu: darmowi i płatni dostawcy, opisy, SEO, teksty alt, tłumaczenia](../ai.md)
 - [Własny moduł: pola, kolumny, zakładki, uprawnienia, języki, testy, pakiet](../modules.md)
 - [Przeprowadzka z 1C-Bitrix krok po kroku](../bitrix.md)
+- [Oferty pracy i aplikacje: strona kariery, CV, etapy rekrutacji, dane osobowe](../jobs.md)
 
 ## Pakiety
 
@@ -130,6 +131,7 @@ Baza danych Bitrixa jest tylko odczytywana. Karty, kolejność pól i kolumny li
 | [`alveby/atrium-bitrix`](../../packages/bitrix/README.md) | Migrator z 1C-Bitrix |
 | [`alveby/atrium-ai`](../../packages/ai/README.md) | Pomoc AI w pisaniu tekstów w panelu |
 | [`alveby/atrium-docs`](../../packages/docs/README.md) | Dokumentacja z Markdown, z wersjami i wyszukiwaniem |
+| [`alveby/atrium-jobs`](../../packages/jobs/README.md) | Oferty pracy i aplikacje z etapami rekrutacji |
 
 Gdy 0.1 trafi na Packagist, do istniejącej aplikacji na Laravel 13 dodasz Atrium tak:
 

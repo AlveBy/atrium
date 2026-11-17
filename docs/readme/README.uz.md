@@ -120,6 +120,7 @@ Bitrix maʼlumotlar bazasi faqat oʻqiladi. Yorliqlar, maydonlar tartibi va roʻ
 - [Matnlar uchun SI-yordamchi: bepul va pullik provayderlar, tavsiflar, SEO, alt, tarjimalar](../ai.md)
 - [Oʻz modulingiz: maydonlar, ustunlar, yorliqlar, huquqlar, tillar, testlar, paket](../modules.md)
 - [1C-Bitrixdan koʻchish, qadamma-qadam](../bitrix.md)
+- [Vakansiyalar va arizalar: karyera sahifasi, rezyume, bosqichlar, shaxsiy maʼlumotlar](../jobs.md)
 
 ## Paketlar
 
@@ -130,6 +131,7 @@ Bitrix maʼlumotlar bazasi faqat oʻqiladi. Yorliqlar, maydonlar tartibi va roʻ
 | [`alveby/atrium-bitrix`](../../packages/bitrix/README.md) | 1C-Bitrix migratori |
 | [`alveby/atrium-ai`](../../packages/ai/README.md) | Admin panelda matnlar uchun SI-yordamchi |
 | [`alveby/atrium-docs`](../../packages/docs/README.md) | Markdown’dan hujjatlar: versiyalar va qidiruv |
+| [`alveby/atrium-jobs`](../../packages/jobs/README.md) | Vakansiyalar va arizalar, saralash bosqichlari bilan |
 
 0.1 versiyasi Packagist saytida paydo boʻlgach, mavjud Laravel 13 ilovasiga Atrium quyidagicha oʻrnatiladi:
 

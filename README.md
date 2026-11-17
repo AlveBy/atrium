@@ -118,6 +118,7 @@ The Bitrix database is only read. The tabs, field order and list columns come ou
 - [AI writing help: free and paid providers, descriptions, SEO, alt texts, translations](docs/ai.md)
 - [Your own module: fields, columns, tabs, permissions, languages, tests, a package](docs/modules.md)
 - [Moving from 1C-Bitrix, step by step](docs/bitrix.md)
+- [Vacancies and job applications: the careers page, CVs, the pipeline, personal data](docs/jobs.md)
 
 ## Packages
 
@@ -128,6 +129,7 @@ The Bitrix database is only read. The tabs, field order and list columns come ou
 | [`alveby/atrium-bitrix`](packages/bitrix/README.md) | The 1C-Bitrix migrator |
 | [`alveby/atrium-ai`](packages/ai/README.md) | AI writing help in the admin |
 | [`alveby/atrium-docs`](packages/docs/README.md) | Documentation pages from Markdown, with versions and search |
+| [`alveby/atrium-jobs`](packages/jobs/README.md) | Vacancies and job applications with a pipeline |
 
 Once 0.1 is on Packagist, an existing Laravel 13 app gets Atrium with:
 

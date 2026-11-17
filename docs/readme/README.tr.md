@@ -120,6 +120,7 @@ Bitrix veritabanından yalnızca okuma yapılır. Sekmeler, alan sırası ve lis
 - [Yapay zekâ yazım yardımı: ücretsiz ve ücretli sağlayıcılar, açıklamalar, SEO, alt metinleri, çeviriler](../ai.md)
 - [Kendi modülünüz: alanlar, sütunlar, sekmeler, yetkiler, diller, testler, paket](../modules.md)
 - [1C-Bitrix’ten adım adım taşınma](../bitrix.md)
+- [İş ilanları ve başvurular: kariyer sayfası, özgeçmişler, aşamalar, kişisel veriler](../jobs.md)
 
 ## Paketler
 
@@ -130,6 +131,7 @@ Bitrix veritabanından yalnızca okuma yapılır. Sekmeler, alan sırası ve lis
 | [`alveby/atrium-bitrix`](../../packages/bitrix/README.md) | 1C-Bitrix geçiş aracı |
 | [`alveby/atrium-ai`](../../packages/ai/README.md) | Yönetim panelinde yapay zekâ yazım yardımı |
 | [`alveby/atrium-docs`](../../packages/docs/README.md) | Markdown’dan belgeler, sürümler ve arama ile |
+| [`alveby/atrium-jobs`](../../packages/jobs/README.md) | İş ilanları ve başvurular, işe alım aşamalarıyla |
 
 0.1 Packagist'te yayımlandığında, mevcut bir Laravel 13 uygulamasına Atrium şu şekilde eklenecek:
 
