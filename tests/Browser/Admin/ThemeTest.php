@@ -147,21 +147,79 @@ final class ThemeTest extends AdminTestCase
                     const actions = document.querySelector('thead th:last-child').getBoundingClientRect();
                     const middle = head.getBoundingClientRect();
                     const y = bar.getBoundingClientRect().bottom - 8;
-                    const select = document.querySelector('header select');
                     return {
                         headUnderBar: head.getBoundingClientRect().top < bar.getBoundingClientRect().bottom,
                         overActions: bar.contains(document.elementFromPoint(actions.left + actions.width / 2, y)),
                         overMiddle: bar.contains(document.elementFromPoint(middle.left + middle.width / 2, y)),
-                        selectAppearance: select ? getComputedStyle(select).appearance : 'none',
                     };
                 JS)[0];
 
                 $this->assertTrue($state['headUnderBar'], "{$theme}: the list did not scroll under the header");
                 $this->assertTrue($state['overActions'], "{$theme}: the actions column is drawn over the header");
                 $this->assertTrue($state['overMiddle'], "{$theme}: the table is drawn over the header");
-                $this->assertSame('none', $state['selectAppearance'], "{$theme}: the header select is drawn by the system");
 
                 $browser->screenshot("themes/{$theme}-scrolled");
+            }
+        });
+    }
+
+    public function test_a_drop_down_list_is_drawn_in_the_theme_and_a_list_box_is_left_alone(): void
+    {
+        $admin = $this->admin();
+
+        $this->browse(function (Browser $browser) use ($admin): void {
+            foreach (['graphite', 'night'] as $theme) {
+                $admin->forceFill(['theme' => $theme])->save();
+
+                $browser->loginAs($admin, 'admin')
+                    ->visit('/admin')
+                    ->waitFor('[data-action="user-menu"]');
+
+                // Bare selects with no classes of their own, so only the
+                // panel's base styles can colour them.
+                $state = $browser->script(<<<'JS'
+                    const add = (html) => {
+                        const box = document.createElement('div');
+                        box.innerHTML = html;
+                        document.body.append(box);
+                        return box.firstElementChild;
+                    };
+                    const probe = add('<div style="background-color: var(--atrium-surface); color: var(--atrium-fg)"></div>');
+                    const single = add('<select><option>One</option><option>Two</option></select>');
+                    const multiple = add('<select multiple><option>One</option></select>');
+                    const sized = add('<select size="3"><option>One</option></select>');
+                    const look = (el) => {
+                        const s = getComputedStyle(el);
+                        return { appearance: s.appearance, background: s.backgroundColor, colour: s.color, image: s.backgroundImage, position: s.backgroundPosition, size: s.backgroundSize, repeat: s.backgroundRepeat, paddingRight: s.paddingRight };
+                    };
+                    return {
+                        surface: getComputedStyle(probe).backgroundColor,
+                        fg: getComputedStyle(probe).color,
+                        single: look(single),
+                        option: look(single.options[0]),
+                        multiple: look(multiple),
+                        sized: look(sized),
+                    };
+                JS)[0];
+
+                $single = $state['single'];
+                $this->assertSame('none', $single['appearance'], "{$theme}: a drop-down list is drawn by the system");
+                $this->assertSame($state['surface'], $single['background'], "{$theme}: a drop-down list has no theme background");
+                $this->assertSame($state['fg'], $single['colour'], "{$theme}: a drop-down list has no theme text colour");
+                $this->assertSame(2, substr_count($single['image'], 'linear-gradient'), "{$theme}: a drop-down list has no chevron");
+                // The two halves of the chevron, 5px each, side by side at the right edge, drawn once.
+                $this->assertMatchesRegularExpression('/^calc\(100% - 16px\) 50%, calc\(100% - 11px\) 50%$/', $single['position'], "{$theme}: the chevron is not at the right edge");
+                $this->assertMatchesRegularExpression('/^5px 5px(, 5px 5px)?$/', $single['size'], "{$theme}: the chevron is not 5px");
+                $this->assertMatchesRegularExpression('/^no-repeat(, no-repeat)?$/', $single['repeat'], "{$theme}: the chevron is repeated over the list");
+                $this->assertSame('32px', $single['paddingRight'], "{$theme}: the text of a drop-down list runs under the chevron");
+                $this->assertSame($state['surface'], $state['option']['background'], "{$theme}: the options have no theme background");
+                $this->assertSame($state['fg'], $state['option']['colour'], "{$theme}: the options have no theme text colour");
+
+                foreach (['multiple', 'sized'] as $box) {
+                    $this->assertNotSame('none', $state[$box]['appearance'], "{$theme}: a {$box} list box lost its own look");
+                    $this->assertSame('none', $state[$box]['image'], "{$theme}: a {$box} list box got a chevron");
+                    $this->assertNotSame('32px', $state[$box]['paddingRight'], "{$theme}: a {$box} list box got room for a chevron");
+                }
             }
         });
     }
