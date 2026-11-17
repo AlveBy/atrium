@@ -38,6 +38,14 @@ CI refuses a changed line in `packages/*/src` or `app` that no test runs, a pack
 - Every source file starts with the Atrium copyright header (`This file is part of Atrium …`). Pint writes it into PHP files, `php scripts/copyright-header.php --fix` into the rest, and `tests/Unit/CopyrightHeaderTest.php` fails without it. Translations get it too; built bundles (`dist`), JSON, XML, Markdown, SVG and the stubs that `atrium:make-module` copies into your application do not.
 - Never commit data from a real site. Bitrix fixtures are synthetic.
 
+## Writing to the database
+
+- An action that writes more than one row or table (a record and its relations, an order and its lines, a payment and the balance it changes) runs in one `DB::transaction(fn () => …, attempts: 3)`. It is saved whole or not at all, and a deadlock is retried instead of reaching the user.
+- Keep a transaction short. No HTTP calls, mail, file uploads or long loops inside it; dispatch jobs and events with `afterCommit()` or after the transaction returns.
+- Read a row with `lockForUpdate()` before changing it from a calculation (stock, balances, seats, document numbers), and lock rows in the same order everywhere, by primary key, so two requests never wait on each other.
+- Change counters and balances with `increment()`, `decrement()` or one `UPDATE`, never by reading the value in PHP and writing it back.
+- Test the rollback: make the second write fail and assert the first one is gone.
+
 ## Translations
 
 The admin panel speaks 15 languages. Its strings live in `packages/admin/lang/{locale}/*.php`, one file per screen, and the same files feed PHP (`__('atrium::fields.gallery.add')`) and Vue (`$t('fields.gallery.add')`). English is the source. Russian was written by hand; the other 13 languages started as machine translation and each file says so at the top — native speakers are very welcome to fix them. That is one of the best first contributions.
