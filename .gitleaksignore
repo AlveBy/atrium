@@ -5,3 +5,5 @@
 52f72cb01584a61cdc34f5e97ca1649b046c78b0:packages/two-factor/tests/Feature/SecurityPageTest.php:generic-api-key:197
 52f72cb01584a61cdc34f5e97ca1649b046c78b0:packages/two-factor/tests/Unit/TotpTest.php:generic-api-key:20
 d205bbe76dc6827134be2a98444606f2e612fc95:packages/admin/tests/Feature/CdnTest.php:generic-api-key:119
+850a893a09b583cb2b85e631e4c328b039b59f7a:packages/admin/tests/Feature/CdnTest.php:generic-api-key:146
+850a893a09b583cb2b85e631e4c328b039b59f7a:packages/admin/tests/Feature/CdnTest.php:generic-api-key:561
