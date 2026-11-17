@@ -108,4 +108,7 @@ All notable changes are listed here. The format follows [Keep a Changelog](https
 - Saving an administrator ended in a server error (it redirected to a route that does not exist).
 - The administrator edit page did not open.
 
+### Security
+- API tokens and MCP keep to the sites their administrator may work with, as the panel does: records of other sites are not listed, read, changed or deleted, `?site=` naming another site answers 404, and new records go to an allowed site. Neither the API nor the panel takes `site_id` from the request any more, so a record cannot be moved to another site.
+
 [Unreleased]: https://github.com/AlveBy/atrium/commits/main
