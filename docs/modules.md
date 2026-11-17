@@ -164,8 +164,8 @@ Rules come from the fields (`required()`, `unique()`, `rules()`). To replace the
 | Method | When |
 |---|---|
 | `transformAdminData(array $data): array` | Before saving: change what the form sent |
-| `afterAdminSave(array $data): void` | After saving: related records, cache |
-| `beforeAdminDelete(): bool` | Before deleting; `false` cancels |
+| `afterAdminSave(array $data): void` | After saving, in the same transaction: related records, cache |
+| `beforeAdminDelete(): bool` | Before deleting, in the same transaction; `false` cancels |
 | `canEdit(): bool`, `canDelete(): bool` | Whether this record may be edited or deleted |
 | `isCreatableInAdmin(): bool`, `isEditableInAdmin(): bool` (static) | `false` for records that come from elsewhere, such as form submissions: no "Add" or "Save", the routes and the API answer 403 |
 
@@ -465,8 +465,8 @@ The core fires these:
 | Hook | Kind | Arguments | When |
 |---|---|---|---|
 | `atrium.record.data` | filter | `array $data`, `Model $record`, `string $context` (`create` or `edit`) | A record is saved in the panel or through the API, after `transformAdminData()` and before `fill()` |
-| `atrium.record.saved` | action | `Model $record`, `string $context` | After it is saved, its relations synced and `afterAdminSave()` run |
-| `atrium.record.deleted` | action | `Model $record` | After a record is deleted in the panel or through the API |
+| `atrium.record.saved` | action | `Model $record`, `string $context` | After it is saved, its relations synced and `afterAdminSave()` run, once the transaction is committed |
+| `atrium.record.deleted` | action | `Model $record` | After a record is deleted in the panel or through the API, once the transaction is committed |
 | `atrium.admin.menu` | filter | `array $items`, `?AdminUser $user` | The panel's menu is built; an item is `['label' => ..., 'route' => ..., 'icon' => ...]`, and items the user may not open are dropped afterwards |
 | `atrium.module.installed` | action | `Module $module` | `atrium:module:install` has run its migrations and listed it |
 | `atrium.module.removed` | action | `string $package`, `bool $dataDropped` | `atrium:module:remove` has taken it out |

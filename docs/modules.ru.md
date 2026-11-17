@@ -164,8 +164,8 @@ ContentField::make('detail_text')->label('Detail text')->tab('detail'),
 | Метод | Когда |
 |---|---|
 | `transformAdminData(array $data): array` | Перед сохранением: поправить то, что прислала форма |
-| `afterAdminSave(array $data): void` | После сохранения: связанные записи, кеш |
-| `beforeAdminDelete(): bool` | Перед удалением; `false` отменяет |
+| `afterAdminSave(array $data): void` | После сохранения, в той же транзакции: связанные записи, кеш |
+| `beforeAdminDelete(): bool` | Перед удалением, в той же транзакции; `false` отменяет |
 | `canEdit(): bool`, `canDelete(): bool` | Можно ли править или удалять эту запись |
 | `isCreatableInAdmin(): bool`, `isEditableInAdmin(): bool` (static) | `false` для записей, которые приходят извне, например заявок с форм: нет «Добавить» и «Сохранить», маршруты и API отвечают 403 |
 
@@ -465,8 +465,8 @@ Hook::filter('atrium.search.sources', DropDrafts::class, 20); // an invokable cl
 | Хук | Вид | Аргументы | Когда |
 |---|---|---|---|
 | `atrium.record.data` | фильтр | `array $data`, `Model $record`, `string $context` (`create` или `edit`) | Запись сохраняется в панели или через API, после `transformAdminData()` и до `fill()` |
-| `atrium.record.saved` | действие | `Model $record`, `string $context` | После сохранения, синхронизации связей и `afterAdminSave()` |
-| `atrium.record.deleted` | действие | `Model $record` | После удаления записи в панели или через API |
+| `atrium.record.saved` | действие | `Model $record`, `string $context` | После сохранения, синхронизации связей и `afterAdminSave()`, когда транзакция зафиксирована |
+| `atrium.record.deleted` | действие | `Model $record` | После удаления записи в панели или через API, когда транзакция зафиксирована |
 | `atrium.admin.menu` | фильтр | `array $items`, `?AdminUser $user` | Строится меню панели; пункт — `['label' => ..., 'route' => ..., 'icon' => ...]`, недоступные пользователю пункты отбрасываются после |
 | `atrium.module.installed` | действие | `Module $module` | `atrium:module:install` выполнил миграции и внёс модуль в список |
 | `atrium.module.removed` | действие | `string $package`, `bool $dataDropped` | `atrium:module:remove` убрал модуль |
