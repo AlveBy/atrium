@@ -72,7 +72,8 @@ jobs:
       - name: Split and push
         if: env.SPLIT_TOKEN != ''
         run: |
-          remote="https://x-access-token:${SPLIT_TOKEN}@github.com/AlveBy/${REPOSITORY}.git"
+          token=$(printf %s "$SPLIT_TOKEN" | tr -d '[:space:]')
+          remote="https://x-access-token:${token}@github.com/AlveBy/${REPOSITORY}.git"
           sha=$(git subtree split --prefix="packages/${{ matrix.folder }}")
           if [ "$GITHUB_REF_TYPE" = tag ]; then
             ref="refs/tags/$GITHUB_REF_NAME"
