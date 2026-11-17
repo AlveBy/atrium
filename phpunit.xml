@@ -17,6 +17,7 @@
             <directory>packages/bitrix/tests</directory>
             <directory>packages/brands/tests</directory>
             <directory>packages/catalog/tests</directory>
+            <directory>packages/classifieds/tests</directory>
             <directory>packages/docs/tests</directory>
             <directory>packages/faq/tests</directory>
             <directory>packages/forms/tests</directory>
@@ -37,6 +38,7 @@
             <directory>packages/bitrix/src</directory>
             <directory>packages/brands/src</directory>
             <directory>packages/catalog/src</directory>
+            <directory>packages/classifieds/src</directory>
             <directory>packages/docs/src</directory>
             <directory>packages/faq/src</directory>
             <directory>packages/forms/src</directory>

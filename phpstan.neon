@@ -12,6 +12,7 @@ parameters:
         - packages/bitrix/src
         - packages/brands/src
         - packages/catalog/src
+        - packages/classifieds/src
         - packages/docs/src
         - packages/faq/src
         - packages/forms/src
@@ -22,12 +23,17 @@ parameters:
         - packages/stores/src
         - packages/team/src
         - packages/theme/src
+    # Bridges to modules that may be absent (custom fields, shop, account):
+    # loaded only when the module's classes exist.
+    excludePaths:
+        - packages/classifieds/src/Integrations
     # Package config files read env() like the application's do.
     configDirectories:
         - config
         - packages/admin/config
         - packages/ai/config
         - packages/bitrix/config
+        - packages/classifieds/config
         - packages/docs/config
         - packages/forms/config
         - packages/solutions/config
@@ -38,6 +44,7 @@ parameters:
         - packages/ai/database/migrations
         - packages/brands/database/migrations
         - packages/catalog/database/migrations
+        - packages/classifieds/database/migrations
         - packages/faq/database/migrations
         - packages/forms/database/migrations
         - packages/news/database/migrations

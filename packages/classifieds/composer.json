@@ -1,0 +1,75 @@
+{
+    "name": "alveby/atrium-classifieds",
+    "description": "Classifieds board for Atrium: a category tree with its own properties, ads with moderation and expiry, search with saved alerts, sellers' cabinets, company pages and paid boosting",
+    "type": "atrium-module",
+    "license": "MIT",
+    "homepage": "https://github.com/AlveBy/atrium",
+    "support": {
+        "issues": "https://github.com/AlveBy/atrium/issues",
+        "source": "https://github.com/AlveBy/atrium"
+    },
+    "keywords": [
+        "laravel",
+        "admin",
+        "cms",
+        "classifieds",
+        "marketplace",
+        "moderation",
+        "schema.org",
+        "multisite",
+        "i18n"
+    ],
+    "require": {
+        "php": "^8.3",
+        "illuminate/support": "^13.0",
+        "alveby/atrium": "^0.1"
+    },
+    "require-dev": {
+        "alveby/atrium-theme": "^0.1",
+        "orchestra/testbench": "^11.0",
+        "phpunit/phpunit": "^12.5"
+    },
+    "suggest": {
+        "alveby/atrium-theme": "Draws the board on the site",
+        "alveby/atrium-custom-fields": "Properties of each category, filtered through its typed index",
+        "alveby/atrium-account": "Puts the board's sections into the visitor's personal cabinet",
+        "alveby/atrium-shop": "Sells raising, highlighting and VIP through its checkout"
+    },
+    "autoload": {
+        "psr-4": {
+            "Atrium\\Classifieds\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Atrium\\Classifieds\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "atrium": {
+            "resources": [
+                "Atrium\\Classifieds\\Models\\Ad",
+                "Atrium\\Classifieds\\Models\\ModerationQueue",
+                "Atrium\\Classifieds\\Models\\Complaint",
+                "Atrium\\Classifieds\\Models\\Category",
+                "Atrium\\Classifieds\\Models\\Region",
+                "Atrium\\Classifieds\\Models\\City",
+                "Atrium\\Classifieds\\Models\\StopWord",
+                "Atrium\\Classifieds\\Models\\Boost"
+            ],
+            "migrations": "database/migrations",
+            "demo": "Atrium\\Classifieds\\Database\\ClassifiedsDemoSeeder",
+            "settings": "Atrium\\Classifieds\\ClassifiedsSettings"
+        },
+        "laravel": {
+            "providers": [
+                "Atrium\\Classifieds\\ClassifiedsServiceProvider"
+            ]
+        },
+        "branch-alias": {
+            "dev-main": "0.1.x-dev"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

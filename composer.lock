@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ec785833b05ad8c92c46605d7cb0a031",
+    "content-hash": "10ff6fefe8d7702322208442aee82713",
     "packages": [
         {
             "name": "alveby/atrium",
@@ -12,7 +12,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/admin",
-                "reference": "35a47b81057624053c8b5383c57bb26bd433367e"
+                "reference": "54267cbe727633943a0b7e338689eb568a8b1fbd"
             },
             "require": {
                 "illuminate/database": "^13.0",
@@ -79,7 +79,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/ai",
-                "reference": "bc1d38e4c39200f90b6ce5dbe9537467c74ae8a5"
+                "reference": "2228a2970d839542f0d549a75f84107546a84482"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -146,7 +146,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/brands",
-                "reference": "7d311bae332e1f77d877805c173c9d3ca63e76ba"
+                "reference": "a355dd732f8552f3b7cc7ae334bca575767ae13c"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -212,7 +212,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/catalog",
-                "reference": "44b7a567bd2a2d62c6d21fa8012cf6c608e9be71"
+                "reference": "630ba025459ed4d9814abbfab69e0c01f090c065"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -296,12 +296,97 @@
             }
         },
         {
+            "name": "alveby/atrium-classifieds",
+            "version": "0.1.x-dev",
+            "dist": {
+                "type": "path",
+                "url": "packages/classifieds",
+                "reference": "2f3d2b7e962d8998f8698151534b4e3aa8f25a36"
+            },
+            "require": {
+                "alveby/atrium": "^0.1",
+                "illuminate/support": "^13.0",
+                "php": "^8.3"
+            },
+            "require-dev": {
+                "alveby/atrium-theme": "^0.1",
+                "orchestra/testbench": "^11.0",
+                "phpunit/phpunit": "^12.5"
+            },
+            "suggest": {
+                "alveby/atrium-account": "Puts the board's sections into the visitor's personal cabinet",
+                "alveby/atrium-custom-fields": "Properties of each category, filtered through its typed index",
+                "alveby/atrium-shop": "Sells raising, highlighting and VIP through its checkout",
+                "alveby/atrium-theme": "Draws the board on the site"
+            },
+            "type": "atrium-module",
+            "extra": {
+                "atrium": {
+                    "resources": [
+                        "Atrium\\Classifieds\\Models\\Ad",
+                        "Atrium\\Classifieds\\Models\\ModerationQueue",
+                        "Atrium\\Classifieds\\Models\\Complaint",
+                        "Atrium\\Classifieds\\Models\\Category",
+                        "Atrium\\Classifieds\\Models\\Region",
+                        "Atrium\\Classifieds\\Models\\City",
+                        "Atrium\\Classifieds\\Models\\Company",
+                        "Atrium\\Classifieds\\Models\\StopWord"
+                    ],
+                    "migrations": "database/migrations",
+                    "demo": "Atrium\\Classifieds\\Database\\ClassifiedsDemoSeeder",
+                    "settings": "Atrium\\Classifieds\\ClassifiedsSettings"
+                },
+                "laravel": {
+                    "providers": [
+                        "Atrium\\Classifieds\\ClassifiedsServiceProvider"
+                    ]
+                },
+                "branch-alias": {
+                    "dev-main": "0.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Atrium\\Classifieds\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Atrium\\Classifieds\\Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Classifieds board for Atrium: a category tree with its own properties, ads with moderation and expiry, search with saved alerts, sellers' cabinets, company pages and paid boosting",
+            "homepage": "https://github.com/AlveBy/atrium",
+            "keywords": [
+                "admin",
+                "classifieds",
+                "cms",
+                "i18n",
+                "laravel",
+                "marketplace",
+                "moderation",
+                "multisite",
+                "schema.org"
+            ],
+            "support": {
+                "issues": "https://github.com/AlveBy/atrium/issues",
+                "source": "https://github.com/AlveBy/atrium"
+            },
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
             "name": "alveby/atrium-docs",
             "version": "0.1.x-dev",
             "dist": {
                 "type": "path",
                 "url": "packages/docs",
-                "reference": "a805efd81c7568a95a7221e3ff541f33b127bbed"
+                "reference": "104a4ad87face1623c81ff66a02024fa398898fa"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -365,7 +450,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/faq",
-                "reference": "7bd5f019d88f198ae0a06949af5d945513547678"
+                "reference": "2e45adfb507b0dd89c69a2def46eaa80249409bc"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -443,7 +528,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/forms",
-                "reference": "c871284ca3d197bc21bbe7d92e8c460dd1513d94"
+                "reference": "1a53b6579d30235f756a644e2e0102bad02cf845"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -511,7 +596,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/news",
-                "reference": "f20af47a4991f3934266d3f8761b90967960d07e"
+                "reference": "96ea1dba55dd0cdc54b5fba2be2e435ba7610ffb"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -584,7 +669,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/pages",
-                "reference": "b4ebf9d6e8086be676c7e28cd7535d132713ed1a"
+                "reference": "f197a9bde17d5de6586ab8bd012584145a9af248"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -660,7 +745,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/reviews",
-                "reference": "dd2a06b23d10953b2ffc714d89736f6f34d01b4f"
+                "reference": "c67e622fee779f0a21ad6d4819b80adb0887546a"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -730,7 +815,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/solutions",
-                "reference": "82190a715bc203b9474764da30a842ddd42bc805"
+                "reference": "f1f26bf2d29d84f355c33a00c0976d48c74d7eb1"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -805,7 +890,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/stores",
-                "reference": "9ef19ea431192df451e2ecba3f35a2f45433feb6"
+                "reference": "09520d4ec8d37edf6054fc8efcc0f145a6604546"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -877,7 +962,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/team",
-                "reference": "67cfcb9e84b639c03be9b91f901a54952c3de0b8"
+                "reference": "ae540c14f9d991a845a8c0852a272318f62351c5"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -955,7 +1040,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/theme",
-                "reference": "c3dbd2ec2b73b6b15b363936bdbab8a444226a0e"
+                "reference": "5afdc1960dc7ebeafa513e640b1e683533ea0428"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -7906,7 +7991,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/bitrix",
-                "reference": "50767e77c0ac27fd6caf0bd81ba98d2767af08d0"
+                "reference": "b5900d63ef82e62375dcdd0a0369516e809bf401"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -11189,6 +11274,7 @@
         "alveby/atrium-bitrix": 20,
         "alveby/atrium-brands": 20,
         "alveby/atrium-catalog": 20,
+        "alveby/atrium-classifieds": 20,
         "alveby/atrium-docs": 20,
         "alveby/atrium-faq": 20,
         "alveby/atrium-forms": 20,

@@ -60,6 +60,7 @@ return [
         'alveby/atrium-reviews',
         'alveby/atrium-ai',
         'alveby/atrium-team',
+        'alveby/atrium-classifieds',
     ],
 
     /*
