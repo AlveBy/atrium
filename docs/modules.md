@@ -267,7 +267,15 @@ Atrium's own tests (`packages/admin/tests`) show more: permissions, the API, bro
 
 ## A module as a package
 
-A module for other sites is a Composer package of type `atrium-module`. Its `composer.json` says what it brings, in `extra.atrium`:
+A module for other sites is a Composer package of type `atrium-module`. To start one, run:
+
+```bash
+php artisan atrium:make-package acme/atrium-reviews
+```
+
+This creates `packages/reviews` from the template in `vendor/alveby/atrium/stubs/module`. It holds the manifest, a translatable model with its admin form and list, its migration, a demo seeder, English labels, Testbench tests that install the module in a bare Atrium, a GitHub Actions workflow for PHP 8.3 and 8.4, a README and an MIT licence. The tests pass as generated. `--model=Review`, `--namespace=Acme\\Reviews`, `--title=Reviews` and `--path=` change the defaults. The command prints the three commands that try the package in the current project: a Composer path repository, `composer require acme/atrium-reviews:@dev`, and `atrium:module:install --demo`. To publish the package, give it a repository of its own and submit it to Packagist; it then shows up in every site's catalogue (see [The Modules screen](#the-modules-screen)). Your files are yours: unlike Atrium's own, they need no Atrium copyright header.
+
+The `composer.json` says what the module brings, in `extra.atrium`:
 
 ```json
 {
