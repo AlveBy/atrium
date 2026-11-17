@@ -20,6 +20,7 @@
             <directory>packages/catalog/tests</directory>
             <directory>packages/custom-fields/tests</directory>
             <directory>packages/docs/tests</directory>
+            <directory>packages/errors/tests</directory>
             <directory>packages/faq/tests</directory>
             <directory>packages/forms/tests</directory>
             <directory>packages/news/tests</directory>
@@ -46,6 +47,7 @@
             <directory>packages/catalog/src</directory>
             <directory>packages/custom-fields/src</directory>
             <directory>packages/docs/src</directory>
+            <directory>packages/errors/src</directory>
             <directory>packages/faq/src</directory>
             <directory>packages/forms/src</directory>
             <directory>packages/news/src</directory>

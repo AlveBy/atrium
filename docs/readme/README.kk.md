@@ -123,6 +123,7 @@ php artisan atrium:bitrix:parity
 - [Кэш: ондаған қасиеті бар жылдам беттер, Redis, беттер кэші, CDN тақырыптары](../cache.md)
 - [1С-Битрикстен көшу, қадам-қадаммен](../bitrix.md)
 - [Сақтық көшірмелер: дерекқорлар мен файлдар бірнеше орынға, кесте, тексерулер, қалпына келтіру](../backup.md)
+- [Қателер: PHP, кезек және JavaScript қателері сайт дерекқорында, хабарламалар, Sentry және өз драйверлеріңіз](../errors.md)
 - [CDN: суреттер, кішірейтілген көшірмелер және WebP/AVIF, кэшті тазалау, S3-ке жүктеу](../cdn.md)
 
 ## Пакеттер
@@ -136,6 +137,7 @@ php artisan atrium:bitrix:parity
 | [`alveby/atrium-custom-fields`](../../packages/custom-fields/README.md) | Кез келген модульге әкімшілік панельден қосылатын өрістер, сүзгілер мен фасеттермен |
 | [`alveby/atrium-docs`](../../packages/docs/README.md) | Markdown-тан құжаттама: нұсқалар мен іздеу |
 | [`alveby/atrium-backup`](../../packages/backup/README.md) | Дерекқорлар мен файлдардың сақтық көшірмелері, әкімшілік панельден қалпына келтіру |
+| [`alveby/atrium-errors`](../../packages/errors/README.md) | Сайт дерекқорындағы қателер есебі, хабарламалар, Sentry |
 
 0.1 Packagist-те пайда болғанда, Laravel 13-тегі дайын қосымшаға Atrium былай орнатылады:
 

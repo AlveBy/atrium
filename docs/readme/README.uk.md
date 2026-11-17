@@ -123,6 +123,7 @@ php artisan atrium:bitrix:parity
 - [Кеш: швидкі сторінки з десятками властивостей, Redis, кеш сторінок, заголовки для CDN](../cache.md)
 - [Переїзд з 1С-Бітрікс крок за кроком](../bitrix.md)
 - [Резервні копії: бази й файли в кілька місць, розклад, перевірки, відновлення](../backup.md)
+- [Помилки: помилки PHP, черг і JavaScript у базі сайту, сповіщення, Sentry і власні драйвери](../errors.md)
 - [CDN: зображення, зменшені копії й WebP/AVIF, очищення кешу, завантаження в S3](../cdn.md)
 
 ## Пакети
@@ -136,6 +137,7 @@ php artisan atrium:bitrix:parity
 | [`alveby/atrium-custom-fields`](../../packages/custom-fields/README.md) | Поля, які додають у будь-який модуль з адмінки, з фільтрами й фасетами |
 | [`alveby/atrium-docs`](../../packages/docs/README.md) | Документація з Markdown: версії та пошук |
 | [`alveby/atrium-backup`](../../packages/backup/README.md) | Резервні копії баз і файлів, відновлення з адмінки |
+| [`alveby/atrium-errors`](../../packages/errors/README.md) | Облік помилок у базі сайту, сповіщення, Sentry |
 
 Коли 0.1 з'явиться на Packagist, у готовий застосунок на Laravel 13 Atrium встановлюватиметься так:
 
