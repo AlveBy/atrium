@@ -48,6 +48,8 @@ Coverage needs Xdebug or PCOV. Steps can be named: `bin/ci lint static`, `bin/ci
 
 ## What a module's tests check
 
+Every line you add or change is covered, and every condition both ways: a positive test (what should work does, and saves what it should) and a negative one (below). A test that still passes when you break the line it covers does not count: break the line once and watch the test go red. The mutation gate does this for you on every push.
+
 A module is tested from the outside, the way the admin, the site and the API use it, plus unit tests for logic with many cases. For each module:
 
 - **The main flow end to end.** Create, list, search, edit, delete in the admin; the record on the site; the API and MCP if the module has them. Assert what the user sees and what is stored.
@@ -109,6 +111,7 @@ A test that only checks the happy path checks half. For every action, also:
 - **Deleted and inactive records**: not on the site, not in sitemaps or search, 404 by their old address (or a redirect when the module promises one).
 - **Concurrent writes** where they can happen: counters, sort order, unique codes — two saves of the same record, two submissions at once.
 - **Missing things**: an unknown id is 404, a missing related record does not crash the page, a module that is not installed is not required.
+- **An outside service that fails**: an error response, a timeout (`Http::fake()` with a 500 and with a `ConnectionException`) — the user gets a clear message, nothing is half saved, the failure is logged.
 
 ## Security cases
 
