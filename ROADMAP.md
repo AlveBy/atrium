@@ -6,7 +6,7 @@ Atrium is an admin panel for Laravel that installs with one command, runs any nu
 
 ## Focus now
 
-Until 0.1 is out, work goes only into the core, the basic modules (pages, forms, news, catalog, SEO) and importers from other CMSs, and every importer is tried on real sites before it is called done. Other modules wait: a module someone asks for in Issues comes first.
+Until 0.1 is out, work goes only into the core and what every site needs (pages, forms and submissions, news, catalog, menus and search, SEO, custom fields, access rights, two-factor sign-in, the AI assistant, the error log and monitoring, cache, backups, admin themes and site skins), the tests, and importers from other CMSs, and every importer is tried on real sites before it is called done. Other modules wait: a module someone asks for in Issues comes first.
 
 ## Principles
 
