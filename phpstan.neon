@@ -14,6 +14,7 @@ parameters:
         - scripts
         - packages/admin/src
         - packages/ai/src
+        - packages/backup/src
         - packages/bitrix/src
         - packages/brands/src
         - packages/catalog/src
@@ -32,6 +33,7 @@ parameters:
         - config
         - packages/admin/config
         - packages/ai/config
+        - packages/backup/config
         - packages/bitrix/config
         - packages/docs/config
         - packages/forms/config
