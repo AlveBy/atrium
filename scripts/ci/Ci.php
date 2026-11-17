@@ -21,7 +21,7 @@ final class Ci
 {
     public const STEPS = ['lint', 'static', 'tests', 'coverage', 'mutation', 'dusk'];
 
-    public const DEFAULT_STEPS = ['lint', 'static', 'tests', 'coverage'];
+    public const DEFAULT_STEPS = ['lint', 'static', 'tests', 'coverage', 'mutation'];
 
     /** The mutation score the changed code must reach. */
     public const MIN_MSI = 85;
@@ -29,7 +29,7 @@ final class Ci
     private const USAGE = <<<'TXT'
         Usage: bin/ci [step ...] [options]
 
-        Steps (default: lint static tests coverage):
+        Steps (default: all but dusk):
           lint       Pint and the copyright header
           static     PHPStan
           tests      PHPUnit of every package, one process each, on every --db
@@ -430,7 +430,10 @@ final class Ci
                 $command[] = '--logger-github';
             }
 
-            $this->pool([['mutation', $target, $command, ['XDEBUG_MODE' => 'off', ...$this->databaseEnv('sqlite', $target)]]], 1);
+            // PAO_DISABLE: laravel/pao turns PHPUnit's output into JSON when an
+            // AI agent runs it, Infection then cannot tell a passing run, and
+            // every mutant would count as killed.
+            $this->pool([['mutation', $target, $command, ['XDEBUG_MODE' => 'off', 'PAO_DISABLE' => '1', ...$this->databaseEnv('sqlite', $target)]]], 1);
             $summary = "{$this->build}/infection/{$target}/summary.json";
             $stats = is_file($summary) ? json_decode((string) file_get_contents($summary), true) : null;
 
