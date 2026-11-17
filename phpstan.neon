@@ -27,6 +27,7 @@ parameters:
         - packages/news/src
         - packages/pages/src
         - packages/reviews/src
+        - packages/seo/src
         - packages/solutions/src
         - packages/stores/src
         - packages/team/src
@@ -43,6 +44,7 @@ parameters:
         - packages/custom-fields/config
         - packages/docs/config
         - packages/forms/config
+        - packages/seo/config
         - packages/solutions/config
         - packages/two-factor/config
         - packages/social-login/config
@@ -59,6 +61,7 @@ parameters:
         - packages/news/database/migrations
         - packages/pages/database/migrations
         - packages/reviews/database/migrations
+        - packages/seo/database/migrations
         - packages/stores/database/migrations
         - packages/team/database/migrations
         - packages/two-factor/database/migrations

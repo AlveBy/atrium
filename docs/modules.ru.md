@@ -210,6 +210,8 @@ $table->foreignId('site_id')->nullable()->index();
 
 Чтобы страницы модуля попали в `sitemap.xml`, реализуйте `Atrium\Admin\Contracts\Sitemapable`: `sitemapQuery()` возвращает записи, которым там место, `sitemapUrl($language)` — адрес одной из них.
 
+С установленным модулем SEO у страниц модуля появляются заголовки по шаблонам, hreflang и разметка schema.org. Свою разметку (`Event`, `JobPosting`) модуль добавляет через `SchemaProvider`, см. [SEO: разметка своего модуля](seo.ru.md#разметка-своего-модуля).
+
 ## Капча в публичной форме
 
 Форма на сайте спрашивает капчу сайта (`ATRIUM_CAPTCHA`, см. [Настройка Atrium](configuration.ru.md#капча)) компонентом и правилом; пока капча выключена, оба пустые:

@@ -210,6 +210,8 @@ gives each article the address `/articles/{code}`: the slug field shows it under
 
 To put the module's pages into `sitemap.xml`, implement `Atrium\Admin\Contracts\Sitemapable`: `sitemapQuery()` returns the records that belong there, `sitemapUrl($language)` the address of one.
 
+With the SEO module installed, the module's pages also get titles from templates, hreflang and schema.org markup. A module adds its own markup (an `Event`, a `JobPosting`) with a `SchemaProvider`; see [SEO: markup for your own module](seo.md#markup-for-your-own-module).
+
 ## Captcha in a public form
 
 A form on the site asks the site's captcha (`ATRIUM_CAPTCHA`, see [Configuring Atrium](configuration.md#captcha)) with a component and a rule; while the captcha is off both are empty:

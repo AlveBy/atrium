@@ -67,7 +67,10 @@ final class SiteCodesTest extends AdminTestCase
             // Not a production server: robots are turned away whatever the admin wrote.
             $browser->visit('/robots.txt')->assertSee('Disallow: /')->assertDontSee('/search');
 
+            // sitemap.xml is an index of files per language; the home page is in the first one.
             $browser->visit('/sitemap.xml');
+            $this->assertSame(1, preg_match('#<loc>([^<]+)</loc>#', $browser->driver->getPageSource(), $part));
+            $browser->visit($part[1]);
             $this->assertStringContainsString('<loc>'.rtrim((string) config('app.url'), '/').'</loc>', $browser->driver->getPageSource());
         });
     }

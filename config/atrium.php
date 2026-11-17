@@ -64,6 +64,7 @@ return [
         'alveby/atrium-backup',
         'alveby/atrium-2fa',
         'alveby/atrium-social-login',
+        'alveby/atrium-seo',
     ],
 
     /*
