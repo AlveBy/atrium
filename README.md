@@ -120,6 +120,8 @@ The Bitrix database is only read. The tabs, field order and list columns come ou
 - [Moving from 1C-Bitrix, step by step](docs/bitrix.md)
 - [Backups: databases and files to several places, schedules, health checks, restore](docs/backup.md)
 - [CDN: pictures, resized copies and WebP/AVIF, cache purge, uploads to S3](docs/cdn.md)
+- [Two-factor sign-in: authenticator apps, passkeys, codes, the sign-in log](docs/two-factor.md)
+- [Social sign-in: providers, app registration, redirect URLs](docs/social-login.md)
 
 ## Packages
 
@@ -140,6 +142,8 @@ The Bitrix database is only read. The tabs, field order and list columns come ou
 | [`alveby/atrium-faq`](packages/faq/README.md) | Questions and answers |
 | [`alveby/atrium-forms`](packages/forms/README.md) | Form builder and submissions |
 | [`alveby/atrium-reviews`](packages/reviews/README.md) | Reviews and ratings with moderation |
+| [`alveby/atrium-2fa`](packages/two-factor/README.md) | Two-factor and passwordless sign-in |
+| [`alveby/atrium-social-login`](packages/social-login/README.md) | Sign-in with Google, Microsoft, Apple, GitHub, Telegram and others |
 | [`alveby/atrium-solutions`](packages/solutions/README.md) | Ready-made sites installed in one command |
 
 Once 0.1 is on Packagist, an existing Laravel 13 app gets Atrium with:
