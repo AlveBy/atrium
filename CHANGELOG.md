@@ -110,5 +110,6 @@ All notable changes are listed here. The format follows [Keep a Changelog](https
 
 ### Security
 - API tokens and MCP keep to the sites their administrator may work with, as the panel does: records of other sites are not listed, read, changed or deleted, `?site=` naming another site answers 404, and new records go to an allowed site. Neither the API nor the panel takes `site_id` from the request any more, so a record cannot be moved to another site.
+- Uploads are judged by what the file contains, not by the name the client sends: a script, a page or any other file whose content does not match its extension is refused, and an SVG that can run code (scripts, event handlers, `javascript:` links, embedded HTML, entities) is refused too.
 
 [Unreleased]: https://github.com/AlveBy/atrium/commits/main
