@@ -5,6 +5,9 @@ parameters:
     # 5 for now: the ported admin still lacks array shapes (level 6 adds ~190
     # of those). Raising it is on the plan.
     level: 5
+    # A cache per checkout: the default one in the system temp folder is shared
+    # by every checkout on the machine, and two runs at once corrupt it.
+    tmpDir: build/phpstan
     paths:
         - app
         - bin/ci
