@@ -148,6 +148,12 @@ php artisan atrium:install
 
 Administrator paneli ingliz, rus, ukrain, belarus, qozoq, oʻzbek, nemis, fransuz, ispan, portugal (Braziliya), italyan, polyak, turk, xitoy (soddalashtirilgan) va yapon tillarida ishlaydi. Ingliz va rus tillaridagi matnlar qoʻlda yozilgan; qolganlari mashina tarjimasidan boshlangan, bu README ham shunday. Ona tilida soʻzlashuvchilarning tuzatishlari loyihaga qoʻshiladigan eng yaxshi birinchi hissalardan biri: batafsil [CONTRIBUTING.md](../../CONTRIBUTING.md) (ingliz tilida).
 
+## Hammasi qanday boshlangan
+
+Atrium 2025-yil dekabrida [AlveSoft](https://alve.by) kompaniyasida mijozimiz saytidagi 1C-Bitrix oʻrniga oʻzimizning administrator panelimiz sifatida paydo boʻldi. Biz muharrirga Bitrixdagidek tanish, lekin oddiy Laravel asosidagi administrator panelini va kontentni yoʻqotishlarsiz koʻchirib oʻtkazadigan migratorni xohlagandik. 2026-yil yozidan beri panel oʻsha saytda ishlayapti: muharrirlar unda har kuni kontent bilan ishlaydi, migrator esa butun katalogni, sahifalar va formalarni koʻchirib oʻtkazdi.
+
+2026-yil noyabrida uni hammaga berishga qaror qildik. Oʻsha bitta saytga tegishli barcha narsani olib tashlab, qolganini MIT litsenziyasi ostida joylashtirdik, shunda har kim undan bepul foydalanishi, uni oʻzgartirishi va oʻz saytlarini uning asosida qurishi mumkin.
+
 ## Keyingi qadamlar
 
 [Rivojlanish rejasi](../../ROADMAP.md) (ingliz tilida): bitta buyruq bilan oʻrnatiladigan modullar, tayyor saytlar, WordPress va Drupal saytlaridan import vositalari, internet-doʻkon, 1C va Bitrix24.

@@ -148,6 +148,12 @@ php artisan atrium:install
 
 Le panneau d'administration parle anglais, russe, ukrainien, biélorusse, kazakh, ouzbek, allemand, français, espagnol, portugais (Brésil), italien, polonais, turc, chinois (simplifié) et japonais. L'anglais et le russe ont été écrits à la main ; les autres ont commencé par une traduction automatique, tout comme ce README. Les corrections de locuteurs natifs comptent parmi les meilleures premières contributions : voir [CONTRIBUTING.md](../../CONTRIBUTING.md) (en anglais).
 
+## Comment tout a commencé
+
+Atrium est né en décembre 2025 chez [AlveSoft](https://alve.by), comme notre propre panneau d'administration pour remplacer 1C-Bitrix sur le site d'un client. Nous voulions une administration aussi familière pour les rédacteurs que Bitrix, mais construite sur du Laravel ordinaire, et un migrateur qui reprenne le contenu sans rien perdre. Depuis l'été 2026, le panneau fait tourner ce site en production : les rédacteurs y travaillent chaque jour, et le migrateur a transféré tout le catalogue, les pages et les formulaires.
+
+En novembre 2026, nous avons décidé de l'offrir à tout le monde. Nous avons retiré tout ce qui était propre à ce site et publié le reste sous licence MIT, afin que chacun puisse l'utiliser, le modifier et bâtir ses sites dessus gratuitement.
+
 ## La suite
 
 La [feuille de route](../../ROADMAP.md) (en anglais) : des modules qui s'installent en une commande, des sites prêts à l'emploi, des importateurs depuis WordPress et Drupal, une boutique en ligne, 1C et Bitrix24.

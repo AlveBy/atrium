@@ -148,6 +148,12 @@ php artisan atrium:install
 
 Yönetim paneli İngilizce, Rusça, Ukraynaca, Belarusça, Kazakça, Özbekçe, Almanca, Fransızca, İspanyolca, Portekizce (Brezilya), İtalyanca, Lehçe, Türkçe, Çince (Basitleştirilmiş) ve Japonca konuşur. İngilizce ve Rusça elle yazıldı; diğerleri, bu README gibi, makine çevirisiyle başladı. Anadili bu diller olanlardan gelen düzeltmeler, projeye yapılabilecek en iyi ilk katkılardan biridir: bkz. [CONTRIBUTING.md](../../CONTRIBUTING.md) (İngilizce).
 
+## Nasıl başladı
+
+Atrium, Aralık 2025'te [AlveSoft](https://alve.by) bünyesinde, bir müşterinin sitesinde 1C-Bitrix'in yerini alacak kendi yönetim panelimiz olarak doğdu. Editörlerin Bitrix kadar aşina olacağı, ama sade Laravel üzerine kurulu bir panel ve içeriği kayıpsız taşıyacak bir geçiş aracı istiyorduk. 2026 yazından beri panel o siteyi canlıda çalıştırıyor: editörler her gün onunla içerik giriyor, geçiş aracı ise tüm kataloğu, sayfaları ve formları taşıdı.
+
+Kasım 2026'da onu herkese açmaya karar verdik. O tek siteye ait ne varsa çıkardık, geri kalanını MIT lisansıyla yayımladık; böylece herkes onu ücretsiz kullanabilir, değiştirebilir ve kendi sitelerini onun üzerine kurabilir.
+
 ## Sırada ne var
 
 [Yol haritası](../../ROADMAP.md) (İngilizce): tek komutla kurulan modüller, hazır siteler, WordPress ve Drupal'dan içe aktarıcılar, bir online mağaza, 1C ve Bitrix24.
