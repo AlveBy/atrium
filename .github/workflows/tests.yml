@@ -88,7 +88,10 @@ jobs:
           sudo curl -fsSL -o /usr/share/postgresql-common/pgdg/apt.postgresql.org.asc https://www.postgresql.org/media/keys/ACCC4CF8.asc
           echo "deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" | sudo tee /etc/apt/sources.list.d/pgdg.list
           sudo apt-get update -q
-          sudo apt-get install -yq sqlite3 postgresql-client-17 mysql-client
+          # mysqldump comes with the runner's own MySQL: installing mysql-client
+          # reconfigures that server, which fails while the service holds 3306.
+          sudo apt-get install -yq sqlite3 postgresql-client-17
+          mysqldump --version
 
       - run: composer install --no-interaction --no-progress --prefer-dist
       - run: cp .env.example .env && php artisan key:generate
@@ -133,7 +136,10 @@ jobs:
           sudo curl -fsSL -o /usr/share/postgresql-common/pgdg/apt.postgresql.org.asc https://www.postgresql.org/media/keys/ACCC4CF8.asc
           echo "deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" | sudo tee /etc/apt/sources.list.d/pgdg.list
           sudo apt-get update -q
-          sudo apt-get install -yq sqlite3 postgresql-client-17 mysql-client
+          # mysqldump comes with the runner's own MySQL: installing mysql-client
+          # reconfigures that server, which fails while the service holds 3306.
+          sudo apt-get install -yq sqlite3 postgresql-client-17
+          mysqldump --version
 
       - run: composer install --no-interaction --no-progress --prefer-dist
       - run: cp .env.example .env && php artisan key:generate
