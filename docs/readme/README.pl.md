@@ -150,7 +150,7 @@ Panel administracyjny mówi po angielsku, rosyjsku, ukraińsku, białorusku, kaz
 
 ## Jak to się zaczęło
 
-Atrium powstał w grudniu 2025 roku w [AlveSoft](https://alve.by) jako nasz własny panel administracyjny, który miał zastąpić 1C-Bitrix w witrynie klienta. Chcieliśmy panelu tak znajomego dla redaktorów jak Bitrix, ale opartego na zwykłym Laravelu, oraz migratora, który przeniesie treści bez strat. Od lata 2026 roku panel działa produkcyjnie na tej witrynie: redaktorzy pracują w nim codziennie, a migrator przeniósł cały katalog, strony i formularze.
+Atrium powstał w grudniu 2025 roku w [AlveSoft](https://alve.by) jako nasz własny panel administracyjny, który miał zastąpić 1C-Bitrix w witrynie klienta, [arkaim.by](https://arkaim.by). Chcieliśmy panelu tak znajomego dla redaktorów jak Bitrix, ale opartego na zwykłym Laravelu, oraz migratora, który przeniesie treści bez strat. Od lata 2026 roku panel działa produkcyjnie na tej witrynie: redaktorzy pracują w nim codziennie, a migrator przeniósł cały katalog, strony i formularze.
 
 W listopadzie 2026 roku postanowiliśmy oddać go wszystkim. Usunęliśmy wszystko, co należało do tej jednej witryny, a resztę opublikowaliśmy na licencji MIT, aby każdy mógł z niego korzystać, zmieniać go i budować na nim swoje witryny za darmo.
 

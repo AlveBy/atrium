@@ -150,7 +150,7 @@ Administrator paneli ingliz, rus, ukrain, belarus, qozoq, oʻzbek, nemis, fransu
 
 ## Hammasi qanday boshlangan
 
-Atrium 2025-yil dekabrida [AlveSoft](https://alve.by) kompaniyasida mijozimiz saytidagi 1C-Bitrix oʻrniga oʻzimizning administrator panelimiz sifatida paydo boʻldi. Biz muharrirga Bitrixdagidek tanish, lekin oddiy Laravel asosidagi administrator panelini va kontentni yoʻqotishlarsiz koʻchirib oʻtkazadigan migratorni xohlagandik. 2026-yil yozidan beri panel oʻsha saytda ishlayapti: muharrirlar unda har kuni kontent bilan ishlaydi, migrator esa butun katalogni, sahifalar va formalarni koʻchirib oʻtkazdi.
+Atrium 2025-yil dekabrida [AlveSoft](https://alve.by) kompaniyasida mijozimiz saytidagi ([arkaim.by](https://arkaim.by)) 1C-Bitrix oʻrniga oʻzimizning administrator panelimiz sifatida paydo boʻldi. Biz muharrirga Bitrixdagidek tanish, lekin oddiy Laravel asosidagi administrator panelini va kontentni yoʻqotishlarsiz koʻchirib oʻtkazadigan migratorni xohlagandik. 2026-yil yozidan beri panel oʻsha saytda ishlayapti: muharrirlar unda har kuni kontent bilan ishlaydi, migrator esa butun katalogni, sahifalar va formalarni koʻchirib oʻtkazdi.
 
 2026-yil noyabrida uni hammaga berishga qaror qildik. Oʻsha bitta saytga tegishli barcha narsani olib tashlab, qolganini MIT litsenziyasi ostida joylashtirdik, shunda har kim undan bepul foydalanishi, uni oʻzgartirishi va oʻz saytlarini uning asosida qurishi mumkin.
 

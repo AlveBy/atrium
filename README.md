@@ -158,7 +158,7 @@ The admin panel speaks English, Russian, Ukrainian, Belarusian, Kazakh, Uzbek, G
 
 ## How it started
 
-Atrium began in December 2025 at [AlveSoft](https://alve.by) as our own admin panel to replace 1C-Bitrix on a client's site. We wanted an admin that editors find as familiar as Bitrix, built on plain Laravel, and a migrator that carries the content over without losing anything. Since the summer of 2026 the panel has run that site in production: editors work in it every day, and the migrator moved the whole catalog, pages and forms across.
+Atrium began in December 2025 at [AlveSoft](https://alve.by) as our own admin panel to replace 1C-Bitrix on a client's site, [arkaim.by](https://arkaim.by). We wanted an admin that editors find as familiar as Bitrix, built on plain Laravel, and a migrator that carries the content over without losing anything. Since the summer of 2026 the panel has run that site in production: editors work in it every day, and the migrator moved the whole catalog, pages and forms across.
 
 In November 2026 we decided to give it to everyone. We took out everything that belonged to that one site and published the rest under the MIT license, so that anyone can use it, change it and build their sites on it for free.
 

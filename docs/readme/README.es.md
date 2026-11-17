@@ -150,7 +150,7 @@ El panel de administración habla inglés, ruso, ucraniano, bielorruso, kazajo, 
 
 ## Cómo empezó todo
 
-Atrium nació en diciembre de 2025 en [AlveSoft](https://alve.by) como nuestro propio panel de administración para sustituir 1C-Bitrix en el sitio de un cliente. Queríamos un panel que a los editores les resultara tan familiar como Bitrix, pero construido sobre Laravel a secas, y un migrador que traspasara el contenido sin perder nada. Desde el verano de 2026 el panel mantiene ese sitio en producción: los editores trabajan en él todos los días, y el migrador trasladó todo el catálogo, las páginas y los formularios.
+Atrium nació en diciembre de 2025 en [AlveSoft](https://alve.by) como nuestro propio panel de administración para sustituir 1C-Bitrix en el sitio de un cliente, [arkaim.by](https://arkaim.by). Queríamos un panel que a los editores les resultara tan familiar como Bitrix, pero construido sobre Laravel a secas, y un migrador que traspasara el contenido sin perder nada. Desde el verano de 2026 el panel mantiene ese sitio en producción: los editores trabajan en él todos los días, y el migrador trasladó todo el catálogo, las páginas y los formularios.
 
 En noviembre de 2026 decidimos ofrecerlo a todo el mundo. Quitamos todo lo que pertenecía a ese único sitio y publicamos el resto bajo la licencia MIT, para que cualquiera pueda usarlo, modificarlo y construir sus sitios sobre él de forma gratuita.
 

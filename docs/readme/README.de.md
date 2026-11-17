@@ -150,7 +150,7 @@ Der Admin-Bereich spricht Englisch, Russisch, Ukrainisch, Belarussisch, Kasachis
 
 ## Wie alles begann
 
-Atrium entstand im Dezember 2025 bei [AlveSoft](https://alve.by) als unser eigener Admin-Bereich, um auf der Website eines Kunden 1C-Bitrix abzulösen. Wir wollten einen Admin-Bereich, der Redakteuren so vertraut ist wie Bitrix, aber auf reinem Laravel läuft, und einen Migrator, der die Inhalte ohne Verluste hinüberbringt. Seit dem Sommer 2026 läuft er auf dieser Website im Produktivbetrieb: Die Redakteure pflegen darin täglich die Inhalte, und der Migrator hat den gesamten Katalog, die Seiten und die Formulare übertragen.
+Atrium entstand im Dezember 2025 bei [AlveSoft](https://alve.by) als unser eigener Admin-Bereich, um auf der Website eines Kunden, [arkaim.by](https://arkaim.by), 1C-Bitrix abzulösen. Wir wollten einen Admin-Bereich, der Redakteuren so vertraut ist wie Bitrix, aber auf reinem Laravel läuft, und einen Migrator, der die Inhalte ohne Verluste hinüberbringt. Seit dem Sommer 2026 läuft er auf dieser Website im Produktivbetrieb: Die Redakteure pflegen darin täglich die Inhalte, und der Migrator hat den gesamten Katalog, die Seiten und die Formulare übertragen.
 
 Im November 2026 haben wir beschlossen, Atrium allen zu geben. Wir haben alles entfernt, was zu dieser einen Website gehörte, und den Rest unter der MIT-Lizenz veröffentlicht, damit jeder es kostenlos nutzen, verändern und eigene Websites darauf aufbauen kann.
 
