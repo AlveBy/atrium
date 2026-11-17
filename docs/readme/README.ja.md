@@ -120,6 +120,8 @@ Bitrix のデータベースは読み取るだけです。タブ、フィール�
 - [AI 文章アシスタント：無料・有料のプロバイダー、説明文、SEO、alt テキスト、翻訳](../ai.md)
 - [独自モジュール：フィールド、列、タブ、権限、言語、テスト、パッケージ化](../modules.md)
 - [1C-Bitrix からの移行（手順）](../bitrix.md)
+- [バックアップ：データベースとファイルを複数の保存先へ、スケジュール、ヘルスチェック、復元](../backup.md)
+- [CDN：画像、リサイズしたコピーと WebP/AVIF、キャッシュの削除、S3 へのアップロード](../cdn.md)
 
 ## パッケージ
 
@@ -130,6 +132,7 @@ Bitrix のデータベースは読み取るだけです。タブ、フィール�
 | [`alveby/atrium-bitrix`](../../packages/bitrix/README.md) | 1C-Bitrix マイグレーター |
 | [`alveby/atrium-ai`](../../packages/ai/README.md) | 管理画面の AI 文章アシスタント |
 | [`alveby/atrium-docs`](../../packages/docs/README.md) | Markdownから作るドキュメント（バージョンと検索つき） |
+| [`alveby/atrium-backup`](../../packages/backup/README.md) | データベースとファイルのバックアップ、管理画面からの復元 |
 
 0.1 が Packagist に公開されたら、既存の Laravel 13 アプリには次のコマンドで Atrium を導入できます。
 

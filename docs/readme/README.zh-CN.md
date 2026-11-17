@@ -120,6 +120,8 @@ Bitrix 数据库只读不写。标签页、字段顺序和列表列会保持编�
 - [AI 写作助手：免费与付费服务商、描述、SEO、alt 文本、翻译](../ai.md)
 - [自定义模块：字段、列、标签页、权限、语言、测试、打包](../modules.md)
 - [从 1C-Bitrix 迁移，分步说明](../bitrix.md)
+- [备份：数据库和文件同时存到多个位置、计划任务、健康检查、恢复](../backup.md)
+- [CDN：图片、缩放副本与 WebP/AVIF、清除缓存、上传到 S3](../cdn.md)
 
 ## 软件包
 
@@ -130,6 +132,7 @@ Bitrix 数据库只读不写。标签页、字段顺序和列表列会保持编�
 | [`alveby/atrium-bitrix`](../../packages/bitrix/README.md) | 1C-Bitrix 迁移工具 |
 | [`alveby/atrium-ai`](../../packages/ai/README.md) | 后台的 AI 写作助手 |
 | [`alveby/atrium-docs`](../../packages/docs/README.md) | 由 Markdown 生成的文档，支持版本和搜索 |
+| [`alveby/atrium-backup`](../../packages/backup/README.md) | 数据库和文件的备份，可在后台恢复 |
 
 0.1 上架 Packagist 后，现有的 Laravel 13 应用可以这样安装 Atrium：
 

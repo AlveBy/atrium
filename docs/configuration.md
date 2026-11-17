@@ -86,6 +86,7 @@ Files uploaded in the admin go to the `public` disk (`storage/app/public`) and a
 
 | Setting | Default | What it does |
 |---|---|---|
+| `ATRIUM_UPLOADS_DISK` | `public` | The disk uploads go to; a bucket works too, see [CDN](cdn.md#uploads-to-s3) |
 | `uploads.directory` | `uploads` | The folder inside the disk |
 | `uploads.max_size` | `5120` | The largest file, in KB |
 | `uploads.image_max_size` | `2048` | The largest image, in KB |
@@ -95,6 +96,8 @@ Files uploaded in the admin go to the `public` disk (`storage/app/public`) and a
 The WebP copy is named after the original, `photo.jpg.webp`, and the web server gives it to browsers that take WebP at the original's address: nothing changes in the database or in templates. Apache does it with the rule in `public/.htaccess`, nginx with the rule in [Installing](installation.md#the-web-server). Without such a rule turn the copies off: they would take disk space and never reach visitors. The copies need PHP's GD with WebP support; without it the upload simply goes without a copy.
 
 PHP limits come first: an upload larger than `upload_max_filesize` or `post_max_size` in `php.ini` never reaches Atrium.
+
+To serve pictures and files from a CDN, with resized copies and cache purge, see [CDN](cdn.md).
 
 ## API tokens
 
