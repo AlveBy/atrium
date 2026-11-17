@@ -58,11 +58,18 @@ jobs:
           POSTGRES_PASSWORD: password
         ports: ['5432:5432']
         options: --health-cmd="pg_isready" --health-interval=10s --health-timeout=5s --health-retries=5
+      # S3 for the backup destination and CDN upload tests.
+      s3:
+        image: adobe/s3mock
+        env:
+          COM_ADOBE_TESTING_S3MOCK_STORE_INITIAL_BUCKETS: backups,media
+        ports: ['9090:9090']
 
     env:
       # bin/ci creates a database per package on these servers.
       ATRIUM_CI_MYSQL_PORT: 3306
       ATRIUM_CI_PGSQL_PORT: 5432
+      ATRIUM_TEST_S3_ENDPOINT: http://127.0.0.1:9090
 
     steps:
       - uses: actions/checkout@v4
@@ -70,8 +77,18 @@ jobs:
       - uses: shivammathur/setup-php@v2
         with:
           php-version: ${{ matrix.php }}
-          extensions: pdo_sqlite, pdo_mysql, pdo_pgsql, intl, gd, exif
+          extensions: pdo_sqlite, pdo_mysql, pdo_pgsql, intl, gd, exif, zip
           coverage: none
+
+      # The backup module dumps and restores with the databases' own tools;
+      # pg_dump must be at least as new as the server.
+      - name: Database clients
+        run: |
+          sudo install -d /usr/share/postgresql-common/pgdg
+          sudo curl -fsSL -o /usr/share/postgresql-common/pgdg/apt.postgresql.org.asc https://www.postgresql.org/media/keys/ACCC4CF8.asc
+          echo "deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" | sudo tee /etc/apt/sources.list.d/pgdg.list
+          sudo apt-get update -q
+          sudo apt-get install -yq sqlite3 postgresql-client-17 mysql-client
 
       - run: composer install --no-interaction --no-progress --prefer-dist
       - run: cp .env.example .env && php artisan key:generate
@@ -86,6 +103,15 @@ jobs:
   coverage:
     name: Coverage and mutation testing
     runs-on: ubuntu-latest
+    services:
+      # S3 for the backup destination and CDN upload tests.
+      s3:
+        image: adobe/s3mock
+        env:
+          COM_ADOBE_TESTING_S3MOCK_STORE_INITIAL_BUCKETS: backups,media
+        ports: ['9090:9090']
+    env:
+      ATRIUM_TEST_S3_ENDPOINT: http://127.0.0.1:9090
     steps:
       - uses: actions/checkout@v4
         with:
@@ -95,9 +121,19 @@ jobs:
       - uses: shivammathur/setup-php@v2
         with:
           php-version: '8.4'
-          extensions: pdo_sqlite, intl, gd, exif
+          extensions: pdo_sqlite, intl, gd, exif, zip
           # Xdebug, as on contributors' machines, so the baselines match.
           coverage: xdebug
+
+      # The backup module dumps and restores with the databases' own tools;
+      # pg_dump must be at least as new as the server.
+      - name: Database clients
+        run: |
+          sudo install -d /usr/share/postgresql-common/pgdg
+          sudo curl -fsSL -o /usr/share/postgresql-common/pgdg/apt.postgresql.org.asc https://www.postgresql.org/media/keys/ACCC4CF8.asc
+          echo "deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresql.org.asc] https://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" | sudo tee /etc/apt/sources.list.d/pgdg.list
+          sudo apt-get update -q
+          sudo apt-get install -yq sqlite3 postgresql-client-17 mysql-client
 
       - run: composer install --no-interaction --no-progress --prefer-dist
       - run: cp .env.example .env && php artisan key:generate
@@ -134,7 +170,7 @@ jobs:
       - uses: shivammathur/setup-php@v2
         with:
           php-version: '8.4'
-          extensions: pdo_sqlite, intl, gd, exif
+          extensions: pdo_sqlite, intl, gd, exif, zip
           coverage: none
 
       - uses: actions/setup-node@v4
