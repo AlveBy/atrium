@@ -32,6 +32,18 @@ bin/ci --changed           # lint, PHPStan, PHPUnit, coverage and mutation testi
 
 CI refuses a changed line in `packages/*/src` or `app` that no test runs, a package left with more lines without a test than `.ci/coverage/<package>` records, and changed code whose mutation score is under 100%: Infection changes the changed lines and a test has to fail for every change. Coverage in Atrium is 100% — not 98, not 99. Nothing is taken out of the gates: no `@codeCoverageIgnore`, no `@infection-ignore-all`, no ignored mutators (the lint step refuses them); a mutant no test can tell from the original goes by rewriting the code. What the tests of a module must check, and how these gates work, is in [docs/testing.md](docs/testing.md).
 
+## Getting a change into main
+
+Nobody pushes to main, maintainers included: main takes changes only through a pull request and the merge queue, and only when the `ci` check is green. Push your branch, open the pull request and put it in the queue:
+
+```bash
+git push -u origin my-branch
+gh pr create --fill
+gh pr merge --auto --rebase
+```
+
+The queue tests the pull request on top of the latest main and merges it when `ci` passes; if it fails, the pull request leaves the queue and main stays as it was. Fix the branch and run the last command again.
+
 - Tests are PHPUnit, not Pest. Every change that a user can see needs a Dusk test; everything else needs a PHPUnit test.
 - Every line you add or change is covered, and every condition both ways. Write the positive tests (what should work does, and saves what it should) and the negative ones (wrong or empty input, no permission, a missing record, another site's data, an outside service that fails or times out). A test that still passes when you break the line it covers does not count: break the line once and watch the test go red.
 - `declare(strict_types=1);` in every PHP file.
