@@ -114,6 +114,7 @@ All notable changes are listed here. The format follows [Keep a Changelog](https
 - `atrium:media:index --path=` with a folder that does not exist reported the error and still exited successfully, so a deploy script went on; it exits with a failure now.
 - A module with a many-to-many field that has no relation on its model saved (the field left out) but its edit page and its records in the API answered with a server error; they open now, the field left out as on saving.
 - The API documentation gave text fields without `maxLength()` a limit of 255 characters, but up to 65535 are accepted (the 255 is only the form's input hint); it gives the limit that is enforced now.
+- The Markdown API documentation cut HTML out of module and field labels, so a label such as `Size <b>XL</b>` read differently than in the panel, and module headings were not escaped at all; labels are now kept as text, with `<` and `>` escaped, on one line, headings included.
 
 ### Security
 - API tokens and MCP keep to the sites their administrator may work with, as the panel does: records of other sites are not listed, read, changed or deleted, `?site=` naming another site answers 404, and new records go to an allowed site. Neither the API nor the panel takes `site_id` from the request any more, so a record cannot be moved to another site.
