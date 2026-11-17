@@ -120,6 +120,7 @@ La base de datos de Bitrix solo se lee. Las pestañas, el orden de los campos y 
 - [Ayuda de redacción con IA: proveedores gratuitos y de pago, descripciones, SEO, textos alt, traducciones](../ai.md)
 - [Tu propio módulo: campos, columnas, pestañas, permisos, idiomas, pruebas, paquete](../modules.md)
 - [Campos propios: añadir campos a cualquier módulo desde el panel, filtros y facetas con 100 000 registros](../custom-fields.md)
+- [Caché: páginas rápidas con decenas de propiedades, Redis, caché de páginas, cabeceras para CDN](../cache.md)
 - [Migrar desde 1C-Bitrix, paso a paso](../bitrix.md)
 - [Copias de seguridad: bases de datos y archivos en varios destinos, horarios, comprobaciones, restauración](../backup.md)
 - [CDN: imágenes, copias redimensionadas y WebP/AVIF, purga de caché, subidas a S3](../cdn.md)

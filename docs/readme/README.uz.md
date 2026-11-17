@@ -120,6 +120,7 @@ Bitrix maʼlumotlar bazasi faqat oʻqiladi. Yorliqlar, maydonlar tartibi va roʻ
 - [Matnlar uchun SI-yordamchi: bepul va pullik provayderlar, tavsiflar, SEO, alt, tarjimalar](../ai.md)
 - [Oʻz modulingiz: maydonlar, ustunlar, yorliqlar, huquqlar, tillar, testlar, paket](../modules.md)
 - [Oʻz maydonlaringiz: istalgan modulga admin paneldan maydon qoʻshish, 100 000 yozuvda filtrlar va fasetlar](../custom-fields.md)
+- [Kesh: oʻnlab xususiyatli tez sahifalar, Redis, sahifalar keshi, CDN sarlavhalari](../cache.md)
 - [1C-Bitrixdan koʻchish, qadamma-qadam](../bitrix.md)
 - [Zaxira nusxalar: bazalar va fayllar bir nechta joyga, jadval, tekshiruvlar, tiklash](../backup.md)
 - [CDN: rasmlar, kichraytirilgan nusxalar va WebP/AVIF, keshni tozalash, S3 ga yuklash](../cdn.md)

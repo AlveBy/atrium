@@ -120,6 +120,7 @@ Die Bitrix-Datenbank wird nur gelesen. Tabs, Feldreihenfolge und Listenspalten k
 - [KI-Schreibhilfe: kostenlose und bezahlte Anbieter, Beschreibungen, SEO, Alt-Texte, Übersetzungen](../ai.md)
 - [Eigenes Modul: Felder, Spalten, Tabs, Rechte, Sprachen, Tests, als Paket](../modules.md)
 - [Eigene Felder: Felder für jedes Modul im Admin-Bereich anlegen, Filter und Facetten bei 100 000 Einträgen](../custom-fields.md)
+- [Cache: schnelle Seiten mit Dutzenden Eigenschaften, Redis, Seiten-Cache, CDN-Header](../cache.md)
 - [Umzug von 1C-Bitrix, Schritt für Schritt](../bitrix.md)
 - [Backups: Datenbanken und Dateien an mehrere Orte, Zeitpläne, Prüfungen, Wiederherstellung](../backup.md)
 - [CDN: Bilder, verkleinerte Kopien und WebP/AVIF, Cache leeren, Uploads zu S3](../cdn.md)

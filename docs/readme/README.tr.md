@@ -120,6 +120,7 @@ Bitrix veritabanından yalnızca okuma yapılır. Sekmeler, alan sırası ve lis
 - [Yapay zekâ yazım yardımı: ücretsiz ve ücretli sağlayıcılar, açıklamalar, SEO, alt metinleri, çeviriler](../ai.md)
 - [Kendi modülünüz: alanlar, sütunlar, sekmeler, yetkiler, diller, testler, paket](../modules.md)
 - [Özel alanlar: yönetim panelinden her modüle alan ekleme, 100 000 kayıtta filtreler ve faset sayıları](../custom-fields.md)
+- [Önbellek: onlarca özellikli hızlı sayfalar, Redis, sayfa önbelleği, CDN başlıkları](../cache.md)
 - [1C-Bitrix’ten adım adım taşınma](../bitrix.md)
 - [Yedekler: veritabanları ve dosyalar birden çok yere, zamanlama, sağlık kontrolleri, geri yükleme](../backup.md)
 - [CDN: görseller, küçültülmüş kopyalar ve WebP/AVIF, önbellek temizleme, S3'e yükleme](../cdn.md)

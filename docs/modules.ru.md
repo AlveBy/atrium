@@ -236,6 +236,10 @@ $request->validate([
 
 Поля капчи не возвращайте в форму: `->withInput($request->except(CaptchaManager::INPUTS))`. Капча другого вида (Cloudflare Turnstile, hCaptcha, своя) — класс с `widget()` и `verify($request)` (`Atrium\Admin\Captcha\CaptchaDriver`), который добавляют через `app(CaptchaManager::class)->extend('turnstile', fn () => new Turnstile(...))` и выбирают `ATRIUM_CAPTCHA=turnstile`.
 
+## Кеш
+
+Публичные страницы берут записи из кеша записей. Добавьте модели `implements Cacheable` и `use CachesRecords`, а списки читайте через `->cachedIds()` / `->cachedPaginate()` / `->cachedCards()` вместо `->get()`: тогда список спрашивает у базы только ID, а каждая запись приходит из своей карточки, одним multi-get на всю страницу. Сохранения через Eloquent сбрасывают то, чего касаются; код, который пишет через `DB::table()`, вызывает `app(RecordCache::class)->flushClass(Article::class)`, а импорт идёт внутри `bulk()`. Всё остальное по шагам: [cache.ru.md](cache.ru.md).
+
 ## Переводы интерфейса
 
 Подписи могут быть обычным текстом или ключами перевода. Для модуля, которым пользуются на нескольких языках, держите их в `lang/{язык}/admin.php` и пишите `->label(__('admin.articles.name'))`.
