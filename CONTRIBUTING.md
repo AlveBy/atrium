@@ -25,12 +25,12 @@ Run what GitHub Actions runs, on your machine. A push that has not passed it mus
 
 ```bash
 vendor/bin/pint && php scripts/copyright-header.php --fix   # fix style and headers first
-bin/ci --changed           # lint, PHPStan, PHPUnit and coverage of the packages your change can break
+bin/ci --changed           # lint, PHPStan, PHPUnit, coverage and mutation testing of the packages your change can break
 ```
 
 `bin/ci` runs Pint, the copyright header check, PHPStan and PHPUnit, each package in its own process, on SQLite and — when Docker is running or a server is there — on MySQL and PostgreSQL, in throwaway databases of its own. `--changed` limits PHPUnit to the packages you touched and the ones that require them; without it every package runs, which is what CI does. Add `--dusk` for the browser tests (it serves the app and ChromeDriver on free ports). `bin/ci --help` lists the rest; `composer ci` is the same.
 
-Coverage is measured with Xdebug or PCOV, and CI refuses two things: a changed line in `packages/*/src` or `app` that no test runs (the uncovered lines are listed), and a package left with more lines without a test than `.ci/coverage/<package>` records. When your tests cover more, `bin/ci` rewrites that file: commit it with your change.
+CI refuses a changed line in `packages/*/src` or `app` that no test runs, a package left with more lines without a test than `.ci/coverage/<package>` records, and changed code whose mutation score is under 85%: Infection changes the changed lines and a test has to fail for each change. What the tests of a module must check, and how these gates work, is in [docs/testing.md](docs/testing.md).
 
 - Tests are PHPUnit, not Pest. Every change that a user can see needs a Dusk test; everything else needs a PHPUnit test.
 - Every line you add or change is covered, and every condition both ways. Write the positive tests (what should work does, and saves what it should) and the negative ones (wrong or empty input, no permission, a missing record, another site's data, an outside service that fails or times out). A test that still passes when you break the line it covers does not count: break the line once and watch the test go red.

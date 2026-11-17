@@ -1,0 +1,141 @@
+# Testing
+
+[English](testing.md) · [Русский](testing.ru.md)
+
+Every package of Atrium is tested the same way, and the same gates guard every push to main. This page is the standard: what to run, what CI refuses, and what a test of a module has to check.
+
+- [Before every push](#before-every-push)
+- [The gates](#the-gates)
+- [What a module's tests check](#what-a-modules-tests-check)
+- [Data providers](#data-providers)
+- [Negative cases](#negative-cases)
+- [Security cases](#security-cases)
+- [Browser tests](#browser-tests)
+- [How tests are written](#how-tests-are-written)
+- [When a gate fails](#when-a-gate-fails)
+
+## Before every push
+
+```bash
+vendor/bin/pint && php scripts/copyright-header.php --fix
+bin/ci --changed
+```
+
+`bin/ci` is what GitHub Actions runs, on your machine. Run it before every push; a push it has not passed must not reach main. With `--changed` it checks only the packages your change can break — the package itself and every package that requires it, so a change to the admin runs all of them — which is what you want while working. CI runs all packages.
+
+| Step | What it does |
+|---|---|
+| `lint` | Pint and the copyright header in every file |
+| `static` | PHPStan |
+| `tests` | PHPUnit of each package in its own process, side by side, on SQLite, MySQL and PostgreSQL |
+| `coverage` | PHPUnit with coverage: the changed lines are covered, no package falls below its baseline |
+| `mutation` | Infection on the changed lines: the tests notice when the code is changed |
+| `dusk` | browser tests, with `--dusk` |
+
+MySQL and PostgreSQL run in Docker (`atrium-ci-mysql` on port 33061, `atrium-ci-pgsql` on 54321, started on first use) or on any server on those ports (`ATRIUM_CI_MYSQL_PORT`, `ATRIUM_CI_PGSQL_PORT`, `ATRIUM_CI_DB_PASSWORD`). Every run makes throwaway databases of its own, so several checkouts can run `bin/ci` at once. Without Docker the two are skipped with a note; CI still runs them.
+
+Coverage needs Xdebug or PCOV. Steps can be named: `bin/ci lint static`, `bin/ci tests --db=pgsql --package=catalog`. `bin/ci --help` lists every option; the logs of each process are in `build/ci/logs`.
+
+## The gates
+
+**Every changed line is covered.** The executable lines a push adds or rewrites in `packages/*/src` and `app` must be run by a test. Comments, blank lines and signatures do not count. The line numbers that are not covered are printed, and in CI marked on the file.
+
+**No package loses coverage.** The coverage of each package, measured by its own tests only, is kept in `.ci/coverage/<package>`, for example `87.50% of lines, 120 not covered`. CI fails when more lines of a package are left without a test than that file says. The percentage may only fall when covered code is deleted. When your tests cover more, `bin/ci` writes the file again: commit it with your change, and the bar goes up for everyone.
+
+**Tests notice changes.** [Infection](https://infection.github.io) changes the changed lines — flips a condition, drops a call, returns another value — and runs the tests again. A test must fail for each such mutant. The mutation score (MSI) of the changed code must be at least **85%**. A test that runs a line without checking what it did lets the mutants escape, and the gate fails. Mutants that cannot be told apart from the original (equivalent mutants) are rare; when one blocks you, rewrite the code so it disappears rather than lowering the bar.
+
+**One check to require.** The `ci` job of the `tests` workflow passes only when every other job passed. Branch protection and a merge queue need only that one name.
+
+## What a module's tests check
+
+A module is tested from the outside, the way the admin, the site and the API use it, plus unit tests for logic with many cases. For each module:
+
+- **The main flow end to end.** Create, list, search, edit, delete in the admin; the record on the site; the API and MCP if the module has them. Assert what the user sees and what is stored.
+- **Every field and its rules**, through a data provider (below).
+- **Every way to be refused** (negative cases, below).
+- **The security cases** that apply (below).
+- **The installation**: `atrium:module:install` and the demo data, run twice, add nothing the second time.
+- **Every language.** Translations have every key of English, placeholders match, nothing is empty — in all 15 languages: en, ru, uk, be, kk, uz, de, fr, es, pt_BR, it, pl, tr, zh_CN, ja.
+- **A Dusk test for the main path of each screen** (below).
+
+## Data providers
+
+One test, many cases. Name every case, so a failure says which:
+
+```php
+public static function names(): array
+{
+    return [
+        'plain' => ['Garden chair', true],
+        'one character' => ['A', true],
+        'longest allowed' => [str_repeat('a', 255), true],
+        'one too long' => [str_repeat('a', 256), false],
+        'empty' => ['', false],
+        'only spaces' => ['   ', false],
+        'not a string' => [['array'], false],
+        'Cyrillic' => ['Садовый стул', true],
+        'Chinese' => ['花园椅', true],
+        'Japanese' => ['ガーデンチェア', true],
+        'Arabic, right to left' => ['كرسي حديقة', true],
+        'Hebrew, right to left' => ['כיסא גן', true],
+        'emoji' => ['Chair 🪑', true],
+        'HTML' => ['<b>Chair</b>', true],
+    ];
+}
+
+#[DataProvider('names')]
+public function test_the_name_is_validated(mixed $name, bool $valid): void
+```
+
+Cover, wherever they apply:
+
+- **valid** values of every kind the field takes;
+- **boundaries**: the shortest and longest allowed, one past each, zero, negative, the largest number;
+- **empty**: missing, `null`, `''`, whitespace, an empty array;
+- **too long** text, too many items, too large a file;
+- **wrong type**: an array for a string, a string for a number, a date that is not one;
+- **Unicode**: Cyrillic, Chinese and Japanese, Arabic and Hebrew (right to left), emoji, combining characters;
+- **all 15 languages** wherever text is shown, sorted, searched, slugged or translated — loop over `config('atrium.locales')`.
+
+Data providers are static and run before Laravel starts: build plain values in them, records in the test.
+
+## Negative cases
+
+A test that only checks the happy path checks half. For every action, also:
+
+- **Validation errors**: the error is shown on the right field, and nothing is saved.
+- **No permission**: an administrator without the right gets 403 on the list, the form, the save, the delete and the API — not just a hidden button.
+- **Another site's data**: a record of site B is never listed, opened, edited or found by search on site A, in the admin, on the site and in the API.
+- **Deleted and inactive records**: not on the site, not in sitemaps or search, 404 by their old address (or a redirect when the module promises one).
+- **Concurrent writes** where they can happen: counters, sort order, unique codes — two saves of the same record, two submissions at once.
+- **Missing things**: an unknown id is 404, a missing related record does not crash the page, a module that is not installed is not required.
+
+## Security cases
+
+- **XSS**: `<script>alert(1)</script>`, `"><img src=x onerror=alert(1)>` and `javascript:` links in every text input come back escaped on the site and in the admin. HTML fields are cleaned of scripts and event attributes.
+- **Mass assignment**: posting `id`, `site_id`, `created_by`, `is_superadmin` or any field not on the form changes nothing.
+- **Uploads**: only the allowed types are kept, judged by content, not by the name (`photo.jpg` that is PHP is refused); too large files are refused; names with `../` or Unicode are stored safely.
+- **Signed URLs**: a link without its signature, with a changed parameter or past its expiry is refused.
+- **Login and CSRF** where the module adds forms on the site: a request without the token is refused, limits on attempts hold.
+
+## Browser tests
+
+Every screen has a Dusk test for its main path: open it, fill it like a user, save, see the result, and check the database. Select elements by `dusk="…"` attributes, never by CSS classes or text that a translation changes. Never `pause()` for time: wait for what you expect (`waitForText`, `waitFor`, `waitUntilMissing`). Dusk tests live in `tests/Browser` and run with `bin/ci --dusk`.
+
+## How tests are written
+
+- **PHPUnit**, not Pest. A package's tests are in `packages/<name>/tests`, `Feature` for HTTP and commands, `Unit` for classes on their own.
+- **Names say what happens**: `test_an_administrator_without_the_right_cannot_delete_a_product`, not `test_delete_2`.
+- **Arrange, act, assert**, one behaviour per test. Assert the result — the response, the stored row, the sent mail — not that a method was called.
+- **Records** come from the package's model factories (`packages/<name>/database/factories`) or a helper of the test case; never from the demo seeder unless the test is about the demo.
+- **No sleeps, no clocks, no randomness**: use `$this->travelTo()`, `Str::createUuidsUsing()`, fixed seeds.
+- **No network**: `Http::fake()`, `Mail::fake()`, `Queue::fake()`, `Storage::fake()`. A test that calls the internet fails in CI.
+- **No order between tests**: each starts from an empty database and leaves nothing behind. Tests of a package run in its own process with its own app, side by side with other packages.
+- **Every database**: tests run on SQLite, MySQL and PostgreSQL. Do not depend on one's sorting, case or JSON behaviour; sort explicitly.
+
+## When a gate fails
+
+- **Not covered**: the message lists the lines. Write the test that runs them and checks what they do. If a line cannot be reached, remove it.
+- **Coverage fell**: you removed tests or added code without them. Find which file lost coverage in `build/ci/coverage/<package>`.
+- **Mutants escaped**: `build/ci/infection/<package>/infection.log` shows each one — the change Infection made that no test noticed. Add the assertion that would have caught it.
+- **Red only in CI**: run the same leg: `bin/ci tests --db=mysql`. The logs of every CI job are attached to the run when it fails.
