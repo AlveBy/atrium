@@ -4,6 +4,10 @@
 
 Atrium is an admin panel for Laravel that installs with one command, runs any number of sites and speaks 15 languages from day one. This page is where the project goes after the first release. There are no dates, only an order: modules → importers from other CMSs → shop → 1C and Bitrix24. Each version builds on the one before it: importers, the shop and integrations are modules themselves.
 
+## Focus now
+
+Until 0.1 is out, work goes only into the core, the basic modules (pages, forms, news, catalog, SEO) and importers from other CMSs, and every importer is tried on real sites before it is called done. Other modules wait: a module someone asks for in Issues comes first.
+
 ## Principles
 
 - **Free and open.** The core and every official module are free, under MIT.
