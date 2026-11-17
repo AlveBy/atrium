@@ -123,6 +123,7 @@ Baza danych Bitrixa jest tylko odczytywana. Karty, kolejność pól i kolumny li
 - [Cache: szybkie strony z dziesiątkami właściwości, Redis, cache stron, nagłówki dla CDN](../cache.md)
 - [Przeprowadzka z 1C-Bitrix krok po kroku](../bitrix.md)
 - [Kopie zapasowe: bazy danych i pliki w kilku miejscach, harmonogram, kontrole, przywracanie](../backup.md)
+- [Błędy: błędy PHP, kolejek i JavaScriptu w bazie strony, powiadomienia, Sentry i własne sterowniki](../errors.md)
 - [CDN: obrazy, pomniejszone kopie i WebP/AVIF, czyszczenie pamięci podręcznej, przesyłanie do S3](../cdn.md)
 
 ## Pakiety
@@ -136,6 +137,7 @@ Baza danych Bitrixa jest tylko odczytywana. Karty, kolejność pól i kolumny li
 | [`alveby/atrium-custom-fields`](../../packages/custom-fields/README.md) | Pola dodawane do dowolnego modułu z panelu, z filtrami i fasetami |
 | [`alveby/atrium-docs`](../../packages/docs/README.md) | Dokumentacja z Markdown, z wersjami i wyszukiwaniem |
 | [`alveby/atrium-backup`](../../packages/backup/README.md) | Kopie zapasowe baz danych i plików, przywracanie z panelu |
+| [`alveby/atrium-errors`](../../packages/errors/README.md) | Rejestr błędów w bazie strony, powiadomienia, Sentry |
 
 Gdy 0.1 trafi na Packagist, do istniejącej aplikacji na Laravel 13 dodasz Atrium tak:
 

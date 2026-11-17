@@ -123,6 +123,7 @@ La base de données Bitrix est uniquement lue. Les onglets, l'ordre des champs e
 - [Cache : des pages rapides avec des dizaines de propriétés, Redis, cache de pages, en-têtes CDN](../cache.md)
 - [Migrer depuis 1C-Bitrix, pas à pas](../bitrix.md)
 - [Sauvegardes : bases de données et fichiers vers plusieurs destinations, planification, contrôles, restauration](../backup.md)
+- [Erreurs : erreurs PHP, de file d'attente et JavaScript dans la base du site, alertes, Sentry et vos propres pilotes](../errors.md)
 - [CDN : images, copies redimensionnées et WebP/AVIF, purge du cache, envois vers S3](../cdn.md)
 
 ## Paquets
@@ -136,6 +137,7 @@ La base de données Bitrix est uniquement lue. Les onglets, l'ordre des champs e
 | [`alveby/atrium-custom-fields`](../../packages/custom-fields/README.md) | Champs ajoutés à tout module depuis l'administration, avec filtres et facettes |
 | [`alveby/atrium-docs`](../../packages/docs/README.md) | Documentation à partir de Markdown, avec versions et recherche |
 | [`alveby/atrium-backup`](../../packages/backup/README.md) | Sauvegardes des bases de données et des fichiers, restauration depuis l'administration |
+| [`alveby/atrium-errors`](../../packages/errors/README.md) | Suivi des erreurs dans la base du site, alertes, Sentry |
 
 Une fois la 0.1 publiée sur Packagist, une application Laravel 13 existante obtiendra Atrium avec :
 

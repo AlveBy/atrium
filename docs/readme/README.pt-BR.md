@@ -123,6 +123,7 @@ O banco de dados do Bitrix é apenas lido. As abas, a ordem dos campos e as colu
 - [Cache: páginas rápidas com dezenas de propriedades, Redis, cache de páginas, cabeçalhos para CDN](../cache.md)
 - [Migrar do 1C-Bitrix, passo a passo](../bitrix.md)
 - [Backups: bancos de dados e arquivos em vários destinos, agendamento, verificações, restauração](../backup.md)
+- [Erros: erros de PHP, de filas e de JavaScript no banco do site, alertas, Sentry e drivers próprios](../errors.md)
 - [CDN: imagens, cópias redimensionadas e WebP/AVIF, limpeza de cache, uploads para S3](../cdn.md)
 
 ## Pacotes
@@ -136,6 +137,7 @@ O banco de dados do Bitrix é apenas lido. As abas, a ordem dos campos e as colu
 | [`alveby/atrium-custom-fields`](../../packages/custom-fields/README.md) | Campos adicionados a qualquer módulo pelo painel, com filtros e facetas |
 | [`alveby/atrium-docs`](../../packages/docs/README.md) | Documentação a partir de Markdown, com versões e busca |
 | [`alveby/atrium-backup`](../../packages/backup/README.md) | Backups dos bancos de dados e arquivos, restauração pelo painel |
+| [`alveby/atrium-errors`](../../packages/errors/README.md) | Registro de erros no banco do site, alertas, Sentry |
 
 Quando a 0.1 estiver no Packagist, uma aplicação Laravel 13 existente poderá receber o Atrium com:
 

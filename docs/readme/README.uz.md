@@ -123,6 +123,7 @@ Bitrix maʼlumotlar bazasi faqat oʻqiladi. Yorliqlar, maydonlar tartibi va roʻ
 - [Kesh: oʻnlab xususiyatli tez sahifalar, Redis, sahifalar keshi, CDN sarlavhalari](../cache.md)
 - [1C-Bitrixdan koʻchish, qadamma-qadam](../bitrix.md)
 - [Zaxira nusxalar: bazalar va fayllar bir nechta joyga, jadval, tekshiruvlar, tiklash](../backup.md)
+- [Xatolar: PHP, navbat va JavaScript xatolari sayt bazasida, ogohlantirishlar, Sentry va oʻz drayverlaringiz](../errors.md)
 - [CDN: rasmlar, kichraytirilgan nusxalar va WebP/AVIF, keshni tozalash, S3 ga yuklash](../cdn.md)
 
 ## Paketlar
@@ -136,6 +137,7 @@ Bitrix maʼlumotlar bazasi faqat oʻqiladi. Yorliqlar, maydonlar tartibi va roʻ
 | [`alveby/atrium-custom-fields`](../../packages/custom-fields/README.md) | Istalgan modulga admin paneldan qoʻshiladigan maydonlar, filtrlar va fasetlar bilan |
 | [`alveby/atrium-docs`](../../packages/docs/README.md) | Markdown’dan hujjatlar: versiyalar va qidiruv |
 | [`alveby/atrium-backup`](../../packages/backup/README.md) | Bazalar va fayllarning zaxira nusxalari, admin paneldan tiklash |
+| [`alveby/atrium-errors`](../../packages/errors/README.md) | Sayt bazasida xatolar hisobi, ogohlantirishlar, Sentry |
 
 0.1 versiyasi Packagist saytida paydo boʻlgach, mavjud Laravel 13 ilovasiga Atrium quyidagicha oʻrnatiladi:
 

@@ -123,6 +123,7 @@ Die Bitrix-Datenbank wird nur gelesen. Tabs, Feldreihenfolge und Listenspalten k
 - [Cache: schnelle Seiten mit Dutzenden Eigenschaften, Redis, Seiten-Cache, CDN-Header](../cache.md)
 - [Umzug von 1C-Bitrix, Schritt für Schritt](../bitrix.md)
 - [Backups: Datenbanken und Dateien an mehrere Orte, Zeitpläne, Prüfungen, Wiederherstellung](../backup.md)
+- [Fehler: PHP-, Warteschlangen- und JavaScript-Fehler in der Datenbank der Website, Benachrichtigungen, Sentry und eigene Treiber](../errors.md)
 - [CDN: Bilder, verkleinerte Kopien und WebP/AVIF, Cache leeren, Uploads zu S3](../cdn.md)
 
 ## Pakete
@@ -136,6 +137,7 @@ Die Bitrix-Datenbank wird nur gelesen. Tabs, Feldreihenfolge und Listenspalten k
 | [`alveby/atrium-custom-fields`](../../packages/custom-fields/README.md) | Felder für jedes Modul, im Admin-Bereich angelegt, mit Filtern und Facetten |
 | [`alveby/atrium-docs`](../../packages/docs/README.md) | Dokumentation aus Markdown, mit Versionen und Suche |
 | [`alveby/atrium-backup`](../../packages/backup/README.md) | Backups der Datenbanken und Dateien, Wiederherstellung im Admin-Bereich |
+| [`alveby/atrium-errors`](../../packages/errors/README.md) | Fehlererfassung in der Datenbank der Website, Benachrichtigungen, Sentry |
 
 Sobald 0.1 auf Packagist ist, bekommt eine bestehende Laravel-13-Anwendung Atrium so:
 

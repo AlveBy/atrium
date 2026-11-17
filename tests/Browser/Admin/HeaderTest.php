@@ -44,8 +44,8 @@ final class HeaderTest extends AdminTestCase
         Site::query()->create(['name' => 'Second site with a long name', 'code' => 'second']);
 
         $this->browse(function (Browser $browser) use ($admin): void {
-            $browser->resize(375, 812)
-                ->loginAs($admin, 'admin')
+            $this->phone($browser, true);
+            $browser->loginAs($admin, 'admin')
                 ->visit('/admin')
                 ->waitFor('[data-site-switcher]');
 
@@ -65,8 +65,21 @@ final class HeaderTest extends AdminTestCase
             $browser->assertSeeIn('header', __('atrium::layout.site', [], 'en'))
                 ->assertSeeIn('header', __('atrium::layout.admin_language', [], 'en'))
                 // The language itself is shown by its code.
-                ->assertSeeIn('header', 'EN')
-                ->resize(1920, 1080);
+                ->assertSeeIn('header', 'EN');
+            $this->phone($browser, false);
         });
+    }
+
+    /**
+     * A phone 375 pixels wide, not a narrow desktop window: a desktop
+     * window has a floor of 500 pixels on macOS, and on Linux its scroll
+     * bar takes 15 of them as soon as the dashboard is taller than the
+     * screen. A phone draws its scroll bar over the page.
+     */
+    private function phone(Browser $browser, bool $on): void
+    {
+        $browser->driver->executeCustomCommand('/session/:sessionId/goog/cdp/execute', 'POST', $on
+            ? ['cmd' => 'Emulation.setDeviceMetricsOverride', 'params' => ['width' => 375, 'height' => 812, 'deviceScaleFactor' => 2, 'mobile' => true]]
+            : ['cmd' => 'Emulation.clearDeviceMetricsOverride', 'params' => (object) []]);
     }
 }
