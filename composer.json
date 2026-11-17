@@ -38,6 +38,7 @@
     },
     "require-dev": {
         "alveby/atrium-bitrix": "@dev",
+        "alveby/atrium-wordpress": "@dev",
         "fakerphp/faker": "^1.23",
         "infection/infection": "^0.35",
         "larastan/larastan": "^3.15",
@@ -83,7 +84,8 @@
             "Atrium\\Team\\Tests\\": "packages/team/tests/",
             "Atrium\\Theme\\Tests\\": "packages/theme/tests/",
             "Atrium\\TwoFactor\\Tests\\": "packages/two-factor/tests/",
-            "Atrium\\SocialLogin\\Tests\\": "packages/social-login/tests/"
+            "Atrium\\SocialLogin\\Tests\\": "packages/social-login/tests/",
+            "Atrium\\WordPress\\Tests\\": "packages/wordpress/tests/"
         }
     },
     "scripts": {
@@ -172,7 +174,8 @@
                     "alveby/atrium-solutions": "0.1.x-dev",
                     "alveby/atrium-stores": "0.1.x-dev",
                     "alveby/atrium-team": "0.1.x-dev",
-                    "alveby/atrium-theme": "0.1.x-dev"
+                    "alveby/atrium-theme": "0.1.x-dev",
+                    "alveby/atrium-wordpress": "0.1.x-dev"
                 }
             }
         }
