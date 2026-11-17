@@ -39,10 +39,10 @@ Nobody pushes to main, maintainers included: main takes changes only through a p
 ```bash
 git push -u origin my-branch
 gh pr create --fill
-gh pr merge --auto --rebase
+gh pr merge --auto
 ```
 
-The queue tests the pull request on top of the latest main and merges it when `ci` passes; if it fails, the pull request leaves the queue and main stays as it was. Fix the branch and run the last command again.
+The queue sets the merge method itself, tests the pull request on top of the latest main and merges it when `ci` passes; if it fails, the pull request leaves the queue and main stays as it was. Fix the branch and run the last command again.
 
 - Tests are PHPUnit, not Pest. Every change that a user can see needs a Dusk test; everything else needs a PHPUnit test.
 - Every line you add or change is covered, and every condition both ways. Write the positive tests (what should work does, and saves what it should) and the negative ones (wrong or empty input, no permission, a missing record, another site's data, an outside service that fails or times out). A test that still passes when you break the line it covers does not count: break the line once and watch the test go red.
