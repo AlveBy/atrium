@@ -1,0 +1,87 @@
+/*
+ * This file is part of Atrium (https://github.com/AlveBy/atrium).
+ * Copyright (c) 2026 AlveBy. Licensed under the MIT License, see LICENSE.
+ *
+ * Contrast: text #1a1a1a on #fff 17.4:1 and on #f3f3f3 15.7:1, muted #4d4d4d
+ * 8.45:1, borders #767676 4.54:1, Save white on #005a9c 7.14:1, Delete and
+ * errors #b3261e 6.54:1. A pressed tool is inverted, not just tinted.
+ */
+
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body { font: 14px/1.4 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: #1a1a1a; background: #fff; }
+[hidden] { display: none !important; }
+
+.ed { display: flex; flex-direction: column; height: 100%; }
+.ed-toolbar { display: flex; flex-wrap: wrap; gap: .4rem .9rem; align-items: center; padding: .45rem .6rem; background: #f3f3f3; border-bottom: 1px solid #767676; }
+.ed-group { display: flex; gap: .25rem; align-items: center; }
+.ed-save { margin-left: auto; gap: .6rem; }
+.ed-btn {
+    display: inline-flex; align-items: center; gap: .35rem; min-height: 36px; padding: .3rem .6rem;
+    border: 1px solid #767676; border-radius: 6px; background: #fff; color: #1a1a1a; font: inherit; cursor: pointer;
+}
+.ed-btn svg { width: 18px; height: 18px; fill: currentColor; stroke: currentColor; flex: none; }
+.ed-btn[aria-pressed="true"] { background: #1a1a1a; border-color: #1a1a1a; color: #fff; }
+.ed-btn:disabled { opacity: .45; cursor: default; }
+.ed-btn:hover:not(:disabled):not([aria-pressed="true"]) { background: #e8e8e8; }
+.ed-icon { padding: .3rem; width: 36px; justify-content: center; }
+.ed-primary { background: #005a9c; border-color: #005a9c; color: #fff; font-weight: 600; padding: .3rem 1rem; }
+.ed-primary:hover:not(:disabled) { background: #004a80 !important; }
+.ed-danger { color: #b3261e; border-color: #b3261e; }
+.ed-zoom { min-width: 3.5em; text-align: center; font-variant-numeric: tabular-nums; }
+.ed-status { margin: 0; color: #4d4d4d; }
+@media (max-width: 900px) { .ed-btn span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); } .ed-primary span { position: static; width: auto; height: auto; clip: auto; } }
+
+.ed-main { flex: 1; display: flex; min-height: 0; }
+.ed-canvas { position: relative; flex: 1; min-width: 0; overflow: hidden; background: #d9d9d9; touch-action: none; cursor: grab; outline: none; }
+.ed-canvas:focus-visible { box-shadow: inset 0 0 0 3px #111, inset 0 0 0 5px #fff; }
+.ed-canvas[data-tool="rect"], .ed-canvas[data-tool="polygon"], .ed-canvas[data-tool="circle"], .ed-canvas[data-tool="point"] { cursor: crosshair; }
+.ed-canvas[data-pan] { cursor: grabbing; }
+.ed-svg { display: block; user-select: none; }
+.ed-hint { position: absolute; left: .6rem; bottom: .6rem; margin: 0; max-width: calc(100% - 1.2rem); padding: .3rem .6rem; border-radius: 6px; background: rgba(26, 26, 26, .88); color: #fff; pointer-events: none; }
+.ed-hint:empty { display: none; }
+
+.ed-area { cursor: move; }
+.ed-area * { vector-effect: non-scaling-stroke; }
+.ed-halo { fill: none; stroke: #fff; stroke-width: 5; stroke-opacity: .85; }
+.ed-area.is-selected .ed-halo { stroke-width: 8; stroke-opacity: 1; }
+.ed-area.is-error .ed-halo { stroke: #b3261e; stroke-width: 7; stroke-opacity: 1; stroke-dasharray: 4 3; }
+.ed-label { fill: #1a1a1a; stroke: #fff; paint-order: stroke; text-anchor: middle; dominant-baseline: middle; pointer-events: none; font-weight: 600; }
+.ed-handle { fill: #fff; stroke: #111; stroke-width: 2; vector-effect: non-scaling-stroke; cursor: grab; }
+.ed-mid { fill: #111; fill-opacity: .55; stroke: #fff; stroke-width: 1.5; vector-effect: non-scaling-stroke; cursor: copy; }
+.ed-draft { vector-effect: non-scaling-stroke; pointer-events: none; }
+.ed-vertex { fill: #111; pointer-events: none; }
+.ed-first { fill: #fff; stroke: #111; stroke-width: 2; vector-effect: non-scaling-stroke; }
+
+.ed-side { width: 300px; flex: none; overflow: auto; padding: .75rem; border-left: 1px solid #767676; background: #fff; }
+.ed-h { margin: 0 0 .5rem; font-size: 15px; }
+.ed-list { margin: 0 0 .75rem; padding: 0; list-style: none; display: grid; gap: 2px; }
+.ed-item { display: flex; justify-content: space-between; gap: .5rem; width: 100%; min-height: 36px; padding: .35rem .5rem; border: 1px solid transparent; border-radius: 6px; background: none; color: inherit; font: inherit; text-align: start; cursor: pointer; }
+.ed-item:hover { background: #f0f0f0; }
+.ed-item[aria-pressed="true"] { border-color: #1a1a1a; background: #f0f0f0; font-weight: 600; }
+.ed-item.is-error { border-color: #b3261e; border-width: 2px; }
+.ed-item.is-error::before { content: "⚠"; color: #b3261e; margin-right: .3rem; }
+.ed-item-shape { color: #4d4d4d; font-weight: 400; font-size: 12px; }
+.ed-empty { color: #4d4d4d; margin: 0 0 .75rem; }
+
+.ed-props { display: grid; gap: .3rem; padding: .75rem 0; border-top: 1px solid #ccc; }
+.ed-props label { font-weight: 600; margin-top: .3rem; }
+.ed-props input, .ed-props select { min-height: 36px; padding: .3rem .45rem; border: 1px solid #767676; border-radius: 6px; font: inherit; color: inherit; background: #fff; }
+.ed-lang { color: #4d4d4d; font-weight: 400; }
+.ed-error { margin: .3rem 0 0; padding: .4rem .5rem; border-left: 4px solid #b3261e; background: #fbeceb; color: #1a1a1a; }
+.ed-props-actions { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; justify-content: space-between; margin-top: .5rem; }
+.ed-link { color: #005a9c; font-weight: 600; }
+.ed-muted { color: #4d4d4d; font-size: 12px; }
+.ed-help { border-top: 1px solid #ccc; padding-top: .5rem; color: #4d4d4d; }
+.ed-help summary { cursor: pointer; color: #1a1a1a; font-weight: 600; min-height: 32px; display: flex; align-items: center; }
+.ed-help ul { margin: .25rem 0 0; padding-left: 1.1rem; }
+
+.ed-btn:focus-visible, .ed-item:focus-visible, .ed-props input:focus-visible, .ed-props select:focus-visible, .ed-link:focus-visible, .ed-help summary:focus-visible {
+    outline: 3px solid #111; outline-offset: 2px; box-shadow: 0 0 0 5px #fff;
+}
+
+@media (max-width: 700px) {
+    .ed-main { flex-direction: column; }
+    .ed-canvas { min-height: 55vh; }
+    .ed-side { width: auto; border-left: 0; border-top: 1px solid #767676; }
+}

@@ -54,6 +54,7 @@ return [
         'alveby/atrium-brands',
         'alveby/atrium-news',
         'alveby/atrium-stores',
+        'alveby/atrium-image-map',
         'alveby/atrium-faq',
         'alveby/atrium-forms',
         'alveby/atrium-pages',

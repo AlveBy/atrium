@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ec785833b05ad8c92c46605d7cb0a031",
+    "content-hash": "4f5bfc2b0a82e801e26a6e5c64a407ac",
     "packages": [
         {
             "name": "alveby/atrium",
@@ -12,7 +12,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/admin",
-                "reference": "35a47b81057624053c8b5383c57bb26bd433367e"
+                "reference": "d2ecf373a986ae5044144a21b1857cf8505b7999"
             },
             "require": {
                 "illuminate/database": "^13.0",
@@ -79,7 +79,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/ai",
-                "reference": "bc1d38e4c39200f90b6ce5dbe9537467c74ae8a5"
+                "reference": "53c29c05c454d9175439718291a4fd28f3fe0d33"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -146,7 +146,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/brands",
-                "reference": "7d311bae332e1f77d877805c173c9d3ca63e76ba"
+                "reference": "383e8f1c72752c2cfd332c70dd52a631a505b47f"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -212,7 +212,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/catalog",
-                "reference": "44b7a567bd2a2d62c6d21fa8012cf6c608e9be71"
+                "reference": "c427d3dfe1b148fa653d3f33f9912707ffd755d1"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -301,7 +301,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/docs",
-                "reference": "a805efd81c7568a95a7221e3ff541f33b127bbed"
+                "reference": "ca8406a5c5dadfc80cec6062aa33770a070202a0"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -365,7 +365,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/faq",
-                "reference": "7bd5f019d88f198ae0a06949af5d945513547678"
+                "reference": "219cf5635cd19f3f4fdb5bcfbd551e386694f965"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -443,7 +443,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/forms",
-                "reference": "c871284ca3d197bc21bbe7d92e8c460dd1513d94"
+                "reference": "2b7e1539432036ac1e5077289ca3f5116bdf7e7f"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -506,12 +506,94 @@
             }
         },
         {
+            "name": "alveby/atrium-image-map",
+            "version": "0.1.x-dev",
+            "dist": {
+                "type": "path",
+                "url": "packages/image-map",
+                "reference": "1030b000b34851500147b231f506a0e5405a3cf3"
+            },
+            "require": {
+                "alveby/atrium": "^0.1",
+                "ext-dom": "*",
+                "illuminate/support": "^13.0",
+                "php": "^8.3"
+            },
+            "require-dev": {
+                "orchestra/testbench": "^11.0",
+                "phpunit/phpunit": "^12.5"
+            },
+            "suggest": {
+                "alveby/atrium-stores": "Areas of a mall linked to its stores"
+            },
+            "type": "atrium-module",
+            "extra": {
+                "atrium": {
+                    "key": "image_map",
+                    "title": "atrium-image-map::image-map.title",
+                    "settings": "Atrium\\ImageMap\\ImageMapSettings",
+                    "permissions": {
+                        "html": "atrium-image-map::image-map.permissions.html"
+                    },
+                    "resources": [
+                        "Atrium\\ImageMap\\Models\\ImageMap",
+                        "Atrium\\ImageMap\\Models\\Layer",
+                        "Atrium\\ImageMap\\Models\\Area",
+                        "Atrium\\ImageMap\\Models\\Status"
+                    ],
+                    "migrations": "database/migrations",
+                    "demo": "Atrium\\ImageMap\\Database\\ImageMapDemoSeeder"
+                },
+                "laravel": {
+                    "providers": [
+                        "Atrium\\ImageMap\\ImageMapServiceProvider"
+                    ]
+                },
+                "branch-alias": {
+                    "dev-main": "0.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Atrium\\ImageMap\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Atrium\\ImageMap\\Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Image maps for Atrium: areas drawn on a floor plan, site plan or facade, with tooltips, popovers, modal windows, statuses, floors and a list view",
+            "homepage": "https://github.com/AlveBy/atrium",
+            "keywords": [
+                "accessibility",
+                "admin",
+                "cms",
+                "floor plan",
+                "i18n",
+                "image map",
+                "laravel",
+                "svg"
+            ],
+            "support": {
+                "issues": "https://github.com/AlveBy/atrium/issues",
+                "source": "https://github.com/AlveBy/atrium"
+            },
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
             "name": "alveby/atrium-news",
             "version": "0.1.x-dev",
             "dist": {
                 "type": "path",
                 "url": "packages/news",
-                "reference": "f20af47a4991f3934266d3f8761b90967960d07e"
+                "reference": "bfa76fae2573c35bd78e51a51d52bfda6d4601b7"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -584,7 +666,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/pages",
-                "reference": "b4ebf9d6e8086be676c7e28cd7535d132713ed1a"
+                "reference": "3cfb007f0c30420dab905e152642580ff82b4eff"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -660,7 +742,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/reviews",
-                "reference": "dd2a06b23d10953b2ffc714d89736f6f34d01b4f"
+                "reference": "f5e49f74ea7c3d57239aded85c80f71a98423783"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -730,7 +812,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/solutions",
-                "reference": "82190a715bc203b9474764da30a842ddd42bc805"
+                "reference": "4b2a40e19cdbfde5a97407f81536d760a287e097"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -805,7 +887,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/stores",
-                "reference": "9ef19ea431192df451e2ecba3f35a2f45433feb6"
+                "reference": "9cc7537e21c7bac0ef19328ab02e6990c123acfe"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -877,7 +959,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/team",
-                "reference": "67cfcb9e84b639c03be9b91f901a54952c3de0b8"
+                "reference": "23d89ec758a7e40193de73ffb95c32e467ef9a9b"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -955,7 +1037,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/theme",
-                "reference": "c3dbd2ec2b73b6b15b363936bdbab8a444226a0e"
+                "reference": "4d92717cd8db3abd46efd537dc2ecf098123d612"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -7906,7 +7988,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/bitrix",
-                "reference": "50767e77c0ac27fd6caf0bd81ba98d2767af08d0"
+                "reference": "987a28929288ea9e1de394fa9e3db1b38d34bf42"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -11192,6 +11274,7 @@
         "alveby/atrium-docs": 20,
         "alveby/atrium-faq": 20,
         "alveby/atrium-forms": 20,
+        "alveby/atrium-image-map": 20,
         "alveby/atrium-news": 20,
         "alveby/atrium-pages": 20,
         "alveby/atrium-reviews": 20,

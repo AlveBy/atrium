@@ -1,0 +1,72 @@
+{
+    "name": "alveby/atrium-image-map",
+    "description": "Image maps for Atrium: areas drawn on a floor plan, site plan or facade, with tooltips, popovers, modal windows, statuses, floors and a list view",
+    "type": "atrium-module",
+    "license": "MIT",
+    "homepage": "https://github.com/AlveBy/atrium",
+    "support": {
+        "issues": "https://github.com/AlveBy/atrium/issues",
+        "source": "https://github.com/AlveBy/atrium"
+    },
+    "keywords": [
+        "laravel",
+        "admin",
+        "cms",
+        "image map",
+        "floor plan",
+        "svg",
+        "accessibility",
+        "i18n"
+    ],
+    "require": {
+        "php": "^8.3",
+        "ext-dom": "*",
+        "illuminate/support": "^13.0",
+        "alveby/atrium": "^0.1"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^11.0",
+        "phpunit/phpunit": "^12.5"
+    },
+    "suggest": {
+        "alveby/atrium-stores": "Areas of a mall linked to its stores"
+    },
+    "autoload": {
+        "psr-4": {
+            "Atrium\\ImageMap\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Atrium\\ImageMap\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "atrium": {
+            "key": "image_map",
+            "title": "atrium-image-map::image-map.title",
+            "settings": "Atrium\\ImageMap\\ImageMapSettings",
+            "permissions": {
+                "html": "atrium-image-map::image-map.permissions.html"
+            },
+            "resources": [
+                "Atrium\\ImageMap\\Models\\ImageMap",
+                "Atrium\\ImageMap\\Models\\Layer",
+                "Atrium\\ImageMap\\Models\\Area",
+                "Atrium\\ImageMap\\Models\\Status"
+            ],
+            "migrations": "database/migrations",
+            "demo": "Atrium\\ImageMap\\Database\\ImageMapDemoSeeder"
+        },
+        "laravel": {
+            "providers": [
+                "Atrium\\ImageMap\\ImageMapServiceProvider"
+            ]
+        },
+        "branch-alias": {
+            "dev-main": "0.1.x-dev"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
