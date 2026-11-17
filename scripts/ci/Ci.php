@@ -47,6 +47,8 @@ final class Ci
           --base=REV         what the change is compared with (default: the merge
                              base with origin/main)
           --dusk             add the dusk step
+          --all-lines        mutation: every line of the packages, not only the
+                             changed ones (a report, not a gate)
           --jobs=N           processes at a time (default: half the CPUs)
           -h, --help
         TXT;
@@ -60,6 +62,8 @@ final class Ci
     private bool $changed = false;
 
     private bool $withDusk = false;
+
+    private bool $allLines = false;
 
     /** @var list<string>|null */
     private ?array $only = null;
@@ -145,6 +149,7 @@ final class Ci
                 $arg === '-h', $arg === '--help' => $this->steps = ['help'],
                 $arg === '--changed' => $this->changed = true,
                 $arg === '--dusk' => $this->withDusk = true,
+                $arg === '--all-lines' => $this->allLines = true,
                 str_starts_with($arg, '--db=') => $this->dbs = $this->list($arg, ['sqlite', 'mysql', 'pgsql']),
                 str_starts_with($arg, '--package=') => $this->only = $this->list($arg),
                 str_starts_with($arg, '--base=') => $this->base = substr($arg, 7),
@@ -411,7 +416,7 @@ final class Ci
         $rows = [];
 
         foreach ($targets as $target) {
-            if (! array_filter(array_keys($changed), static fn (string $path): bool => Packages::targetOf($path) === $target)) {
+            if (! $this->allLines && ! array_filter(array_keys($changed), static fn (string $path): bool => Packages::targetOf($path) === $target)) {
                 continue;
             }
 
@@ -423,8 +428,8 @@ final class Ci
 
             $config = $this->infectionConfig($target);
             $command = [PHP_BINARY, 'vendor/bin/infection', '--configuration='.$config, '--coverage='."{$this->build}/coverage/{$target}",
-                '--skip-initial-tests', '--git-diff-lines', '--git-diff-base='.$this->base, '--min-msi='.self::MIN_MSI,
-                '--threads='.$this->jobs, '--no-progress', '--no-interaction', '--show-mutations=50', '--ignore-msi-with-no-mutations'];
+                '--skip-initial-tests', '--threads='.$this->jobs, '--no-progress', '--no-interaction', '--show-mutations=50', '--ignore-msi-with-no-mutations',
+                ...($this->allLines ? [] : ['--git-diff-lines', '--git-diff-base='.$this->base, '--min-msi='.self::MIN_MSI])];
 
             if (getenv('GITHUB_ACTIONS') === 'true') {
                 $command[] = '--logger-github';
