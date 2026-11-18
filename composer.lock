@@ -1346,14 +1346,23 @@
             "dist": {
                 "type": "path",
                 "url": "packages/theme",
-                "reference": "5fab2944d01ae13c5c99c0532c89f14ca6c2adaa"
+                "reference": "ad672de4b1871e5fa4423687f4b25f7f535d0503"
             },
             "require": {
                 "alveby/atrium": "^0.1",
+                "ext-intl": "*",
                 "illuminate/support": "^13.0",
                 "php": "^8.3"
             },
             "require-dev": {
+                "alveby/atrium-brands": "^0.1",
+                "alveby/atrium-catalog": "^0.1",
+                "alveby/atrium-faq": "^0.1",
+                "alveby/atrium-forms": "^0.1",
+                "alveby/atrium-news": "^0.1",
+                "alveby/atrium-pages": "^0.1",
+                "alveby/atrium-reviews": "^0.1",
+                "alveby/atrium-stores": "^0.1",
                 "orchestra/testbench": "^11.0",
                 "phpunit/phpunit": "^12.5"
             },
