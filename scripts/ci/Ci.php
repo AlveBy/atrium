@@ -61,6 +61,8 @@ final class Ci
           --all-lines        mutation: every line of the packages, not only the
                              changed ones (a report, not a gate)
           --jobs=N           processes at a time (default: half the CPUs)
+          --shard=I/N        coverage and mutation: this machine's part of N, for a
+                             CI matrix (the files to mutate are split by lines)
           -h, --help
         TXT;
 
@@ -80,6 +82,12 @@ final class Ci
     private ?array $only = null;
 
     private ?string $base = null;
+
+    /** @var array{int, int}|null this shard and how many there are */
+    private ?array $shard = null;
+
+    /** @var list<string>|null the files this shard mutates, once known */
+    private ?array $shardFiles = null;
 
     private int $jobs;
 
@@ -165,6 +173,7 @@ final class Ci
                 str_starts_with($arg, '--package=') => $this->only = $this->list($arg),
                 str_starts_with($arg, '--base=') => $this->base = substr($arg, 7),
                 str_starts_with($arg, '--jobs=') => $this->jobs = max(1, (int) substr($arg, 7)),
+                str_starts_with($arg, '--shard=') => $this->shard = Shards::parse(substr($arg, 8)),
                 in_array($arg, self::STEPS, true) => $this->steps[] = $arg,
                 default => throw new CiException("Unknown argument: {$arg}"),
             };
@@ -180,6 +189,10 @@ final class Ci
 
         if ($this->withDusk && ! in_array('dusk', $this->steps, true)) {
             $this->steps[] = 'dusk';
+        }
+
+        if ($this->shard !== null && $this->allLines) {
+            throw new CiException('--shard splits the changed lines; it does not go with --all-lines');
         }
     }
 
@@ -344,6 +357,7 @@ final class Ci
         }
 
         $jobs = [];
+        $targets = $this->coverageTargets($targets);
 
         foreach ($targets as $target) {
             $dir = "{$this->build}/coverage/{$target}";
@@ -419,6 +433,38 @@ final class Ci
     }
 
     /**
+     * The targets this machine measures: all of them, or this shard's part.
+     *
+     * @param  list<string>  $targets
+     * @return list<string>
+     */
+    private function coverageTargets(array $targets): array
+    {
+        if ($this->shard === null) {
+            return $targets;
+        }
+
+        return Shards::coverageTargets($targets, array_map(Packages::targetOf(...), $this->shardFiles($targets)), ...$this->shard);
+    }
+
+    /**
+     * The changed files of the targets this shard mutates.
+     *
+     * @param  list<string>  $targets
+     * @return list<string>
+     */
+    private function shardFiles(array $targets): array
+    {
+        if ($this->shardFiles === null) {
+            [$index, $count] = $this->shard ?? [1, 1];
+            $lines = array_filter($this->changedLines(), static fn (string $path): bool => in_array(Packages::targetOf($path), $targets, true), ARRAY_FILTER_USE_KEY);
+            $this->shardFiles = Shards::split(array_map('count', $lines), $count)[$index - 1];
+        }
+
+        return $this->shardFiles;
+    }
+
+    /**
      * @param  list<string>  $targets
      */
     private function mutation(array $targets): void
@@ -428,10 +474,15 @@ final class Ci
         }
 
         $changed = $this->changedLines();
+        $shardFiles = $this->shard === null ? null : $this->shardFiles($targets);
         $rows = [];
 
         foreach ($targets as $target) {
-            if (! $this->allLines && ! array_filter(array_keys($changed), static fn (string $path): bool => Packages::targetOf($path) === $target)) {
+            $files = array_keys(array_filter($changed, static fn (string $path): bool => Packages::targetOf($path) === $target, ARRAY_FILTER_USE_KEY));
+            // Another shard mutates these.
+            $excluded = $shardFiles === null ? [] : array_values(array_diff($files, $shardFiles));
+
+            if (! $this->allLines && array_diff($files, $excluded) === []) {
                 continue;
             }
 
@@ -441,7 +492,7 @@ final class Ci
                 continue;
             }
 
-            $config = $this->infectionConfig($target);
+            $config = $this->infectionConfig($target, $excluded);
             $command = [PHP_BINARY, 'vendor/bin/infection', '--configuration='.$config, '--coverage='."{$this->build}/coverage/{$target}",
                 '--skip-initial-tests', '--threads='.$this->jobs, '--no-progress', '--no-interaction', '--show-mutations=50', '--ignore-msi-with-no-mutations',
                 ...($this->allLines ? [] : ['--git-diff-lines', '--git-diff-base='.$this->base, '--min-msi='.self::MIN_MSI])];
@@ -469,7 +520,7 @@ final class Ci
         }
 
         if ($rows === []) {
-            $this->notes[] = 'mutation: no changed PHP source, nothing to mutate.';
+            $this->notes[] = $this->shard === null ? 'mutation: no changed PHP source, nothing to mutate.' : sprintf('mutation: nothing to mutate on shard %d of %d.', ...$this->shard);
 
             return;
         }
@@ -675,12 +726,16 @@ final class Ci
         return extension_loaded('pcov') || extension_loaded('xdebug');
     }
 
-    private function infectionConfig(string $target): string
+    /**
+     * @param  list<string>  $excluded  files of the target not to mutate
+     */
+    private function infectionConfig(string $target, array $excluded): string
     {
         $dir = "{$this->build}/infection/{$target}";
+        $source = Packages::paths($target)['source'][0];
         $this->clean($dir);
         file_put_contents("{$dir}/infection.json5", (string) json_encode([
-            'source' => ['directories' => array_map(fn (string $path): string => "{$this->root}/{$path}", Packages::paths($target)['source'])],
+            'source' => Shards::source($this->root, $source, $excluded),
             'phpUnit' => ['configDir' => "{$this->build}/phpunit/{$target}-coverage"],
             'tmpDir' => "{$dir}/tmp",
             'timeout' => 30,
