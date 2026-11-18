@@ -124,6 +124,7 @@ Bitrix のデータベースは読み取るだけです。タブ、フィール�
 - [1C-Bitrix からの移行（手順）](../bitrix.md)
 - [バックアップ：データベースとファイルを複数の保存先へ、スケジュール、ヘルスチェック、復元](../backup.md)
 - [エラー：PHP・キュー・JavaScript のエラーをサイトのデータベースに保存、通知、Sentry、独自ドライバー](../errors.md)
+- [速度と稼働状況：サーバーの計測、訪問者の Web Vitals、通知付きの死活監視](../monitoring.md)
 - [CDN：画像、リサイズしたコピーと WebP/AVIF、キャッシュの削除、S3 へのアップロード](../cdn.md)
 
 ## パッケージ
@@ -138,6 +139,7 @@ Bitrix のデータベースは読み取るだけです。タブ、フィール�
 | [`alveby/atrium-docs`](../../packages/docs/README.md) | Markdownから作るドキュメント（バージョンと検索つき） |
 | [`alveby/atrium-backup`](../../packages/backup/README.md) | データベースとファイルのバックアップ、管理画面からの復元 |
 | [`alveby/atrium-errors`](../../packages/errors/README.md) | サイトのデータベースでのエラー追跡、通知、Sentry |
+| [`alveby/atrium-monitoring`](../../packages/monitoring/README.md) | サーバーと訪問者の速度、稼働状況と通知、外部サービスなし |
 
 0.1 が Packagist に公開されたら、既存の Laravel 13 アプリには次のコマンドで Atrium を導入できます。
 
