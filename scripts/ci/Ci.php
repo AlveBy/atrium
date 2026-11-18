@@ -29,6 +29,13 @@ final class Ci
     /** Infection runs at a time on this machine, across every checkout. */
     public const MUTATION_SLOTS = 2;
 
+    /**
+     * Set for every step. laravel/pao turns PHPUnit's output into JSON when it
+     * sees an AI agent (CLAUDECODE, AI_AGENT); Infection reads that output to
+     * tell a killed mutant from an escaped one, so the run would differ from CI.
+     */
+    private const ENV = ['PAO_DISABLE' => '1'];
+
     private const USAGE = <<<'TXT'
         Usage: bin/ci [step ...] [options]
 
@@ -536,7 +543,7 @@ final class Ci
         // PHP's own server, as `artisan serve` starts it, but with APP_URL: the
         // admin builds its links from it, and serve would not pass it on.
         $server = proc_open([PHP_BINARY, '-S', "127.0.0.1:{$app}", $this->root.'/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php'],
-            [1 => ['file', '/dev/null', 'w'], 2 => ['file', '/dev/null', 'w']], $pipes, $this->root.'/public', [...getenv(), ...$env]);
+            [1 => ['file', '/dev/null', 'w'], 2 => ['file', '/dev/null', 'w']], $pipes, $this->root.'/public', [...getenv(), ...self::ENV, ...$env]);
 
         try {
             $this->pool([['dusk', 'php artisan dusk', [PHP_BINARY, 'artisan', 'dusk', '--env=ci'], $env]], 1);
@@ -569,7 +576,7 @@ final class Ci
                 [$step, $label, $command, $env] = array_shift($jobs);
                 $log = $logs.'/'.preg_replace('/[^a-z0-9]+/i', '-', "{$step}-{$label}").'.log';
                 file_put_contents($log, '');
-                $process = proc_open($command, [0 => ['file', '/dev/null', 'r'], 1 => ['file', $log, 'a'], 2 => ['file', $log, 'a']], $pipes, $this->root, [...getenv(), ...$env]);
+                $process = proc_open($command, [0 => ['file', '/dev/null', 'r'], 1 => ['file', $log, 'a'], 2 => ['file', $log, 'a']], $pipes, $this->root, [...getenv(), ...self::ENV, ...$env]);
                 $running[] = [$step, $label, $process, microtime(true), $log];
             }
 
