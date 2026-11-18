@@ -10,6 +10,7 @@ It runs on the official [Laravel AI SDK](https://laravel.com/docs/13.x/ai-sdk), 
 - [2. Install the module and add a key](#2-install-the-module-and-add-a-key)
 - [3. A queue, if the site is busy](#3-a-queue-if-the-site-is-busy)
 - [4. Choose the fields](#4-choose-the-fields)
+- [5. Ask the helper](#5-ask-the-helper)
 - [When it does not answer](#when-it-does-not-answer)
 
 ## 1. Choose a provider
@@ -116,6 +117,21 @@ php artisan vendor:publish --tag=atrium-ai-prompts
 ```
 
 and edit the files in `resources/views/vendor/atrium-ai/prompts`.
+
+## 5. Ask the helper
+
+Once a text provider has a key, every admin page has the Atrium arch in the bottom right corner. Click it and ask in your language:
+
+- "How do I add a menu item?" It looks the answer up in these guides.
+- "How many products do we have?", "Find the news about the sale." It reads the records and links to them.
+
+It reads only the modules you may open, and it changes nothing. The conversation stays while the tab is open; **New conversation** starts over.
+
+The question and what the helper reads (guide sections, records) go to the provider. On a site with private data use Ollama or a paid key, or turn it off:
+
+```dotenv
+ATRIUM_AI_HELP=false
+```
 
 ## When it does not answer
 

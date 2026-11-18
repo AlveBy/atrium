@@ -47,4 +47,27 @@ abstract class AdminTestCase extends DuskTestCase
 
         return $admin;
     }
+
+    /**
+     * Runs the test with lines added to the .env the served app reads on
+     * every request (Dusk has swapped it for .env.dusk.*), then puts it back.
+     *
+     * @param  array<string, string>  $values
+     */
+    protected function withEnv(array $values, callable $test): void
+    {
+        $file = base_path('.env');
+        $original = (string) file_get_contents($file);
+        // The first line of a name wins, so the old ones go.
+        $kept = preg_grep('/^\s*('.implode('|', array_keys($values)).')\s*=/', explode("\n", $original), PREG_GREP_INVERT) ?: [];
+        $lines = array_map(fn (string $key, string $value): string => "{$key}={$value}", array_keys($values), $values);
+
+        file_put_contents($file, rtrim(implode("\n", $kept))."\n".implode("\n", $lines)."\n");
+
+        try {
+            $test();
+        } finally {
+            file_put_contents($file, $original);
+        }
+    }
 }
