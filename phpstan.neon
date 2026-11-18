@@ -25,6 +25,7 @@ parameters:
         - packages/errors/src
         - packages/faq/src
         - packages/forms/src
+        - packages/monitoring/src
         - packages/news/src
         - packages/pages/src
         - packages/reviews/src
@@ -47,6 +48,7 @@ parameters:
         - packages/docs/config
         - packages/errors/config
         - packages/forms/config
+        - packages/monitoring/config
         - packages/seo/config
         - packages/solutions/config
         - packages/two-factor/config
@@ -63,6 +65,7 @@ parameters:
         - packages/errors/database/migrations
         - packages/faq/database/migrations
         - packages/forms/database/migrations
+        - packages/monitoring/database/migrations
         - packages/news/database/migrations
         - packages/pages/database/migrations
         - packages/reviews/database/migrations

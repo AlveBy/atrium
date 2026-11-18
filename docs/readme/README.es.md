@@ -124,6 +124,7 @@ La base de datos de Bitrix solo se lee. Las pestañas, el orden de los campos y 
 - [Migrar desde 1C-Bitrix, paso a paso](../bitrix.md)
 - [Copias de seguridad: bases de datos y archivos en varios destinos, horarios, comprobaciones, restauración](../backup.md)
 - [Errores: errores de PHP, de colas y de JavaScript en la base de datos del sitio, alertas, Sentry y controladores propios](../errors.md)
+- [Velocidad y disponibilidad: tiempos del servidor, Web Vitals de los visitantes, comprobaciones de disponibilidad con avisos](../monitoring.md)
 - [CDN: imágenes, copias redimensionadas y WebP/AVIF, purga de caché, subidas a S3](../cdn.md)
 
 ## Paquetes
@@ -138,6 +139,7 @@ La base de datos de Bitrix solo se lee. Las pestañas, el orden de los campos y 
 | [`alveby/atrium-docs`](../../packages/docs/README.md) | Documentación desde Markdown, con versiones y búsqueda |
 | [`alveby/atrium-backup`](../../packages/backup/README.md) | Copias de seguridad de bases de datos y archivos, restauración desde el panel |
 | [`alveby/atrium-errors`](../../packages/errors/README.md) | Registro de errores en la base de datos del sitio, alertas, Sentry |
+| [`alveby/atrium-monitoring`](../../packages/monitoring/README.md) | Velocidad del servidor y de los visitantes, disponibilidad y avisos, sin servicios externos |
 
 Cuando la 0.1 esté en Packagist, una aplicación Laravel 13 existente podrá añadir Atrium con:
 

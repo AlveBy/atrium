@@ -67,6 +67,7 @@ return [
         'alveby/atrium-social-login',
         'alveby/atrium-seo',
         'alveby/atrium-errors',
+        'alveby/atrium-monitoring',
     ],
 
     /*

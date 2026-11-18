@@ -124,6 +124,7 @@ Bitrix veritabanından yalnızca okuma yapılır. Sekmeler, alan sırası ve lis
 - [1C-Bitrix’ten adım adım taşınma](../bitrix.md)
 - [Yedekler: veritabanları ve dosyalar birden çok yere, zamanlama, sağlık kontrolleri, geri yükleme](../backup.md)
 - [Hatalar: PHP, kuyruk ve JavaScript hataları sitenin veritabanında, uyarılar, Sentry ve kendi sürücüleriniz](../errors.md)
+- [Hız ve erişilebilirlik: sunucu süreleri, ziyaretçilerin Web Vitals değerleri, uyarılı erişilebilirlik kontrolleri](../monitoring.md)
 - [CDN: görseller, küçültülmüş kopyalar ve WebP/AVIF, önbellek temizleme, S3'e yükleme](../cdn.md)
 
 ## Paketler
@@ -138,6 +139,7 @@ Bitrix veritabanından yalnızca okuma yapılır. Sekmeler, alan sırası ve lis
 | [`alveby/atrium-docs`](../../packages/docs/README.md) | Markdown’dan belgeler, sürümler ve arama ile |
 | [`alveby/atrium-backup`](../../packages/backup/README.md) | Veritabanı ve dosya yedekleri, yönetim panelinden geri yükleme |
 | [`alveby/atrium-errors`](../../packages/errors/README.md) | Sitenin veritabanında hata takibi, uyarılar, Sentry |
+| [`alveby/atrium-monitoring`](../../packages/monitoring/README.md) | Sunucu ve ziyaretçi hızı, erişilebilirlik ve uyarılar, dış hizmet olmadan |
 
 0.1 Packagist'te yayımlandığında, mevcut bir Laravel 13 uygulamasına Atrium şu şekilde eklenecek:
 

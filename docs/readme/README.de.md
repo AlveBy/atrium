@@ -124,6 +124,7 @@ Die Bitrix-Datenbank wird nur gelesen. Tabs, Feldreihenfolge und Listenspalten k
 - [Umzug von 1C-Bitrix, Schritt für Schritt](../bitrix.md)
 - [Backups: Datenbanken und Dateien an mehrere Orte, Zeitpläne, Prüfungen, Wiederherstellung](../backup.md)
 - [Fehler: PHP-, Warteschlangen- und JavaScript-Fehler in der Datenbank der Website, Benachrichtigungen, Sentry und eigene Treiber](../errors.md)
+- [Geschwindigkeit und Erreichbarkeit: Server-Timings, Web Vitals der Besucher, Erreichbarkeitsprüfungen mit Benachrichtigungen](../monitoring.md)
 - [CDN: Bilder, verkleinerte Kopien und WebP/AVIF, Cache leeren, Uploads zu S3](../cdn.md)
 
 ## Pakete
@@ -138,6 +139,7 @@ Die Bitrix-Datenbank wird nur gelesen. Tabs, Feldreihenfolge und Listenspalten k
 | [`alveby/atrium-docs`](../../packages/docs/README.md) | Dokumentation aus Markdown, mit Versionen und Suche |
 | [`alveby/atrium-backup`](../../packages/backup/README.md) | Backups der Datenbanken und Dateien, Wiederherstellung im Admin-Bereich |
 | [`alveby/atrium-errors`](../../packages/errors/README.md) | Fehlererfassung in der Datenbank der Website, Benachrichtigungen, Sentry |
+| [`alveby/atrium-monitoring`](../../packages/monitoring/README.md) | Geschwindigkeit von Server und Besuchern, Erreichbarkeit und Benachrichtigungen, ohne externe Dienste |
 
 Sobald 0.1 auf Packagist ist, bekommt eine bestehende Laravel-13-Anwendung Atrium so:
 
