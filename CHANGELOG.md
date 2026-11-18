@@ -102,6 +102,7 @@ All notable changes are listed here. The format follows [Keep a Changelog](https
 - The demo article's page is drawn by the theme; the app's own article controller, its view and Laravel's welcome page are gone.
 
 ### Fixed
+- `atrium:install`, `atrium:module:install` and `atrium:module:remove` printed DONE next to a step that failed (publishing, migrating, linking, dropping tables); they print FAIL now.
 - The API list answered 500 to `?search[]=x` and `?sort[]=name` (a list instead of text); both are ignored now, like any other value the list cannot use.
 - An SEO template naming a related record (`{parent}`) printed all of that record's columns as JSON into the page title or description; it gives the record's name now, and a list (`{files}`) leaves its placeholder.
 - A very wide, very low image (a banner strip 4000 px wide and 1 px high) made `WebpCopy` stop with an error while scaling it down: its height rounded to zero. It keeps one pixel.
