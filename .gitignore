@@ -31,3 +31,4 @@ Thumbs.db
 /database/dusk.sqlite
 
 /public/vendor/atrium
+/public/vendor/atrium-theme
