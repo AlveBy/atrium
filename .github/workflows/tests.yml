@@ -104,8 +104,15 @@ jobs:
           path: build/ci/logs
 
   coverage:
-    name: Coverage and mutation testing
+    name: Coverage and mutation testing · ${{ matrix.shard }}
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # Each machine mutates about a quarter of the changed lines, and
+        # measures the coverage of the packages it mutates and of a quarter
+        # of the rest (bin/ci --shard).
+        shard: ['1/4', '2/4', '3/4', '4/4']
     services:
       # S3 for the backup destination and CDN upload tests.
       s3:
@@ -156,12 +163,17 @@ jobs:
           if [ -z "$base" ] || ! git cat-file -e "$base^{commit}" 2>/dev/null; then base=$(git rev-parse HEAD~1); fi
           echo "sha=$base" >> "$GITHUB_OUTPUT"
 
-      - run: bin/ci coverage mutation --base=${{ steps.base.outputs.sha }}
+      # A pull request and the merge queue measure the packages the change can
+      # break; a push to main measures every package. Infection takes every
+      # core: the machine runs nothing else.
+      - run: bin/ci coverage mutation --base=${{ steps.base.outputs.sha }} --shard=${{ matrix.shard }} --jobs=$(nproc) $CHANGED
+        env:
+          CHANGED: ${{ github.event_name != 'push' && '--changed' || '' }}
 
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: coverage
+          name: coverage-${{ strategy.job-index }}
           path: |
             build/ci/coverage
             build/ci/infection/*/infection.log

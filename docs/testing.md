@@ -21,7 +21,7 @@ vendor/bin/pint && php scripts/copyright-header.php --fix
 bin/ci --changed
 ```
 
-`bin/ci` is what GitHub Actions runs, on your machine. Run it before every push; a push it has not passed must not reach main. With `--changed` it checks only the packages your change can break — the package itself and every package that requires it, so a change to the admin runs all of them — which is what you want while working. CI runs all packages.
+`bin/ci` is what GitHub Actions runs, on your machine. Run it before every push; a push it has not passed must not reach main. With `--changed` it checks only the packages your change can break — the package itself and every package that requires it, so a change to the admin runs all of them — which is what you want while working. CI does the same for a pull request and the merge queue, and runs all packages on a push to main. Its coverage and mutation step runs on four machines: `--shard=I/N` gives each about a quarter of the changed lines to mutate.
 
 | Step | What it does |
 |---|---|
