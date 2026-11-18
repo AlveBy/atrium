@@ -7,7 +7,6 @@
 
 declare(strict_types=1);
 
-// Machine-translated from en/forms.php.
 return [
     'modules' => [
         'forms' => 'Formlar',
@@ -22,7 +21,7 @@ return [
         'recipients' => 'Gönderimlerin gideceği adresler',
         'button_label' => 'Düğme metni',
         'success_message' => 'Gönderimden sonraki mesaj',
-        'updated_at' => 'Güncellendi',
+        'updated_at' => 'Güncellenme tarihi',
         'submissions_count' => 'Gönderimler',
         'form' => 'Form',
         'label' => 'Etiket',
@@ -31,7 +30,7 @@ return [
         'required' => 'Zorunlu',
         'options' => 'Seçenekler',
         'sort' => 'Sıralama',
-        'submitted_at' => 'Gönderildi',
+        'submitted_at' => 'Gönderim tarihi',
         'content' => 'İçerik',
         'page_url' => 'Sayfa',
         'locale' => 'Dil',
@@ -40,7 +39,7 @@ return [
     ],
     'hints' => [
         'code' => 'Latin harfleri, rakamlar, "-" ve "_". Bir sayfada: <x-atrium-forms::form code="contact" />',
-        'recipients' => 'E-posta adresleri, her satıra bir tane veya virgülle ayrılmış. Boş: gönderimler yalnızca burada saklanır.',
+        'recipients' => 'E-posta adresleri, her satıra bir tane veya virgülle ayrılmış. Boş bırakılırsa gönderimler yalnızca burada saklanır.',
         'field_name' => 'Latin harfleri, rakamlar, "-" ve "_"; form içinde benzersiz.',
         'options' => 'Liste veya seçenek düğmeleri için: her satıra bir seçenek.',
     ],
@@ -66,7 +65,7 @@ return [
         'no' => 'Hayır',
     ],
     'validation' => [
-        'recipients' => '":email" bir e-posta adresi değil.',
+        'recipients' => '":email" geçerli bir e-posta adresi değil.',
         'field_name_taken' => 'Bu formda bu koda sahip bir alan zaten var.',
     ],
     'mail' => [

@@ -7,8 +7,6 @@
 
 declare(strict_types=1);
 
-// Machine-translated from English; needs review by a native speaker.
-
 return [
     'created' => 'Kayıt oluşturuldu.',
     'updated' => 'Kayıt güncellendi.',
@@ -18,7 +16,7 @@ return [
     'add_item' => 'Öğe ekle',
 
     'title' => [
-        'create' => 'Oluştur: :label',
+        'create' => ':label oluştur',
         'edit' => 'Düzenle: :title',
     ],
 
@@ -44,7 +42,7 @@ return [
     ],
 
     'pagination' => [
-        'showing' => ':total kayıttan :from–:to gösteriliyor',
+        'showing' => ':total kayıttan :from–:to arası gösteriliyor',
     ],
 
     'seo' => [

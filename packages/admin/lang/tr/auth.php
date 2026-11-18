@@ -7,8 +7,6 @@
 
 declare(strict_types=1);
 
-// Machine-translated from English; needs review by a native speaker.
-
 return [
     'failed' => 'Bu kimlik bilgileri kayıtlarımızla eşleşmiyor.',
     'throttle' => 'Çok fazla giriş denemesi. :seconds sn sonra tekrar deneyin.',

@@ -7,8 +7,6 @@
 
 declare(strict_types=1);
 
-// Machine-translated from English; needs review by a native speaker.
-
 return [
     'accepted' => ':attribute kabul edilmelidir.',
     'array' => ':attribute bir dizi olmalıdır.',
@@ -46,7 +44,7 @@ return [
     'required_with' => ':values mevcut olduğunda :attribute alanı gereklidir.',
     'same' => ':attribute ile :other eşleşmelidir.',
     'string' => ':attribute bir metin olmalıdır.',
-    'unique' => ':attribute zaten alınmış.',
+    'unique' => ':attribute zaten kullanılıyor.',
     'url' => ':attribute geçerli bir URL olmalıdır.',
     'uploaded' => ':attribute yüklenemedi.',
     'after' => ':attribute, :date tarihinden sonraki bir tarih olmalıdır.',

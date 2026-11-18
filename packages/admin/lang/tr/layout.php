@@ -7,8 +7,6 @@
 
 declare(strict_types=1);
 
-// Machine-translated from English; needs review by a native speaker.
-
 return [
     'panel_name' => 'Yönetim paneli',
     'brand_short' => 'Yönetim',
@@ -27,7 +25,7 @@ return [
 
     'theme' => [
         'label' => 'Tema',
-        'system' => 'Sistemdeki gibi',
+        'system' => 'Sistem ayarına göre',
         'graphite' => 'Grafit',
         'day' => 'Gündüz',
         'night' => 'Gece',
