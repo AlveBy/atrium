@@ -7,11 +7,10 @@
 
 declare(strict_types=1);
 
-// Machine-translated from English; needs review by a native speaker.
 return [
     'module' => 'Sayfalar',
     'create' => 'Sayfa ekle',
-    'root' => 'Üst düzey',
+    'root' => 'En üst düzey',
     'actions' => [
         'subpage' => 'Alt sayfa',
     ],
@@ -21,7 +20,7 @@ return [
         'parent' => 'Üst sayfa',
         'template' => 'Şablon',
         'content' => 'Metin',
-        'updated_at' => 'Güncellendi',
+        'updated_at' => 'Güncellenme tarihi',
     ],
     'hints' => [
         'code' => 'Sayfa adresinin son kısmı. Aynı üst sayfanın altındaki sayfaların adresleri farklı olmalıdır.',

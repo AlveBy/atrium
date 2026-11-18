@@ -7,8 +7,6 @@
 
 declare(strict_types=1);
 
-// Machine-translated from English; needs review by a native speaker.
-
 return [
     'profile' => [
         'title' => 'Profil',
@@ -46,11 +44,11 @@ return [
             'password' => 'Parola',
             'password_confirmation' => 'Parolayı onaylayın',
             'is_active' => 'Etkin',
-            'created_at' => 'Oluşturulma',
+            'created_at' => 'Oluşturulma tarihi',
             'sites' => 'Siteler',
         ],
         'hints' => [
-            'sites' => 'Bu yöneticinin çalışabileceği siteler. Hiçbiri işaretli değilse — hepsi.',
+            'sites' => 'Bu yöneticinin çalışabileceği siteler. Hiçbiri işaretlenmezse tümü.',
         ],
         'creating' => 'Yeni',
         'total' => 'Toplam kayıt: :count',
@@ -79,17 +77,17 @@ return [
         'clear' => 'Temizle',
         'module' => 'Modül',
         'read' => 'Okuma',
-        'write' => 'Değiştirme',
+        'write' => 'Yazma',
         'ability_read' => ':module: okuma',
-        'ability_write' => ':module: değiştirme',
+        'ability_write' => ':module: yazma',
         'submit' => 'Token oluştur',
         'list_title' => 'Oluşturulan tokenlar',
         'empty' => 'Henüz token yok.',
         'owner' => 'Oluşturan',
-        'last_used' => 'Son çağrı',
+        'last_used' => 'Son kullanım',
         'expiry' => 'Bitiş',
         'abilities_count' => ':count izin',
-        'never_used' => 'hiç çağrılmadı',
+        'never_used' => 'hiç kullanılmadı',
         'until' => ':date tarihine kadar',
         'expired' => '(süresi doldu)',
         'no_expiry' => 'süresiz',

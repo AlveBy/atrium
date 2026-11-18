@@ -7,8 +7,6 @@
 
 declare(strict_types=1);
 
-// Machine-translated from English; needs review by a native speaker.
-
 return [
     'clear' => 'Temizle',
 
@@ -113,7 +111,7 @@ return [
 
     'tree' => [
         'search_placeholder' => 'Ara…',
-        'top_level' => 'Üst düzey',
+        'top_level' => 'En üst düzey',
     ],
 
     // The standard fields every Bitrix iblock has; the migrator labels
@@ -122,7 +120,7 @@ return [
         'id' => 'ID',
         'name' => 'Ad',
         'code' => 'Kod',
-        'active' => 'Aktif',
+        'active' => 'Etkin',
         'active_from' => 'Başlangıç tarihi',
         'active_to' => 'Bitiş tarihi',
         'sort' => 'Sıralama',
@@ -134,8 +132,8 @@ return [
         'detail_text' => 'Ayrıntılı metin',
         'description' => 'Açıklama',
         'picture' => 'Görsel',
-        'created_at' => 'Oluşturuldu',
-        'updated_at' => 'Değiştirildi',
+        'created_at' => 'Oluşturulma tarihi',
+        'updated_at' => 'Güncellenme tarihi',
     ],
 
     'tabs' => [
@@ -143,7 +141,7 @@ return [
         'main' => 'Genel',
         'section' => 'Bölüm',
         'seo' => 'SEO',
-        'additional' => 'Ek',
+        'additional' => 'Ek bilgiler',
         'custom_fields' => 'Özel alanlar',
         'element_properties' => 'Öğe özellikleri',
         'preview' => 'Önizleme',

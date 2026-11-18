@@ -4,8 +4,6 @@
 
 [![tests](https://github.com/AlveBy/atrium/actions/workflows/tests.yml/badge.svg)](https://github.com/AlveBy/atrium/actions/workflows/tests.yml)
 
-_Bu sayfa İngilizceden makine çevirisiyle hazırlandı. Düzeltmelere açığız, bkz. [CONTRIBUTING.md](../../CONTRIBUTING.md)._
-
 Laravel 13 üzerine kurulu, istediğiniz sayıda çok dilli site için tek bir yönetim paneli ve mevcut bir 1C-Bitrix sitesini taşıyan bir geçiş aracı.
 
 Bir modülü yalnızca bir kez, alanları ve liste sütunlarıyla birlikte bir model olarak tanımlarsınız. Atrium ona arama ve sıralama içeren bir liste, sekmeli bir form, bir menü öğesi, bir API ve temayla birlikte herkese açık sayfalar sağlar.
@@ -17,14 +15,14 @@ Bir modülü yalnızca bir kez, alanları ve liste sütunlarıyla birlikte bir m
 ## Neler yapar
 
 - **Çoklu site.** Birçok site için tek panel ve tek veritabanı; her site alan adına veya onun üzerindeki bir klasöre (`example.com/site2/`) göre seçilir ve kendi dillerine sahiptir.
-- **Çok dilli.** Panel 15 dil konuşur ve her yönetici kendi dilini seçer. İçerik dilleri panelden eklenir, bir modülün herhangi bir sütunu çevrilebilir yapılabilir ve her dil kendi adreslerini (`/de/…`) ve `hreflang` etiketlerini alır.
+- **Çok dilli.** Panel 15 dilde kullanılabilir ve her yönetici kendi dilini seçer. İçerik dilleri panelden eklenir, bir modülün herhangi bir sütunu çevrilebilir yapılabilir ve her dil kendi adreslerini (`/de/…`) ve `hreflang` etiketlerini alır.
 - **20 alan türü.** Metin, sayılar, tarihler, listeler, diğer modüllere bağlantılar, görseller, galeriler, dosyalar, görsel editör, haritalar, tekrarlanabilir değerler. Formlarda, 1C-Bitrix'te olduğu gibi sekmeler bulunur.
 - **Roller ve izinler.** Kimin hangi modülü göreceği ve orada ne yapabileceği: görüntüleme, oluşturma, düzenleme, silme.
 - **Kod yazmadan SEO.** Her kayıt için başlık ve açıklama, eski adreslerden yönlendirmeli okunabilir adresler, her site için `sitemap.xml` ve `robots.txt`. Google Tag, Yandex Metrica ve doğrulama kodları panelde her site için ayrı ayarlanır.
-- **API.** Seçilen modüller ve işlemlerle sınırlı tokenlar; `/api/v1` kendini kendisi tanımlar. Yapay zekâ asistanları (Claude, ChatGPT, Cursor) aynı token ile ve tam olarak onun yetkileriyle `/mcp` adresine bağlanır.
+- **API.** Seçilen modüller ve işlemlerle sınırlı tokenlar; `/api/v1` kendi kendini belgeler. Yapay zekâ asistanları (Claude, ChatGPT, Cursor) aynı token ile ve tam olarak onun yetkileriyle `/mcp` adresine bağlanır.
 - **E-postayla giriş kodu.** İki adımlı giriş varsayılan olarak açıktır.
 - **1C-Bitrix geçiş aracı.** Bilgi blokları, özellikler, bölümler, formlar, liste düzenleri, SEO ve medya kütüphanesi Laravel modellerine, migration'lara ve verilere dönüşür; bir rapor da eski siteyi yenisiyle karşılaştırır.
-- **Herkese açık tema.** Her modülü paneldeki formuna göre çizen sade bir site; açık ve koyu modu vardır ve her türlü renk görüşüyle okunabilir.
+- **Herkese açık tema.** Her modülü paneldeki formuna göre gösteren sade bir site; açık ve koyu modu vardır ve renk görme biçimi ne olursa olsun okunabilir.
 - **Test edilmiş.** SQLite, MySQL ve PostgreSQL üzerinde PHPUnit, Laravel Dusk ile tarayıcı testleri.
 
 | Bir kaydın formu | Site, açık ve koyu |
@@ -120,7 +118,7 @@ Bitrix veritabanından yalnızca okuma yapılır. Sekmeler, alan sırası ve lis
 - [Yapay zekâ yazım yardımı: ücretsiz ve ücretli sağlayıcılar, açıklamalar, SEO, alt metinleri, çeviriler](../ai.md)
 - [Kendi modülünüz: alanlar, sütunlar, sekmeler, yetkiler, diller, testler, paket](../modules.md)
 - [Özel alanlar: yönetim panelinden her modüle alan ekleme, 100 000 kayıtta filtreler ve faset sayıları](../custom-fields.md)
-- [1C-Bitrix’ten adım adım taşınma](../bitrix.md)
+- [1C-Bitrix’ten adım adım geçiş](../bitrix.md)
 - [Yedekler: veritabanları ve dosyalar birden çok yere, zamanlama, sağlık kontrolleri, geri yükleme](../backup.md)
 - [CDN: görseller, küçültülmüş kopyalar ve WebP/AVIF, önbellek temizleme, S3'e yükleme](../cdn.md)
 
@@ -151,7 +149,7 @@ php artisan atrium:install
 
 ## Diller
 
-Yönetim paneli İngilizce, Rusça, Ukraynaca, Belarusça, Kazakça, Özbekçe, Almanca, Fransızca, İspanyolca, Portekizce (Brezilya), İtalyanca, Lehçe, Türkçe, Çince (Basitleştirilmiş) ve Japonca konuşur. İngilizce ve Rusça elle yazıldı; diğerleri, bu README gibi, makine çevirisiyle başladı. Anadili bu diller olanlardan gelen düzeltmeler, projeye yapılabilecek en iyi ilk katkılardan biridir: bkz. [CONTRIBUTING.md](../../CONTRIBUTING.md) (İngilizce).
+Yönetim paneli İngilizce, Rusça, Ukraynaca, Belarusça, Kazakça, Özbekçe, Almanca, Fransızca, İspanyolca, Portekizce (Brezilya), İtalyanca, Lehçe, Türkçe, Çince (Basitleştirilmiş) ve Japonca dillerinde kullanılabilir. İngilizce ve Rusça elle yazıldı; diğerleri, bu README gibi, makine çevirisiyle başladı. Anadili bu diller olanlardan gelen düzeltmeler, projeye yapılabilecek en iyi ilk katkılardan biridir: bkz. [CONTRIBUTING.md](../../CONTRIBUTING.md) (İngilizce).
 
 ## Nasıl başladı
 
