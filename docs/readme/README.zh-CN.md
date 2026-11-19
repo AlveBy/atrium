@@ -10,7 +10,7 @@ _本页由英文机器翻译而来，欢迎指正，详见 [CONTRIBUTING.md](../
 
 模块只需描述一次：一个模型，加上它的字段和列表列。Atrium 会为它生成带搜索和排序的列表、带标签页的表单、菜单项和 API，配合主题还能生成公开页面。
 
-![演示商店的商品列表](../images/admin-list.png)
+![演示商店的商品列表](../images/admin-list.webp)
 
 > **尚未发布首个版本。** Atrium 已经可以使用，并有测试覆盖，但 0.1 版本还没有发布，各个包也尚未上架 Packagist。请从本仓库试用。
 
@@ -27,9 +27,17 @@ _本页由英文机器翻译而来，欢迎指正，详见 [CONTRIBUTING.md](../
 - **公开主题**：一个风格中性的站点，按照管理面板中的表单渲染每个模块，提供浅色和深色两种模式，任何色觉类型都能清晰阅读。
 - **经过测试**：PHPUnit 覆盖 SQLite、MySQL 和 PostgreSQL，浏览器测试使用 Laravel Dusk。
 
-| 记录的表单 | 站点：浅色与深色 |
+| 记录表单 | 后台搜索 |
 |---|---|
-| ![带标签页的商品表单](../images/admin-form.png) | ![商品页面](../images/site-light.png) ![德语新闻，深色主题](../images/site-dark.png) |
+| ![记录表单](../images/admin-form.webp) | ![后台搜索](../images/admin-search.webp) |
+
+| 菜单 | 仪表盘 |
+|---|---|
+| ![菜单](../images/admin-menus.webp) | ![仪表盘](../images/admin-dashboard.webp) |
+
+| 网站，浅色主题 | 网站，深色主题 |
+|---|---|
+| ![网站，浅色主题](../images/site-light.webp) | ![网站，深色主题](../images/site-dark.webp) |
 
 ## 试用
 
@@ -145,10 +153,10 @@ Bitrix 数据库只读不写。标签页、字段顺序和列表列会保持编�
 | [`alveby/atrium-menus`](../../packages/menus/README.md) | 在后台搭建的菜单 |
 | [`alveby/atrium-search`](../../packages/search/README.md) | 覆盖所有模块的站内搜索 |
 
-0.1 上架 Packagist 后，现有的 Laravel 13 应用可以这样安装 Atrium：
+这些包已在 Packagist 上，但在 0.1 打标签之前只有开发版，所以需要写明版本：
 
 ```bash
-composer require alveby/atrium
+composer require alveby/atrium:dev-main
 php artisan atrium:install
 ```
 

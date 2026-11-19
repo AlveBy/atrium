@@ -8,9 +8,9 @@
 
 Модуль описывается один раз: модель, её поля и колонки списка. Остальное Atrium делает сам: список с поиском и сортировкой, форму с вкладками, пункт меню, API, а вместе с темой ещё и страницы на сайте.
 
-![Список товаров демо-магазина](../images/admin-list.png)
+![Список товаров демо-магазина](../images/admin-list.webp)
 
-> **До первого релиза.** Atrium работает и покрыт тестами, но версия 0.1 ещё не вышла, и пакетов на Packagist пока нет. Попробовать можно из этого репозитория.
+> **До первого релиза.** Atrium работает и покрыт тестами, но версия 0.1 ещё не отмечена тегом. Пакеты есть на Packagist только как версия для разработки (`dev-main`); попробовать можно и из этого репозитория.
 
 ## Что умеет
 
@@ -25,9 +25,17 @@
 - **Тема для сайта.** Нейтральный сайт, который рисует любой модуль по его форме в админке. Светлая и тёмная, читается при любом цветовом зрении.
 - **Тесты.** PHPUnit на SQLite, MySQL и PostgreSQL, браузерные тесты на Laravel Dusk.
 
-| Форма записи | Сайт, светлый и тёмный |
+| Форма записи | Поиск по админке |
 |---|---|
-| ![Форма товара с вкладками](../images/admin-form.png) | ![Страница товара](../images/site-light.png) ![Новость на немецком, тёмная тема](../images/site-dark.png) |
+| ![Форма записи](../images/admin-form.webp) | ![Поиск по админке](../images/admin-search.webp) |
+
+| Меню | Рабочий стол |
+|---|---|
+| ![Меню](../images/admin-menus.webp) | ![Рабочий стол](../images/admin-dashboard.webp) |
+
+| Сайт, светлая тема | Сайт, тёмная тема |
+|---|---|
+| ![Сайт, светлая тема](../images/site-light.webp) | ![Сайт, тёмная тема](../images/site-dark.webp) |
 
 ## Попробовать
 
@@ -116,16 +124,20 @@ php artisan atrium:bitrix:parity
 - [Установка: свой сервер, хостинг с ISPmanager или cPanel, Docker](../installation.ru.md)
 - [Настройка: почта и код входа, файлы, API-токены, ИИ-ассистенты через MCP](../configuration.ru.md)
 - [ИИ-помощник для текстов: бесплатные и платные провайдеры, описания, SEO, alt, переводы](../ai.ru.md)
+- [SEO: заголовки, hreflang, карты сайта, schema.org, редиректы, проверка SEO](../seo.ru.md)
 - [Меню: шапка и подвал, дерево ссылок, пункты, раскрывающие модуль](../menus.ru.md)
 - [Поиск: страница результатов, строка в админке, что и как ищется](../search.ru.md)
 - [Свой модуль: поля, колонки, вкладки, права, языки, тесты, пакет](../modules.ru.md)
 - [Свои поля: добавить поле в любой модуль из админки, фильтры и фасеты на 100 000 записей](../custom-fields.ru.md)
 - [Кеш: быстрые страницы с десятками свойств, Redis, кеш страниц, заголовки для CDN](../cache.ru.md)
 - [Переезд с 1С-Битрикс по шагам](../bitrix.ru.md)
+- [Переезд с WordPress: подключить базу, перенести, проверить, карта 301](../wordpress.ru.md)
 - [Резервные копии: базы и файлы в несколько мест, расписание, проверки, восстановление](../backup.ru.md)
 - [Ошибки: ошибки PHP, очередей и JavaScript в базе сайта, оповещения, Sentry и свои драйверы](../errors.ru.md)
 - [Скорость и доступность: замеры сервера, Web Vitals посетителей, проверки доступности с оповещениями](../monitoring.ru.md)
 - [CDN: картинки, уменьшенные копии и WebP/AVIF, сброс кеша, загрузки в S3](../cdn.ru.md)
+- [Двухфакторный вход: приложения-аутентификаторы, passkey, коды, журнал входов](../two-factor.ru.md)
+- [Вход через соцсети: провайдеры, регистрация приложений, адреса возврата](../social-login.ru.md)
 
 ## Пакеты
 
@@ -136,17 +148,31 @@ php artisan atrium:bitrix:parity
 | [`alveby/atrium-bitrix`](../../packages/bitrix/README.md) | Переносчик с 1С-Битрикс |
 | [`alveby/atrium-ai`](../../packages/ai/README.md) | ИИ-помощник для текстов в админке |
 | [`alveby/atrium-custom-fields`](../../packages/custom-fields/README.md) | Поля, которые добавляют в любой модуль из админки, с фильтрами и фасетами |
+| [`alveby/atrium-seo`](../../packages/seo/README.md) | Шаблоны мета-тегов, hreflang, карты сайта, schema.org, редиректы и проверка SEO |
 | [`alveby/atrium-docs`](../../packages/docs/README.md) | Документация из Markdown: версии и поиск |
 | [`alveby/atrium-backup`](../../packages/backup/README.md) | Резервные копии баз и файлов, восстановление из админки |
 | [`alveby/atrium-errors`](../../packages/errors/README.md) | Учёт ошибок в базе сайта, оповещения, Sentry |
 | [`alveby/atrium-monitoring`](../../packages/monitoring/README.md) | Скорость сервера и посетителей, доступность и оповещения, без внешних сервисов |
+| [`alveby/atrium-news`](../../packages/news/README.md) | Новости |
+| [`alveby/atrium-pages`](../../packages/pages/README.md) | Статические страницы, с импортом страниц 1С-Битрикс |
+| [`alveby/atrium-catalog`](../../packages/catalog/README.md) | Каталог товаров с вложенными разделами |
+| [`alveby/atrium-brands`](../../packages/brands/README.md) | Бренды с логотипами |
+| [`alveby/atrium-stores`](../../packages/stores/README.md) | Магазины и офисы на карте |
+| [`alveby/atrium-team`](../../packages/team/README.md) | Люди, отделы и контакты |
+| [`alveby/atrium-faq`](../../packages/faq/README.md) | Вопросы и ответы |
+| [`alveby/atrium-forms`](../../packages/forms/README.md) | Конструктор форм и заявки |
+| [`alveby/atrium-reviews`](../../packages/reviews/README.md) | Отзывы и оценки с модерацией |
+| [`alveby/atrium-2fa`](../../packages/two-factor/README.md) | Двухфакторный и беспарольный вход |
+| [`alveby/atrium-social-login`](../../packages/social-login/README.md) | Вход через Google, Microsoft, Apple, GitHub, Telegram и другие |
+| [`alveby/atrium-solutions`](../../packages/solutions/README.md) | Готовые сайты, которые ставятся одной командой |
 | [`alveby/atrium-menus`](../../packages/menus/README.md) | Меню, собранные в админке |
 | [`alveby/atrium-search`](../../packages/search/README.md) | Поиск по сайту во всех модулях |
+| [`alveby/atrium-wordpress`](../../packages/wordpress/README.md) | Импорт с WordPress: записи, страницы, свои типы записей, SEO и переводы, с проверкой и картой 301 |
 
-Когда 0.1 появится на Packagist, в готовое приложение на Laravel 13 Atrium будет ставиться так:
+Пакеты уже на Packagist, но пока 0.1 не отмечена тегом — только как версия для разработки, поэтому укажите её:
 
 ```bash
-composer require alveby/atrium
+composer require alveby/atrium:dev-main
 php artisan atrium:install
 ```
 

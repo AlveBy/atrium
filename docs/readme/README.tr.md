@@ -10,7 +10,7 @@ Laravel 13 üzerine kurulu, istediğiniz sayıda çok dilli site için tek bir y
 
 Bir modülü yalnızca bir kez, alanları ve liste sütunlarıyla birlikte bir model olarak tanımlarsınız. Atrium ona arama ve sıralama içeren bir liste, sekmeli bir form, bir menü öğesi, bir API ve temayla birlikte herkese açık sayfalar sağlar.
 
-![Demo mağazanın ürün listesi](../images/admin-list.png)
+![Demo mağazanın ürün listesi](../images/admin-list.webp)
 
 > **İlk sürümden önce.** Atrium çalışıyor ve testlerle kapsanıyor, ancak 0.1 sürümü henüz çıkmadı ve paketler Packagist'te yok. Bu depodan deneyebilirsiniz.
 
@@ -27,9 +27,17 @@ Bir modülü yalnızca bir kez, alanları ve liste sütunlarıyla birlikte bir m
 - **Herkese açık tema.** Her modülü paneldeki formuna göre çizen sade bir site; açık ve koyu modu vardır ve her türlü renk görüşüyle okunabilir.
 - **Test edilmiş.** SQLite, MySQL ve PostgreSQL üzerinde PHPUnit, Laravel Dusk ile tarayıcı testleri.
 
-| Bir kaydın formu | Site, açık ve koyu |
+| Bir kaydın formu | Yönetim panelinde arama |
 |---|---|
-| ![Sekmeli bir ürün formu](../images/admin-form.png) | ![Bir ürün sayfası](../images/site-light.png) ![Almanca bir haber, koyu tema](../images/site-dark.png) |
+| ![Bir kaydın formu](../images/admin-form.webp) | ![Yönetim panelinde arama](../images/admin-search.webp) |
+
+| Menüler | Gösterge paneli |
+|---|---|
+| ![Menüler](../images/admin-menus.webp) | ![Gösterge paneli](../images/admin-dashboard.webp) |
+
+| Site, açık tema | Site, koyu tema |
+|---|---|
+| ![Site, açık tema](../images/site-light.webp) | ![Site, koyu tema](../images/site-dark.webp) |
 
 ## Deneyin
 
@@ -145,10 +153,10 @@ Bitrix veritabanından yalnızca okuma yapılır. Sekmeler, alan sırası ve lis
 | [`alveby/atrium-menus`](../../packages/menus/README.md) | Yönetim panelinde kurulan menüler |
 | [`alveby/atrium-search`](../../packages/search/README.md) | Tüm modüllerde site içi arama |
 
-0.1 Packagist'te yayımlandığında, mevcut bir Laravel 13 uygulamasına Atrium şu şekilde eklenecek:
+Paketler Packagist'te var, ancak 0.1 etiketlenene kadar yalnızca geliştirme sürümü olarak; bu yüzden açıkça belirtilmesi gerekir:
 
 ```bash
-composer require alveby/atrium
+composer require alveby/atrium:dev-main
 php artisan atrium:install
 ```
 
