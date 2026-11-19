@@ -109,21 +109,19 @@ final class Packages
             return $this->all();
         }
 
-        return array_values(array_filter($this->all(), fn (string $target): bool => isset($hit[$target]) || $this->requiresAny($target, $hit)));
-    }
+        // A package that requires an affected one is affected too; repeat until
+        // no new package joins, so a cycle in the requirements ends the loop.
+        do {
+            $before = count($hit);
 
-    /**
-     * @param  array<string, true>  $hit
-     */
-    private function requiresAny(string $target, array $hit, int $depth = 0): bool
-    {
-        foreach ($this->requires[$target] ?? [] as $dependency) {
-            if (isset($hit[$dependency]) || ($depth < count($this->requires) && $this->requiresAny($dependency, $hit, $depth + 1))) {
-                return true;
+            foreach ($this->requires as $target => $dependencies) {
+                if (! isset($hit[$target]) && array_intersect($dependencies, array_keys($hit)) !== []) {
+                    $hit[$target] = true;
+                }
             }
-        }
+        } while (count($hit) > $before);
 
-        return false;
+        return array_values(array_filter($this->all(), static fn (string $target): bool => isset($hit[$target])));
     }
 
     /**
