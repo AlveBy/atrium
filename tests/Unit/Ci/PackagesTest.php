@@ -75,6 +75,23 @@ final class PackagesTest extends TestCase
         $this->assertSame(['c', 'app'], $packages->affectedBy(['packages/c/src/X.php']));
     }
 
+    public function test_packages_that_all_require_each_other_are_walked_once(): void
+    {
+        // Twelve packages in a ring of requirements and a thirteenth that nobody
+        // requires: walking every path of the ring takes hours.
+        $names = array_map(static fn (int $i): string => 'p'.$i, range(1, 12));
+        $requires = ['solo' => []];
+
+        foreach ($names as $name) {
+            $requires[$name] = array_values(array_diff($names, [$name]));
+        }
+
+        $packages = new Packages($requires);
+
+        $this->assertSame(['solo', 'app'], $packages->affectedBy(['packages/solo/src/X.php']));
+        $this->assertSame([...$names, 'app'], $packages->affectedBy(['packages/p7/src/X.php']));
+    }
+
     /**
      * @return array<string, array{string, string|null}>
      */
