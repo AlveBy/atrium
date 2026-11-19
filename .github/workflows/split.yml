@@ -36,7 +36,7 @@ jobs:
     outputs:
       folders: ${{ steps.list.outputs.folders }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         with:
           persist-credentials: false
 
@@ -63,7 +63,7 @@ jobs:
         if: env.SPLIT_TOKEN == ''
         run: echo "::notice::SPLIT_TOKEN is not set, packages/${{ matrix.folder }} is not copied to AlveBy/${REPOSITORY}."
 
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
         if: env.SPLIT_TOKEN != ''
         with:
           fetch-depth: 0
