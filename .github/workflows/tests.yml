@@ -97,7 +97,7 @@ jobs:
       - run: cp .env.example .env && php artisan key:generate
       - run: bin/ci tests --db=${{ matrix.db }}
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: failure()
         with:
           name: phpunit-logs-${{ matrix.php }}-${{ matrix.db }}
@@ -170,7 +170,7 @@ jobs:
         env:
           CHANGED: ${{ github.event_name != 'push' && '--changed' || '' }}
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: coverage-${{ strategy.job-index }}
@@ -223,7 +223,7 @@ jobs:
       # Serves the app and runs Dusk on free ports, as on a contributor's machine.
       - run: bin/ci dusk
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: failure()
         with:
           name: dusk-screenshots
