@@ -94,7 +94,7 @@ Generated files are meant to be regenerated, not edited: `generate` refuses to o
 
 What moves:
 
-- Posts, pages and custom post types: the title, the text (Gutenberg's block comments taken out, the classic editor's line breaks turned into paragraphs), the excerpt, the slug, the date, the order, the parent of a page, the featured image. Published and scheduled posts are active; drafts, pending and private ones move hidden; the trash, revisions and auto-drafts are left behind.
+- Posts, pages and custom post types: the title, the text (Gutenberg's block comments taken out, the classic editor's line breaks turned into paragraphs even between headings and lists, `[caption]` and `[gallery]` turned into figures), the excerpt, the slug, the date (in the time zone of `config('app.timezone')`), the order, the parent of a page, the featured image. Published and scheduled posts are active; drafts, pending, private and password-protected ones move hidden; the trash, revisions and auto-drafts are left behind.
 - Categories, tags and custom taxonomies, with their tree, descriptions and links to the records.
 - Users who wrote something, as authors: the name, the login, the email. Never their passwords.
 - Attachments: the files into `public/wp-content/uploads` and the media library (a "WordPress" collection) with the title, alt text, description and the sizes WordPress made. Links in texts to the old domain's uploads point to the new site.
@@ -154,6 +154,9 @@ Real WordPress databases are old, and the importer expects that:
 - Texts in another encoding or with broken characters are converted to UTF-8; percent-encoded slugs (Cyrillic ones) are decoded.
 - A page whose parent is gone or of another type, and a loop of parents, go to the top level, with a note.
 - An author who is not in `wp_users` any more: the post moves without an author, with a note.
+- A post protected by a password moves hidden, with a note: Atrium has no password gate, and the text would go public.
+- A value saved twice through `update_post_meta` (a serialized string inside a serialized string) is read through both layers.
+- The redirect map for nginx carries every Cyrillic address twice, in lower-case and upper-case `%xx`: browsers send capitals, WordPress stores small letters, and nginx compares them as written.
 
 ## What does not move yet
 
