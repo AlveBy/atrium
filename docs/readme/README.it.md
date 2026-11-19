@@ -10,7 +10,7 @@ Un unico pannello di amministrazione per tutti i siti multilingue che vuoi, basa
 
 Descrivi un modulo una sola volta, come un modello con i suoi campi e le colonne dell'elenco. Atrium gli fornisce un elenco con ricerca e ordinamento, un form con schede, una voce di menu, un'API e, insieme al tema, pagine pubbliche.
 
-![L'elenco dei prodotti del negozio demo](../images/admin-list.png)
+![L'elenco dei prodotti del negozio demo](../images/admin-list.webp)
 
 > **Prima del primo rilascio.** Atrium funziona ed è coperto da test, ma la versione 0.1 non è ancora uscita e i pacchetti non sono su Packagist. Provalo da questo repository.
 
@@ -27,9 +27,17 @@ Descrivi un modulo una sola volta, come un modello con i suoi campi e le colonne
 - **Tema pubblico.** Un sito neutro che disegna ogni modulo a partire dal suo form nel pannello, chiaro e scuro, leggibile con qualsiasi tipo di visione dei colori.
 - **Testato.** PHPUnit su SQLite, MySQL e PostgreSQL, e test nel browser con Laravel Dusk.
 
-| Il form di un record | Il sito, chiaro e scuro |
+| Il modulo di un record | Ricerca nel pannello |
 |---|---|
-| ![Il form di un prodotto con le schede](../images/admin-form.png) | ![La pagina di un prodotto](../images/site-light.png) ![Una notizia in tedesco, tema scuro](../images/site-dark.png) |
+| ![Il modulo di un record](../images/admin-form.webp) | ![Ricerca nel pannello](../images/admin-search.webp) |
+
+| Menu | Cruscotto |
+|---|---|
+| ![Menu](../images/admin-menus.webp) | ![Cruscotto](../images/admin-dashboard.webp) |
+
+| Il sito, tema chiaro | Il sito, tema scuro |
+|---|---|
+| ![Il sito, tema chiaro](../images/site-light.webp) | ![Il sito, tema scuro](../images/site-dark.webp) |
 
 ## Provalo
 
@@ -145,10 +153,10 @@ Il database di Bitrix viene solo letto. Le schede, l'ordine dei campi e le colon
 | [`alveby/atrium-menus`](../../packages/menus/README.md) | Menu creati nel pannello |
 | [`alveby/atrium-search`](../../packages/search/README.md) | Ricerca in tutto il sito, in ogni modulo |
 
-Quando la 0.1 sarà su Packagist, un'app Laravel 13 esistente potrà aggiungere Atrium con:
+I pacchetti sono su Packagist, ma finché la 0.1 non ha un tag solo come versione di sviluppo, quindi va indicata:
 
 ```bash
-composer require alveby/atrium
+composer require alveby/atrium:dev-main
 php artisan atrium:install
 ```
 

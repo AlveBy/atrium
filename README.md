@@ -8,9 +8,9 @@ One admin panel for any number of multilingual sites, built on Laravel 13, with 
 
 You describe a module once, as a model with its fields and list columns. Atrium gives it a list with search and sorting, a form with tabs, a menu entry, an API and, with the theme, public pages.
 
-![The products list of the demo shop](docs/images/admin-list.png)
+![The products list of the demo shop](docs/images/admin-list.webp)
 
-> **Before the first release.** Atrium works and is covered by tests, but version 0.1 is not out yet and the packages are not on Packagist. Try it from this repository.
+> **Before the first release.** Atrium works and is covered by tests, but version 0.1 is not tagged yet. The packages are on Packagist only as the development version (`dev-main`); you can also try it from this repository.
 
 ## What it does
 
@@ -25,9 +25,17 @@ You describe a module once, as a model with its fields and list columns. Atrium 
 - **Public theme.** A neutral site that draws every module from its admin form, light and dark, readable with any kind of colour vision.
 - **Tested.** PHPUnit on SQLite, MySQL and PostgreSQL, browser tests with Laravel Dusk.
 
-| The form of a record | The site, light and dark |
+| The form of a record | Search in the admin |
 |---|---|
-| ![A product form with tabs](docs/images/admin-form.png) | ![A product page](docs/images/site-light.png) ![A news item in German, dark theme](docs/images/site-dark.png) |
+| ![The form of a record](docs/images/admin-form.webp) | ![Search in the admin](docs/images/admin-search.webp) |
+
+| Menus | Dashboard |
+|---|---|
+| ![Menus](docs/images/admin-menus.webp) | ![Dashboard](docs/images/admin-dashboard.webp) |
+
+| The site, light theme | The site, dark theme |
+|---|---|
+| ![The site, light theme](docs/images/site-light.webp) | ![The site, dark theme](docs/images/site-dark.webp) |
 
 ## Try it
 
@@ -123,6 +131,7 @@ The Bitrix database is only read. The tabs, field order and list columns come ou
 - [Custom fields: add fields to any module from the admin, filters and facets on 100 000 records](docs/custom-fields.md)
 - [Cache: fast pages with dozens of properties, Redis, the page cache, CDN headers](docs/cache.md)
 - [Moving from 1C-Bitrix, step by step](docs/bitrix.md)
+- [Moving from WordPress: connect the database, move, check, the 301 map](docs/wordpress.md)
 - [Backups: databases and files to several places, schedules, health checks, restore](docs/backup.md)
 - [Errors: PHP, queue and JavaScript errors in the site's database, alerts, Sentry and your own drivers](docs/errors.md)
 - [Speed and uptime: server timings, visitors' Web Vitals, uptime checks with alerts](docs/monitoring.md)
@@ -158,11 +167,12 @@ The Bitrix database is only read. The tabs, field order and list columns come ou
 | [`alveby/atrium-solutions`](packages/solutions/README.md) | Ready-made sites installed in one command |
 | [`alveby/atrium-menus`](packages/menus/README.md) | Menus built in the admin |
 | [`alveby/atrium-search`](packages/search/README.md) | Site search across every module |
+| [`alveby/atrium-wordpress`](packages/wordpress/README.md) | The WordPress importer: posts, pages, custom post types, SEO and translations, with a check and a 301 map |
 
-Once 0.1 is on Packagist, an existing Laravel 13 app gets Atrium with:
+The packages are on Packagist, but until 0.1 is tagged only as the development version, so name it:
 
 ```bash
-composer require alveby/atrium
+composer require alveby/atrium:dev-main
 php artisan atrium:install
 ```
 

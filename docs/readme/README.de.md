@@ -10,7 +10,7 @@ Ein Admin-Bereich für beliebig viele mehrsprachige Websites auf Basis von Larav
 
 Ein Modul beschreiben Sie nur einmal: als Modell mit seinen Feldern und Listenspalten. Atrium macht daraus eine Liste mit Suche und Sortierung, ein Formular mit Tabs, einen Menüeintrag, eine API und, zusammen mit dem Theme, öffentliche Seiten.
 
-![Die Produktliste des Demo-Shops](../images/admin-list.png)
+![Die Produktliste des Demo-Shops](../images/admin-list.webp)
 
 > **Vor dem ersten Release.** Atrium funktioniert und ist durch Tests abgedeckt, aber Version 0.1 ist noch nicht erschienen, und die Pakete sind noch nicht auf Packagist. Ausprobieren können Sie es direkt aus diesem Repository.
 
@@ -27,9 +27,17 @@ Ein Modul beschreiben Sie nur einmal: als Modell mit seinen Feldern und Listensp
 - **Öffentliches Theme.** Eine neutrale Website, die jedes Modul anhand seines Formulars im Admin-Bereich darstellt, hell und dunkel, lesbar bei jeder Form des Farbsehens.
 - **Getestet.** PHPUnit auf SQLite, MySQL und PostgreSQL, Browsertests mit Laravel Dusk.
 
-| Das Formular eines Eintrags | Die Website, hell und dunkel |
+| Das Formular eines Datensatzes | Suche in der Verwaltung |
 |---|---|
-| ![Ein Produktformular mit Tabs](../images/admin-form.png) | ![Eine Produktseite](../images/site-light.png) ![Eine Neuigkeit auf Deutsch, dunkles Theme](../images/site-dark.png) |
+| ![Das Formular eines Datensatzes](../images/admin-form.webp) | ![Suche in der Verwaltung](../images/admin-search.webp) |
+
+| Menüs | Dashboard |
+|---|---|
+| ![Menüs](../images/admin-menus.webp) | ![Dashboard](../images/admin-dashboard.webp) |
+
+| Die Website, helles Design | Die Website, dunkles Design |
+|---|---|
+| ![Die Website, helles Design](../images/site-light.webp) | ![Die Website, dunkles Design](../images/site-dark.webp) |
 
 ## Ausprobieren
 
@@ -145,10 +153,10 @@ Die Bitrix-Datenbank wird nur gelesen. Tabs, Feldreihenfolge und Listenspalten k
 | [`alveby/atrium-menus`](../../packages/menus/README.md) | Menüs, im Admin-Bereich gebaut |
 | [`alveby/atrium-search`](../../packages/search/README.md) | Suche über alle Module der Website |
 
-Sobald 0.1 auf Packagist ist, bekommt eine bestehende Laravel-13-Anwendung Atrium so:
+Die Pakete liegen auf Packagist, bis zum Tag 0.1 aber nur als Entwicklungsversion; sie muss deshalb ausdrücklich genannt werden:
 
 ```bash
-composer require alveby/atrium
+composer require alveby/atrium:dev-main
 php artisan atrium:install
 ```
 

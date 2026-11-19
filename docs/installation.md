@@ -153,12 +153,14 @@ php artisan view:cache
 
 ## Into an existing Laravel app
 
-The steps above install this repository: a Laravel app with Atrium already in it. The packages also go into any Laravel 13 app:
+The steps above install this repository: a Laravel app with Atrium already in it. The packages also go into any Laravel 13 app. They are on Packagist, but 0.1 is not tagged yet, so for now Composer finds only the development version, `dev-main`:
 
 ```bash
-composer require alveby/atrium
+composer require alveby/atrium:dev-main
 php artisan atrium:install
 ```
+
+Name `:dev-main` on every `composer require alveby/…` in these docs until 0.1 is out, or allow it once in your `composer.json` with `"minimum-stability": "dev"` and `"prefer-stable": true`, after which the plain commands work.
 
 The public theme and the 1C-Bitrix migrator are packages of their own:
 

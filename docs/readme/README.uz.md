@@ -10,7 +10,7 @@ Laravel 13 asosidagi, istalgancha koʻp tilli saytlar uchun bitta administrator 
 
 Modul bir marta tavsiflanadi: maydonlari va roʻyxat ustunlari bilan model sifatida. Atrium unga qidiruv va saralash imkoniyati bor roʻyxat, yorliqlarga boʻlingan forma, menyu bandi, API va mavzu bilan birga saytdagi ochiq sahifalarni beradi.
 
-![Demo internet-doʻkondagi mahsulotlar roʻyxati](../images/admin-list.png)
+![Demo internet-doʻkondagi mahsulotlar roʻyxati](../images/admin-list.webp)
 
 > **Birinchi relizgacha.** Atrium ishlaydi va testlar bilan qamrab olingan, lekin 0.1 versiyasi hali chiqmagan, paketlar esa hali Packagist saytida yoʻq. Uni shu repozitoriydan sinab koʻring.
 
@@ -27,9 +27,17 @@ Modul bir marta tavsiflanadi: maydonlari va roʻyxat ustunlari bilan model sifat
 - **Sayt mavzusi.** Har bir modulni administrator panelidagi formasi asosida chizadigan neytral sayt: yorugʻ va qorongʻi, ranglarni har qanday idrok etishda ham oson oʻqiladi.
 - **Testlangan.** PHPUnit testlari SQLite, MySQL va PostgreSQL bazalarida, brauzer testlari Laravel Dusk yordamida.
 
-| Yozuv formasi | Sayt, yorugʻ va qorongʻi |
+| Yozuv shakli | Admin panelda qidiruv |
 |---|---|
-| ![Yorliqlarga boʻlingan mahsulot formasi](../images/admin-form.png) | ![Mahsulot sahifasi](../images/site-light.png) ![Nemis tilidagi yangilik, qorongʻi mavzu](../images/site-dark.png) |
+| ![Yozuv shakli](../images/admin-form.webp) | ![Admin panelda qidiruv](../images/admin-search.webp) |
+
+| Menyular | Boshqaruv paneli |
+|---|---|
+| ![Menyular](../images/admin-menus.webp) | ![Boshqaruv paneli](../images/admin-dashboard.webp) |
+
+| Sayt, yorug' mavzu | Sayt, qorong'i mavzu |
+|---|---|
+| ![Sayt, yorug' mavzu](../images/site-light.webp) | ![Sayt, qorong'i mavzu](../images/site-dark.webp) |
 
 ## Sinab koʻrish
 
@@ -145,10 +153,10 @@ Bitrix maʼlumotlar bazasi faqat oʻqiladi. Yorliqlar, maydonlar tartibi va roʻ
 | [`alveby/atrium-menus`](../../packages/menus/README.md) | Admin panelda yig‘iladigan menyular |
 | [`alveby/atrium-search`](../../packages/search/README.md) | Barcha modullar bo‘yicha saytdan qidiruv |
 
-0.1 versiyasi Packagist saytida paydo boʻlgach, mavjud Laravel 13 ilovasiga Atrium quyidagicha oʻrnatiladi:
+Paketlar Packagist saytida bor, lekin 0.1 teg bilan belgilanmaguncha faqat ishlab chiqish versiyasi sifatida — shuning uchun uni koʻrsating:
 
 ```bash
-composer require alveby/atrium
+composer require alveby/atrium:dev-main
 php artisan atrium:install
 ```
 

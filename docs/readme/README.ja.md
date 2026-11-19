@@ -10,7 +10,7 @@ _このページは英語から機械翻訳されました。修正を歓迎し�
 
 モジュールは、フィールドと一覧の列を持つモデルとして一度記述するだけです。Atrium はそこから、検索と並べ替えができる一覧、タブ付きのフォーム、メニュー項目、API を用意し、テーマを入れれば公開ページも表示します。
 
-![デモショップの商品一覧](../images/admin-list.png)
+![デモショップの商品一覧](../images/admin-list.webp)
 
 > **最初のリリース前です。** Atrium は動作し、テストも揃っていますが、バージョン 0.1 はまだリリースされておらず、パッケージも Packagist にはありません。このリポジトリから試してください。
 
@@ -27,9 +27,17 @@ _このページは英語から機械翻訳されました。修正を歓迎し�
 - **公開テーマ**：各モジュールを管理パネルのフォームに基づいて表示する、ニュートラルなサイト。ライトとダークに対応し、どのような色覚でも読みやすくなっています。
 - **テスト済み**：SQLite、MySQL、PostgreSQL 上の PHPUnit と、Laravel Dusk によるブラウザテスト。
 
-| レコードのフォーム | サイト（ライトとダーク） |
+| レコードのフォーム | 管理画面の検索 |
 |---|---|
-| ![タブ付きの商品フォーム](../images/admin-form.png) | ![商品ページ](../images/site-light.png) ![ドイツ語のニュース、ダークテーマ](../images/site-dark.png) |
+| ![レコードのフォーム](../images/admin-form.webp) | ![管理画面の検索](../images/admin-search.webp) |
+
+| メニュー | ダッシュボード |
+|---|---|
+| ![メニュー](../images/admin-menus.webp) | ![ダッシュボード](../images/admin-dashboard.webp) |
+
+| サイト（ライトテーマ） | サイト（ダークテーマ） |
+|---|---|
+| ![サイト（ライトテーマ）](../images/site-light.webp) | ![サイト（ダークテーマ）](../images/site-dark.webp) |
 
 ## 試してみる
 
@@ -145,10 +153,10 @@ Bitrix のデータベースは読み取るだけです。タブ、フィール�
 | [`alveby/atrium-menus`](../../packages/menus/README.md) | 管理画面で作るメニュー |
 | [`alveby/atrium-search`](../../packages/search/README.md) | 全モジュール対象のサイト内検索 |
 
-0.1 が Packagist に公開されたら、既存の Laravel 13 アプリには次のコマンドで Atrium を導入できます。
+パッケージは Packagist に公開されていますが、0.1 にタグが付くまでは開発版のみです。そのため次のように指定します。
 
 ```bash
-composer require alveby/atrium
+composer require alveby/atrium:dev-main
 php artisan atrium:install
 ```
 

@@ -10,7 +10,7 @@ Jeden panel administracyjny dla dowolnej liczby wielojęzycznych witryn, zbudowa
 
 Moduł opisujesz raz: jako model z jego polami i kolumnami listy. Atrium daje mu listę z wyszukiwaniem i sortowaniem, formularz z kartami, pozycję w menu, API, a razem z motywem także strony publiczne.
 
-![Lista produktów sklepu demonstracyjnego](../images/admin-list.png)
+![Lista produktów sklepu demonstracyjnego](../images/admin-list.webp)
 
 > **Przed pierwszym wydaniem.** Atrium działa i jest pokryty testami, ale wersja 0.1 jeszcze się nie ukazała, a pakietów nie ma na Packagist. Wypróbuj go z tego repozytorium.
 
@@ -27,9 +27,17 @@ Moduł opisujesz raz: jako model z jego polami i kolumnami listy. Atrium daje mu
 - **Motyw publiczny.** Neutralna witryna, która rysuje każdy moduł na podstawie jego formularza w panelu, w wersji jasnej i ciemnej, czytelna przy każdym rodzaju widzenia barw.
 - **Przetestowany.** PHPUnit na SQLite, MySQL i PostgreSQL, testy w przeglądarce z Laravel Dusk.
 
-| Formularz rekordu | Witryna, jasna i ciemna |
+| Formularz rekordu | Wyszukiwanie w panelu |
 |---|---|
-| ![Formularz produktu z kartami](../images/admin-form.png) | ![Strona produktu](../images/site-light.png) ![Aktualność po niemiecku, ciemny motyw](../images/site-dark.png) |
+| ![Formularz rekordu](../images/admin-form.webp) | ![Wyszukiwanie w panelu](../images/admin-search.webp) |
+
+| Menu | Pulpit |
+|---|---|
+| ![Menu](../images/admin-menus.webp) | ![Pulpit](../images/admin-dashboard.webp) |
+
+| Strona, jasny motyw | Strona, ciemny motyw |
+|---|---|
+| ![Strona, jasny motyw](../images/site-light.webp) | ![Strona, ciemny motyw](../images/site-dark.webp) |
 
 ## Wypróbuj
 
@@ -145,10 +153,10 @@ Baza danych Bitrixa jest tylko odczytywana. Karty, kolejność pól i kolumny li
 | [`alveby/atrium-menus`](../../packages/menus/README.md) | Menu budowane w panelu |
 | [`alveby/atrium-search`](../../packages/search/README.md) | Wyszukiwanie w całej witrynie, we wszystkich modułach |
 
-Gdy 0.1 trafi na Packagist, do istniejącej aplikacji na Laravel 13 dodasz Atrium tak:
+Pakiety są na Packagist, ale dopóki 0.1 nie ma tagu, tylko jako wersja rozwojowa, więc trzeba ją wskazać:
 
 ```bash
-composer require alveby/atrium
+composer require alveby/atrium:dev-main
 php artisan atrium:install
 ```
 

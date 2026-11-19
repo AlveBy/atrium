@@ -10,7 +10,7 @@ Um único painel de administração para quantos sites multilíngues você preci
 
 Você descreve um módulo uma única vez, como um modelo com seus campos e as colunas da lista. O Atrium entrega a ele uma lista com busca e ordenação, um formulário com abas, um item no menu, uma API e, com o tema, páginas públicas.
 
-![A lista de produtos da loja de demonstração](../images/admin-list.png)
+![A lista de produtos da loja de demonstração](../images/admin-list.webp)
 
 > **Antes do primeiro lançamento.** O Atrium funciona e é coberto por testes, mas a versão 0.1 ainda não saiu e os pacotes não estão no Packagist. Experimente a partir deste repositório.
 
@@ -27,9 +27,17 @@ Você descreve um módulo uma única vez, como um modelo com seus campos e as co
 - **Tema público.** Um site neutro que desenha cada módulo a partir do formulário dele no painel, nos modos claro e escuro, legível com qualquer tipo de visão de cores.
 - **Testado.** PHPUnit com SQLite, MySQL e PostgreSQL, e testes de navegador com Laravel Dusk.
 
-| O formulário de um registro | O site, claro e escuro |
+| O formulário de um registro | Busca no painel |
 |---|---|
-| ![Formulário de produto com abas](../images/admin-form.png) | ![Página de produto](../images/site-light.png) ![Notícia em alemão, tema escuro](../images/site-dark.png) |
+| ![O formulário de um registro](../images/admin-form.webp) | ![Busca no painel](../images/admin-search.webp) |
+
+| Menus | Painel |
+|---|---|
+| ![Menus](../images/admin-menus.webp) | ![Painel](../images/admin-dashboard.webp) |
+
+| O site, tema claro | O site, tema escuro |
+|---|---|
+| ![O site, tema claro](../images/site-light.webp) | ![O site, tema escuro](../images/site-dark.webp) |
 
 ## Experimente
 
@@ -145,10 +153,10 @@ O banco de dados do Bitrix é apenas lido. As abas, a ordem dos campos e as colu
 | [`alveby/atrium-menus`](../../packages/menus/README.md) | Menus montados no painel |
 | [`alveby/atrium-search`](../../packages/search/README.md) | Busca no site inteiro, em cada módulo |
 
-Quando a 0.1 estiver no Packagist, uma aplicação Laravel 13 existente poderá receber o Atrium com:
+Os pacotes já estão no Packagist, mas enquanto a 0.1 não tiver tag, só como versão de desenvolvimento; por isso ela precisa ser indicada:
 
 ```bash
-composer require alveby/atrium
+composer require alveby/atrium:dev-main
 php artisan atrium:install
 ```
 
