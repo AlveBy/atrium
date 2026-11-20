@@ -124,6 +124,7 @@ O banco de dados do Bitrix é apenas lido. As abas, a ordem dos campos e as colu
 ## Documentação
 
 - [Instalação: servidor próprio, hospedagem com ISPmanager ou cPanel, Docker](../installation.md)
+- [Demo pública: Docker, uma reinicialização a cada hora, o que um visitante pode fazer, onde hospedar](../demo.md)
 - [Configuração: e-mail e código de acesso, arquivos, tokens de API, assistentes de IA via MCP](../configuration.md)
 - [Ajuda de redação com IA: provedores gratuitos e pagos, descrições, SEO, textos alt, traduções](../ai.md)
 - [SEO: títulos, hreflang, sitemaps, schema.org, redirecionamentos, a verificação de SEO](../seo.md)

@@ -124,6 +124,7 @@ Die Bitrix-Datenbank wird nur gelesen. Tabs, Feldreihenfolge und Listenspalten k
 ## Dokumentation
 
 - [Installation: eigener Server, Hosting mit ISPmanager oder cPanel, Docker](../installation.md)
+- [Öffentliche Demo: Docker, Zurücksetzen jede Stunde, was ein Besucher darf, wo sie läuft](../demo.md)
 - [Konfiguration: E-Mail und Anmeldecode, Dateien, API-Tokens, KI-Assistenten über MCP](../configuration.md)
 - [KI-Schreibhilfe: kostenlose und bezahlte Anbieter, Beschreibungen, SEO, Alt-Texte, Übersetzungen](../ai.md)
 - [SEO: Titel, hreflang, Sitemaps, schema.org, Weiterleitungen, die SEO-Prüfung](../seo.md)

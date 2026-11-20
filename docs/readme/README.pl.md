@@ -124,6 +124,7 @@ Baza danych Bitrixa jest tylko odczytywana. Karty, kolejność pól i kolumny li
 ## Dokumentacja
 
 - [Instalacja: własny serwer, hosting z ISPmanager lub cPanel, Docker](../installation.md)
+- [Publiczne demo: Docker, reset co godzinę, co może gość, gdzie je hostować](../demo.md)
 - [Konfiguracja: poczta i kod logowania, pliki, tokeny API, asystenci AI przez MCP](../configuration.md)
 - [Pomoc AI w pisaniu: darmowi i płatni dostawcy, opisy, SEO, teksty alt, tłumaczenia](../ai.md)
 - [SEO: tytuły, hreflang, mapy witryny, schema.org, przekierowania, kontrola SEO](../seo.md)

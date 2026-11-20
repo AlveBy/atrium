@@ -124,6 +124,7 @@ Bitrix veritabanından yalnızca okuma yapılır. Sekmeler, alan sırası ve lis
 ## Belgeler
 
 - [Kurulum: kendi sunucunuz, ISPmanager veya cPanel barındırma, Docker](../installation.md)
+- [Herkese açık demo: Docker, her saat sıfırlama, ziyaretçinin neler yapabileceği, nerede barındırılacağı](../demo.md)
 - [Yapılandırma: e-posta ve giriş kodu, dosyalar, API tokenları, MCP ile yapay zekâ asistanları](../configuration.md)
 - [Yapay zekâ yazım yardımı: ücretsiz ve ücretli sağlayıcılar, açıklamalar, SEO, alt metinleri, çeviriler](../ai.md)
 - [SEO: başlıklar, hreflang, site haritaları, schema.org, yönlendirmeler, SEO denetimi](../seo.md)
