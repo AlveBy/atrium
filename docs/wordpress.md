@@ -101,8 +101,11 @@ What moves:
 - ACF: text, number, true/false, dates, choices, images, files, galleries, links, groups, repeaters and flexible content.
 - SEO from Yoast or Rank Math: the title and description (with their `%%title%%` / `%title%` variables filled in), focus keywords, Open Graph, the canonical address, noindex and nofollow, for records and for terms.
 - Languages from WPML or Polylang: the translations of a post become the languages of one record, and the languages are added to Atrium with WordPress's default as the default. A site without a language plugin goes under the language of its `WPLANG`, or the `language` set in the config.
+- Menus, into the menus module (`php artisan atrium:module:install alveby/atrium-menus`): every menu becomes a menu with a code made from its slug (`main-menu`), its items stay nested and in their order, a draft item is switched off. An item that links to a post, page or category links to the record that was moved, so it follows the record's new address; a custom link stays as it is, with the old domain's uploads and a port in the address fixed as in the texts; an archive of a post type goes to its list; `#` and an empty link make a heading for the items below. A link to something that does not move (a product of a shop, a deleted page) becomes a heading too, with a note. Menus nest four levels deep in Atrium; the items below the fourth go up to it, with a note. Without the menus module the menus are skipped with a note, and moving again after installing it brings them.
 
-Run it again any time: records are matched by their WordPress ID in the `wordpress_map` table, and a second run updates them instead of doubling them.
+Run it again any time: records are matched by their WordPress ID in the `wordpress_map` table, and a second run updates them instead of doubling them. A menu moved before gets its items written again from WordPress, so edit imported menus in WordPress until the switch.
+
+WordPress shows a menu in a theme **location** (`primary`, `footer`); Atrium has none, the theme asks for a menu by its code: `<x-atrium-menu code="main-menu" />`. The notes of the move list every location and the code of the menu that was in it. With WPML or Polylang a menu in another language becomes a menu of that language with the same code, so the theme asks for one and gets the language it shows.
 
 ## 4. Check
 
@@ -110,7 +113,7 @@ Run it again any time: records are matched by their WordPress ID in the `wordpre
 php artisan atrium:wordpress:parity
 ```
 
-builds again from the WordPress database what every record should hold, and compares it with what Atrium has: every language, author, term and file, every record's fields, parent, categories and tags, SEO and redirects. An empty report means nothing was lost; it exits with 1 when something differs, so a script can stop on it. `--format=markdown --output=parity.md` writes it to a file for the client, `--format=json` for a script.
+builds again from the WordPress database what every record should hold, and compares it with what Atrium has: every language, author, term, menu and file, every record's fields, parent, categories and tags, SEO and redirects. An empty report means nothing was lost; it exits with 1 when something differs, so a script can stop on it. `--format=markdown --output=parity.md` writes it to a file for the client, `--format=json` for a script.
 
 Warnings are not differences: they list what WordPress itself did not have (a featured image whose file is missing in `uploads`) and what was moved on purpose without a place (custom fields of posts forced into News). Notes tell what was repaired on the way, see [Messy data](#messy-data).
 
@@ -161,7 +164,7 @@ Real WordPress databases are old, and the importer expects that:
 ## What does not move yet
 
 - **A WXR export**: the importer reads the database. The export file is on the list.
-- **Comments, menus, widgets and the theme**: the new site is drawn by the public theme (`alveby/atrium-theme`) from the modules, or by your own Blade templates; menus are built in Atrium again.
+- **Comments, widgets and the theme**: the new site is drawn by the public theme (`alveby/atrium-theme`) from the modules, or by your own Blade templates. Menus move, see [3. Move](#3-move), but the theme's own locations do not.
 - **Shortcodes and blocks of plugins** stay in the text as they were; look for `[` in the texts of the new site.
 - **Relationship and post object fields** of ACF keep WordPress IDs.
 - **SEO of translations**: Yoast and Rank Math values move from the post of the default language.
