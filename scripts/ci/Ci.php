@@ -274,6 +274,16 @@ final class Ci
     }
 
     /**
+     * A failed lint result for every group of packages that require each other.
+     */
+    private function packageCycles(): void
+    {
+        foreach (Packages::discover($this->root)->cycles() as $cycle) {
+            $this->results[] = ['lint', 'packages require each other, so none can be installed alone: '.implode(', ', $cycle), false, 0.0];
+        }
+    }
+
+    /**
      * Lint, PHPStan and the PHPUnit legs, side by side.
      *
      * @param  list<string>  $targets
@@ -289,6 +299,8 @@ final class Ci
             foreach (EscapeHatches::find($this->root) as $hatch) {
                 $this->results[] = ['lint', "{$hatch}: no line is taken out of the coverage or the mutation gate", false, 0.0];
             }
+
+            $this->packageCycles();
         }
 
         if (in_array('static', $this->steps, true)) {
