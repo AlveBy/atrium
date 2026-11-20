@@ -124,6 +124,7 @@ La base de données Bitrix est uniquement lue. Les onglets, l'ordre des champs e
 ## Documentation
 
 - [Installation : votre serveur, un hébergement avec ISPmanager ou cPanel, Docker](../installation.md)
+- [Démo publique : Docker, une remise à zéro toutes les heures, ce qu’un visiteur peut faire, où l’héberger](../demo.md)
 - [Configuration : e-mail et code de connexion, fichiers, jetons API, assistants IA via MCP](../configuration.md)
 - [Aide à la rédaction par IA : fournisseurs gratuits et payants, descriptions, SEO, textes alt, traductions](../ai.md)
 - [SEO : titres, hreflang, sitemaps, schema.org, redirections, le contrôle SEO](../seo.md)

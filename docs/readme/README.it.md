@@ -124,6 +124,7 @@ Il database di Bitrix viene solo letto. Le schede, l'ordine dei campi e le colon
 ## Documentazione
 
 - [Installazione: server proprio, hosting con ISPmanager o cPanel, Docker](../installation.md)
+- [Demo pubblica: Docker, un ripristino ogni ora, cosa può fare un visitatore, dove ospitarla](../demo.md)
 - [Configurazione: e-mail e codice di accesso, file, token API, assistenti IA via MCP](../configuration.md)
 - [Aiuto alla scrittura con IA: fornitori gratuiti e a pagamento, descrizioni, SEO, testi alt, traduzioni](../ai.md)
 - [SEO: titoli, hreflang, sitemap, schema.org, reindirizzamenti, il controllo SEO](../seo.md)

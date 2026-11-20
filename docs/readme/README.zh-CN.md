@@ -124,6 +124,7 @@ Bitrix 数据库只读不写。标签页、字段顺序和列表列会保持编�
 ## 文档
 
 - [安装：自有服务器、ISPmanager 或 cPanel 虚拟主机、Docker](../installation.md)
+- [公开演示：Docker、每小时重置、访客能做什么、部署在哪里](../demo.md)
 - [配置：邮件与登录验证码、文件、API 令牌、通过 MCP 接入的 AI 助手](../configuration.md)
 - [AI 写作助手：免费与付费服务商、描述、SEO、alt 文本、翻译](../ai.md)
 - [SEO：标题、hreflang、站点地图、schema.org、重定向、SEO 检查](../seo.md)

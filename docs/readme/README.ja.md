@@ -124,6 +124,7 @@ Bitrix のデータベースは読み取るだけです。タブ、フィール�
 ## ドキュメント
 
 - [インストール：自前サーバー、ISPmanager や cPanel のホスティング、Docker](../installation.md)
+- [公開デモ：Docker、1時間ごとのリセット、訪問者にできること、置き場所](../demo.md)
 - [設定：メールとサインインコード、ファイル、API トークン、MCP 経由の AI アシスタント](../configuration.md)
 - [AI 文章アシスタント：無料・有料のプロバイダー、説明文、SEO、alt テキスト、翻訳](../ai.md)
 - [SEO：タイトル、hreflang、サイトマップ、schema.org、リダイレクト、SEOチェック](../seo.md)

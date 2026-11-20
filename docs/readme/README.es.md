@@ -124,6 +124,7 @@ La base de datos de Bitrix solo se lee. Las pestañas, el orden de los campos y 
 ## Documentación
 
 - [Instalación: tu servidor, hosting con ISPmanager o cPanel, Docker](../installation.md)
+- [Demo pública: Docker, un reinicio cada hora, qué puede hacer un visitante, dónde alojarla](../demo.md)
 - [Configuración: correo y código de acceso, archivos, tokens de API, asistentes de IA por MCP](../configuration.md)
 - [Ayuda de redacción con IA: proveedores gratuitos y de pago, descripciones, SEO, textos alt, traducciones](../ai.md)
 - [SEO: títulos, hreflang, sitemaps, schema.org, redirecciones, la revisión SEO](../seo.md)
