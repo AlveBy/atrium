@@ -10,7 +10,7 @@ declare(strict_types=1);
 namespace Tests\Browser\Site;
 
 use Atrium\Admin\Support\PublicUrl;
-use Atrium\Theme\Tests\Skins\Fixtures\SkinContent;
+use Atrium\Solutions\Tests\Skins\Fixtures\SkinContent;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use PHPUnit\Framework\Attributes\DataProvider;
