@@ -174,7 +174,7 @@ O banco de dados do Bitrix é apenas lido. As abas, a ordem dos campos e as colu
 Os pacotes já estão no Packagist, mas enquanto a 0.1 não tiver tag, só como versão de desenvolvimento; por isso ela precisa ser indicada:
 
 ```bash
-composer require alveby/atrium:dev-main
+composer require alveby/atrium:^0.1
 php artisan atrium:install
 ```
 

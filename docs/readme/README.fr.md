@@ -174,7 +174,7 @@ La base de données Bitrix est uniquement lue. Les onglets, l'ordre des champs e
 Les paquets sont sur Packagist, mais tant que la 0.1 n'est pas étiquetée, seulement en version de développement : il faut donc la nommer :
 
 ```bash
-composer require alveby/atrium:dev-main
+composer require alveby/atrium:^0.1
 php artisan atrium:install
 ```
 

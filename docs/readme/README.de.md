@@ -174,7 +174,7 @@ Die Bitrix-Datenbank wird nur gelesen. Tabs, Feldreihenfolge und Listenspalten k
 Die Pakete liegen auf Packagist, bis zum Tag 0.1 aber nur als Entwicklungsversion; sie muss deshalb ausdrücklich genannt werden:
 
 ```bash
-composer require alveby/atrium:dev-main
+composer require alveby/atrium:^0.1
 php artisan atrium:install
 ```
 
