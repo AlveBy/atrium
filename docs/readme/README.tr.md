@@ -126,16 +126,20 @@ Bitrix veritabanından yalnızca okuma yapılır. Sekmeler, alan sırası ve lis
 - [Kurulum: kendi sunucunuz, ISPmanager veya cPanel barındırma, Docker](../installation.md)
 - [Yapılandırma: e-posta ve giriş kodu, dosyalar, API tokenları, MCP ile yapay zekâ asistanları](../configuration.md)
 - [Yapay zekâ yazım yardımı: ücretsiz ve ücretli sağlayıcılar, açıklamalar, SEO, alt metinleri, çeviriler](../ai.md)
+- [SEO: başlıklar, hreflang, site haritaları, schema.org, yönlendirmeler, SEO denetimi](../seo.md)
 - [Menüler: üst ve alt bilgi, bağlantı ağacı, bir modülü açan öğeler](../menus.md)
 - [Arama: sonuç sayfası, yönetim panelindeki kutu, neyin nasıl arandığı](../search.md)
 - [Kendi modülünüz: alanlar, sütunlar, sekmeler, yetkiler, diller, testler, paket](../modules.md)
 - [Özel alanlar: yönetim panelinden her modüle alan ekleme, 100 000 kayıtta filtreler ve faset sayıları](../custom-fields.md)
 - [Önbellek: onlarca özellikli hızlı sayfalar, Redis, sayfa önbelleği, CDN başlıkları](../cache.md)
 - [1C-Bitrix’ten adım adım taşınma](../bitrix.md)
+- [WordPress’ten taşınma: veritabanını bağlama, taşıma, denetleme, 301 haritası](../wordpress.md)
 - [Yedekler: veritabanları ve dosyalar birden çok yere, zamanlama, sağlık kontrolleri, geri yükleme](../backup.md)
 - [Hatalar: PHP, kuyruk ve JavaScript hataları sitenin veritabanında, uyarılar, Sentry ve kendi sürücüleriniz](../errors.md)
 - [Hız ve erişilebilirlik: sunucu süreleri, ziyaretçilerin Web Vitals değerleri, uyarılı erişilebilirlik kontrolleri](../monitoring.md)
 - [CDN: görseller, küçültülmüş kopyalar ve WebP/AVIF, önbellek temizleme, S3'e yükleme](../cdn.md)
+- [İki adımlı giriş: doğrulayıcı uygulamalar, geçiş anahtarları, kodlar, giriş günlüğü](../two-factor.md)
+- [Sosyal giriş: sağlayıcılar, uygulama kaydı, yönlendirme adresleri](../social-login.md)
 
 ## Paketler
 
@@ -146,12 +150,26 @@ Bitrix veritabanından yalnızca okuma yapılır. Sekmeler, alan sırası ve lis
 | [`alveby/atrium-bitrix`](../../packages/bitrix/README.md) | 1C-Bitrix geçiş aracı |
 | [`alveby/atrium-ai`](../../packages/ai/README.md) | Yönetim panelinde yapay zekâ yazım yardımı |
 | [`alveby/atrium-custom-fields`](../../packages/custom-fields/README.md) | Yönetim panelinden her modüle eklenen alanlar, filtreler ve faset sayılarıyla |
+| [`alveby/atrium-seo`](../../packages/seo/README.md) | Meta şablonları, hreflang, site haritaları, schema.org, yönlendirmeler ve SEO denetimi |
 | [`alveby/atrium-docs`](../../packages/docs/README.md) | Markdown’dan belgeler, sürümler ve arama ile |
 | [`alveby/atrium-backup`](../../packages/backup/README.md) | Veritabanı ve dosya yedekleri, yönetim panelinden geri yükleme |
 | [`alveby/atrium-errors`](../../packages/errors/README.md) | Sitenin veritabanında hata takibi, uyarılar, Sentry |
 | [`alveby/atrium-monitoring`](../../packages/monitoring/README.md) | Sunucu ve ziyaretçi hızı, erişilebilirlik ve uyarılar, dış hizmet olmadan |
+| [`alveby/atrium-news`](../../packages/news/README.md) | Haberler |
+| [`alveby/atrium-pages`](../../packages/pages/README.md) | Statik sayfalar, 1C-Bitrix sayfalarını içe aktarma ile |
+| [`alveby/atrium-catalog`](../../packages/catalog/README.md) | İç içe bölümleri olan ürün kataloğu |
+| [`alveby/atrium-brands`](../../packages/brands/README.md) | Logolu markalar |
+| [`alveby/atrium-stores`](../../packages/stores/README.md) | Haritada mağazalar ve ofisler |
+| [`alveby/atrium-team`](../../packages/team/README.md) | Kişiler, departmanlar ve iletişim bilgileri |
+| [`alveby/atrium-faq`](../../packages/faq/README.md) | Sorular ve cevaplar |
+| [`alveby/atrium-forms`](../../packages/forms/README.md) | Form oluşturucu ve gönderiler |
+| [`alveby/atrium-reviews`](../../packages/reviews/README.md) | Moderasyonlu yorumlar ve puanlar |
+| [`alveby/atrium-2fa`](../../packages/two-factor/README.md) | İki adımlı ve parolasız giriş |
+| [`alveby/atrium-social-login`](../../packages/social-login/README.md) | Google, Microsoft, Apple, GitHub, Telegram ve diğerleriyle giriş |
+| [`alveby/atrium-solutions`](../../packages/solutions/README.md) | Tek komutla kurulan hazır siteler |
 | [`alveby/atrium-menus`](../../packages/menus/README.md) | Yönetim panelinde kurulan menüler |
 | [`alveby/atrium-search`](../../packages/search/README.md) | Tüm modüllerde site içi arama |
+| [`alveby/atrium-wordpress`](../../packages/wordpress/README.md) | WordPress içe aktarıcısı: yazılar, sayfalar, özel yazı türleri, SEO ve çeviriler, denetim ve 301 haritası ile |
 
 Paketler Packagist'te var, ancak 0.1 etiketlenene kadar yalnızca geliştirme sürümü olarak; bu yüzden açıkça belirtilmesi gerekir:
 

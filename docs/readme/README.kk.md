@@ -126,16 +126,20 @@ php artisan atrium:bitrix:parity
 - [Орнату: өз серверіңіз, ISPmanager немесе cPanel хостингі, Docker](../installation.md)
 - [Баптау: пошта және кіру коды, файлдар, API-токендер, MCP арқылы ЖИ-көмекшілер](../configuration.md)
 - [Мәтіндерге арналған ЖИ-көмекші: тегін және ақылы провайдерлер, сипаттамалар, SEO, alt, аудармалар](../ai.md)
+- [SEO: тақырыптар, hreflang, сайт карталары, schema.org, қайта бағыттаулар, SEO тексеру](../seo.md)
 - [Мәзірлер: тақырып пен төменгі бөлік, сілтемелер ағашы, модульді ашатын тармақтар](../menus.md)
 - [Іздеу: нәтижелер беті, әкімшілік панельдегі жол, не және қалай ізделеді](../search.md)
 - [Өз модуліңіз: өрістер, бағандар, қойындылар, құқықтар, тілдер, тесттер, пакет](../modules.md)
 - [Өз өрістеріңіз: кез келген модульге әкімшілік панельден өріс қосу, 100 000 жазбадағы сүзгілер мен фасеттер](../custom-fields.md)
 - [Кэш: ондаған қасиеті бар жылдам беттер, Redis, беттер кэші, CDN тақырыптары](../cache.md)
 - [1С-Битрикстен көшу, қадам-қадаммен](../bitrix.md)
+- [WordPress-тен көшу: дерекқорды қосу, көшіру, тексеру, 301 картасы](../wordpress.md)
 - [Сақтық көшірмелер: дерекқорлар мен файлдар бірнеше орынға, кесте, тексерулер, қалпына келтіру](../backup.md)
 - [Қателер: PHP, кезек және JavaScript қателері сайт дерекқорында, хабарламалар, Sentry және өз драйверлеріңіз](../errors.md)
 - [Жылдамдық пен қолжетімділік: сервер уақыттары, келушілердің Web Vitals көрсеткіштері, хабарламалары бар қолжетімділік тексерулері](../monitoring.md)
 - [CDN: суреттер, кішірейтілген көшірмелер және WebP/AVIF, кэшті тазалау, S3-ке жүктеу](../cdn.md)
+- [Екі факторлы кіру: аутентификатор қолданбалары, passkey кілттері, кодтар, кіру журналы](../two-factor.md)
+- [Әлеуметтік желі арқылы кіру: провайдерлер, қолданбаны тіркеу, қайта бағыттау мекенжайлары](../social-login.md)
 
 ## Пакеттер
 
@@ -146,12 +150,26 @@ php artisan atrium:bitrix:parity
 | [`alveby/atrium-bitrix`](../../packages/bitrix/README.md) | 1С-Битрикстен мигратор |
 | [`alveby/atrium-ai`](../../packages/ai/README.md) | Әкімшілік панельдегі мәтіндерге арналған ЖИ-көмекші |
 | [`alveby/atrium-custom-fields`](../../packages/custom-fields/README.md) | Кез келген модульге әкімшілік панельден қосылатын өрістер, сүзгілер мен фасеттермен |
+| [`alveby/atrium-seo`](../../packages/seo/README.md) | Мета-тег үлгілері, hreflang, сайт карталары, schema.org, қайта бағыттаулар және SEO тексеру |
 | [`alveby/atrium-docs`](../../packages/docs/README.md) | Markdown-тан құжаттама: нұсқалар мен іздеу |
 | [`alveby/atrium-backup`](../../packages/backup/README.md) | Дерекқорлар мен файлдардың сақтық көшірмелері, әкімшілік панельден қалпына келтіру |
 | [`alveby/atrium-errors`](../../packages/errors/README.md) | Сайт дерекқорындағы қателер есебі, хабарламалар, Sentry |
 | [`alveby/atrium-monitoring`](../../packages/monitoring/README.md) | Сервер мен келушілердің жылдамдығы, қолжетімділік пен хабарламалар, сыртқы қызметтерсіз |
+| [`alveby/atrium-news`](../../packages/news/README.md) | Жаңалықтар |
+| [`alveby/atrium-pages`](../../packages/pages/README.md) | Статикалық беттер, 1С-Битрикс беттерін импорттаумен |
+| [`alveby/atrium-catalog`](../../packages/catalog/README.md) | Кірістірілген бөлімдері бар тауар каталогы |
+| [`alveby/atrium-brands`](../../packages/brands/README.md) | Логотиптері бар брендтер |
+| [`alveby/atrium-stores`](../../packages/stores/README.md) | Картадағы дүкендер мен кеңселер |
+| [`alveby/atrium-team`](../../packages/team/README.md) | Адамдар, бөлімдер және байланыстар |
+| [`alveby/atrium-faq`](../../packages/faq/README.md) | Сұрақтар мен жауаптар |
+| [`alveby/atrium-forms`](../../packages/forms/README.md) | Форма конструкторы және өтінімдер |
+| [`alveby/atrium-reviews`](../../packages/reviews/README.md) | Модерациясы бар пікірлер мен бағалар |
+| [`alveby/atrium-2fa`](../../packages/two-factor/README.md) | Екі факторлы және құпиясөзсіз кіру |
+| [`alveby/atrium-social-login`](../../packages/social-login/README.md) | Google, Microsoft, Apple, GitHub, Telegram және басқалар арқылы кіру |
+| [`alveby/atrium-solutions`](../../packages/solutions/README.md) | Бір пәрменмен орнатылатын дайын сайттар |
 | [`alveby/atrium-menus`](../../packages/menus/README.md) | Әкімшілік панельде жиналған мәзірлер |
 | [`alveby/atrium-search`](../../packages/search/README.md) | Барлық модульдер бойынша сайттан іздеу |
+| [`alveby/atrium-wordpress`](../../packages/wordpress/README.md) | WordPress импорттаушысы: жазбалар, беттер, жеке жазба түрлері, SEO және аудармалар, тексеру мен 301 картасымен |
 
 Пакеттер Packagist-те бар, бірақ 0.1 тегпен белгіленгенге дейін тек әзірлеу нұсқасы ретінде — сондықтан оны көрсетіңіз:
 

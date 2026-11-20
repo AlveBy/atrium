@@ -126,16 +126,20 @@ Bitrix maʼlumotlar bazasi faqat oʻqiladi. Yorliqlar, maydonlar tartibi va roʻ
 - [Oʻrnatish: oʻz serveringiz, ISPmanager yoki cPanel hostingi, Docker](../installation.md)
 - [Sozlash: pochta va kirish kodi, fayllar, API tokenlar, MCP orqali SI-yordamchilar](../configuration.md)
 - [Matnlar uchun SI-yordamchi: bepul va pullik provayderlar, tavsiflar, SEO, alt, tarjimalar](../ai.md)
+- [SEO: sarlavhalar, hreflang, sayt xaritalari, schema.org, yoʻnaltirishlar, SEO tekshiruvi](../seo.md)
 - [Menyular: sarlavha va pastki qism, havolalar daraxti, modulni ochadigan bandlar](../menus.md)
 - [Qidiruv: natijalar sahifasi, admin paneldagi qator, nima va qanday qidiriladi](../search.md)
 - [Oʻz modulingiz: maydonlar, ustunlar, yorliqlar, huquqlar, tillar, testlar, paket](../modules.md)
 - [Oʻz maydonlaringiz: istalgan modulga admin paneldan maydon qoʻshish, 100 000 yozuvda filtrlar va fasetlar](../custom-fields.md)
 - [Kesh: oʻnlab xususiyatli tez sahifalar, Redis, sahifalar keshi, CDN sarlavhalari](../cache.md)
 - [1C-Bitrixdan koʻchish, qadamma-qadam](../bitrix.md)
+- [WordPress’dan koʻchish: bazani ulash, koʻchirish, tekshirish, 301 xaritasi](../wordpress.md)
 - [Zaxira nusxalar: bazalar va fayllar bir nechta joyga, jadval, tekshiruvlar, tiklash](../backup.md)
 - [Xatolar: PHP, navbat va JavaScript xatolari sayt bazasida, ogohlantirishlar, Sentry va oʻz drayverlaringiz](../errors.md)
 - [Tezlik va mavjudlik: server o‘lchovlari, tashrifchilarning Web Vitals ko‘rsatkichlari, xabarnomali mavjudlik tekshiruvlari](../monitoring.md)
 - [CDN: rasmlar, kichraytirilgan nusxalar va WebP/AVIF, keshni tozalash, S3 ga yuklash](../cdn.md)
+- [Ikki bosqichli kirish: autentifikator ilovalari, passkey kalitlari, kodlar, kirish jurnali](../two-factor.md)
+- [Ijtimoiy tarmoq orqali kirish: provayderlar, ilovani roʻyxatdan oʻtkazish, yoʻnaltirish manzillari](../social-login.md)
 
 ## Paketlar
 
@@ -146,12 +150,26 @@ Bitrix maʼlumotlar bazasi faqat oʻqiladi. Yorliqlar, maydonlar tartibi va roʻ
 | [`alveby/atrium-bitrix`](../../packages/bitrix/README.md) | 1C-Bitrix migratori |
 | [`alveby/atrium-ai`](../../packages/ai/README.md) | Admin panelda matnlar uchun SI-yordamchi |
 | [`alveby/atrium-custom-fields`](../../packages/custom-fields/README.md) | Istalgan modulga admin paneldan qoʻshiladigan maydonlar, filtrlar va fasetlar bilan |
+| [`alveby/atrium-seo`](../../packages/seo/README.md) | Meta-teg andozalari, hreflang, sayt xaritalari, schema.org, yoʻnaltirishlar va SEO tekshiruvi |
 | [`alveby/atrium-docs`](../../packages/docs/README.md) | Markdown’dan hujjatlar: versiyalar va qidiruv |
 | [`alveby/atrium-backup`](../../packages/backup/README.md) | Bazalar va fayllarning zaxira nusxalari, admin paneldan tiklash |
 | [`alveby/atrium-errors`](../../packages/errors/README.md) | Sayt bazasida xatolar hisobi, ogohlantirishlar, Sentry |
 | [`alveby/atrium-monitoring`](../../packages/monitoring/README.md) | Server va tashrifchilar tezligi, mavjudlik va xabarnomalar, tashqi xizmatlarsiz |
+| [`alveby/atrium-news`](../../packages/news/README.md) | Yangiliklar |
+| [`alveby/atrium-pages`](../../packages/pages/README.md) | Statik sahifalar, 1C-Bitrix sahifalarini import qilish bilan |
+| [`alveby/atrium-catalog`](../../packages/catalog/README.md) | Ichki boʻlimli mahsulotlar katalogi |
+| [`alveby/atrium-brands`](../../packages/brands/README.md) | Logotipli brendlar |
+| [`alveby/atrium-stores`](../../packages/stores/README.md) | Xaritadagi doʻkonlar va ofislar |
+| [`alveby/atrium-team`](../../packages/team/README.md) | Odamlar, boʻlimlar va kontaktlar |
+| [`alveby/atrium-faq`](../../packages/faq/README.md) | Savollar va javoblar |
+| [`alveby/atrium-forms`](../../packages/forms/README.md) | Shakl konstruktori va arizalar |
+| [`alveby/atrium-reviews`](../../packages/reviews/README.md) | Moderatsiyali sharhlar va baholar |
+| [`alveby/atrium-2fa`](../../packages/two-factor/README.md) | Ikki bosqichli va parolsiz kirish |
+| [`alveby/atrium-social-login`](../../packages/social-login/README.md) | Google, Microsoft, Apple, GitHub, Telegram va boshqalar orqali kirish |
+| [`alveby/atrium-solutions`](../../packages/solutions/README.md) | Bitta buyruq bilan oʻrnatiladigan tayyor saytlar |
 | [`alveby/atrium-menus`](../../packages/menus/README.md) | Admin panelda yig‘iladigan menyular |
 | [`alveby/atrium-search`](../../packages/search/README.md) | Barcha modullar bo‘yicha saytdan qidiruv |
+| [`alveby/atrium-wordpress`](../../packages/wordpress/README.md) | WordPress importeri: yozuvlar, sahifalar, oʻz yozuv turlari, SEO va tarjimalar, tekshiruv va 301 xaritasi bilan |
 
 Paketlar Packagist saytida bor, lekin 0.1 teg bilan belgilanmaguncha faqat ishlab chiqish versiyasi sifatida — shuning uchun uni koʻrsating:
 

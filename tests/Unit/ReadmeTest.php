@@ -95,6 +95,60 @@ final class ReadmeTest extends TestCase
         $this->assertSame($count('/^## /m', 'en'), $count('/^## /m', $code), "README.{$code}: sections");
     }
 
+    #[DataProvider('languages')]
+    public function test_it_lists_the_same_packages_in_the_same_order_as_english(string $code): void
+    {
+        $this->assertSame($this->packages($this->read('en')), $this->packages($this->read($code)), "README.{$code}: the package table differs from English");
+    }
+
+    #[DataProvider('languages')]
+    public function test_it_links_the_same_guides_in_the_same_order_as_english(string $code): void
+    {
+        $this->assertSame($this->guides($this->read('en')), $this->guides($this->read($code)), "README.{$code}: the list of guides differs from English");
+    }
+
+    public function test_the_package_and_guide_lists_are_read_from_english(): void
+    {
+        $english = $this->read('en');
+
+        $this->assertContains('alveby/atrium packages/admin', $this->packages($english));
+        $this->assertContains('alveby/atrium-wordpress packages/wordpress', $this->packages($english));
+        $this->assertGreaterThan(20, count($this->packages($english)));
+        $this->assertContains('installation', $this->guides($english));
+        $this->assertContains('social-login', $this->guides($english));
+        $this->assertGreaterThan(15, count($this->guides($english)));
+    }
+
+    public function test_a_package_row_missing_from_a_translation_is_noticed(): void
+    {
+        $english = $this->read('en');
+        $without = implode("\n", array_filter(explode("\n", $english), fn (string $line): bool => ! str_contains($line, '`alveby/atrium-seo`')));
+
+        $this->assertSame(['alveby/atrium-seo packages/seo'], array_values(array_diff($this->packages($english), $this->packages($without))));
+        $this->assertNotSame($this->packages($english), $this->packages($without));
+    }
+
+    public function test_a_package_row_in_the_wrong_place_or_with_the_wrong_folder_is_noticed(): void
+    {
+        $english = $this->read('en');
+
+        $this->assertNotSame($this->packages($english), $this->packages(str_replace('(packages/seo/README.md)', '(packages/news/README.md)', $english)));
+        $this->assertNotSame($this->packages($english), array_reverse($this->packages($english)));
+    }
+
+    public function test_a_guide_missing_from_a_translation_is_noticed(): void
+    {
+        $english = $this->read('en');
+        $without = implode("\n", array_filter(explode("\n", $english), fn (string $line): bool => ! str_contains($line, '(docs/wordpress.md)')));
+
+        $this->assertSame(['wordpress'], array_values(array_diff($this->guides($english), $this->guides($without))));
+    }
+
+    public function test_guides_are_read_from_every_link_style_the_translations_use(): void
+    {
+        $this->assertSame(['seo', 'cache', 'bitrix'], $this->guides("- [A](docs/seo.md)\n- [B](../cache.md)\n- [C](../bitrix.ru.md)\n- [Not a guide](https://example.com/x.md)\n[Loose](docs/ignored.md)\n"));
+    }
+
     private function path(string $code): string
     {
         $root = dirname(__DIR__, 2);
@@ -126,5 +180,29 @@ final class ReadmeTest extends TestCase
         preg_match_all('/^```[a-z]*\n.*?^```$/ms', $this->read($code), $matches);
 
         return $matches[0];
+    }
+
+    /**
+     * The package table: name and folder of every row, in order.
+     *
+     * @return list<string>
+     */
+    private function packages(string $markdown): array
+    {
+        preg_match_all('#^\| \[`(alveby/[a-z0-9-]+)`\]\((?:\.\./)*packages/([a-z0-9-]+)#m', $markdown, $matches, PREG_SET_ORDER);
+
+        return array_map(fn (array $match): string => "{$match[1]} packages/{$match[2]}", $matches);
+    }
+
+    /**
+     * The guides under "Documentation", by file name, in order, whatever the language of the file.
+     *
+     * @return list<string>
+     */
+    private function guides(string $markdown): array
+    {
+        preg_match_all('#^- \[[^\]]+\]\((?:\.\./|docs/)([a-z0-9-]+)(?:\.ru)?\.md\)#m', $markdown, $matches);
+
+        return $matches[1];
     }
 }
