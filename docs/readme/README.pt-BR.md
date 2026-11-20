@@ -126,16 +126,20 @@ O banco de dados do Bitrix é apenas lido. As abas, a ordem dos campos e as colu
 - [Instalação: servidor próprio, hospedagem com ISPmanager ou cPanel, Docker](../installation.md)
 - [Configuração: e-mail e código de acesso, arquivos, tokens de API, assistentes de IA via MCP](../configuration.md)
 - [Ajuda de redação com IA: provedores gratuitos e pagos, descrições, SEO, textos alt, traduções](../ai.md)
+- [SEO: títulos, hreflang, sitemaps, schema.org, redirecionamentos, a verificação de SEO](../seo.md)
 - [Menus: cabeçalho e rodapé, uma árvore de links, itens que expandem um módulo](../menus.md)
 - [Busca: a página de resultados, a caixa do painel, o que é buscado e como](../search.md)
 - [Seu próprio módulo: campos, colunas, abas, permissões, idiomas, testes, pacote](../modules.md)
 - [Campos personalizados: adicionar campos a qualquer módulo pelo painel, filtros e facetas com 100 000 registros](../custom-fields.md)
 - [Cache: páginas rápidas com dezenas de propriedades, Redis, cache de páginas, cabeçalhos para CDN](../cache.md)
 - [Migrar do 1C-Bitrix, passo a passo](../bitrix.md)
+- [Migrar do WordPress: conectar o banco, migrar, verificar, o mapa de 301](../wordpress.md)
 - [Backups: bancos de dados e arquivos em vários destinos, agendamento, verificações, restauração](../backup.md)
 - [Erros: erros de PHP, de filas e de JavaScript no banco do site, alertas, Sentry e drivers próprios](../errors.md)
 - [Velocidade e disponibilidade: tempos do servidor, Web Vitals dos visitantes, verificações de disponibilidade com alertas](../monitoring.md)
 - [CDN: imagens, cópias redimensionadas e WebP/AVIF, limpeza de cache, uploads para S3](../cdn.md)
+- [Acesso em duas etapas: apps autenticadores, passkeys, códigos, o registro de acessos](../two-factor.md)
+- [Acesso social: provedores, registro do aplicativo, URLs de redirecionamento](../social-login.md)
 
 ## Pacotes
 
@@ -146,12 +150,26 @@ O banco de dados do Bitrix é apenas lido. As abas, a ordem dos campos e as colu
 | [`alveby/atrium-bitrix`](../../packages/bitrix/README.md) | O migrador do 1C-Bitrix |
 | [`alveby/atrium-ai`](../../packages/ai/README.md) | Ajuda de redação com IA no painel |
 | [`alveby/atrium-custom-fields`](../../packages/custom-fields/README.md) | Campos adicionados a qualquer módulo pelo painel, com filtros e facetas |
+| [`alveby/atrium-seo`](../../packages/seo/README.md) | Modelos de meta tags, hreflang, sitemaps, schema.org, redirecionamentos e uma verificação de SEO |
 | [`alveby/atrium-docs`](../../packages/docs/README.md) | Documentação a partir de Markdown, com versões e busca |
 | [`alveby/atrium-backup`](../../packages/backup/README.md) | Backups dos bancos de dados e arquivos, restauração pelo painel |
 | [`alveby/atrium-errors`](../../packages/errors/README.md) | Registro de erros no banco do site, alertas, Sentry |
 | [`alveby/atrium-monitoring`](../../packages/monitoring/README.md) | Velocidade do servidor e dos visitantes, disponibilidade e alertas, sem serviços externos |
+| [`alveby/atrium-news`](../../packages/news/README.md) | Notícias |
+| [`alveby/atrium-pages`](../../packages/pages/README.md) | Páginas estáticas, com importação de páginas do 1C-Bitrix |
+| [`alveby/atrium-catalog`](../../packages/catalog/README.md) | Catálogo de produtos com seções aninhadas |
+| [`alveby/atrium-brands`](../../packages/brands/README.md) | Marcas com logotipos |
+| [`alveby/atrium-stores`](../../packages/stores/README.md) | Lojas e escritórios em um mapa |
+| [`alveby/atrium-team`](../../packages/team/README.md) | Pessoas, departamentos e contatos |
+| [`alveby/atrium-faq`](../../packages/faq/README.md) | Perguntas e respostas |
+| [`alveby/atrium-forms`](../../packages/forms/README.md) | Construtor de formulários e envios |
+| [`alveby/atrium-reviews`](../../packages/reviews/README.md) | Avaliações e notas com moderação |
+| [`alveby/atrium-2fa`](../../packages/two-factor/README.md) | Acesso em duas etapas e sem senha |
+| [`alveby/atrium-social-login`](../../packages/social-login/README.md) | Acesso com Google, Microsoft, Apple, GitHub, Telegram e outros |
+| [`alveby/atrium-solutions`](../../packages/solutions/README.md) | Sites prontos instalados com um comando |
 | [`alveby/atrium-menus`](../../packages/menus/README.md) | Menus montados no painel |
 | [`alveby/atrium-search`](../../packages/search/README.md) | Busca no site inteiro, em cada módulo |
+| [`alveby/atrium-wordpress`](../../packages/wordpress/README.md) | O importador do WordPress: posts, páginas, tipos de conteúdo próprios, SEO e traduções, com verificação e mapa de 301 |
 
 Os pacotes já estão no Packagist, mas enquanto a 0.1 não tiver tag, só como versão de desenvolvimento; por isso ela precisa ser indicada:
 

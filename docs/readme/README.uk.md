@@ -126,16 +126,20 @@ php artisan atrium:bitrix:parity
 - [Встановлення: власний сервер, хостинг з ISPmanager або cPanel, Docker](../installation.md)
 - [Налаштування: пошта й код входу, файли, API-токени, ШІ-асистенти через MCP](../configuration.md)
 - [ШІ-помічник для текстів: безкоштовні й платні провайдери, описи, SEO, alt, переклади](../ai.md)
+- [SEO: заголовки, hreflang, карти сайту, schema.org, редиректи, SEO-перевірка](../seo.md)
 - [Меню: шапка й підвал, дерево посилань, пункти, що розгортають модуль](../menus.md)
 - [Пошук: сторінка результатів, рядок в адмінці, що і як шукається](../search.md)
 - [Власний модуль: поля, колонки, вкладки, права, мови, тести, пакет](../modules.md)
 - [Власні поля: додати поле в будь-який модуль з адмінки, фільтри й фасети на 100 000 записів](../custom-fields.md)
 - [Кеш: швидкі сторінки з десятками властивостей, Redis, кеш сторінок, заголовки для CDN](../cache.md)
 - [Переїзд з 1С-Бітрікс крок за кроком](../bitrix.md)
+- [Переїзд з WordPress: підключити базу, перенести, перевірити, мапа 301](../wordpress.md)
 - [Резервні копії: бази й файли в кілька місць, розклад, перевірки, відновлення](../backup.md)
 - [Помилки: помилки PHP, черг і JavaScript у базі сайту, сповіщення, Sentry і власні драйвери](../errors.md)
 - [Швидкість і доступність: заміри сервера, Web Vitals відвідувачів, перевірки доступності зі сповіщеннями](../monitoring.md)
 - [CDN: зображення, зменшені копії й WebP/AVIF, очищення кешу, завантаження в S3](../cdn.md)
+- [Двофакторний вхід: застосунки-автентифікатори, ключі доступу, коди, журнал входів](../two-factor.md)
+- [Вхід через соцмережі: провайдери, реєстрація застосунку, адреси перенаправлення](../social-login.md)
 
 ## Пакети
 
@@ -146,12 +150,26 @@ php artisan atrium:bitrix:parity
 | [`alveby/atrium-bitrix`](../../packages/bitrix/README.md) | Мігратор з 1С-Бітрікс |
 | [`alveby/atrium-ai`](../../packages/ai/README.md) | ШІ-помічник для текстів в адмінці |
 | [`alveby/atrium-custom-fields`](../../packages/custom-fields/README.md) | Поля, які додають у будь-який модуль з адмінки, з фільтрами й фасетами |
+| [`alveby/atrium-seo`](../../packages/seo/README.md) | Шаблони мета-тегів, hreflang, карти сайту, schema.org, редиректи та SEO-перевірка |
 | [`alveby/atrium-docs`](../../packages/docs/README.md) | Документація з Markdown: версії та пошук |
 | [`alveby/atrium-backup`](../../packages/backup/README.md) | Резервні копії баз і файлів, відновлення з адмінки |
 | [`alveby/atrium-errors`](../../packages/errors/README.md) | Облік помилок у базі сайту, сповіщення, Sentry |
 | [`alveby/atrium-monitoring`](../../packages/monitoring/README.md) | Швидкість сервера й відвідувачів, доступність і сповіщення, без зовнішніх сервісів |
+| [`alveby/atrium-news`](../../packages/news/README.md) | Новини |
+| [`alveby/atrium-pages`](../../packages/pages/README.md) | Статичні сторінки з імпортом сторінок 1С-Бітрікс |
+| [`alveby/atrium-catalog`](../../packages/catalog/README.md) | Каталог товарів із вкладеними розділами |
+| [`alveby/atrium-brands`](../../packages/brands/README.md) | Бренди з логотипами |
+| [`alveby/atrium-stores`](../../packages/stores/README.md) | Магазини й офіси на карті |
+| [`alveby/atrium-team`](../../packages/team/README.md) | Люди, відділи та контакти |
+| [`alveby/atrium-faq`](../../packages/faq/README.md) | Питання й відповіді |
+| [`alveby/atrium-forms`](../../packages/forms/README.md) | Конструктор форм і заявки |
+| [`alveby/atrium-reviews`](../../packages/reviews/README.md) | Відгуки та оцінки з модерацією |
+| [`alveby/atrium-2fa`](../../packages/two-factor/README.md) | Двофакторний і безпарольний вхід |
+| [`alveby/atrium-social-login`](../../packages/social-login/README.md) | Вхід через Google, Microsoft, Apple, GitHub, Telegram та інші |
+| [`alveby/atrium-solutions`](../../packages/solutions/README.md) | Готові сайти, що встановлюються однією командою |
 | [`alveby/atrium-menus`](../../packages/menus/README.md) | Меню, зібрані в адмінці |
 | [`alveby/atrium-search`](../../packages/search/README.md) | Пошук по сайту в усіх модулях |
+| [`alveby/atrium-wordpress`](../../packages/wordpress/README.md) | Імпортер WordPress: записи, сторінки, власні типи записів, SEO та переклади, з перевіркою і мапою 301 |
 
 Пакети вже на Packagist, але доки 0.1 не позначено тегом — лише як версія для розробки, тож вкажіть її:
 

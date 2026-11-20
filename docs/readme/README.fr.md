@@ -126,16 +126,20 @@ La base de données Bitrix est uniquement lue. Les onglets, l'ordre des champs e
 - [Installation : votre serveur, un hébergement avec ISPmanager ou cPanel, Docker](../installation.md)
 - [Configuration : e-mail et code de connexion, fichiers, jetons API, assistants IA via MCP](../configuration.md)
 - [Aide à la rédaction par IA : fournisseurs gratuits et payants, descriptions, SEO, textes alt, traductions](../ai.md)
+- [SEO : titres, hreflang, sitemaps, schema.org, redirections, le contrôle SEO](../seo.md)
 - [Menus : en-tête et pied de page, arbre de liens, éléments qui déplient un module](../menus.md)
 - [Recherche : la page de résultats, le champ de l'administration, ce qui est cherché et comment](../search.md)
 - [Votre module : champs, colonnes, onglets, droits, langues, tests, paquet](../modules.md)
 - [Champs personnalisés : ajouter des champs à tout module depuis l'administration, filtres et facettes sur 100 000 fiches](../custom-fields.md)
 - [Cache : des pages rapides avec des dizaines de propriétés, Redis, cache de pages, en-têtes CDN](../cache.md)
 - [Migrer depuis 1C-Bitrix, pas à pas](../bitrix.md)
+- [Migrer depuis WordPress : connecter la base, migrer, contrôler, la carte des 301](../wordpress.md)
 - [Sauvegardes : bases de données et fichiers vers plusieurs destinations, planification, contrôles, restauration](../backup.md)
 - [Erreurs : erreurs PHP, de file d'attente et JavaScript dans la base du site, alertes, Sentry et vos propres pilotes](../errors.md)
 - [Vitesse et disponibilité : temps du serveur, Web Vitals des visiteurs, contrôles de disponibilité avec alertes](../monitoring.md)
 - [CDN : images, copies redimensionnées et WebP/AVIF, purge du cache, envois vers S3](../cdn.md)
+- [Connexion à deux facteurs : applications d'authentification, clés d'accès, codes, journal des connexions](../two-factor.md)
+- [Connexion sociale : fournisseurs, enregistrement de l'application, URL de redirection](../social-login.md)
 
 ## Paquets
 
@@ -146,12 +150,26 @@ La base de données Bitrix est uniquement lue. Les onglets, l'ordre des champs e
 | [`alveby/atrium-bitrix`](../../packages/bitrix/README.md) | Le migrateur 1C-Bitrix |
 | [`alveby/atrium-ai`](../../packages/ai/README.md) | Aide à la rédaction par IA dans l'administration |
 | [`alveby/atrium-custom-fields`](../../packages/custom-fields/README.md) | Champs ajoutés à tout module depuis l'administration, avec filtres et facettes |
+| [`alveby/atrium-seo`](../../packages/seo/README.md) | Modèles de balises meta, hreflang, sitemaps, schema.org, redirections et un contrôle SEO |
 | [`alveby/atrium-docs`](../../packages/docs/README.md) | Documentation à partir de Markdown, avec versions et recherche |
 | [`alveby/atrium-backup`](../../packages/backup/README.md) | Sauvegardes des bases de données et des fichiers, restauration depuis l'administration |
 | [`alveby/atrium-errors`](../../packages/errors/README.md) | Suivi des erreurs dans la base du site, alertes, Sentry |
 | [`alveby/atrium-monitoring`](../../packages/monitoring/README.md) | Vitesse du serveur et des visiteurs, disponibilité et alertes, sans service externe |
+| [`alveby/atrium-news`](../../packages/news/README.md) | Actualités |
+| [`alveby/atrium-pages`](../../packages/pages/README.md) | Pages statiques, avec import des pages 1C-Bitrix |
+| [`alveby/atrium-catalog`](../../packages/catalog/README.md) | Catalogue de produits avec sections imbriquées |
+| [`alveby/atrium-brands`](../../packages/brands/README.md) | Marques avec logos |
+| [`alveby/atrium-stores`](../../packages/stores/README.md) | Magasins et bureaux sur une carte |
+| [`alveby/atrium-team`](../../packages/team/README.md) | Personnes, services et contacts |
+| [`alveby/atrium-faq`](../../packages/faq/README.md) | Questions et réponses |
+| [`alveby/atrium-forms`](../../packages/forms/README.md) | Générateur de formulaires et soumissions |
+| [`alveby/atrium-reviews`](../../packages/reviews/README.md) | Avis et notes avec modération |
+| [`alveby/atrium-2fa`](../../packages/two-factor/README.md) | Connexion à deux facteurs et sans mot de passe |
+| [`alveby/atrium-social-login`](../../packages/social-login/README.md) | Connexion avec Google, Microsoft, Apple, GitHub, Telegram et d'autres |
+| [`alveby/atrium-solutions`](../../packages/solutions/README.md) | Sites prêts à l'emploi installés en une commande |
 | [`alveby/atrium-menus`](../../packages/menus/README.md) | Menus construits dans l'administration |
 | [`alveby/atrium-search`](../../packages/search/README.md) | Recherche sur tout le site, dans chaque module |
+| [`alveby/atrium-wordpress`](../../packages/wordpress/README.md) | L'importateur WordPress : articles, pages, types de contenu personnalisés, SEO et traductions, avec contrôle et carte des 301 |
 
 Les paquets sont sur Packagist, mais tant que la 0.1 n'est pas étiquetée, seulement en version de développement : il faut donc la nommer :
 

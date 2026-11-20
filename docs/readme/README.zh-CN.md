@@ -126,16 +126,20 @@ Bitrix 数据库只读不写。标签页、字段顺序和列表列会保持编�
 - [安装：自有服务器、ISPmanager 或 cPanel 虚拟主机、Docker](../installation.md)
 - [配置：邮件与登录验证码、文件、API 令牌、通过 MCP 接入的 AI 助手](../configuration.md)
 - [AI 写作助手：免费与付费服务商、描述、SEO、alt 文本、翻译](../ai.md)
+- [SEO：标题、hreflang、站点地图、schema.org、重定向、SEO 检查](../seo.md)
 - [菜单：页眉与页脚、链接树、展开模块的菜单项](../menus.md)
 - [搜索：结果页、后台搜索框、搜索内容与方式](../search.md)
 - [自定义模块：字段、列、标签页、权限、语言、测试、打包](../modules.md)
 - [自定义字段：在后台为任意模块添加字段，10 万条记录上的筛选与分面](../custom-fields.md)
 - [缓存：带几十个属性也很快的页面、Redis、页面缓存、CDN 头](../cache.md)
 - [从 1C-Bitrix 迁移，分步说明](../bitrix.md)
+- [从 WordPress 迁移：连接数据库、迁移、检查、301 对照表](../wordpress.md)
 - [备份：数据库和文件同时存到多个位置、计划任务、健康检查、恢复](../backup.md)
 - [错误：PHP、队列和 JavaScript 错误保存在站点数据库中，告警、Sentry 和自定义驱动](../errors.md)
 - [速度与可用性：服务器耗时、访客的 Web Vitals、带告警的可用性检查](../monitoring.md)
 - [CDN：图片、缩放副本与 WebP/AVIF、清除缓存、上传到 S3](../cdn.md)
+- [双重验证登录：验证器应用、通行密钥、验证码、登录日志](../two-factor.md)
+- [社交登录：登录提供方、应用注册、重定向地址](../social-login.md)
 
 ## 软件包
 
@@ -146,12 +150,26 @@ Bitrix 数据库只读不写。标签页、字段顺序和列表列会保持编�
 | [`alveby/atrium-bitrix`](../../packages/bitrix/README.md) | 1C-Bitrix 迁移工具 |
 | [`alveby/atrium-ai`](../../packages/ai/README.md) | 后台的 AI 写作助手 |
 | [`alveby/atrium-custom-fields`](../../packages/custom-fields/README.md) | 在后台为任意模块添加的字段，支持筛选与分面 |
+| [`alveby/atrium-seo`](../../packages/seo/README.md) | 元信息模板、hreflang、站点地图、schema.org、重定向和 SEO 检查 |
 | [`alveby/atrium-docs`](../../packages/docs/README.md) | 由 Markdown 生成的文档，支持版本和搜索 |
 | [`alveby/atrium-backup`](../../packages/backup/README.md) | 数据库和文件的备份，可在后台恢复 |
 | [`alveby/atrium-errors`](../../packages/errors/README.md) | 在站点数据库中跟踪错误，告警、Sentry |
 | [`alveby/atrium-monitoring`](../../packages/monitoring/README.md) | 服务器与访客的速度、可用性与告警，无需外部服务 |
+| [`alveby/atrium-news`](../../packages/news/README.md) | 新闻 |
+| [`alveby/atrium-pages`](../../packages/pages/README.md) | 静态页面，支持导入 1C-Bitrix 页面 |
+| [`alveby/atrium-catalog`](../../packages/catalog/README.md) | 带嵌套分类的商品目录 |
+| [`alveby/atrium-brands`](../../packages/brands/README.md) | 带标志的品牌 |
+| [`alveby/atrium-stores`](../../packages/stores/README.md) | 地图上的门店和办公室 |
+| [`alveby/atrium-team`](../../packages/team/README.md) | 人员、部门和联系方式 |
+| [`alveby/atrium-faq`](../../packages/faq/README.md) | 问答 |
+| [`alveby/atrium-forms`](../../packages/forms/README.md) | 表单构建器和提交记录 |
+| [`alveby/atrium-reviews`](../../packages/reviews/README.md) | 带审核的评价和评分 |
+| [`alveby/atrium-2fa`](../../packages/two-factor/README.md) | 双重验证和免密码登录 |
+| [`alveby/atrium-social-login`](../../packages/social-login/README.md) | 使用 Google、Microsoft、Apple、GitHub、Telegram 等登录 |
+| [`alveby/atrium-solutions`](../../packages/solutions/README.md) | 一条命令安装的现成网站 |
 | [`alveby/atrium-menus`](../../packages/menus/README.md) | 在后台搭建的菜单 |
 | [`alveby/atrium-search`](../../packages/search/README.md) | 覆盖所有模块的站内搜索 |
+| [`alveby/atrium-wordpress`](../../packages/wordpress/README.md) | WordPress 导入器：文章、页面、自定义文章类型、SEO 和翻译，附带检查和 301 对照表 |
 
 这些包已在 Packagist 上，但在 0.1 打标签之前只有开发版，所以需要写明版本：
 

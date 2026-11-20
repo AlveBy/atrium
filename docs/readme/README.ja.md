@@ -126,16 +126,20 @@ Bitrix のデータベースは読み取るだけです。タブ、フィール�
 - [インストール：自前サーバー、ISPmanager や cPanel のホスティング、Docker](../installation.md)
 - [設定：メールとサインインコード、ファイル、API トークン、MCP 経由の AI アシスタント](../configuration.md)
 - [AI 文章アシスタント：無料・有料のプロバイダー、説明文、SEO、alt テキスト、翻訳](../ai.md)
+- [SEO：タイトル、hreflang、サイトマップ、schema.org、リダイレクト、SEOチェック](../seo.md)
 - [メニュー：ヘッダーとフッター、リンクのツリー、モジュールを展開する項目](../menus.md)
 - [検索：結果ページ、管理画面の検索ボックス、検索対象と仕組み](../search.md)
 - [独自モジュール：フィールド、列、タブ、権限、言語、テスト、パッケージ化](../modules.md)
 - [カスタムフィールド：管理画面から任意のモジュールにフィールドを追加、10 万件でのフィルターとファセット](../custom-fields.md)
 - [キャッシュ：数十のプロパティでも速いページ、Redis、ページキャッシュ、CDN ヘッダー](../cache.md)
 - [1C-Bitrix からの移行（手順）](../bitrix.md)
+- [WordPress からの移行：データベース接続、移行、チェック、301 マップ](../wordpress.md)
 - [バックアップ：データベースとファイルを複数の保存先へ、スケジュール、ヘルスチェック、復元](../backup.md)
 - [エラー：PHP・キュー・JavaScript のエラーをサイトのデータベースに保存、通知、Sentry、独自ドライバー](../errors.md)
 - [速度と稼働状況：サーバーの計測、訪問者の Web Vitals、通知付きの死活監視](../monitoring.md)
 - [CDN：画像、リサイズしたコピーと WebP/AVIF、キャッシュの削除、S3 へのアップロード](../cdn.md)
+- [二要素サインイン：認証アプリ、パスキー、コード、サインイン履歴](../two-factor.md)
+- [ソーシャルログイン：プロバイダー、アプリの登録、リダイレクトURL](../social-login.md)
 
 ## パッケージ
 
@@ -146,12 +150,26 @@ Bitrix のデータベースは読み取るだけです。タブ、フィール�
 | [`alveby/atrium-bitrix`](../../packages/bitrix/README.md) | 1C-Bitrix マイグレーター |
 | [`alveby/atrium-ai`](../../packages/ai/README.md) | 管理画面の AI 文章アシスタント |
 | [`alveby/atrium-custom-fields`](../../packages/custom-fields/README.md) | 管理画面から任意のモジュールに追加するフィールド（フィルターとファセット付き） |
+| [`alveby/atrium-seo`](../../packages/seo/README.md) | メタテンプレート、hreflang、サイトマップ、schema.org、リダイレクト、SEOチェック |
 | [`alveby/atrium-docs`](../../packages/docs/README.md) | Markdownから作るドキュメント（バージョンと検索つき） |
 | [`alveby/atrium-backup`](../../packages/backup/README.md) | データベースとファイルのバックアップ、管理画面からの復元 |
 | [`alveby/atrium-errors`](../../packages/errors/README.md) | サイトのデータベースでのエラー追跡、通知、Sentry |
 | [`alveby/atrium-monitoring`](../../packages/monitoring/README.md) | サーバーと訪問者の速度、稼働状況と通知、外部サービスなし |
+| [`alveby/atrium-news`](../../packages/news/README.md) | ニュース |
+| [`alveby/atrium-pages`](../../packages/pages/README.md) | 静的ページ（1C-Bitrix のページのインポートつき） |
+| [`alveby/atrium-catalog`](../../packages/catalog/README.md) | 入れ子のセクションを持つ商品カタログ |
+| [`alveby/atrium-brands`](../../packages/brands/README.md) | ロゴつきのブランド |
+| [`alveby/atrium-stores`](../../packages/stores/README.md) | 地図上の店舗とオフィス |
+| [`alveby/atrium-team`](../../packages/team/README.md) | 人、部署、連絡先 |
+| [`alveby/atrium-faq`](../../packages/faq/README.md) | 質問と回答 |
+| [`alveby/atrium-forms`](../../packages/forms/README.md) | フォームビルダーと送信データ |
+| [`alveby/atrium-reviews`](../../packages/reviews/README.md) | 承認制のレビューと評価 |
+| [`alveby/atrium-2fa`](../../packages/two-factor/README.md) | 二要素認証とパスワードレスのサインイン |
+| [`alveby/atrium-social-login`](../../packages/social-login/README.md) | Google、Microsoft、Apple、GitHub、Telegram などでのサインイン |
+| [`alveby/atrium-solutions`](../../packages/solutions/README.md) | コマンド1つで入れられる完成済みサイト |
 | [`alveby/atrium-menus`](../../packages/menus/README.md) | 管理画面で作るメニュー |
 | [`alveby/atrium-search`](../../packages/search/README.md) | 全モジュール対象のサイト内検索 |
+| [`alveby/atrium-wordpress`](../../packages/wordpress/README.md) | WordPress インポーター（投稿、ページ、カスタム投稿タイプ、SEO、翻訳、チェックと 301 マップつき） |
 
 パッケージは Packagist に公開されていますが、0.1 にタグが付くまでは開発版のみです。そのため次のように指定します。
 
