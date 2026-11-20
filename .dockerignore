@@ -1,0 +1,23 @@
+# This file is part of Atrium (https://github.com/AlveBy/atrium).
+# Copyright (c) 2026 AlveBy. Licensed under the MIT License, see LICENSE.
+
+# The build context of docker/demo/Dockerfile is the whole repository.
+.git
+.github
+.env
+.env.*
+!.env.example
+node_modules
+vendor
+packages/*/node_modules
+packages/*/vendor
+database/*.sqlite
+storage/logs/*
+storage/framework/cache/data/*
+storage/framework/sessions/*
+storage/framework/views/*
+public/storage
+tests
+packages/*/tests
+docs/images
+docs/readme

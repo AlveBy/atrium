@@ -188,6 +188,7 @@ The admin shows "Made by AlveSoft Solutions", the company that builds Atrium, wi
 |---|---|---|
 | `ATRIUM_THEME_CREDIT` | `true` | Show the "Made with Atrium" link (`config/atrium-theme.php` → `credit`) |
 | `ATRIUM_CREDIT` | `true` | Show "Made by AlveSoft Solutions" in the admin (`config/atrium.php` → `credit`) |
+| `ATRIUM_DEMO` | `false` | Demo mode for a public demo: `atrium:demo:reset` works and the profile is locked, see [demo.md](demo.md) |
 
 Atrium is free under the MIT License, so both links are yours to switch off. If Atrium helped you, please keep them: it is how other people find the project. This is a request, not a condition of the licence.
 

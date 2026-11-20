@@ -120,6 +120,7 @@ The Bitrix database is only read. The tabs, field order and list columns come ou
 ## Documentation
 
 - [Installation: your own server, hosting with ISPmanager or cPanel, Docker](docs/installation.md)
+- [A public demo: Docker, a reset every hour, what a visitor may do, where to host it](docs/demo.md)
 - [Configuration: mail and the sign-in code, files, API tokens, AI assistants over MCP](docs/configuration.md)
 - [AI writing help: free and paid providers, descriptions, SEO, alt texts, translations](docs/ai.md)
 - [SEO: titles, hreflang, sitemaps, schema.org, redirects, the SEO check](docs/seo.md)

@@ -1,0 +1,26 @@
+# This file is part of Atrium (https://github.com/AlveBy/atrium).
+# Copyright (c) 2026 AlveBy. Licensed under the MIT License, see LICENSE.
+
+# The public demo (docs/demo.md), from the repository root:
+#
+#   docker compose -f docker/demo/compose.yaml up --build
+#
+# It listens on 127.0.0.1 only: put a reverse proxy with HTTPS in front of it.
+services:
+  demo:
+    build:
+      context: ../..
+      dockerfile: docker/demo/Dockerfile
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:${ATRIUM_DEMO_PORT:-8000}:8000"
+    environment:
+      APP_URL: "${APP_URL:-http://localhost:8000}"
+      ATRIUM_DEMO_RESET: "${ATRIUM_DEMO_RESET:-0 * * * *}"
+      TRUSTED_PROXIES: "*"
+    cap_drop: [ALL]
+    security_opt:
+      - no-new-privileges:true
+    mem_limit: 512m
+    cpus: 1.0
+    pids_limit: 128
