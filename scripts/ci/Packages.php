@@ -125,6 +125,51 @@ final class Packages
     }
 
     /**
+     * The groups of packages that require each other, directly or through
+     * others: each group is a cycle, and the packages in it are sorted. A
+     * release in which package A needs B and B needs A cannot be installed
+     * or split out one package at a time, so there must be none.
+     *
+     * @return list<list<string>>
+     */
+    public function cycles(): array
+    {
+        $reach = array_map(static fn (array $dependencies): array => array_fill_keys($dependencies, true), $this->requires);
+
+        // Close the requirements under "requires": whatever a dependency
+        // reaches, its dependant reaches.
+        do {
+            $changed = false;
+
+            foreach ($reach as $package => $seen) {
+                foreach (array_keys($seen) as $dependency) {
+                    $missing = array_diff_key($reach[$dependency] ?? [], $reach[$package]);
+
+                    if ($missing !== []) {
+                        $reach[$package] += $missing;
+                        $changed = true;
+                    }
+                }
+            }
+        } while ($changed);
+
+        $groups = [];
+
+        foreach ($reach as $package => $seen) {
+            if (isset($seen[$package])) {
+                // The group of a package: the ones it reaches that reach it back.
+                $members = array_filter(array_keys($seen), static fn (string $other): bool => isset($reach[$other][$package]));
+                sort($members);
+                $groups[implode(' ', $members)] = $members;
+            }
+        }
+
+        ksort($groups);
+
+        return array_values($groups);
+    }
+
+    /**
      * The folder whose tests the target runs and the source it covers.
      *
      * @return array{tests: list<string>, source: list<string>}

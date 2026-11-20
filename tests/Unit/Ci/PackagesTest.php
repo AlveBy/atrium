@@ -92,6 +92,45 @@ final class PackagesTest extends TestCase
         $this->assertSame([...$names, 'app'], $packages->affectedBy(['packages/p7/src/X.php']));
     }
 
+    public function test_packages_that_require_nothing_in_a_circle_have_no_cycles(): void
+    {
+        $this->assertSame([], $this->packages->cycles());
+        $this->assertSame([], (new Packages([]))->cycles());
+    }
+
+    /**
+     * @return array<string, array{array<string, list<string>>, list<list<string>>}>
+     */
+    public static function cycles(): array
+    {
+        return [
+            'two packages that require each other, sorted' => [['b' => ['a'], 'a' => ['b']], [['a', 'b']]],
+            'a ring of four, found through the closure' => [['a' => ['b'], 'b' => ['c'], 'c' => ['d'], 'd' => ['a']], [['a', 'b', 'c', 'd']]],
+            'a package that only needs the ring is not in it' => [['a' => ['b'], 'b' => ['a'], 'tail' => ['a']], [['a', 'b']]],
+            'a package that the ring only needs is not in it' => [['a' => ['b', 'leaf'], 'b' => ['a'], 'leaf' => []], [['a', 'b']]],
+            'two rings, in the order of their names' => [['z' => ['y'], 'y' => ['z'], 'b' => ['a'], 'a' => ['b']], [['a', 'b'], ['y', 'z']]],
+            'two rings joined by one way are still two' => [['a' => ['b', 'c'], 'b' => ['a'], 'c' => ['d'], 'd' => ['c']], [['a', 'b'], ['c', 'd']]],
+            'a package that requires itself' => [['a' => ['a']], [['a']]],
+            'a requirement that is not a package of its own' => [['a' => ['ghost'], 'b' => ['a']], []],
+            'a diamond is not a cycle' => [['top' => ['left', 'right'], 'left' => ['base'], 'right' => ['base'], 'base' => []], []],
+        ];
+    }
+
+    /**
+     * @param  array<string, list<string>>  $requires
+     * @param  list<list<string>>  $expected
+     */
+    #[DataProvider('cycles')]
+    public function test_a_cycle_is_a_group_of_packages_that_reach_each_other(array $requires, array $expected): void
+    {
+        $this->assertSame($expected, (new Packages($requires))->cycles());
+    }
+
+    public function test_no_package_of_the_repository_requires_itself_back(): void
+    {
+        $this->assertSame([], Packages::discover(dirname(__DIR__, 3))->cycles());
+    }
+
     /**
      * @return array<string, array{string, string|null}>
      */
