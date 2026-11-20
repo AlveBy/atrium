@@ -108,6 +108,7 @@ All notable changes are listed here. The format follows [Keep a Changelog](https
 - The demo article's page is drawn by the theme; the app's own article controller, its view and Laravel's welcome page are gone.
 
 ### Fixed
+- The demo app's Vite build no longer fetches Instrument Sans from fonts.bunny.net (a 504 there failed the build and CI): the font ships in the repository as `@fontsource/instrument-sans`, so the build needs no network and visitors' browsers never ask a third-party font host.
 - WordPress importer, found by importing realistic sites: a post protected by a password moves hidden, with a note, instead of publishing its text; dates are converted from the site's time to `app.timezone` through `post_date_gmt`; text between headings, lists and images is wrapped in paragraphs (not only text with no block tag at all) and `<!--more-->` is not left inside a paragraph; `[caption]` and `[gallery]` become figures; links to a site at an address with a port (`http://localhost:8080`) are rewritten; a serialized value saved twice is read; the nginx redirect map matches `%D0%BF…` written in capitals as browsers send it.
 - `atrium:install`, `atrium:module:install` and `atrium:module:remove` printed DONE next to a step that failed (publishing, migrating, linking, dropping tables); they print FAIL now.
 - Saving the SEO tab of a record twice failed with a unique-constraint error in an application that maps the model to a morph alias (`Relation::morphMap()`); it updates the one SEO record now.
