@@ -188,6 +188,7 @@ php artisan vendor:publish --tag=atrium-errors
 |---|---|---|
 | `ATRIUM_THEME_CREDIT` | `true` | Показывать ссылку «Сделано на Atrium» (`config/atrium-theme.php` → `credit`) |
 | `ATRIUM_CREDIT` | `true` | Показывать «Сделано в AlveSoft Solutions» в админке (`config/atrium.php` → `credit`) |
+| `ATRIUM_DEMO` | `false` | Режим демо для публичного демо: работает `atrium:demo:reset`, профиль заблокирован, см. [demo.ru.md](demo.ru.md) |
 
 Atrium бесплатен по лицензии MIT, поэтому выключить обе ссылки — ваше право. Если Atrium вам помог, пожалуйста, оставьте их: так о проекте узнают другие. Это просьба, а не условие лицензии.
 
