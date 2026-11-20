@@ -153,14 +153,12 @@ php artisan view:cache
 
 ## В готовое приложение на Laravel
 
-Выше устанавливается этот репозиторий — приложение на Laravel, в которое Atrium уже встроен. Пакеты ставятся и в любое приложение на Laravel 13. Они есть на Packagist, но 0.1 ещё не отмечена тегом, поэтому пока Composer видит только версию для разработки, `dev-main`:
+Выше устанавливается этот репозиторий — приложение на Laravel, в которое Atrium уже встроен. Пакеты ставятся и в любое приложение на Laravel 13. Они есть на Packagist:
 
 ```bash
-composer require alveby/atrium:dev-main
+composer require alveby/atrium:^0.1
 php artisan atrium:install
 ```
-
-Пока 0.1 не вышла, добавляйте `:dev-main` к каждой команде `composer require alveby/…` в этих документах — или один раз разрешите такие версии в `composer.json`: `"minimum-stability": "dev"` и `"prefer-stable": true`, после чего обычные команды работают.
 
 Тема сайта и мигратор с 1С-Битрикс — отдельные пакеты:
 

@@ -10,8 +10,6 @@ You describe a module once, as a model with its fields and list columns. Atrium 
 
 ![The products list of the demo shop](docs/images/admin-list.webp)
 
-> **Before the first release.** Atrium works and is covered by tests, but version 0.1 is not tagged yet. The packages are on Packagist only as the development version (`dev-main`); you can also try it from this repository.
-
 ## What it does
 
 - **Multi-site.** One admin and one database for many sites, each picked by its domain or by a folder on it (`example.com/site2/`) and with its own languages.
@@ -169,10 +167,10 @@ The Bitrix database is only read. The tabs, field order and list columns come ou
 | [`alveby/atrium-search`](packages/search/README.md) | Site search across every module |
 | [`alveby/atrium-wordpress`](packages/wordpress/README.md) | The WordPress importer: posts, pages, custom post types, SEO and translations, with a check and a 301 map |
 
-The packages are on Packagist, but until 0.1 is tagged only as the development version, so name it:
+The packages are on Packagist:
 
 ```bash
-composer require alveby/atrium:dev-main
+composer require alveby/atrium:^0.1
 php artisan atrium:install
 ```
 
