@@ -5,6 +5,7 @@ All notable changes are listed here. The format follows [Keep a Changelog](https
 ## [Unreleased]
 
 ### Fixed
+- SEO: before any site is saved (a fresh install, a demo in the middle of `atrium:demo:reset`) every page answered 500 with `RedirectMap::build(): Argument #1 ($siteId) must be of type int, null given`; now nothing redirects and no 404 is logged until there is a site.
 - `docker compose up` stopped at `composer install` asking for ext-ftp, and then for ext-intl: the image now has both, which the backup module's FTP destination and the SEO module need.
 - `composer install` in a checkout printed six "does not comply with psr-4" warnings for two test fixtures that stand in for classes of other namespaces; they are left out of the classmap now.
 
