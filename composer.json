@@ -94,7 +94,11 @@
             "Atrium\\TwoFactor\\Tests\\": "packages/two-factor/tests/",
             "Atrium\\SocialLogin\\Tests\\": "packages/social-login/tests/",
             "Atrium\\WordPress\\Tests\\": "packages/wordpress/tests/"
-        }
+        },
+        "exclude-from-classmap": [
+            "packages/admin/tests/Fixtures/Clock/microtime.php",
+            "packages/backup/tests/Fixtures/cloud-drive-adapters.php"
+        ]
     },
     "scripts": {
         "setup": [
