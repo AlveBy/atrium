@@ -4,6 +4,9 @@ All notable changes are listed here. The format follows [Keep a Changelog](https
 
 ## [Unreleased]
 
+### Fixed
+- `docker compose up` stopped at `composer install` asking for ext-ftp, and then for ext-intl: the image now has both, which the backup module's FTP destination and the SEO module need.
+
 ## [0.1.0] - 2026-11-20
 
 ### Added
