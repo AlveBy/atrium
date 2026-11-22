@@ -128,6 +128,7 @@ The Bitrix database is only read. The tabs, field order and list columns come ou
 - [Search: the results page, the admin box, what is searched and how](docs/search.md)
 - [Your own module: fields, columns, tabs, permissions, languages, tests, a package](docs/modules.md)
 - [Custom fields: add fields to any module from the admin, filters and facets on 100 000 records](docs/custom-fields.md)
+- [Importing products: CSV and Excel, columns, a check before writing, the console and a schedule](docs/catalog-import.md)
 - [Cache: fast pages with dozens of properties, Redis, the page cache, CDN headers](docs/cache.md)
 - [Moving from 1C-Bitrix, step by step](docs/bitrix.md)
 - [Moving from WordPress: connect the database, move, check, the 301 map](docs/wordpress.md)

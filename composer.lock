@@ -359,11 +359,12 @@
             "dist": {
                 "type": "path",
                 "url": "packages/catalog",
-                "reference": "0a14f7d0f203e36db863f547bed9207447f2fab0"
+                "reference": "3a2a86d6b56fed0c2c0be831d7774dd7ec3db3b4"
             },
             "require": {
                 "alveby/atrium": "^0.1",
                 "illuminate/support": "^13.0",
+                "openspout/openspout": "^4.33",
                 "php": "^8.3"
             },
             "require-dev": {
@@ -1425,7 +1426,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/solutions",
-                "reference": "2126275f78465fdcdb7e91b51c881d3ec7c139b9"
+                "reference": "7fa6700e2ba67d5956f033093dc6b27f903d1d20"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -1434,6 +1435,8 @@
                 "php": "^8.3"
             },
             "require-dev": {
+                "alveby/atrium-brands": "^0.1",
+                "alveby/atrium-catalog": "^0.1",
                 "alveby/atrium-faq": "^0.1",
                 "alveby/atrium-forms": "^0.1",
                 "alveby/atrium-news": "^0.1",
@@ -1650,7 +1653,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/theme",
-                "reference": "0e979aa96a3831016f80bb70efc4026e20334566"
+                "reference": "c6085995be8d2a3d004670564bfa8813622b6fde"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -1659,14 +1662,6 @@
                 "php": "^8.3"
             },
             "require-dev": {
-                "alveby/atrium-brands": "^0.1",
-                "alveby/atrium-catalog": "^0.1",
-                "alveby/atrium-faq": "^0.1",
-                "alveby/atrium-forms": "^0.1",
-                "alveby/atrium-news": "^0.1",
-                "alveby/atrium-pages": "^0.1",
-                "alveby/atrium-reviews": "^0.1",
-                "alveby/atrium-stores": "^0.1",
                 "orchestra/testbench": "^11.0",
                 "phpunit/phpunit": "^12.5"
             },
@@ -5062,6 +5057,99 @@
                 }
             ],
             "time": "2026-11-07T03:57:16+00:00"
+        },
+        {
+            "name": "openspout/openspout",
+            "version": "v4.33.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/openspout/openspout.git",
+                "reference": "8ddddbb3ece300a84bb13205e40686b78c39fde7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/openspout/openspout/zipball/8ddddbb3ece300a84bb13205e40686b78c39fde7",
+                "reference": "8ddddbb3ece300a84bb13205e40686b78c39fde7",
+                "shasum": ""
+            },
+            "require": {
+                "ext-dom": "*",
+                "ext-fileinfo": "*",
+                "ext-filter": "*",
+                "ext-libxml": "*",
+                "ext-xmlreader": "*",
+                "ext-zip": "*",
+                "php": "~8.3.0 || ~8.4.0 || ~8.5.0 || ~8.6.0"
+            },
+            "require-dev": {
+                "ext-zlib": "*",
+                "friendsofphp/php-cs-fixer": "^3.90.0",
+                "infection/infection": "^0.31.9",
+                "phpbench/phpbench": "^1.4.3",
+                "phpstan/phpstan": "^2.1.32",
+                "phpstan/phpstan-phpunit": "^2.0.8",
+                "phpstan/phpstan-strict-rules": "^2.0.7",
+                "phpunit/phpunit": "^12.4.4"
+            },
+            "suggest": {
+                "ext-iconv": "To handle non UTF-8 CSV files (if \"php-mbstring\" is not already installed or is too limited)",
+                "ext-mbstring": "To handle non UTF-8 CSV files (if \"iconv\" is not already installed)"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.3.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "OpenSpout\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Adrien Loison",
+                    "email": "adrien@box.com"
+                }
+            ],
+            "description": "PHP Library to read and write spreadsheet files (CSV, XLSX and ODS), in a fast and scalable way",
+            "homepage": "https://github.com/openspout/openspout",
+            "keywords": [
+                "OOXML",
+                "csv",
+                "excel",
+                "memory",
+                "odf",
+                "ods",
+                "office",
+                "open",
+                "php",
+                "read",
+                "scale",
+                "spreadsheet",
+                "stream",
+                "write",
+                "xlsx"
+            ],
+            "support": {
+                "issues": "https://github.com/openspout/openspout/issues",
+                "source": "https://github.com/openspout/openspout/tree/v4.33.0"
+            },
+            "funding": [
+                {
+                    "url": "https://paypal.me/filippotessarotto",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/Slamdunk",
+                    "type": "github"
+                }
+            ],
+            "time": "2026-11-19T13:20:45+00:00"
         },
         {
             "name": "paragonie/constant_time_encoding",
@@ -9970,7 +10058,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/wordpress",
-                "reference": "2e882a1d78156d0e0430e0474da8752365fe02ce"
+                "reference": "7f6da31bca0c6341471dc2a81ba27e67745a5d51"
             },
             "require": {
                 "alveby/atrium": "^0.1",
@@ -9980,6 +10068,7 @@
                 "php": "^8.3"
             },
             "require-dev": {
+                "alveby/atrium-menus": "^0.1",
                 "alveby/atrium-news": "^0.1",
                 "alveby/atrium-pages": "^0.1",
                 "alveby/atrium-theme": "^0.1",
@@ -9987,6 +10076,7 @@
                 "phpunit/phpunit": "^12.5"
             },
             "suggest": {
+                "alveby/atrium-menus": "Menus move with their items",
                 "alveby/atrium-news": "Posts become news",
                 "alveby/atrium-pages": "Pages become pages, with their tree"
             },

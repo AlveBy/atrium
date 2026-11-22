@@ -132,6 +132,7 @@ Bitrix veritabanından yalnızca okuma yapılır. Sekmeler, alan sırası ve lis
 - [Arama: sonuç sayfası, yönetim panelindeki kutu, neyin nasıl arandığı](../search.md)
 - [Kendi modülünüz: alanlar, sütunlar, sekmeler, yetkiler, diller, testler, paket](../modules.md)
 - [Özel alanlar: yönetim panelinden her modüle alan ekleme, 100 000 kayıtta filtreler ve faset sayıları](../custom-fields.md)
+- [Ürün içe aktarma: CSV ve Excel, sütunlar, yazmadan önce kontrol, konsol ve zamanlama](../catalog-import.md)
 - [Önbellek: onlarca özellikli hızlı sayfalar, Redis, sayfa önbelleği, CDN başlıkları](../cache.md)
 - [1C-Bitrix’ten adım adım taşınma](../bitrix.md)
 - [WordPress’ten taşınma: veritabanını bağlama, taşıma, denetleme, 301 haritası](../wordpress.md)
