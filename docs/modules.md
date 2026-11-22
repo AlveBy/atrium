@@ -134,6 +134,76 @@ public static function getAdministrationActions(): array
 
 `fill()` maps form fields to attributes of the record: the button opens `/admin/pages/create?parent_id=12`, and only the fields it names are taken from the address. Administrators who may not create records here do not see it.
 
+### Buttons on a record and over selected records
+
+The same list takes two more kinds of record buttons. A **link** leads anywhere, another site included; a **server action** runs a class on the record:
+
+```php
+use Atrium\Admin\Actions\ActionResult;
+use Atrium\Admin\Actions\LinkAction;
+use Atrium\Admin\Actions\RecordAction;
+use Illuminate\Database\Eloquent\Model;
+
+public static function getAdministrationActions(): array
+{
+    return [
+        LinkAction::make('preview')->label('On the site')->url(fn (Article $article) => $article->getPublicUrl())->newTab(),
+        Publish::make('publish')->label('Publish')->confirm('Publish it now?'),
+    ];
+}
+
+final class Publish extends RecordAction
+{
+    public function handle(Model $record): ActionResult
+    {
+        if ($record->published_at !== null) {
+            return ActionResult::error('Already published.');
+        }
+
+        $record->update(['published_at' => now()]);
+
+        return ActionResult::success('Published.'); // or ActionResult::redirect($url)
+    }
+}
+```
+
+A list gets checkboxes, with one in the header for the whole page, once it has a bulk action. Checking rows shows a bar above the list with their number and the buttons. **Delete** is always there for those who may delete; a module adds its own:
+
+```php
+use Atrium\Admin\Actions\BulkAction;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Collection;
+
+public static function getAdministrationBulkActions(): array
+{
+    return [Archive::make('archive')->label('Archive')->confirm()];
+}
+
+final class Archive extends BulkAction implements ShouldQueue
+{
+    public function handle(Collection $records): ActionResult
+    {
+        $records->each->update(['archived' => true]);
+
+        return ActionResult::success();
+    }
+}
+```
+
+`handle()` gets only the checked records the administrator may see in the current site (the module's `scopeAdminList()` and site applied), at most 1000. An action that implements `ShouldQueue` goes to the queue and the administrator is told it has started; the job runs in the same site. `confirm()` asks first, with your question or "Are you sure?".
+
+Each button needs a permission: links `view`, the others `update`, Delete `delete`. `permission('publish')` makes it `{module}.publish` (declare it in the manifest, see "Permissions"), and `permission('menus.update')` names one of another module. An administrator without it does not see the button, and the server answers 403. The panel finds the button by its name, so it runs only what the module lists.
+
+Other modules add buttons with the `atrium.module.actions` and `atrium.module.bulk_actions` hooks (see "Hooks"). Register them in the service provider only while the module is installed: switched off, its buttons are gone. The menus module puts **Add to header menu** on every record that has a page on the site this way:
+
+```php
+Hook::filter('atrium.module.actions', fn (array $actions, string $model) => app(RecordUrls::class)->hasPages($model)
+    ? [...$actions, AddToHeaderMenu::make('add-to-header-menu')->label(__('...'))->permission('menus.update')]
+    : $actions);
+```
+
+The same server actions are in the API and MCP: `GET /api/v1/{module}/actions`, `POST /api/v1/{module}/{id}/actions/{name}`, `POST /api/v1/{module}/bulk/{name}` with `{"ids": [...]}`; the tools `list_actions`, `run_record_action`, `run_bulk_action`. An action whose permission is a `view` needs a reading token, any other a writing one. Links and filled create forms are the panel's own and are not there.
+
 ## Tabs
 
 Add `HasAdminTabs`, list the tabs and put each field on one with `tab()`:
@@ -482,6 +552,8 @@ The core fires these:
 | `atrium.module.columns` | filter | `array $columns`, `string $model` | A module's list columns are read, in the panel and for the API's `search=` |
 | `atrium.module.translatable` | filter | `array $names`, `string $model` | The names of a module's fields that hold a value per content language |
 | `atrium.module.links` | filter | `array $links`, `string $model` | Buttons above a module's list: `['name' => ..., 'label' => ..., 'href' => ...]` |
+| `atrium.module.actions` | filter | `array $actions`, `string $model` | Buttons on a record of a module, in its list row and on its form: `CreateFromRecord`, `LinkAction`, `RecordAction` (see "List columns") |
+| `atrium.module.bulk_actions` | filter | `array $actions`, `string $model` | Buttons over the records checked in a module's list, and in the API: `BulkAction`; the built-in Delete comes first |
 | `atrium.query.filter` | filter | `bool $handled`, `Builder $query`, `string $name`, `mixed $value` | A list or the API filters by a name; return `true` once you have added the condition yourself |
 | `atrium.query.sort` | filter | `bool $handled`, `Builder $query`, `string $name`, `string $direction` | The same for sorting |
 | `atrium.query.search` | filter | `bool $handled`, `Builder $query`, `string $name`, `string $search` | The same for one searchable column, inside the search's `or` group |

@@ -134,6 +134,76 @@ public static function getAdministrationActions(): array
 
 `fill()` сопоставляет поля формы полям записи: кнопка открывает `/admin/pages/create?parent_id=12`, и из адреса берутся только названные в ней поля. Администратор без права создавать записи здесь кнопку не видит.
 
+### Кнопки у записи и над выбранными записями
+
+В тот же список кладутся ещё два вида кнопок. **Ссылка** ведёт куда угодно, в том числе на другой сайт; **действие на сервере** выполняет класс над записью:
+
+```php
+use Atrium\Admin\Actions\ActionResult;
+use Atrium\Admin\Actions\LinkAction;
+use Atrium\Admin\Actions\RecordAction;
+use Illuminate\Database\Eloquent\Model;
+
+public static function getAdministrationActions(): array
+{
+    return [
+        LinkAction::make('preview')->label('На сайте')->url(fn (Article $article) => $article->getPublicUrl())->newTab(),
+        Publish::make('publish')->label('Опубликовать')->confirm('Опубликовать сейчас?'),
+    ];
+}
+
+final class Publish extends RecordAction
+{
+    public function handle(Model $record): ActionResult
+    {
+        if ($record->published_at !== null) {
+            return ActionResult::error('Уже опубликовано.');
+        }
+
+        $record->update(['published_at' => now()]);
+
+        return ActionResult::success('Опубликовано.'); // или ActionResult::redirect($url)
+    }
+}
+```
+
+Как только у списка есть массовое действие, в строках появляются флажки, а в заголовке — флажок для всей страницы. Отмеченные строки открывают над списком панель с их числом и кнопками. **Удалить** есть всегда, у кого есть право удалять; модуль добавляет свои:
+
+```php
+use Atrium\Admin\Actions\BulkAction;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Support\Collection;
+
+public static function getAdministrationBulkActions(): array
+{
+    return [Archive::make('archive')->label('В архив')->confirm()];
+}
+
+final class Archive extends BulkAction implements ShouldQueue
+{
+    public function handle(Collection $records): ActionResult
+    {
+        $records->each->update(['archived' => true]);
+
+        return ActionResult::success();
+    }
+}
+```
+
+`handle()` получает только те отмеченные записи, которые администратор видит в текущем сайте (с `scopeAdminList()` модуля и сайтом), не больше 1000. Действие с `ShouldQueue` уходит в очередь, администратору говорят, что оно запущено; задача выполняется в том же сайте. `confirm()` сначала спрашивает — вашим вопросом или «Вы уверены?».
+
+Каждой кнопке нужно право: ссылке `view`, остальным `update`, «Удалить» — `delete`. `permission('publish')` делает его `{модуль}.publish` (объявите его в манифесте, см. «Права»), а `permission('menus.update')` называет право другого модуля. Без права администратор кнопку не видит, а сервер отвечает 403. Панель находит кнопку по имени, поэтому выполняет только то, что перечислил модуль.
+
+Другие модули добавляют кнопки хуками `atrium.module.actions` и `atrium.module.bulk_actions` (см. «Хуки»). Регистрируйте их в сервис-провайдере, только пока модуль установлен: выключили модуль — его кнопок нет. Так модуль меню ставит **Добавить в верхнее меню** на каждую запись, у которой есть страница на сайте:
+
+```php
+Hook::filter('atrium.module.actions', fn (array $actions, string $model) => app(RecordUrls::class)->hasPages($model)
+    ? [...$actions, AddToHeaderMenu::make('add-to-header-menu')->label(__('...'))->permission('menus.update')]
+    : $actions);
+```
+
+Те же действия на сервере есть в API и MCP: `GET /api/v1/{модуль}/actions`, `POST /api/v1/{модуль}/{id}/actions/{имя}`, `POST /api/v1/{модуль}/bulk/{имя}` с `{"ids": [...]}`; инструменты `list_actions`, `run_record_action`, `run_bulk_action`. Действию, чьё право — `view`, нужен токен на чтение, остальным — на запись. Ссылок и заполненных форм создания там нет: это кнопки самой панели.
+
 ## Вкладки
 
 Подключите `HasAdminTabs`, перечислите вкладки и разложите поля через `tab()`:
@@ -482,6 +552,8 @@ Hook::filter('atrium.search.sources', DropDrafts::class, 20); // an invokable cl
 | `atrium.module.columns` | фильтр | `array $columns`, `string $model` | Читаются колонки списка модуля, в панели и для `search=` в API |
 | `atrium.module.translatable` | фильтр | `array $names`, `string $model` | Имена полей модуля, у которых своё значение на каждом языке контента |
 | `atrium.module.links` | фильтр | `array $links`, `string $model` | Кнопки над списком модуля: `['name' => ..., 'label' => ..., 'href' => ...]` |
+| `atrium.module.actions` | фильтр | `array $actions`, `string $model` | Кнопки у записи модуля, в строке списка и на форме: `CreateFromRecord`, `LinkAction`, `RecordAction` (см. «Колонки списка») |
+| `atrium.module.bulk_actions` | фильтр | `array $actions`, `string $model` | Кнопки над отмеченными в списке модуля записями, и в API: `BulkAction`; встроенное «Удалить» идёт первым |
 | `atrium.query.filter` | фильтр | `bool $handled`, `Builder $query`, `string $name`, `mixed $value` | Список или API фильтрует по имени; верните `true`, если условие вы добавили сами |
 | `atrium.query.sort` | фильтр | `bool $handled`, `Builder $query`, `string $name`, `string $direction` | То же для сортировки |
 | `atrium.query.search` | фильтр | `bool $handled`, `Builder $query`, `string $name`, `string $search` | То же для одной колонки поиска, внутри группы `or` поиска |

@@ -37,6 +37,8 @@ Each item has:
 
 Items are dragged by the handle: above another item, below it, or onto it to become its child. The buttons next to each item do the same from the keyboard (up, down, in, out). A menu holds up to 500 items, four levels deep.
 
+A record with a page on the site can also go to the menu from its own list or form: **Add to header menu** puts it, linked, at the end of the site's `header` menu for all languages. The button needs the right to edit menus; a record already there is not added twice.
+
 ## On the site
 
 With the theme (`alveby/atrium-theme`), the module draws the header menu from the menu with the code `header` and adds the `footer` menu above the copyright line. Until the site has a `header` menu, the theme keeps its own menu of the modules.
