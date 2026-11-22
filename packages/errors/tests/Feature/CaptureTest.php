@@ -157,11 +157,11 @@ final class CaptureTest extends TestCase
 
         $this->artisan('schedule:run')->assertSuccessful();
 
-        $issue = Issue::query()->sole();
+        // The admin's own scheduled tasks run here too and may fail in this bare app: this one is looked for by its message.
+        $issue = Issue::query()->where('message', 'Nightly sitemap failed')->sole();
         $this->assertSame('schedule', $issue->kind);
-        $this->assertSame('Nightly sitemap failed', $issue->message);
 
-        $context = Occurrence::query()->sole()->payload['context'];
+        $context = Occurrence::query()->where('issue_id', $issue->id)->sole()->payload['context'];
         $this->assertSame('nightly-sitemap', $context['task']);
         $this->assertSame('* * * * *', $context['expression']);
     }
