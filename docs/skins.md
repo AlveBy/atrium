@@ -2,7 +2,7 @@
 
 # Skins
 
-The theme (`alveby/atrium-theme`) comes with four skins: a travel agency, a restaurant, a medical centre and a home goods shop. A skin is a palette, its fonts and a home page of its own, built from the modules you have installed.
+The theme (`alveby/atrium-theme`) comes with five skins: a travel agency, a restaurant, a medical centre, a home goods shop and Atrium's own, the one of the public demo. A skin is a palette, its fonts and a home page of its own, built from the modules you have installed.
 
 | Travel agency | Restaurant |
 |---|---|
@@ -12,13 +12,37 @@ The theme (`alveby/atrium-theme`) comes with four skins: a travel agency, a rest
 
 The names, prices, addresses and phone numbers in the screenshots are made up.
 
+## The Atrium skin
+
+`atrium` is the skin of the public demo and the one that shows what the theme can do with every module installed. Unlike the four above, it draws the inner pages too, not only the home page:
+
+- **Home**: a hero with the three newest products stacked as tiles, brands, the catalog's sections as a bento grid, the newest products, news, stores, the team, reviews, questions and a contact form. A block whose module is not installed, or has nothing to show, is left out.
+- **Catalog**: section chips and a filter bar (brand, in stock, price sort) that works without a framework: about 40 lines of JavaScript, and without it the whole list is simply shown. The number shown is read out to screen readers.
+- **Product**: a gallery with thumbnails, brand, badge, price and a tick-and-word stock mark, colours, features, the stores that have it, the text, the details table, specifications, downloads and "goes well with" products.
+- **News and any other record**: a wide picture, the date, a reading-width text.
+- **Stores**: facts (address, hours, phone, e-mail) and an OpenStreetMap map that is loaded only when the visitor presses **Show the map**, so a page makes no request to another site until then; the link "Open in OpenStreetMap" works without JavaScript.
+
+| Home, light | Home, dark, phone |
+|---|---|
+| ![The home page](../packages/theme/docs/screenshots/atrium-home-desktop-light.png) | ![The home page on a phone, dark](../packages/theme/docs/screenshots/atrium-home-phone-dark.png) |
+| **Catalog** | **Product** |
+| ![The catalog with filters](../packages/theme/docs/screenshots/atrium-catalog-desktop-light.png) | ![A product page](../packages/theme/docs/screenshots/atrium-product-desktop-light.png) |
+| **News** | **Stores** |
+| ![The news list](../packages/theme/docs/screenshots/atrium-news-desktop-dark.png) | ![The stores](../packages/theme/docs/screenshots/atrium-stores-desktop-light.png) |
+
+The palette is indigo and amber, which keep apart for every kind of colour blindness (blue against yellow), and nothing relies on colour alone: the badge says "New", "Sale" or "Bestseller", stock is a tick and the words "In stock", links are underlined, the current menu item is a filled pill. Headings are set in Unbounded, text in Inter, both from your site. It opens light or dark by the visitor's system and the header switch.
+
+A product page uses the catalog's fields by their names (`price`, `brand`, `label`, `in_stock`, `colors`, `features`, `stores`, `related`, `article`) and shows every other field of the form below the text. Other modules' blocks that add themselves under a record (`atrium-theme.record_views`: reviews, comments, a form) come after it.
+
+A skin may name two views of its own, `list` (a module's list and a section) and `page` (a record), and then it draws those pages instead of the theme's; a module's own `themeView()` still wins. The other four skins have neither.
+
 ## Switching a skin on
 
 ```dotenv
 ATRIUM_THEME_SKIN=clinic
 ```
 
-`travel`, `restaurant`, `clinic` or `shop`; empty, or any other value, is the neutral theme. The restaurant opens dark, the others light; the switch in the header works in every skin and the visitor's choice is kept.
+`travel`, `restaurant`, `clinic`, `shop` or `atrium`; empty, or any other value, is the neutral theme. The restaurant opens dark, the others light; the switch in the header works in every skin and the visitor's choice is kept.
 
 Prices are printed in the site's currency, the way the page's language writes it: `from €1,250` in English, `ab 1.250 €` in German, `от 1 250 €` in Russian. The currency is an ISO 4217 code and does not follow the language:
 
@@ -52,6 +76,7 @@ Each section comes from a module. A section whose module is not installed, or ha
 | restaurant | hero; the menu in tabs by section; a review; addresses and hours; table booking | page `home` and `delivery`, catalog, reviews, stores, form `table-booking` |
 | clinic | hero with the appointment form; services; doctors; news; questions | page `home`, catalog, page `doctors` and its subpages, news, FAQ, form `appointment` |
 | shop | the newest news as a banner; hero; products with section chips; brands; stores | news, page `home`, catalog, brands, stores |
+| atrium | hero; brands; sections; products; news; stores; team; reviews; questions; contact form | page `home`, brands, catalog, news, stores, team, reviews, FAQ, form `contact`, `order` or `callback` |
 
 The hero heading and text are the page `home` of the Pages module, so editors change them in the admin. Opening hours are the first paragraph of a store's text; a doctor's role is the first paragraph of the doctor's page. The phone in the header is the first store's.
 
@@ -72,6 +97,12 @@ Each skin keeps its design's colours. Text and links keep at least 4.5:1 against
 | | field borders | `#6b7f90` 3.9 / 4.1 | `#6f8aa0` 4.9 / 4.3 |
 | shop | text, links, buttons | `#111111` 18.9 / 16.6 | `#f2f0eb` 16.3 / 14.8 |
 | | focus ring | `#b33a0e` 6.0 / 5.2 | `#ff8a5b` 8.0 / 7.2 |
+| atrium | text | `#14163a` 15.9 / 17.4 | `#eceafd` 15.8 / 14.2 |
+| | secondary text | `#4a4d72` 7.4 / 8.1 | `#b6b9e4` 9.8 / 8.9 |
+| | links, buttons | `#3a2fd0` 7.7 / 8.4 | `#a9a0ff` 8.1 / 7.3 |
+| | field borders | `#6a6d92` 4.6 / 5.0 | `#8387c4` 5.5 / 5.5 |
+| | amber badge and chips | `#14163a` on `#ffb400` 9.8 | `#14163a` on `#ffc233` 10.8 |
+| | text on the dark bands | `#eceafd` 14.7 | `#eceafd` 16.5 |
 
 To change a colour, override its custom property after the theme's stylesheet:
 

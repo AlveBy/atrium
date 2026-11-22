@@ -47,6 +47,8 @@ It refuses to run unless `ATRIUM_DEMO=true`, so on a real site it does nothing. 
 | `ATRIUM_DEMO_PASSWORD` | `demo` | Their password |
 | `ATRIUM_DEMO_RESET` | `0 * * * *` | When the scheduler resets the demo |
 
+The demo's image sets `ATRIUM_THEME_SKIN=atrium`, the [Atrium skin](skins.md#the-atrium-skin): the public pages of the demo shop are drawn by it, in light and dark and in every language of the site. Remove the line to see the neutral theme.
+
 ## Putting it on the internet
 
 The compose file listens on `127.0.0.1:8000` only. Put a reverse proxy with HTTPS in front, for example Caddy:

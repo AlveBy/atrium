@@ -33,6 +33,7 @@ ENV APP_ENV=production \
     APP_DEBUG=false \
     APP_URL=http://localhost:8000 \
     ATRIUM_DEMO=true \
+    ATRIUM_THEME_SKIN=atrium \
     ATRIUM_2FA_ENABLED=false \
     DB_CONNECTION=sqlite \
     DB_DATABASE=/data/demo.sqlite \
