@@ -2,7 +2,7 @@
 
 [English](../../README.md) · [Русский](README.ru.md) · [Українська](README.uk.md) · [Беларуская](README.be.md) · [Қазақша](README.kk.md) · [Oʻzbekcha](README.uz.md) · [Deutsch](README.de.md) · [Français](README.fr.md) · [Español](README.es.md) · [Português (Brasil)](README.pt-BR.md) · [Italiano](README.it.md) · [Polski](README.pl.md) · **Türkçe** · [简体中文](README.zh-CN.md) · [日本語](README.ja.md)
 
-[![tests](https://github.com/AlveBy/atrium/actions/workflows/tests.yml/badge.svg)](https://github.com/AlveBy/atrium/actions/workflows/tests.yml)
+[![tests](https://github.com/AlveBy/atrium/actions/workflows/tests.yml/badge.svg)](https://github.com/AlveBy/atrium/actions/workflows/tests.yml) [![coverage 100%](https://img.shields.io/badge/coverage-100%25-brightgreen)](../testing.md)
 
 _Bu sayfa İngilizceden makine çevirisiyle hazırlandı. Düzeltmelere açığız, bkz. [CONTRIBUTING.md](../../CONTRIBUTING.md)._
 
@@ -38,6 +38,17 @@ Bir modülü yalnızca bir kez, alanları ve liste sütunlarıyla birlikte bir m
 | Site, açık tema | Site, koyu tema |
 |---|---|
 | ![Site, açık tema](../images/site-light.webp) | ![Site, koyu tema](../images/site-dark.webp) |
+
+## Kalite
+
+- Her pull request'te 6.500'den fazla PHPUnit testi ve Laravel Dusk ile 80'den fazla tarayıcı testi çalışır.
+- SQLite, MySQL ve PostgreSQL üzerinde, PHP 8.3 ve 8.4 altında.
+- Her paketin satırlarının %100'ü testlerle kaplıdır ve CI bir satırı testsiz bırakan değişikliği kabul etmez.
+- Değişen kodun mutasyon puanı %100 olmalıdır: Infection değişen her satırı bozar ve her bozmada bir test başarısız olmalıdır.
+- Bu kontrollerden hiçbir şey hariç tutulmaz: yok sayma notu da, kapatılmış mutatör de yoktur.
+- Her push, bilinen açıkları olan bağımlılıklar ve git geçmişindeki gizli bilgiler için taranır.
+
+[Testler ve kontroller nasıl çalışır](../testing.md).
 
 ## Deneyin
 

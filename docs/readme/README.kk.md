@@ -2,7 +2,7 @@
 
 [English](../../README.md) · [Русский](README.ru.md) · [Українська](README.uk.md) · [Беларуская](README.be.md) · **Қазақша** · [Oʻzbekcha](README.uz.md) · [Deutsch](README.de.md) · [Français](README.fr.md) · [Español](README.es.md) · [Português (Brasil)](README.pt-BR.md) · [Italiano](README.it.md) · [Polski](README.pl.md) · [Türkçe](README.tr.md) · [简体中文](README.zh-CN.md) · [日本語](README.ja.md)
 
-[![tests](https://github.com/AlveBy/atrium/actions/workflows/tests.yml/badge.svg)](https://github.com/AlveBy/atrium/actions/workflows/tests.yml)
+[![tests](https://github.com/AlveBy/atrium/actions/workflows/tests.yml/badge.svg)](https://github.com/AlveBy/atrium/actions/workflows/tests.yml) [![coverage 100%](https://img.shields.io/badge/coverage-100%25-brightgreen)](../testing.md)
 
 _Бұл бет ағылшын тілінен машиналық аудармамен жасалған. Түзетулерге қуаныштымыз, толығырақ: [CONTRIBUTING.md](../../CONTRIBUTING.md)._
 
@@ -38,6 +38,17 @@ Laravel 13 негізіндегі кез келген санды көптілд�
 | Сайт, ашық тақырып | Сайт, қараңғы тақырып |
 |---|---|
 | ![Сайт, ашық тақырып](../images/site-light.webp) | ![Сайт, қараңғы тақырып](../images/site-dark.webp) |
+
+## Сапа
+
+- Әр pull request сайын 6500-ден астам PHPUnit тесті және Laravel Dusk-тағы 80-нен астам браузер тесті іске қосылады.
+- SQLite, MySQL және PostgreSQL-де, PHP 8.3 және 8.4 астында.
+- Әр пакеттің жолдарының 100%-ы тесттермен жабылған, ал CI бір жол тестсіз қалатын өзгерісті өткізбейді.
+- Өзгертілген код мутациялық тестілеуден 100% өтуі керек: Infection әр өзгертілген жолды бұзады, және әр бұзуға бір тест құлауы керек.
+- Бұл тексерулерден ештеңе алынып тасталмаған: «тексермеу» белгілері де, өшірілген мутаторлар да жоқ.
+- Әр push белгілі осалдықтары бар тәуелділіктерге және git тарихындағы құпия сөздер мен кілттерге тексеріледі.
+
+[Тесттер мен тексерулер қалай жұмыс істейді](../testing.md).
 
 ## Байқап көру
 

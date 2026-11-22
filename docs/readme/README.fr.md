@@ -2,7 +2,7 @@
 
 [English](../../README.md) · [Русский](README.ru.md) · [Українська](README.uk.md) · [Беларуская](README.be.md) · [Қазақша](README.kk.md) · [Oʻzbekcha](README.uz.md) · [Deutsch](README.de.md) · **Français** · [Español](README.es.md) · [Português (Brasil)](README.pt-BR.md) · [Italiano](README.it.md) · [Polski](README.pl.md) · [Türkçe](README.tr.md) · [简体中文](README.zh-CN.md) · [日本語](README.ja.md)
 
-[![tests](https://github.com/AlveBy/atrium/actions/workflows/tests.yml/badge.svg)](https://github.com/AlveBy/atrium/actions/workflows/tests.yml)
+[![tests](https://github.com/AlveBy/atrium/actions/workflows/tests.yml/badge.svg)](https://github.com/AlveBy/atrium/actions/workflows/tests.yml) [![coverage 100%](https://img.shields.io/badge/coverage-100%25-brightgreen)](../testing.md)
 
 _Cette page a été traduite automatiquement depuis l'anglais. Les corrections sont les bienvenues, voir [CONTRIBUTING.md](../../CONTRIBUTING.md)._
 
@@ -38,6 +38,17 @@ Vous décrivez un module une seule fois, sous la forme d'un modèle avec ses cha
 | Le site, thème clair | Le site, thème sombre |
 |---|---|
 | ![Le site, thème clair](../images/site-light.webp) | ![Le site, thème sombre](../images/site-dark.webp) |
+
+## Qualité
+
+- Plus de 6 500 tests PHPUnit et plus de 80 tests navigateur avec Laravel Dusk tournent à chaque pull request.
+- Sur SQLite, MySQL et PostgreSQL, sous PHP 8.3 et 8.4.
+- Chaque paquet a 100 % de ses lignes couvertes, et la CI refuse une modification qui laisse une ligne sans test.
+- Le code modifié doit atteindre un score de mutation de 100 % : Infection altère chaque ligne modifiée, et un test doit échouer pour chaque altération.
+- Rien n’est exclu de ces contrôles : aucune annotation d’exclusion, aucun mutateur désactivé.
+- Chaque push est vérifié pour les dépendances aux vulnérabilités connues et pour les secrets dans l’historique git.
+
+[Comment fonctionnent les tests et les contrôles](../testing.md).
 
 ## Essayer
 

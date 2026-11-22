@@ -2,7 +2,7 @@
 
 [English](../../README.md) · **Русский** · [Українська](README.uk.md) · [Беларуская](README.be.md) · [Қазақша](README.kk.md) · [Oʻzbekcha](README.uz.md) · [Deutsch](README.de.md) · [Français](README.fr.md) · [Español](README.es.md) · [Português (Brasil)](README.pt-BR.md) · [Italiano](README.it.md) · [Polski](README.pl.md) · [Türkçe](README.tr.md) · [简体中文](README.zh-CN.md) · [日本語](README.ja.md)
 
-[![tests](https://github.com/AlveBy/atrium/actions/workflows/tests.yml/badge.svg)](https://github.com/AlveBy/atrium/actions/workflows/tests.yml)
+[![tests](https://github.com/AlveBy/atrium/actions/workflows/tests.yml/badge.svg)](https://github.com/AlveBy/atrium/actions/workflows/tests.yml) [![coverage 100%](https://img.shields.io/badge/coverage-100%25-brightgreen)](../testing.ru.md)
 
 Одна админка для любого числа многоязычных сайтов на Laravel 13 и переносчик, который забирает готовый сайт с 1С-Битрикс.
 
@@ -36,6 +36,17 @@
 | Сайт, светлая тема | Сайт, тёмная тема |
 |---|---|
 | ![Сайт, светлая тема](../images/site-light.webp) | ![Сайт, тёмная тема](../images/site-dark.webp) |
+
+## Качество
+
+- Больше 6500 тестов PHPUnit и больше 80 браузерных тестов на Laravel Dusk запускаются на каждом pull request.
+- На SQLite, MySQL и PostgreSQL, под PHP 8.3 и 8.4.
+- У каждого пакета покрыто тестами 100% строк, и CI не пропустит правку, после которой хоть одна строка осталась без теста.
+- Изменённый код должен пройти мутационное тестирование на 100%: Infection портит каждую изменённую строку, и на каждую порчу должен упасть тест.
+- Из этих проверок ничего не исключено: ни пометок «не проверять», ни отключённых мутаторов.
+- Каждый push проверяется на зависимости с известными уязвимостями и на пароли и ключи в истории git.
+
+[Как устроены тесты и проверки](../testing.ru.md).
 
 ## Попробовать
 

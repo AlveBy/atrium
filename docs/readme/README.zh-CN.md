@@ -2,7 +2,7 @@
 
 [English](../../README.md) · [Русский](README.ru.md) · [Українська](README.uk.md) · [Беларуская](README.be.md) · [Қазақша](README.kk.md) · [Oʻzbekcha](README.uz.md) · [Deutsch](README.de.md) · [Français](README.fr.md) · [Español](README.es.md) · [Português (Brasil)](README.pt-BR.md) · [Italiano](README.it.md) · [Polski](README.pl.md) · [Türkçe](README.tr.md) · **简体中文** · [日本語](README.ja.md)
 
-[![tests](https://github.com/AlveBy/atrium/actions/workflows/tests.yml/badge.svg)](https://github.com/AlveBy/atrium/actions/workflows/tests.yml)
+[![tests](https://github.com/AlveBy/atrium/actions/workflows/tests.yml/badge.svg)](https://github.com/AlveBy/atrium/actions/workflows/tests.yml) [![coverage 100%](https://img.shields.io/badge/coverage-100%25-brightgreen)](../testing.md)
 
 _本页由英文机器翻译而来，欢迎指正，详见 [CONTRIBUTING.md](../../CONTRIBUTING.md)。_
 
@@ -38,6 +38,17 @@ _本页由英文机器翻译而来，欢迎指正，详见 [CONTRIBUTING.md](../
 | 网站，浅色主题 | 网站，深色主题 |
 |---|---|
 | ![网站，浅色主题](../images/site-light.webp) | ![网站，深色主题](../images/site-dark.webp) |
+
+## 质量
+
+- 每个 pull request 都会运行 6500 多个 PHPUnit 测试和 80 多个 Laravel Dusk 浏览器测试。
+- 在 SQLite、MySQL 和 PostgreSQL 上，使用 PHP 8.3 和 8.4。
+- 每个包的代码行覆盖率均为 100%，任何让某一行失去测试的改动都会被 CI 拒绝。
+- 改动的代码必须达到 100% 的变异得分：Infection 会改动每一行变更，每一处改动都必须让某个测试失败。
+- 这些检查没有任何例外：没有忽略注解，也没有被关闭的变异器。
+- 每次 push 都会检查依赖中的已知漏洞，以及 git 历史中泄露的密钥。
+
+[测试和检查如何运作](../testing.md).
 
 ## 试用
 
