@@ -88,8 +88,8 @@ final class RecordActionsTest extends AdminTestCase
             $browser->click('[data-bulk-action="delete"]')
                 ->waitFor('[data-action="action-confirm"]')
                 ->click('[data-action="action-confirm"]')
-                ->waitFor('[data-flash="success"]')
-                ->assertSeeIn('[data-flash="success"]', '3 records deleted.')
+                // The flash of the hide above is still on the page: wait for the new text.
+                ->waitForTextIn('[data-flash="success"]', '3 records deleted.')
                 ->assertMissing('[data-bulk-bar]');
 
             $this->assertSame(0, Page::query()->count());
