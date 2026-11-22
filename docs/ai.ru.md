@@ -21,6 +21,8 @@
 | Groq | Бесплатный тариф с лимитами в минуту и в день | [console.groq.com/keys](https://console.groq.com/keys) | См. условия Groq |
 | OpenRouter | Модели с `:free` в конце бесплатны, с лимитами | [openrouter.ai/keys](https://openrouter.ai/keys) | Зависит от того, кто держит модель |
 | Ollama | Бесплатно, на вашем сервере | не нужен | Не покидают ваш сервер |
+| Ollama Cloud | Бесплатный тариф с лимитами | [ollama.com/settings/keys](https://ollama.com/settings/keys) | См. условия Ollama |
+| YandexGPT, GigaChat, DeepSeek | Платно или с пробным периодом; работают из России и Беларуси | [ниже](#из-россии-и-беларуси) | Уходят Яндексу, Сберу или DeepSeek |
 | OpenAI, Anthropic, Mistral и другие | Платно | в их кабинетах | Платные API по умолчанию не учатся на ваших данных |
 
 По умолчанию стоит Gemini: бесплатный, быстрый, понимает картинки (для alt) и хорошо пишет на многих языках. **Если в записях есть что-то закрытое** (цены, которые ещё не объявлены, имена людей, внутренние заметки), берите Ollama или платный ключ.
@@ -67,6 +69,18 @@ OLLAMA_URL=http://127.0.0.1:11434
 
 Маленькая модель на сервере без видеокарты отвечает десятки секунд. Это не страшно: форма её не ждёт.
 
+### Ollama Cloud
+
+Те же модели без своего сервера: ключ с [ollama.com/settings/keys](https://ollama.com/settings/keys) и адрес облака.
+
+```dotenv
+OLLAMA_URL=https://ollama.com
+OLLAMA_API_KEY=...
+ATRIUM_AI_TEXT=ollama:gpt-oss:120b
+```
+
+Называйте модели, которые [ollama.com](https://ollama.com/search?c=cloud) помечает как облачные.
+
 ### Платный провайдер
 
 Его ключ и его имя в цепочке:
@@ -78,6 +92,31 @@ ATRIUM_AI_VISION=openai
 ```
 
 `провайдер:модель` выбирает модель, иначе берётся модель SDK по умолчанию для этого провайдера. Все провайдеры и имена их ключей — в `config/ai.php` из SDK.
+
+### Из России и Беларуси
+
+Gemini и Groq не работают в этих странах. Atrium это замечает (ответ 403 или «User location is not supported»), спрашивает следующего провайдера и час не обращается к отказавшему, но если в цепочке только Gemini и Groq, спрашивать некого. Возьмите один из этих:
+
+```dotenv
+# YandexGPT: API-ключ сервисного аккаунта с ролью ai.languageModels.user
+YANDEX_API_KEY=...
+YANDEX_FOLDER_ID=b1g...
+
+# GigaChat: ключ авторизации проекта в GigaChat API
+GIGACHAT_AUTH_KEY=...
+GIGACHAT_CA_BUNDLE=/etc/ssl/russian-ca.pem
+
+# DeepSeek
+DEEPSEEK_API_KEY=...
+
+ATRIUM_AI_TEXT=yandex,gigachat,deepseek
+```
+
+- **YandexGPT**: модель `gpt://<folder_id>/yandexgpt/latest` берётся из `YANDEX_FOLDER_ID`. Другую модель впишите в цепочку: `yandex:gpt://b1g.../yandexgpt-lite/latest`.
+- **GigaChat**: `GIGACHAT_SCOPE=GIGACHAT_API_PERS` (по умолчанию; `GIGACHAT_API_B2B` и `GIGACHAT_API_CORP` для компаний). Atrium меняет ключ на токен доступа и хранит его 30 минут, сколько он живёт. Серверы GigaChat используют сертификаты Минцифры России, которых сервер не знает: скачайте их на [gosuslugi.ru/crt](https://www.gosuslugi.ru/crt), сложите корневой и промежуточный друг за другом в один PEM-файл и укажите путь в `GIGACHAT_CA_BUNDLE`. Проверка сертификата не отключается никогда.
+- **DeepSeek**: нужен только ключ. Его серверы находятся в Китае.
+
+Эти три пишут тексты. Кнопке `alt` нужна модель, которая видит картинки: Ollama (`ATRIUM_AI_VISION=ollama:gemma3:4b`) или бесплатная модель OpenRouter. Ваши тексты уходят выбранному провайдеру; для закрытых данных берите Ollama на своём сервере.
 
 ## 3. Очередь, если сайт нагружен
 

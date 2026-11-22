@@ -21,6 +21,8 @@ It runs on the official [Laravel AI SDK](https://laravel.com/docs/13.x/ai-sdk), 
 | Groq | Free tier with limits per minute and day | [console.groq.com/keys](https://console.groq.com/keys) | See Groq's terms |
 | OpenRouter | Models ending in `:free` cost nothing, with limits | [openrouter.ai/keys](https://openrouter.ai/keys) | Depends on the model's host |
 | Ollama | Free, on your own server | none | Never leave your server |
+| Ollama Cloud | Free tier with limits | [ollama.com/settings/keys](https://ollama.com/settings/keys) | See Ollama's terms |
+| YandexGPT, GigaChat, DeepSeek | Paid or with a trial; they work from Russia and Belarus | [see below](#from-russia-and-belarus) | Go to Yandex, Sber or DeepSeek |
 | OpenAI, Anthropic, Mistral and others | Paid | their consoles | Paid API terms do not use them for training by default |
 
 Gemini is the default because it is free, fast, understands pictures (for alt texts) and writes well in many languages. **If the records hold anything private** (prices not yet public, people's names, internal notes), use Ollama or a paid key instead.
@@ -67,6 +69,18 @@ OLLAMA_URL=http://127.0.0.1:11434
 
 A small model on a server without a graphics card answers in tens of seconds. That is fine: the form does not wait for it.
 
+### Ollama Cloud
+
+The same models without a server of your own: a key from [ollama.com/settings/keys](https://ollama.com/settings/keys) and the address of the cloud.
+
+```dotenv
+OLLAMA_URL=https://ollama.com
+OLLAMA_API_KEY=...
+ATRIUM_AI_TEXT=ollama:gpt-oss:120b
+```
+
+The models to name are the ones [ollama.com](https://ollama.com/search?c=cloud) marks as cloud.
+
 ### A paid provider
 
 Its key and its name in the chain:
@@ -78,6 +92,31 @@ ATRIUM_AI_VISION=openai
 ```
 
 `provider:model` picks a model, otherwise the SDK's default for that provider is used. Every provider and the name of its key is in the SDK's `config/ai.php`.
+
+### From Russia and Belarus
+
+Gemini and Groq refuse these countries. Atrium notices (a 403, or "User location is not supported"), asks the next provider and does not ask that one again for an hour, but with only Gemini and Groq there is nobody to ask. Use one of these:
+
+```dotenv
+# YandexGPT: an API key of a service account with the role ai.languageModels.user
+YANDEX_API_KEY=...
+YANDEX_FOLDER_ID=b1g...
+
+# GigaChat: the authorization key of a project in the GigaChat API
+GIGACHAT_AUTH_KEY=...
+GIGACHAT_CA_BUNDLE=/etc/ssl/russian-ca.pem
+
+# DeepSeek
+DEEPSEEK_API_KEY=...
+
+ATRIUM_AI_TEXT=yandex,gigachat,deepseek
+```
+
+- **YandexGPT** takes the model `gpt://<folder_id>/yandexgpt/latest` from `YANDEX_FOLDER_ID`. For another model, write it in the chain: `yandex:gpt://b1g.../yandexgpt-lite/latest`.
+- **GigaChat** works with `GIGACHAT_SCOPE=GIGACHAT_API_PERS` (the default; `GIGACHAT_API_B2B` and `GIGACHAT_API_CORP` for companies). Atrium trades the key for an access token and keeps it for its 30 minutes. GigaChat's servers use the certificates of the Russian Ministry of Digital Development, which the server does not know: download them from [gosuslugi.ru/crt](https://www.gosuslugi.ru/crt), put the root and the intermediate one after another into one PEM file and give its path in `GIGACHAT_CA_BUNDLE`. The check of the certificate is never turned off.
+- **DeepSeek** needs only its key. Its servers are in China.
+
+These three write texts. The `alt` button needs a model that sees pictures: Ollama (`ATRIUM_AI_VISION=ollama:gemma3:4b`) or an OpenRouter free model. Your texts go to the provider you chose; for private data use Ollama on your own server.
 
 ## 3. A queue, if the site is busy
 
