@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace Tests\Browser\Admin;
 
 use Atrium\Admin\Models\AdminUser;
+use Illuminate\Support\Facades\Cache;
 use Laravel\Dusk\Browser;
 use RuntimeException;
 use Symfony\Component\Process\Process;
@@ -153,6 +154,62 @@ final class AiHelperTest extends AdminTestCase
                     ->assertMissing('@ai-mascot');
             });
         });
+    }
+
+    public function test_a_public_demo_tells_visitors_not_to_type_personal_data(): void
+    {
+        $admin = $this->admin();
+
+        $this->withProvider(['ATRIUM_DEMO' => 'true'], function () use ($admin): void {
+            $this->browse(function (Browser $browser) use ($admin): void {
+                $this->openAdmin($browser, $admin)
+                    ->waitFor('@ai-mascot')
+                    ->click('@ai-mascot')
+                    ->waitFor('@ai-chat')
+                    ->assertSeeIn('@ai-demo-notice', 'This demo is public: do not type personal data');
+                $browser->screenshot('ai-helper/demo-notice');
+            });
+        });
+    }
+
+    public function test_a_site_that_is_not_a_demo_has_no_such_notice(): void
+    {
+        $admin = $this->admin();
+
+        $this->withProvider([], function () use ($admin): void {
+            $this->browse(function (Browser $browser) use ($admin): void {
+                $this->openAdmin($browser, $admin)
+                    ->waitFor('@ai-mascot')
+                    ->click('@ai-mascot')
+                    ->waitFor('@ai-chat')
+                    ->assertMissing('@ai-demo-notice');
+            });
+        });
+    }
+
+    public function test_the_helper_says_so_when_the_demo_s_daily_limit_is_used_up(): void
+    {
+        $admin = $this->admin();
+        Cache::store('file')->flush();
+
+        $this->withProvider(['ATRIUM_DEMO' => 'true', 'ATRIUM_AI_DEMO_DAILY_LIMIT' => '1', 'ATRIUM_AI_DEMO_STORE' => 'file'], function () use ($admin): void {
+            $this->browse(function (Browser $browser) use ($admin): void {
+                $this->openAdmin($browser, $admin)
+                    ->waitFor('@ai-mascot')
+                    ->click('@ai-mascot')
+                    ->waitFor('@ai-chat')
+                    ->type('@ai-input', 'First')
+                    ->click('@ai-send')
+                    ->waitFor('@ai-answer', 15)
+                    ->type('@ai-input', 'Second')
+                    ->click('@ai-send')
+                    ->waitFor('@ai-error', 15)
+                    ->assertSeeIn('@ai-error', 'The demo\'s daily AI limit is used up. Try again tomorrow.');
+            });
+        });
+
+        Cache::store('file')->flush();
+        $this->assertDatabaseCount('ai_usage', 1);
     }
 
     /**

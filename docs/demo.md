@@ -46,6 +46,12 @@ It refuses to run unless `ATRIUM_DEMO=true`, so on a real site it does nothing. 
 | `ATRIUM_DEMO_EMAIL` | `demo@atrium.test` | The visitor's sign-in |
 | `ATRIUM_DEMO_PASSWORD` | `demo` | Their password |
 | `ATRIUM_DEMO_RESET` | `0 * * * *` | When the scheduler resets the demo |
+| `ATRIUM_AI_DEMO_DAILY_LIMIT` | `40` | AI calls a day for the whole demo (`0` = no cap), see below |
+| `ATRIUM_AI_DEMO_STORE` | `file` | The cache store that keeps that count |
+
+### AI in the demo
+
+If the demo has the AI module (`alveby/atrium-ai`) and a provider key, mind the key's free quota: all visitors are one administrator, so nothing but a daily cap stops one of them from using it all. While `ATRIUM_DEMO=true` the module counts the calls of the whole site (the Generate dialog, the helper, the API and MCP) and, at `ATRIUM_AI_DEMO_DAILY_LIMIT`, says in the dialog that the day's limit is used up and answers the API with 429, without asking the provider. The count lives in the `file` cache store because the hourly reset empties the database (and a `database` cache with it). The dialog and the helper also tell visitors that the demo is public and personal data must not be typed in. See [ai.md](ai.md).
 
 ## Putting it on the internet
 

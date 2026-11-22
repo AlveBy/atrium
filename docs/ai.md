@@ -133,6 +133,10 @@ The question and what the helper reads (guide sections, records) go to the provi
 ATRIUM_AI_HELP=false
 ```
 
+## On a public demo
+
+With `ATRIUM_DEMO=true` ([demo.md](demo.md)) all visitors are one administrator. The module then gives the whole site `ATRIUM_AI_DEMO_DAILY_LIMIT` calls a day (40 by default, `0` = no cap), so that one visitor cannot use up the provider's free quota; when it is gone the dialog says so and the API answers 429. The dialog and the helper also say that the demo is public and personal data must not be typed in. Details: [packages/ai/README.md](../packages/ai/README.md#public-demo).
+
 ## When it does not answer
 
 | The dialog says | Why | What to do |
@@ -140,6 +144,7 @@ ATRIUM_AI_HELP=false
 | All AI providers are busy or over their free limit | Every provider in the chain answered with a limit or did not answer in time | Wait a minute, or add a second provider |
 | Fill in the name or the text first | The form has nothing to work from | Fill in the name or the text it should use |
 | Upload the image first | The alt text needs a picture saved on this site | Upload it; pictures on other sites are not fetched |
+| The demo's daily AI limit is used up | A public demo allows a fixed number of calls a day for all visitors | Try again tomorrow, or raise `ATRIUM_AI_DEMO_DAILY_LIMIT` |
 | The AI provider did not answer | Any other error: a wrong key, a model that does not exist | `storage/logs/laravel.log` has the details |
 
 No buttons at all: `php artisan atrium:ai:status` shows whether a provider has a key, and `ATRIUM_AI_ENABLED` must not be `false`.
