@@ -15,6 +15,7 @@ use Atrium\Admin\Fields\Field;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Hash;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 /**
@@ -48,6 +49,39 @@ final class ModelsTest extends TestCase
             ['id', 'name', 'active', 'updated_at'],
             array_map(fn ($column): string => $column->getName(), Article::getAdministrationListColumns()),
         );
+    }
+
+    /**
+     * @return array<string,array{string,string,string}>
+     */
+    public static function languages(): array
+    {
+        return [
+            'English' => ['en', 'Articles', 'Name'],
+            'German' => ['de', 'Artikel', 'Name'],
+            'Russian' => ['ru', 'Статьи', 'Название'],
+            'Ukrainian' => ['uk', 'Статті', 'Назва'],
+        ];
+    }
+
+    #[DataProvider('languages')]
+    public function test_the_article_speaks_the_language_of_the_page(string $locale, string $label, string $name): void
+    {
+        app()->setLocale($locale);
+
+        $this->assertSame($label, Article::getAdminLabel());
+        $this->assertSame($name, Article::getAdministrationFields()[0]->toArray()['label']);
+        $this->assertSame($name, Article::getAdministrationListColumns()[1]->toArray()['label']);
+    }
+
+    public function test_every_language_of_the_panel_has_its_word_for_articles(): void
+    {
+        foreach (array_keys((array) config('atrium.locales')) as $locale) {
+            $lines = require base_path("lang/{$locale}/articles.php");
+
+            $this->assertNotSame('', $lines['module'], $locale);
+            $this->assertSame(['module'], array_keys($lines), $locale);
+        }
     }
 
     public function test_two_articles_cannot_share_a_code(): void
