@@ -10,7 +10,7 @@ You need Docker. From a checkout of this repository:
 docker compose -f docker/demo/compose.yaml up --build
 ```
 
-Open <http://localhost:8000/admin> and sign in as `demo@atrium.test` with the password `demo`. The site itself is at <http://localhost:8000>.
+Open <http://localhost:8000/admin>. The sign-in page of a demo says how to get in: a note above the form shows the e-mail and the password (`demo@atrium.test` and `demo`, or what `ATRIUM_DEMO_EMAIL` and `ATRIUM_DEMO_PASSWORD` say), and both fields are already filled in, so one click on **Sign in** is enough. The note is in the language of the page and readable in all five themes (text 7.2:1 to 14.7:1 on its background, the frame at least 4.2:1 against the card). On any other site the page is as it was. The site itself is at <http://localhost:8000>.
 
 Without Compose:
 
@@ -26,9 +26,14 @@ The `demo` administrator is not a superadmin. Its role, "Demo", is made by the r
 - **Edits** the content of every module: products, news, pages, menus, FAQ, forms, team, SEO and the rest, with uploads (2 MB at most, five files in one request).
 - **Looks at** administrators, sites, languages, uptime checks and incidents, and changes none of them. These are the sections in `atrium.demo.read_only`.
 - **Has no** roles, API tokens, cache screen, module settings, Modules screen or backups.
-- **Cannot change** their own name, e-mail or password. The panel answers 403.
+- **Cannot change** their own name, e-mail or password. The panel answers 403, and so does the users list for the demo account itself (a second line of defence: the role has no right to edit administrators anyway).
+- **Cannot set up a second step of sign-in.** With `alveby/atrium-2fa` installed, the security page shows "Not available in the demo" instead of its forms, and the server answers 403 to every request that would add, confirm or remove an authenticator app, a passkey, a phone or the e-mail code, make new recovery codes, forget trusted devices, reset a person's factors or change the module's settings. Nothing is required of the demo account either, whatever the module's settings say. A visitor can therefore never lock the next one out. The log and the list of people stay readable.
 
-The sign-in code is off (`ATRIUM_2FA_ENABLED=false`), mail goes to the log, and nobody knows the password of the account the installer creates before the reset replaces it.
+The sign-in code is off (`ATRIUM_2FA_ENABLED=false`), mail goes to the log, and nobody knows the password of the account the installer creates before the reset replaces it. Signing in with a social account can be linked and unlinked in the profile of the demo, which cannot lock anybody out: the password is always there.
+
+## Languages
+
+The demo has three content languages, English, German and Russian, and two sites (the shop in English, the outlet in German). The news, pages, FAQ, team, menus and custom fields come in all three; the panel's own words and the demo's sample **Articles** model are in all 15 languages of the panel. The catalog (sections and products), the brands and the stores keep one plain text per record, as Bitrix does, so their names and descriptions stay in English until those modules get a column per language.
 
 ## The reset
 
@@ -42,7 +47,7 @@ It refuses to run unless `ATRIUM_DEMO=true`, so on a real site it does nothing. 
 
 | Variable | Default | |
 |---|---|---|
-| `ATRIUM_DEMO` | `false` | Demo mode: the reset works and the profile is locked |
+| `ATRIUM_DEMO` | `false` | Demo mode: the sign-in page shows the details, the reset works, the profile, module settings and the second step of sign-in are locked |
 | `ATRIUM_DEMO_EMAIL` | `demo@atrium.test` | The visitor's sign-in |
 | `ATRIUM_DEMO_PASSWORD` | `demo` | Their password |
 | `ATRIUM_DEMO_RESET` | `0 * * * *` | When the scheduler resets the demo |
