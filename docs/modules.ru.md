@@ -240,10 +240,11 @@ ContentField::make('detail_text')->label('Detail text')->tab('detail'),
 | `beforeAdminDelete(): bool` | Перед удалением, в той же транзакции; `false` отменяет |
 | `canEdit(): bool`, `canDelete(): bool` | Можно ли править или удалять эту запись |
 | `isCreatableInAdmin(): bool`, `isEditableInAdmin(): bool` (static) | `false` для записей, которые приходят извне, например заявок с форм: нет «Добавить» и «Сохранить», маршруты и API отвечают 403 |
+| `isImportableInAdmin(): bool`, `isExportableInAdmin(): bool` (static) | `false` — убрать модуль из импорта и выгрузки CSV и Excel; по умолчанию любой модуль выгружается, а импортируется, если его записи можно и создавать, и править. `getImportKeys(): array` — колонки, по которым запись находится снова. См. [Импорт и выгрузка](import-export.ru.md#для-авторов-модулей) |
 
 ## Права
 
-У каждого модуля четыре права по его ключу: `articles.view`, `articles.create`, `articles.update`, `articles.delete`. Они сами появляются в форме роли; по ним строятся меню, кнопки, API и инструменты MCP. У суперадмина есть все.
+У каждого модуля четыре права по его ключу: `articles.view`, `articles.create`, `articles.update`, `articles.delete`, а если модуль можно импортировать и выгружать, то и `articles.import` и `articles.export`. Они сами появляются в форме роли; по ним строятся меню, кнопки, API и инструменты MCP. У суперадмина есть все.
 
 Модуль-пакет, которому этого мало, объявляет свои права в манифесте:
 
