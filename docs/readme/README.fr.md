@@ -132,7 +132,7 @@ La base de données Bitrix est uniquement lue. Les onglets, l'ordre des champs e
 - [Recherche : la page de résultats, le champ de l'administration, ce qui est cherché et comment](../search.md)
 - [Votre module : champs, colonnes, onglets, droits, langues, tests, paquet](../modules.md)
 - [Champs personnalisés : ajouter des champs à tout module depuis l'administration, filtres et facettes sur 100 000 fiches](../custom-fields.md)
-- [Importer des produits : CSV et Excel, colonnes, une vérification avant l’écriture, la console et une planification](../catalog-import.md)
+- [Import et export : CSV et Excel pour tout module, colonnes, une vérification avant l’écriture, la console et une planification](../import-export.md)
 - [Cache : des pages rapides avec des dizaines de propriétés, Redis, cache de pages, en-têtes CDN](../cache.md)
 - [Migrer depuis 1C-Bitrix, pas à pas](../bitrix.md)
 - [Migrer depuis WordPress : connecter la base, migrer, contrôler, la carte des 301](../wordpress.md)

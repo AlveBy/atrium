@@ -143,7 +143,7 @@ After WordPress the order follows requests in Issues.
 **Running the shop**
 | Submodule | What it does |
 |---|---|
-| ~~Import~~ and export | Importing products from CSV and Excel is in the catalog already: columns guessed, a check before writing, a report by row, the console and a schedule ([docs/catalog-import.md](docs/catalog-import.md)). Still to do: export to CSV and Excel, stock by warehouse |
+| ~~Import and export~~ | Done: every module of the admin imports from and exports to CSV and Excel (columns guessed, a check before writing, a report by row, the console and a schedule; the catalog adds articles, sections and photos on top) — [docs/import-export.md](docs/import-export.md). Still to do: stock by warehouse |
 | Notifications | New orders and status changes to Telegram and e-mail for the staff |
 | Documents | Invoices, receipts and delivery notes for orders, from the Documents module (below) |
 | E-commerce analytics | Views, cart and purchases sent to Yandex Metrica and Google Analytics as e-commerce events |

@@ -132,7 +132,7 @@ Bitrix maʼlumotlar bazasi faqat oʻqiladi. Yorliqlar, maydonlar tartibi va roʻ
 - [Qidiruv: natijalar sahifasi, admin paneldagi qator, nima va qanday qidiriladi](../search.md)
 - [Oʻz modulingiz: maydonlar, ustunlar, yorliqlar, huquqlar, tillar, testlar, paket](../modules.md)
 - [Oʻz maydonlaringiz: istalgan modulga admin paneldan maydon qoʻshish, 100 000 yozuvda filtrlar va fasetlar](../custom-fields.md)
-- [Mahsulotlarni import qilish: CSV va Excel, ustunlar, yozishdan oldin tekshiruv, konsol va jadval](../catalog-import.md)
+- [Import va eksport: istalgan modul uchun CSV va Excel, ustunlar, yozishdan oldin tekshiruv, konsol va jadval](../import-export.md)
 - [Kesh: oʻnlab xususiyatli tez sahifalar, Redis, sahifalar keshi, CDN sarlavhalari](../cache.md)
 - [1C-Bitrixdan koʻchish, qadamma-qadam](../bitrix.md)
 - [WordPress’dan koʻchish: bazani ulash, koʻchirish, tekshirish, 301 xaritasi](../wordpress.md)

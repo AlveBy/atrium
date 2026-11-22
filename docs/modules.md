@@ -240,10 +240,11 @@ Rules come from the fields (`required()`, `unique()`, `rules()`). To replace the
 | `beforeAdminDelete(): bool` | Before deleting, in the same transaction; `false` cancels |
 | `canEdit(): bool`, `canDelete(): bool` | Whether this record may be edited or deleted |
 | `isCreatableInAdmin(): bool`, `isEditableInAdmin(): bool` (static) | `false` for records that come from elsewhere, such as form submissions: no "Add" or "Save", the routes and the API answer 403 |
+| `isImportableInAdmin(): bool`, `isExportableInAdmin(): bool` (static) | `false` to take the module out of the CSV and Excel import or export; by default every module can be exported, and imported when its records can be created and edited. `getImportKeys(): array` lists the columns that find a record again. See [Import and export](import-export.md#for-module-authors) |
 
 ## Permissions
 
-Every module gets four permissions by its key: `articles.view`, `articles.create`, `articles.update`, `articles.delete`. They appear in the role form by themselves; the menu, the buttons, the API and the MCP tools follow them. Superadmins have them all.
+Every module gets four permissions by its key: `articles.view`, `articles.create`, `articles.update`, `articles.delete`, and `articles.import` and `articles.export` when the module can be imported and exported. They appear in the role form by themselves; the menu, the buttons, the API and the MCP tools follow them. Superadmins have them all.
 
 A module package that checks more than that declares its own permissions in the manifest:
 

@@ -132,7 +132,7 @@ Die Bitrix-Datenbank wird nur gelesen. Tabs, Feldreihenfolge und Listenspalten k
 - [Suche: die Ergebnisseite, das Suchfeld im Admin-Bereich, was und wie gesucht wird](../search.md)
 - [Eigenes Modul: Felder, Spalten, Tabs, Rechte, Sprachen, Tests, als Paket](../modules.md)
 - [Eigene Felder: Felder für jedes Modul im Admin-Bereich anlegen, Filter und Facetten bei 100 000 Einträgen](../custom-fields.md)
-- [Produkte importieren: CSV und Excel, Spalten, eine Prüfung vor dem Schreiben, Konsole und Zeitplan](../catalog-import.md)
+- [Import und Export: CSV und Excel für jedes Modul, Spalten, eine Prüfung vor dem Schreiben, Konsole und Zeitplan](../import-export.md)
 - [Cache: schnelle Seiten mit Dutzenden Eigenschaften, Redis, Seiten-Cache, CDN-Header](../cache.md)
 - [Umzug von 1C-Bitrix, Schritt für Schritt](../bitrix.md)
 - [Umzug von WordPress: Datenbank verbinden, übertragen, prüfen, die 301-Karte](../wordpress.md)
