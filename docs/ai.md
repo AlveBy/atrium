@@ -125,7 +125,7 @@ Once a text provider has a key, every admin page has the Atrium arch in the bott
 - "How do I add a menu item?" It looks the answer up in these guides.
 - "How many products do we have?", "Find the news about the sale." It reads the records and links to them.
 
-It reads only the modules you may open, and it changes nothing. The conversation stays while the tab is open; **New conversation** starts over.
+It answers in the language you asked in, whatever the language of the panel. It reads only the modules you may open, and it changes nothing. With the monitoring module installed it can also tell how fast the site is. The conversation stays while the tab is open; **New conversation** starts over.
 
 The question and what the helper reads (guide sections, records) go to the provider. On a site with private data use Ollama or a paid key, or turn it off:
 

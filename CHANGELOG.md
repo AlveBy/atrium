@@ -17,6 +17,8 @@ All notable changes are listed here. The format follows [Keep a Changelog](https
 - SEO: before any site is saved (a fresh install, a demo in the middle of `atrium:demo:reset`) every page answered 500 with `RedirectMap::build(): Argument #1 ($siteId) must be of type int, null given`; now nothing redirects and no 404 is logged until there is a site.
 - `docker compose up` stopped at `composer install` asking for ext-ftp, and then for ext-intl: the image now has both, which the backup module's FTP destination and the SEO module need.
 - `composer install` in a checkout printed six "does not comply with psr-4" warnings for two test fixtures that stand in for classes of other namespaces; they are left out of the classmap now.
+- AI helper: it answers in the language of the question, not of the panel (a Russian question in an English demo was answered in English); the panel's language is the fallback when the question's cannot be told.
+- AI helper: it can tell how fast the site is. The monitoring module adds the tool `site_speed` to the helper (through `atrium-ai.help.tools`, only when the AI module is there): the response and database time, the share of failed requests and the slowest pages of the last days, for an administrator who may open the monitoring screen.
 
 ## [0.1.0] - 2026-11-20
 

@@ -84,6 +84,10 @@ Numbers are written the way the panel's language writes them: `2.91 s` in Englis
 
 The dashboard tile **Speed and uptime** shows the Web Vitals at p75 over 7 days, uptime over 30 days, what is down right now and the five slowest routes. It is shown only to those who may open the screen.
 
+## Ask the helper
+
+With the AI module (`alveby/atrium-ai`) installed, the helper in the corner of the admin has one more tool, `site_speed`. Ask "how fast is the site?" or "which pages are slowest this week?": it answers from the same numbers as the screen, for the last 7 days or the number you name (up to 90). The tool gives the server response time (average, median and p95), the database time, the share of failed requests, the five slowest routes and a link to the screen. It is offered only for an administrator who may open the screen (`monitoring.view`); to anyone else it says so and shows no number.
+
 ## Uptime and alerts
 
 Every minute (`atrium:monitoring:uptime`):
