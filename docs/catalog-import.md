@@ -45,7 +45,7 @@ Values:
 - **An empty cell leaves the field as it is.** To keep a product's price, leave the cell empty; nothing is erased by accident.
 - Numbers: `1 299,50`, `1,299.50` and `1.299,50` are all 1299.50.
 - Yes and no: `1`/`0`, `yes`/`no`, `да`/`нет`, `true`/`false`, `Y`/`N`, `+`/`-`.
-- Dates: `2026-03-05`, `05.03.2026`, `05/03/2026`, with a time when the field has one; Excel dates are read as dates.
+- Dates: `2026-03-05`, `05.03.2026`, `05/03/2026`, with a time when the field has one (a date-only field drops it); Excel dates are read as dates.
 - Several values in a cell (colours, features): separated by `|` or new lines. Photos also by commas, spaces or `;`.
 
 ## Finding products again
