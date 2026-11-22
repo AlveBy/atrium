@@ -2,7 +2,7 @@
 
 [English](../../README.md) · [Русский](README.ru.md) · [Українська](README.uk.md) · [Беларуская](README.be.md) · [Қазақша](README.kk.md) · [Oʻzbekcha](README.uz.md) · [Deutsch](README.de.md) · [Français](README.fr.md) · [Español](README.es.md) · [Português (Brasil)](README.pt-BR.md) · [Italiano](README.it.md) · [Polski](README.pl.md) · [Türkçe](README.tr.md) · [简体中文](README.zh-CN.md) · **日本語**
 
-[![tests](https://github.com/AlveBy/atrium/actions/workflows/tests.yml/badge.svg)](https://github.com/AlveBy/atrium/actions/workflows/tests.yml)
+[![tests](https://github.com/AlveBy/atrium/actions/workflows/tests.yml/badge.svg)](https://github.com/AlveBy/atrium/actions/workflows/tests.yml) [![coverage 100%](https://img.shields.io/badge/coverage-100%25-brightgreen)](../testing.md)
 
 _このページは英語から機械翻訳されました。修正を歓迎します。詳しくは [CONTRIBUTING.md](../../CONTRIBUTING.md) をご覧ください。_
 
@@ -38,6 +38,17 @@ _このページは英語から機械翻訳されました。修正を歓迎し�
 | サイト（ライトテーマ） | サイト（ダークテーマ） |
 |---|---|
 | ![サイト（ライトテーマ）](../images/site-light.webp) | ![サイト（ダークテーマ）](../images/site-dark.webp) |
+
+## 品質
+
+- プルリクエストごとに 6,500 件以上の PHPUnit テストと 80 件以上の Laravel Dusk ブラウザテストが実行されます。
+- SQLite、MySQL、PostgreSQL 上で、PHP 8.3 と 8.4 を使って。
+- すべてのパッケージで行カバレッジは 100% で、テストのない行を残す変更は CI が受け付けません。
+- 変更したコードにはミューテーションスコア 100% が必要です。Infection が変更行をひとつずつ書き換え、そのたびにどれかのテストが失敗しなければなりません。
+- これらのチェックに例外はありません。無視用のアノテーションも、無効化したミューテーターもありません。
+- push のたびに、既知の脆弱性を持つ依存関係と、git 履歴に残った秘密情報を検査します。
+
+[テストとチェックの仕組み](../testing.md).
 
 ## 試してみる
 

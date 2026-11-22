@@ -2,7 +2,7 @@
 
 **English** · [Русский](docs/readme/README.ru.md) · [Українська](docs/readme/README.uk.md) · [Беларуская](docs/readme/README.be.md) · [Қазақша](docs/readme/README.kk.md) · [Oʻzbekcha](docs/readme/README.uz.md) · [Deutsch](docs/readme/README.de.md) · [Français](docs/readme/README.fr.md) · [Español](docs/readme/README.es.md) · [Português (Brasil)](docs/readme/README.pt-BR.md) · [Italiano](docs/readme/README.it.md) · [Polski](docs/readme/README.pl.md) · [Türkçe](docs/readme/README.tr.md) · [简体中文](docs/readme/README.zh-CN.md) · [日本語](docs/readme/README.ja.md)
 
-[![tests](https://github.com/AlveBy/atrium/actions/workflows/tests.yml/badge.svg)](https://github.com/AlveBy/atrium/actions/workflows/tests.yml)
+[![tests](https://github.com/AlveBy/atrium/actions/workflows/tests.yml/badge.svg)](https://github.com/AlveBy/atrium/actions/workflows/tests.yml) [![coverage 100%](https://img.shields.io/badge/coverage-100%25-brightgreen)](docs/testing.md)
 
 One admin panel for any number of multilingual sites, built on Laravel 13, with a migrator that moves an existing 1C-Bitrix site over.
 
@@ -34,6 +34,17 @@ You describe a module once, as a model with its fields and list columns. Atrium 
 | The site, light theme | The site, dark theme |
 |---|---|
 | ![The site, light theme](docs/images/site-light.webp) | ![The site, dark theme](docs/images/site-dark.webp) |
+
+## Quality
+
+- More than 6,500 PHPUnit tests and more than 80 browser tests on Laravel Dusk run on every pull request.
+- On SQLite, MySQL and PostgreSQL, under PHP 8.3 and 8.4.
+- Every package has 100% of its lines covered, and CI refuses a change that leaves a line without a test.
+- Changed code needs a mutation score of 100%: Infection alters each changed line, and a test has to fail for every alteration.
+- Nothing is excluded from these gates: no ignore annotations, no skipped mutators.
+- Every push is checked for dependencies with known vulnerabilities and for secrets in the git history.
+
+[How the tests and the gates work](docs/testing.md).
 
 ## Try it
 

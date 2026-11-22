@@ -2,7 +2,7 @@
 
 [English](../../README.md) · [Русский](README.ru.md) · [Українська](README.uk.md) · [Беларуская](README.be.md) · [Қазақша](README.kk.md) · **Oʻzbekcha** · [Deutsch](README.de.md) · [Français](README.fr.md) · [Español](README.es.md) · [Português (Brasil)](README.pt-BR.md) · [Italiano](README.it.md) · [Polski](README.pl.md) · [Türkçe](README.tr.md) · [简体中文](README.zh-CN.md) · [日本語](README.ja.md)
 
-[![tests](https://github.com/AlveBy/atrium/actions/workflows/tests.yml/badge.svg)](https://github.com/AlveBy/atrium/actions/workflows/tests.yml)
+[![tests](https://github.com/AlveBy/atrium/actions/workflows/tests.yml/badge.svg)](https://github.com/AlveBy/atrium/actions/workflows/tests.yml) [![coverage 100%](https://img.shields.io/badge/coverage-100%25-brightgreen)](../testing.md)
 
 _Bu sahifa ingliz tilidan mashina yordamida tarjima qilingan. Tuzatishlar mamnuniyat bilan qabul qilinadi, batafsil: [CONTRIBUTING.md](../../CONTRIBUTING.md)._
 
@@ -38,6 +38,17 @@ Modul bir marta tavsiflanadi: maydonlari va roʻyxat ustunlari bilan model sifat
 | Sayt, yorug' mavzu | Sayt, qorong'i mavzu |
 |---|---|
 | ![Sayt, yorug' mavzu](../images/site-light.webp) | ![Sayt, qorong'i mavzu](../images/site-dark.webp) |
+
+## Sifat
+
+- Har bir pull requestda 6500 dan ortiq PHPUnit testi va Laravel Duskdagi 80 dan ortiq brauzer testi ishga tushadi.
+- SQLite, MySQL va PostgreSQLda, PHP 8.3 va 8.4 ostida.
+- Har bir paket satrlarining 100% i testlar bilan qoplangan, CI esa biror satrni testsiz qoldiradigan oʻzgarishni oʻtkazmaydi.
+- Oʻzgartirilgan kod mutatsion testdan 100% oʻtishi kerak: Infection har bir oʻzgartirilgan satrni buzadi va har bir buzilishda bitta test yiqilishi kerak.
+- Bu tekshiruvlardan hech narsa chiqarib tashlanmagan: «tekshirmaslik» belgilari ham, oʻchirilgan mutatorlar ham yoʻq.
+- Har bir push maʼlum zaifliklari bor bogʻliqliklarga va git tarixidagi parol va kalitlarga tekshiriladi.
+
+[Testlar va tekshiruvlar qanday ishlaydi](../testing.md).
 
 ## Sinab koʻrish
 

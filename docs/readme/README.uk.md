@@ -2,7 +2,7 @@
 
 [English](../../README.md) · [Русский](README.ru.md) · **Українська** · [Беларуская](README.be.md) · [Қазақша](README.kk.md) · [Oʻzbekcha](README.uz.md) · [Deutsch](README.de.md) · [Français](README.fr.md) · [Español](README.es.md) · [Português (Brasil)](README.pt-BR.md) · [Italiano](README.it.md) · [Polski](README.pl.md) · [Türkçe](README.tr.md) · [简体中文](README.zh-CN.md) · [日本語](README.ja.md)
 
-[![tests](https://github.com/AlveBy/atrium/actions/workflows/tests.yml/badge.svg)](https://github.com/AlveBy/atrium/actions/workflows/tests.yml)
+[![tests](https://github.com/AlveBy/atrium/actions/workflows/tests.yml/badge.svg)](https://github.com/AlveBy/atrium/actions/workflows/tests.yml) [![coverage 100%](https://img.shields.io/badge/coverage-100%25-brightgreen)](../testing.md)
 
 _Цю сторінку перекладено з англійської машинно. Виправлення вітаються, див. [CONTRIBUTING.md](../../CONTRIBUTING.md)._
 
@@ -38,6 +38,17 @@ _Цю сторінку перекладено з англійської маши
 | Сайт, світла тема | Сайт, темна тема |
 |---|---|
 | ![Сайт, світла тема](../images/site-light.webp) | ![Сайт, темна тема](../images/site-dark.webp) |
+
+## Якість
+
+- Понад 6500 тестів PHPUnit і понад 80 браузерних тестів на Laravel Dusk запускаються на кожному pull request.
+- На SQLite, MySQL і PostgreSQL, під PHP 8.3 і 8.4.
+- У кожного пакета тестами покрито 100% рядків, і CI не пропустить зміну, після якої хоч один рядок лишився без тесту.
+- Змінений код має пройти мутаційне тестування на 100%: Infection псує кожен змінений рядок, і на кожне псування має впасти тест.
+- З цих перевірок нічого не виключено: ні позначок «не перевіряти», ні вимкнених мутаторів.
+- Кожен push перевіряється на залежності з відомими вразливостями та на паролі й ключі в історії git.
+
+[Як влаштовані тести й перевірки](../testing.md).
 
 ## Спробувати
 

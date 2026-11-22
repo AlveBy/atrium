@@ -2,7 +2,7 @@
 
 [English](../../README.md) · [Русский](README.ru.md) · [Українська](README.uk.md) · [Беларуская](README.be.md) · [Қазақша](README.kk.md) · [Oʻzbekcha](README.uz.md) · [Deutsch](README.de.md) · [Français](README.fr.md) · **Español** · [Português (Brasil)](README.pt-BR.md) · [Italiano](README.it.md) · [Polski](README.pl.md) · [Türkçe](README.tr.md) · [简体中文](README.zh-CN.md) · [日本語](README.ja.md)
 
-[![tests](https://github.com/AlveBy/atrium/actions/workflows/tests.yml/badge.svg)](https://github.com/AlveBy/atrium/actions/workflows/tests.yml)
+[![tests](https://github.com/AlveBy/atrium/actions/workflows/tests.yml/badge.svg)](https://github.com/AlveBy/atrium/actions/workflows/tests.yml) [![coverage 100%](https://img.shields.io/badge/coverage-100%25-brightgreen)](../testing.md)
 
 _Esta página es una traducción automática del inglés. Las correcciones son bienvenidas: consulta [CONTRIBUTING.md](../../CONTRIBUTING.md) (en inglés)._
 
@@ -38,6 +38,17 @@ Describes un módulo una sola vez, como un modelo con sus campos y las columnas 
 | El sitio, tema claro | El sitio, tema oscuro |
 |---|---|
 | ![El sitio, tema claro](../images/site-light.webp) | ![El sitio, tema oscuro](../images/site-dark.webp) |
+
+## Calidad
+
+- Más de 6500 pruebas de PHPUnit y más de 80 pruebas de navegador con Laravel Dusk se ejecutan en cada pull request.
+- En SQLite, MySQL y PostgreSQL, con PHP 8.3 y 8.4.
+- Cada paquete tiene el 100 % de sus líneas cubiertas, y la CI rechaza un cambio que deje una línea sin prueba.
+- El código modificado necesita una puntuación de mutación del 100 %: Infection altera cada línea cambiada y una prueba debe fallar con cada alteración.
+- Nada queda fuera de estos controles: ni anotaciones para ignorar, ni mutadores desactivados.
+- Cada push se revisa en busca de dependencias con vulnerabilidades conocidas y de secretos en el historial de git.
+
+[Cómo funcionan las pruebas y los controles](../testing.md).
 
 ## Pruébalo
 

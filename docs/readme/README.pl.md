@@ -2,7 +2,7 @@
 
 [English](../../README.md) · [Русский](README.ru.md) · [Українська](README.uk.md) · [Беларуская](README.be.md) · [Қазақша](README.kk.md) · [Oʻzbekcha](README.uz.md) · [Deutsch](README.de.md) · [Français](README.fr.md) · [Español](README.es.md) · [Português (Brasil)](README.pt-BR.md) · [Italiano](README.it.md) · **Polski** · [Türkçe](README.tr.md) · [简体中文](README.zh-CN.md) · [日本語](README.ja.md)
 
-[![tests](https://github.com/AlveBy/atrium/actions/workflows/tests.yml/badge.svg)](https://github.com/AlveBy/atrium/actions/workflows/tests.yml)
+[![tests](https://github.com/AlveBy/atrium/actions/workflows/tests.yml/badge.svg)](https://github.com/AlveBy/atrium/actions/workflows/tests.yml) [![coverage 100%](https://img.shields.io/badge/coverage-100%25-brightgreen)](../testing.md)
 
 _Ta strona została przetłumaczona maszynowo z angielskiego. Poprawki są mile widziane, zobacz [CONTRIBUTING.md](../../CONTRIBUTING.md)._
 
@@ -38,6 +38,17 @@ Moduł opisujesz raz: jako model z jego polami i kolumnami listy. Atrium daje mu
 | Strona, jasny motyw | Strona, ciemny motyw |
 |---|---|
 | ![Strona, jasny motyw](../images/site-light.webp) | ![Strona, ciemny motyw](../images/site-dark.webp) |
+
+## Jakość
+
+- Ponad 6500 testów PHPUnit i ponad 80 testów przeglądarkowych w Laravel Dusk uruchamia się przy każdym pull requeście.
+- Na SQLite, MySQL i PostgreSQL, pod PHP 8.3 i 8.4.
+- Każdy pakiet ma pokryte testami 100% linii, a CI odrzuca zmianę, po której choć jedna linia zostaje bez testu.
+- Zmieniony kod musi mieć 100% w testach mutacyjnych: Infection psuje każdą zmienioną linię i przy każdym zepsuciu musi paść jakiś test.
+- Nic nie jest wyłączone z tych kontroli: żadnych adnotacji pomijania, żadnych wyłączonych mutatorów.
+- Każdy push jest sprawdzany pod kątem zależności ze znanymi lukami i sekretów w historii git.
+
+[Jak działają testy i kontrole](../testing.md).
 
 ## Wypróbuj
 
