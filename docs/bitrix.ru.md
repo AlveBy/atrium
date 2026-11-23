@@ -80,15 +80,19 @@ php artisan atrium:bitrix:migrate:medialibrary
 
 `migrate:sites` переносит сайты (`b_lang`) с их доменами. `DIR` сайта становится его папкой: `/site2/` открывает сайт по адресу `example.com/site2/`, как раньше. Сайт по умолчанию в Atrium живёт в корне; если в Битриксе он лежит в папке (`/ru/`), команда предупредит, и для старых адресов нужен редирект.
 
-Модели появятся в `app/Models`. Те, что нужны редакторам, перечислите в `config/atrium.php` → `resources`, и они окажутся в меню админки:
+Модели появятся в `app/Models`, и `generate:models` сам впишет каждую в `config/atrium.php` → `resources`, так что они сразу окажутся в меню админки: модель элементов каждого инфоблока, модель разделов, если у инфоблока есть разделы, и модели highload-справочников (`app/Models/References`) — редакторы добавляют туда бренд или цвет, как делали это в разделе «Highload-блоки» Битрикса. Новые строки встают в начало списка в том порядке, в каком созданы модели; ваши строки и комментарии остаются как были:
 
 ```php
 'resources' => [
-    App\Models\News::class,
-    App\Models\Catalog::class,
-    App\Models\CatalogSection::class,
+    \App\Models\News::class,
+    \App\Models\Catalog::class,
+    \App\Models\CatalogSection::class,
+    \App\Models\References\Brands::class,
+    App\Models\Article::class,
 ],
 ```
+
+Модель, которая уже есть в списке, второй раз не добавится — и при следующих запусках тоже. Чтобы убрать модель из меню насовсем, закомментируйте её строку (`// \App\Models\References\Brands::class,`): закомментированная строка считается вписанной. С `--dry-run` команда только скажет, что добавила бы. Если `config/atrium.php` ещё не опубликован (`php artisan atrium:install`), команда напечатает строки, которые надо вписать вручную.
 
 Сгенерированные модели перегенерируют, а не правят руками: то, что вы меняете сознательно, пишется в `config/atrium-bitrix.php` (`extra_fields`, `hidden_list_columns`, `extra_list_columns`), а после перегенерации смотрите `git diff app/Models`.
 
