@@ -127,6 +127,8 @@ Once a text provider has a key, every admin page has the Atrium arch in the bott
 
 It reads only the modules you may open, and it changes nothing. The conversation stays while the tab is open; **New conversation** starts over.
 
+The arch shows what it is doing. It raises its brows while it thinks, smiles when the answer comes and looks sorry when it cannot answer. It holds a magnifier while it looks through the records and puts on glasses for the guides. When a field is being written it picks up a pencil, and around the New Year it wears a hat. Now and then it yawns, looks around or hops. It never opens or speaks on its own. With reduced motion switched on in the system it stays still, and only its face changes. A screen reader hears what it is doing. **Modules → AI → Playful helper** turns all of this off and leaves the calm arch.
+
 The question and what the helper reads (guide sections, records) go to the provider. On a site with private data use Ollama or a paid key, or turn it off:
 
 ```dotenv
