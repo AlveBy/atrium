@@ -11,6 +11,7 @@ namespace Tests\Browser\Admin;
 
 use Atrium\Admin\Models\AdminUser;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
 abstract class AdminTestCase extends DuskTestCase
@@ -46,6 +47,18 @@ abstract class AdminTestCase extends DuskTestCase
         $admin->forceFill(['is_superadmin' => true])->save();
 
         return $admin;
+    }
+
+    /**
+     * The page sits inside the panel: the sidebar with its menu is there and
+     * the entry of the page is the selected one.
+     */
+    protected function assertInPanel(Browser $browser, string $menuRoute): void
+    {
+        $browser->waitFor('aside nav')
+            ->assertPresent('aside [data-menu-route="admin.dashboard"]')
+            ->assertPresent('aside [data-menu-route="'.$menuRoute.'"][aria-current="page"]')
+            ->assertPresent('[data-page-content]');
     }
 
     /**
