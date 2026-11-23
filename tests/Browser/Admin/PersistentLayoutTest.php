@@ -20,6 +20,20 @@ use Laravel\Dusk\Browser;
  */
 final class PersistentLayoutTest extends AdminTestCase
 {
+    /**
+     * Menu entries that open a plain HTML screen, so a whole page load: the
+     * two-factor and social-login modules' own screens (both answer a visit
+     * with "load this address as a page", ReloadInertiaVisits). Remove them
+     * as the screens become pages of the panel.
+     */
+    private const HTML_SCREENS = [
+        'admin.two-factor.security',
+        'admin.two-factor.log',
+        'admin.two-factor.users',
+        'admin.social.accounts',
+        'admin.social.providers',
+    ];
+
     public function test_the_menu_keeps_its_scroll_and_its_open_groups_and_the_active_entry_follows(): void
     {
         $admin = $this->admin();
@@ -148,6 +162,79 @@ final class PersistentLayoutTest extends AdminTestCase
                 ->assertScript('return document.querySelectorAll("header").length;', 1)
                 ->assertScript('return document.querySelectorAll("[data-page-content]").length;', 1)
                 ->assertScript('return document.querySelectorAll("[data-sidebar-brand]").length;', 1);
+        });
+    }
+
+    /**
+     * "The page reloads on every click": a real reload loses what the page
+     * holds in memory, a visit does not. Every entry of the menu, groups
+     * opened, is clicked; a marker set on the window must survive each click,
+     * and the click must go out as an Inertia request, not as a page load.
+     *
+     * Entries of a module whose screens are plain HTML (not Inertia pages)
+     * are loaded as whole pages on purpose; they are listed here, and the
+     * list must be exactly them: a screen moved into the panel has to leave
+     * it, a new entry that reloads fails the test.
+     */
+    public function test_every_entry_of_the_menu_is_a_visit_and_not_a_page_load(): void
+    {
+        $admin = $this->admin();
+
+        $this->browse(function (Browser $browser) use ($admin): void {
+            $prepare = function () use ($browser): array {
+                $browser->visit('/admin')->waitFor('aside nav');
+                $browser->script('document.querySelectorAll("aside nav button[aria-expanded=false]").forEach((b) => b.click());');
+
+                // Both ways a request can leave the page are watched for the header.
+                $browser->script(<<<'JS'
+                    window.__marker = 1;
+                    window.__inertia = [];
+                    const open = XMLHttpRequest.prototype.open;
+                    const header = XMLHttpRequest.prototype.setRequestHeader;
+                    XMLHttpRequest.prototype.open = function (...args) { this.__url = args[1]; return open.apply(this, args); };
+                    XMLHttpRequest.prototype.setRequestHeader = function (name, value) {
+                        if (name.toLowerCase() === 'x-inertia') window.__inertia.push(this.__url);
+                        return header.call(this, name, value);
+                    };
+                    const request = window.fetch;
+                    window.fetch = function (input, init) {
+                        const headers = new Headers((init && init.headers) || (input && input.headers) || {});
+                        if (headers.has('x-inertia')) window.__inertia.push(String(input.url || input));
+                        return request.apply(this, arguments);
+                    };
+                JS);
+
+                return $browser->script('return [...document.querySelectorAll("aside nav a[data-menu-route]")].map((a) => a.dataset.menuRoute);')[0];
+            };
+
+            $browser->resize(1440, 1400)->loginAs($admin, 'admin');
+            $routes = $prepare();
+            $this->assertGreaterThan(5, count($routes));
+
+            $reloaded = [];
+
+            foreach ($routes as $route) {
+                $selector = "aside a[data-menu-route=\"{$route}\"]";
+                $before = $browser->script('return window.__inertia.length;')[0];
+
+                // Groups the frame closed again would hide the entry.
+                $browser->script('document.querySelectorAll("aside nav button[aria-expanded=false]").forEach((b) => b.click());');
+                $browser->click($selector)->waitUsing(10, 100, fn () => $browser->script(
+                    "return window.__marker === undefined || document.querySelector('{$selector}')?.getAttribute('aria-current') === 'page';"
+                )[0] === true);
+
+                if ($browser->script('return window.__marker ?? null;') === [null]) {
+                    // A whole page was loaded: the marker is gone with the old one.
+                    $reloaded[] = $route;
+                    $prepare();
+
+                    continue;
+                }
+
+                $this->assertGreaterThan($before, $browser->script('return window.__inertia.length;')[0], "{$route} did not go out as an Inertia request");
+            }
+
+            $this->assertSame(self::HTML_SCREENS, $reloaded);
         });
     }
 
