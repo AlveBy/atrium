@@ -16,6 +16,7 @@ use Atrium\Admin\Modules\Module;
 use Atrium\Admin\Support\Menu as AdminMenu;
 use Atrium\Errors\Contracts\ErrorReporter;
 use Atrium\Errors\Dashboard\ErrorsGadget;
+use Atrium\Errors\ErrorsServiceProvider;
 use Atrium\Errors\ErrorsSettings;
 use Atrium\Errors\Event;
 use Atrium\Errors\Menu;
@@ -358,6 +359,14 @@ final class AdminTest extends TestCase
     {
         $this->assertSame('atrium-errors::errors.alerts.purpose', config('atrium-mail.purposes.errors'));
         $this->assertSame('Error alerts', __(config('atrium-mail.purposes.errors')));
+    }
+
+    public function test_the_tile_is_on_the_dashboard_once_after_config_cache(): void
+    {
+        // A cached config already holds the tile: booting on top of it must not add it again.
+        $this->app->getProvider(ErrorsServiceProvider::class)->boot();
+
+        $this->assertSame(1, array_count_values((array) config('atrium.dashboard.gadgets'))[ErrorsGadget::class]);
     }
 }
 

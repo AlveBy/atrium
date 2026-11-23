@@ -228,10 +228,10 @@ final class EventSchema implements SchemaProvider
 }
 ```
 
-Register it in the module's service provider. Pushing a class name loads nothing. The class is only resolved when the SEO module is installed and a page is drawn, so your module does not depend on it:
+Register it in the module's service provider: `ConfigList::add()` adds it once, where a plain `config()->push()` would add it again after `config:cache`. Adding a class name loads nothing. The class is only resolved when the SEO module is installed and a page is drawn, so your module does not depend on it:
 
 ```php
-config()->push('atrium-seo.schema', EventSchema::class);
+\Atrium\Admin\Support\ConfigList::add('atrium-seo.schema', EventSchema::class);
 ```
 
 What `SeoPage` gives a provider:
@@ -459,7 +459,7 @@ final class CalendarDays implements SitemapSource
     }
 }
 
-config()->push('atrium-seo.sitemap_sources', CalendarDays::class);
+\Atrium\Admin\Support\ConfigList::add('atrium-seo.sitemap_sources', CalendarDays::class);
 ```
 
 **Hooks** the module uses, for a module of your own to meet it without depending on it:
