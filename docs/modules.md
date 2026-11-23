@@ -544,8 +544,9 @@ The core fires these:
 
 | Hook | Kind | Arguments | When |
 |---|---|---|---|
-| `atrium.record.data` | filter | `array $data`, `Model $record`, `string $context` (`create` or `edit`) | A record is saved in the panel or through the API, after `transformAdminData()` and before `fill()` |
+| `atrium.record.data` | filter | `array $data`, `Model $record`, `string $context` (`create` or `edit`) | A record is saved in the panel, through the API or MCP, after `transformAdminData()` and before `fill()`; throw `Refused` to keep it unsaved |
 | `atrium.record.saved` | action | `Model $record`, `string $context` | After it is saved, its relations synced and `afterAdminSave()` run, once the transaction is committed |
+| `atrium.record.deleting` | action | `Model $record` | Before a record is deleted in the panel, through the API, MCP or the bulk **Delete**, inside the transaction and before `beforeAdminDelete()`; throw `Refused` to keep it |
 | `atrium.record.deleted` | action | `Model $record` | After a record is deleted in the panel or through the API, once the transaction is committed |
 | `atrium.admin.menu` | filter | `array $items`, `?AdminUser $user` | The panel's menu is built; an item is `['label' => ..., 'route' => ..., 'icon' => ...]`, and items the user may not open are dropped afterwards |
 | `atrium.record.present` | filter | `array $data`, `Model $record`, `string $context` (`form` or `list`) | A record is handed to the edit form or to a list row, the API's included |
@@ -562,6 +563,32 @@ The core fires these:
 | `atrium.module.removed` | action | `string $package`, `bool $dataDropped` | `atrium:module:remove` has taken it out |
 | `atrium.module.enabled` | action | `Module $module` | a superadmin has switched it on |
 | `atrium.module.disabled` | action | `Module $module` | a superadmin has switched it off |
+
+### Saying no before a save or a delete
+
+`atrium.record.data` and `atrium.record.deleting` run before anything is written, so a module may refuse there: throw `Atrium\Admin\Hooks\Refused` with a message for the person who pressed the button.
+
+```php
+use Atrium\Admin\Hooks\Refused;
+
+// Nothing is saved: the form shows the message under the field, the API answers 422.
+Hook::filter('atrium.record.data', function (array $data, Model $record, string $context): array {
+    if ($record instanceof Product && $context === 'create' && Product::query()->where('sku', $data['sku'] ?? null)->exists()) {
+        throw new Refused(__('shop::products.sku_taken'), 'sku');
+    }
+
+    return $data;
+});
+
+// The record stays: the list shows the message, the API answers 409.
+Hook::on('atrium.record.deleting', function (Model $record): void {
+    if ($record instanceof Customer && $record->orders()->open()->exists()) {
+        throw new Refused(__('shop::customers.has_open_orders'));
+    }
+});
+```
+
+Without a field the panel shows the message above the form. MCP returns the message to the assistant as the API does, and the bulk **Delete** keeps the refused records and adds each reason once to its message. `atrium.record.deleting` runs inside the delete's transaction, so what its listener writes is rolled back with a refusal. Any other exception is an error, not a refusal.
 
 The record hooks see only what the panel and the API save; a seeder or an import that writes with Eloquent does not fire them (listen to Eloquent's own events for that).
 
