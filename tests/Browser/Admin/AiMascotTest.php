@@ -166,8 +166,11 @@ final class AiMascotTest extends AdminTestCase
                     ->waitFor('@ai-mascot')
                     ->assertMissing('@ai-mascot-face [data-costume="pencil"]');
 
-                // The field may sit on a tab of its own: the button is pressed where it is.
-                $browser->script('document.querySelector("[data-ai-generate]").click();');
+                // The field may sit on a tab of its own: the buttons are pressed where they are.
+                // A visual editor keeps Generate in the AI menu of its toolbar.
+                $browser->script('document.querySelector("[data-ai-toolbar]").click();');
+                $browser->waitUntil('document.querySelector(\'[data-ai-item="generate"]\') !== null');
+                $browser->script('document.querySelector(\'[data-ai-item="generate"]\').click();');
 
                 $browser->waitFor('[dusk="ai-mascot-face"][data-prop="pencil"]')
                     ->assertPresent('@ai-mascot-face [data-costume="pencil"]')
