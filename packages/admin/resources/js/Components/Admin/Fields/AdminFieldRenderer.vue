@@ -19,6 +19,7 @@ import MultiSelectField from './MultiSelectField.vue'
 import MapField from './MapField.vue'
 import TreeField from './TreeField.vue'
 import LinkField from './LinkField.vue'
+import FormBuilderField from './FormBuilderField.vue'
 import FileManager from '../FileManager.vue'
 import { ajaxHeaders, sessionExpiredMessage } from '../../../Support/csrf'
 import { t } from '@atrium/Support/i18n'
@@ -53,6 +54,7 @@ const fieldComponents = {
     map: markRaw(MapField),
     tree: markRaw(TreeField),
     link: markRaw(LinkField),
+    formBuilder: markRaw(FormBuilderField),
 }
 
 // Check if field has a specialized component
