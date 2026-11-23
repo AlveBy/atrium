@@ -24,7 +24,7 @@ php artisan atrium:make-module Article
 php artisan migrate
 ```
 
-This writes `app/Models/Article.php`, a migration for `articles` and a line in `config/atrium.php`. "Articles" appears in the menu at `/admin/articles`. `--label="News"` names it in the menu, `--no-migration` skips the migration.
+This writes `app/Models/Article.php`, a migration for `articles` and a line in `config/atrium.php`. "Articles" appears in the menu at `/admin/articles`. `--label="News"` names it in the menu, `--no-migration` skips the migration. The name is written to `lang/en/articles.php` (the fallback language) and the model reads it with `__('articles.module')`: add `lang/ru/articles.php` with `'module' => 'Статьи'` and the menu speaks Russian to a Russian-speaking admin. The labels of the standard fields come from the panel's own language files, in all 15 languages.
 
 The generated model is a starting point; everything in it can be changed:
 
@@ -39,28 +39,28 @@ class Article extends Model implements Administrable
 
     public static function getAdminLabel(): string
     {
-        return 'Articles';
+        return __('articles.module');
     }
 
     public static function getAdministrationFields(): array
     {
         return [
-            TextField::make('name')->label('Name')->required(),
-            SlugField::make('code')->label('Code')->from('name')->unique('articles', 'code'),
-            CheckboxField::make('active')->label('Active')->default(true),
-            NumberField::make('sort')->label('Sort')->default(500),
-            ContentField::make('preview_text')->label('Preview text'),
-            ContentField::make('detail_text')->label('Detail text'),
+            TextField::make('name')->label(__('atrium::fields.standard.name'))->required(),
+            SlugField::make('code')->label(__('atrium::fields.standard.code'))->from('name')->unique('articles', 'code'),
+            CheckboxField::make('active')->label(__('atrium::fields.standard.active'))->default(true),
+            NumberField::make('sort')->label(__('atrium::fields.standard.sort'))->default(500),
+            ContentField::make('preview_text')->label(__('atrium::fields.standard.preview_text')),
+            ContentField::make('detail_text')->label(__('atrium::fields.standard.detail_text')),
         ];
     }
 
     public static function getAdministrationListColumns(): array
     {
         return [
-            TextColumn::make('id')->label('ID')->sortable(),
-            TextColumn::make('name')->label('Name')->sortable()->searchable(),
-            BooleanColumn::make('active')->label('Active'),
-            DateColumn::make('updated_at')->label('Updated')->sortable(),
+            TextColumn::make('id')->label(__('atrium::fields.standard.id'))->sortable(),
+            TextColumn::make('name')->label(__('atrium::fields.standard.name'))->sortable()->searchable(),
+            BooleanColumn::make('active')->label(__('atrium::fields.standard.active')),
+            DateColumn::make('updated_at')->label(__('atrium::fields.standard.updated_at'))->sortable(),
         ];
     }
 }
@@ -302,6 +302,7 @@ Rules come from the fields (`required()`, `unique()`, `rules()`). To replace the
 | `beforeAdminDelete(): bool` | Before deleting, in the same transaction; `false` cancels |
 | `canEdit(): bool`, `canDelete(): bool` | Whether this record may be edited or deleted |
 | `isCreatableInAdmin(): bool`, `isEditableInAdmin(): bool` (static) | `false` for records that come from elsewhere, such as form submissions: no "Add" or "Save", the routes and the API answer 403 |
+| `isContentModule(): bool` (static) | `false` for a service module: logs, audit results, form submissions, languages. It gets no custom fields and is not offered as the target of a link in a menu or of a review; it keeps its menu entry, search, API and export. Default `true` |
 | `isImportableInAdmin(): bool`, `isExportableInAdmin(): bool` (static) | `false` to take the module out of the CSV and Excel import or export; by default every module can be exported, and imported when its records can be created and edited. `getImportKeys(): array` lists the columns that find a record again. See [Import and export](import-export.md#for-module-authors) |
 
 ## Permissions
