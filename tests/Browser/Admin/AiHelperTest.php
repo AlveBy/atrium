@@ -56,6 +56,12 @@ final class AiHelperTest extends AdminTestCase
                     ->waitForTextIn('@ai-chat', 'Question 2: And the stores?', 15)
                     ->click('@ai-link')
                     ->waitForLocation('/admin/articles')
+                    // The frame lives on between visits: the chat stays open with its history.
+                    ->assertVisible('@ai-chat')
+                    ->assertSeeIn('@ai-chat', 'Question 1: How many articles?')
+                    ->assertSeeIn('@ai-chat', 'Question 2: And the stores?')
+                    // A new page load starts with it closed; the history is kept in the tab.
+                    ->refresh()
                     ->waitFor('@ai-mascot')
                     ->assertMissing('@ai-chat')
                     ->click('@ai-mascot')

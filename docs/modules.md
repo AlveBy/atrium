@@ -317,6 +317,25 @@ Public pages draw records from the record cache. Add `implements Cacheable` and 
 
 Labels may be plain text or translation keys. For a module that is used in more than one language, keep them in `lang/{language}/admin.php` and write `->label(__('admin.articles.name'))`.
 
+## The frame of the panel
+
+Sidebar, header, flash messages and the AI helper are the layout of every admin page (`Layouts/AdminShell.vue`, set once as the default `layout` of the app). Inertia builds it once and keeps it between visits, so the menu keeps its scroll and its open groups, the helper its open chat, the header its site and language. A page is only its own content and its title:
+
+```vue
+<script setup>
+import { Head } from '@inertiajs/vue3'
+</script>
+
+<template>
+    <Head :title="title" />
+    <h1>{{ title }}</h1>
+</template>
+```
+
+The pages under `Pages/Admin/Auth/` (signing in) have no frame. Any other page can choose its own with `defineOptions({ layout: … })`, or none with `layout: false`.
+
+**Upgrading.** A page that still wraps itself in `<AdminLayout :title="…">…</AdminLayout>` needs no change: inside the frame `AdminLayout` only sets the title, so there is one frame, not two. Nothing is rebuilt around it; only the thin wrapper itself is. Move the title into `<Head>` and drop the wrapper when you next touch the page. `AdminLayout` stays for compatibility; a page that opted out of the default layout and wraps itself still gets a whole frame from it.
+
 ## Tests
 
 The admin's routes are named after the module key (`admin.articles.index`, `admin.articles.store`, …), so a feature test signs an administrator in and posts the form:
