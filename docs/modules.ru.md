@@ -24,7 +24,7 @@ php artisan atrium:make-module Article
 php artisan migrate
 ```
 
-Команда пишет `app/Models/Article.php`, миграцию таблицы `articles` и строку в `config/atrium.php`. В меню появляются «Articles» по адресу `/admin/articles`. `--label="Новости"` задаёт подпись в меню, `--no-migration` — без миграции.
+Команда пишет `app/Models/Article.php`, миграцию таблицы `articles` и строку в `config/atrium.php`. В меню появляются «Articles» по адресу `/admin/articles`. `--label="Новости"` задаёт подпись в меню, `--no-migration` — без миграции. Подпись пишется в `lang/en/articles.php` (язык по умолчанию), а модель читает её через `__('articles.module')`: добавьте `lang/ru/articles.php` с `'module' => 'Статьи'`, и администратор с русским интерфейсом увидит меню по-русски. Подписи стандартных полей берутся из языковых файлов самой панели, на всех 15 языках.
 
 Сгенерированная модель — отправная точка, в ней можно менять всё:
 
@@ -39,28 +39,28 @@ class Article extends Model implements Administrable
 
     public static function getAdminLabel(): string
     {
-        return 'Articles';
+        return __('articles.module');
     }
 
     public static function getAdministrationFields(): array
     {
         return [
-            TextField::make('name')->label('Name')->required(),
-            SlugField::make('code')->label('Code')->from('name')->unique('articles', 'code'),
-            CheckboxField::make('active')->label('Active')->default(true),
-            NumberField::make('sort')->label('Sort')->default(500),
-            ContentField::make('preview_text')->label('Preview text'),
-            ContentField::make('detail_text')->label('Detail text'),
+            TextField::make('name')->label(__('atrium::fields.standard.name'))->required(),
+            SlugField::make('code')->label(__('atrium::fields.standard.code'))->from('name')->unique('articles', 'code'),
+            CheckboxField::make('active')->label(__('atrium::fields.standard.active'))->default(true),
+            NumberField::make('sort')->label(__('atrium::fields.standard.sort'))->default(500),
+            ContentField::make('preview_text')->label(__('atrium::fields.standard.preview_text')),
+            ContentField::make('detail_text')->label(__('atrium::fields.standard.detail_text')),
         ];
     }
 
     public static function getAdministrationListColumns(): array
     {
         return [
-            TextColumn::make('id')->label('ID')->sortable(),
-            TextColumn::make('name')->label('Name')->sortable()->searchable(),
-            BooleanColumn::make('active')->label('Active'),
-            DateColumn::make('updated_at')->label('Updated')->sortable(),
+            TextColumn::make('id')->label(__('atrium::fields.standard.id'))->sortable(),
+            TextColumn::make('name')->label(__('atrium::fields.standard.name'))->sortable()->searchable(),
+            BooleanColumn::make('active')->label(__('atrium::fields.standard.active')),
+            DateColumn::make('updated_at')->label(__('atrium::fields.standard.updated_at'))->sortable(),
         ];
     }
 }
@@ -251,6 +251,7 @@ ContentField::make('detail_text')->label('Detail text')->tab('detail'),
 | `beforeAdminDelete(): bool` | Перед удалением, в той же транзакции; `false` отменяет |
 | `canEdit(): bool`, `canDelete(): bool` | Можно ли править или удалять эту запись |
 | `isCreatableInAdmin(): bool`, `isEditableInAdmin(): bool` (static) | `false` для записей, которые приходят извне, например заявок с форм: нет «Добавить» и «Сохранить», маршруты и API отвечают 403 |
+| `isContentModule(): bool` (static) | `false` для служебного модуля: журналы, результаты проверок, заявки с форм, языки. Ему не добавляются пользовательские поля, его не предлагают целью ссылки в меню и отзыва; пункт меню, поиск, API и выгрузка остаются. По умолчанию `true` |
 | `isImportableInAdmin(): bool`, `isExportableInAdmin(): bool` (static) | `false` — убрать модуль из импорта и выгрузки CSV и Excel; по умолчанию любой модуль выгружается, а импортируется, если его записи можно и создавать, и править. `getImportKeys(): array` — колонки, по которым запись находится снова. См. [Импорт и выгрузка](import-export.ru.md#для-авторов-модулей) |
 
 ## Права

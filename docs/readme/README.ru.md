@@ -95,18 +95,18 @@ class Article extends Model implements Administrable
     public static function getAdministrationFields(): array
     {
         return [
-            TextField::make('name')->label('Name')->required(),
-            SlugField::make('code')->label('Code')->from('name')->unique('articles', 'code'),
-            CheckboxField::make('active')->label('Active')->default(true),
-            ContentField::make('detail_text')->label('Detail text'),
+            TextField::make('name')->label(__('atrium::fields.standard.name'))->required(),
+            SlugField::make('code')->label(__('atrium::fields.standard.code'))->from('name')->unique('articles', 'code'),
+            CheckboxField::make('active')->label(__('atrium::fields.standard.active'))->default(true),
+            ContentField::make('detail_text')->label(__('atrium::fields.standard.detail_text')),
         ];
     }
 
     public static function getAdministrationListColumns(): array
     {
         return [
-            TextColumn::make('name')->label('Name')->sortable()->searchable(),
-            BooleanColumn::make('active')->label('Active'),
+            TextColumn::make('name')->label(__('atrium::fields.standard.name'))->sortable()->searchable(),
+            BooleanColumn::make('active')->label(__('atrium::fields.standard.active')),
         ];
     }
 }
