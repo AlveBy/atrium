@@ -228,10 +228,10 @@ final class EventSchema implements SchemaProvider
 }
 ```
 
-Регистрируется в сервис-провайдере модуля. Имя класса ничего не загружает: класс поднимается, только когда модуль SEO установлен и рисуется страница, так что зависимости от него нет:
+Регистрируется в сервис-провайдере модуля: `ConfigList::add()` добавляет его один раз, а простой `config()->push()` после `config:cache` добавил бы второй. Имя класса ничего не загружает: класс поднимается, только когда модуль SEO установлен и рисуется страница, так что зависимости от него нет:
 
 ```php
-config()->push('atrium-seo.schema', EventSchema::class);
+\Atrium\Admin\Support\ConfigList::add('atrium-seo.schema', EventSchema::class);
 ```
 
 Что `SeoPage` даёт поставщику:
@@ -459,7 +459,7 @@ final class CalendarDays implements SitemapSource
     }
 }
 
-config()->push('atrium-seo.sitemap_sources', CalendarDays::class);
+\Atrium\Admin\Support\ConfigList::add('atrium-seo.sitemap_sources', CalendarDays::class);
 ```
 
 **Хуки**, которыми пользуется модуль, — чтобы ваш модуль встретился с ним, не завися от него:
