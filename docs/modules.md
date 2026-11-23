@@ -557,7 +557,26 @@ Hook::filter('atrium.search.sources', DropDrafts::class, 20); // an invokable cl
 
 Lower priority runs first; the default is 10. `Hook::has('atrium.order.paid')` says whether anything listens. A hook nobody listens to costs one array lookup, so fire freely.
 
-Name a hook `atrium.{module}.{what}`: actions in the past tense (`atrium.order.paid`), filters by the value they filter (`atrium.menu.items`). Register listeners only when your module is installed (`app(Modules::class)->isInstalled('vendor/atrium-shop')`), and list the hooks your module fires in its README, with their arguments.
+A **registry** is a list of items that modules add to by key: the shop's payment methods, the delivery services, the formats of an export. The module that owns it reads the items; the others register theirs and never touch its code:
+
+```php
+// The payment module, in its service provider's boot(), while it is installed:
+Hook::register('atrium.shop.payment_methods', 'card', CardPayment::class);
+Hook::register('atrium.shop.payment_methods', 'invoice', InvoicePayment::class, 20); // later than the default 10
+
+// The shop, at the checkout:
+foreach (Hook::registered('atrium.shop.payment_methods', $site) as $key => $class) {
+    $methods[$key] = app($class);
+}
+
+// And when the order is paid:
+$method = Hook::resolve('atrium.shop.payment_methods', $order->payment_method, $site)
+    ?? throw new RuntimeException('This payment method is switched off.');
+```
+
+The items come in the order they were registered, lower priority first, and the same key registered again replaces the item: the one that runs later wins, so a module may put its own card payment over the shop's. An item may be anything: a class name, an object, a closure. A registry is a filter of the items by key, so `Hook::filter()` on its name may drop or reorder them; the arguments of `registered()` and `resolve()` go to those filters (here the site, to offer cash only on some sites). `resolve()` gives null when nothing is registered under the key, as when the module that registered it has been switched off.
+
+Name a hook `atrium.{module}.{what}`: actions in the past tense (`atrium.order.paid`), filters by the value they filter (`atrium.menu.items`), registries by what they hold (`atrium.shop.payment_methods`). Register listeners only when your module is installed (`app(Modules::class)->isInstalled('vendor/atrium-shop')`), and list the hooks your module fires in its README, with their arguments.
 
 The core fires these:
 
