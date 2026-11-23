@@ -20,20 +20,6 @@ use Laravel\Dusk\Browser;
  */
 final class PersistentLayoutTest extends AdminTestCase
 {
-    /**
-     * Menu entries that open a plain HTML screen, so a whole page load: the
-     * two-factor and social-login modules' own screens (both answer a visit
-     * with "load this address as a page", ReloadInertiaVisits). Remove them
-     * as the screens become pages of the panel.
-     */
-    private const HTML_SCREENS = [
-        'admin.two-factor.security',
-        'admin.two-factor.log',
-        'admin.two-factor.users',
-        'admin.social.accounts',
-        'admin.social.providers',
-    ];
-
     public function test_the_menu_keeps_its_scroll_and_its_open_groups_and_the_active_entry_follows(): void
     {
         $admin = $this->admin();
@@ -234,7 +220,8 @@ final class PersistentLayoutTest extends AdminTestCase
                 $this->assertGreaterThan($before, $browser->script('return window.__inertia.length;')[0], "{$route} did not go out as an Inertia request");
             }
 
-            $this->assertSame(self::HTML_SCREENS, $reloaded);
+            // Every entry is a page of the panel, the social-login and two-factor screens too.
+            $this->assertSame([], $reloaded);
         });
     }
 
