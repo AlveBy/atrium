@@ -71,7 +71,7 @@ final class Frames
     {
         $frames = [];
 
-        foreach (preg_split('/\R/', $stack) ?: [] as $row) {
+        foreach (preg_split('/\r\n|\r|\n/', $stack) ?: [] as $row) {
             // Chrome: "    at fn (https://site/app.js:10:5)" or "    at https://site/app.js:10:5"
             // Firefox, Safari: "fn@https://site/app.js:10:5"
             if (! preg_match('/^\s*(?:at\s+(?:(.+?)\s+\()?|(.*?)@)(\S+?):(\d+)(?::\d+)?\)?\s*$/', $row, $match)) {

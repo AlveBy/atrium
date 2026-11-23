@@ -300,6 +300,10 @@ final class FramesTest extends TestCase
                 'render @http://localhost/app.js:3:4',
                 ['file' => '/app.js', 'line' => 3, 'function' => 'render', 'in_app' => true],
             ],
+            'a function named in Cyrillic with the letter х' => [
+                '    at сохранить (http://localhost/app.js:5:1)',
+                ['file' => '/app.js', 'line' => 5, 'function' => 'сохранить', 'in_app' => true],
+            ],
             'a script of another site' => [
                 'at load (https://cdn.example.com/lib.js:99:2)',
                 ['file' => 'https://cdn.example.com/lib.js', 'line' => 99, 'function' => 'load', 'in_app' => false],
@@ -328,5 +332,12 @@ final class FramesTest extends TestCase
 
         $this->assertCount(1, (new Frames($this->folder))->ofBrowserStack($stack, 'http://localhost'));
         $this->assertSame([], (new Frames($this->folder))->ofBrowserStack('', 'http://localhost'));
+    }
+
+    public function test_rows_end_with_any_of_the_three_line_breaks(): void
+    {
+        $stack = "    at a (http://localhost/app.js:1:1)\r\n    at b (http://localhost/app.js:2:1)\r    at c (http://localhost/app.js:3:1)\n    at d (http://localhost/app.js:4:1)";
+
+        $this->assertSame(['a', 'b', 'c', 'd'], array_column((new Frames($this->folder))->ofBrowserStack($stack, 'http://localhost'), 'function'));
     }
 }
