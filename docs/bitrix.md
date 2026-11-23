@@ -80,15 +80,19 @@ Every command asks which iblocks to take; with `--no-interaction` it takes all o
 
 `migrate:sites` moves the sites (`b_lang`) with their domains. A site's `DIR` becomes its folder: `/site2/` opens the site at `example.com/site2/` as before. Atrium keeps the default site at the root; if the Bitrix default site lives in a folder (`/ru/`), the command warns, and its old addresses need a redirect.
 
-The models land in `app/Models`. List the ones the editors need in `config/atrium.php` → `resources`, and they are in the admin's menu:
+The models land in `app/Models`, and `generate:models` lists each one in `config/atrium.php` → `resources`, so they are in the admin's menu right away: the element model of every iblock, its section model when the iblock has sections, and the models of highload directories (`app/Models/References`), since editors add a brand or a colour there as they did under Highload blocks in Bitrix. New entries go to the top of the list in the order they were generated; your own entries and comments stay as they are:
 
 ```php
 'resources' => [
-    App\Models\News::class,
-    App\Models\Catalog::class,
-    App\Models\CatalogSection::class,
+    \App\Models\News::class,
+    \App\Models\Catalog::class,
+    \App\Models\CatalogSection::class,
+    \App\Models\References\Brands::class,
+    App\Models\Article::class,
 ],
 ```
+
+A model already in the list is not added again, on any later run either. To keep one out of the menu, comment its line out (`// \App\Models\References\Brands::class,`): a commented line counts as listed. `--dry-run` only tells what it would add. If `config/atrium.php` is not published yet (`php artisan atrium:install`), the command prints the lines to add by hand.
 
 Generated models are meant to be regenerated, not edited: what you change on purpose goes to `config/atrium-bitrix.php` (`extra_fields`, `hidden_list_columns`, `extra_list_columns`), and after a regeneration look at `git diff app/Models`.
 
