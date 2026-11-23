@@ -30,9 +30,14 @@ final class SocialLoginTest extends AdminTestCase
 
             $browser->loginAs($admin, 'admin')
                 ->visit('/admin/auth/social/providers')
-                ->waitFor('@asl-providers')
-                ->click('@asl-edit-github')
-                ->waitFor('@asl-provider-form')
+                ->waitFor('@asl-providers');
+            $this->assertInPanel($browser, 'admin.social.providers');
+
+            $browser->click('@asl-edit-github')
+                ->waitFor('@asl-provider-form');
+            $this->assertInPanel($browser, 'admin.social.providers');
+
+            $browser
                 ->assertAttributeContains('@asl-redirect-admin', 'value', '/admin/auth/social/callback/github')
                 ->type('@asl-client-id', 'Iv1.test-client')
                 ->type('@asl-client-secret', 'test-secret-value')
@@ -65,8 +70,10 @@ final class SocialLoginTest extends AdminTestCase
         $this->browse(function (Browser $browser) use ($admin): void {
             $browser->loginAs($admin, 'admin')
                 ->visit('/admin/auth/social/accounts')
-                ->waitFor('@asl-accounts')
-                ->assertSeeIn('@asl-linked-github', 'ada@example.com')
+                ->waitFor('@asl-accounts');
+            $this->assertInPanel($browser, 'admin.social.accounts');
+
+            $browser->assertSeeIn('@asl-linked-github', 'ada@example.com')
                 ->press('@asl-unlink-github')
                 ->waitFor('@asl-status')
                 ->assertMissing('@asl-linked-github')
@@ -74,5 +81,27 @@ final class SocialLoginTest extends AdminTestCase
         });
 
         $this->assertFalse(SocialAccount::query()->where('user_id', $admin->id)->exists());
+    }
+
+    public function test_a_provider_form_the_server_refuses_shows_the_reason_and_keeps_what_was_typed(): void
+    {
+        $admin = $this->admin();
+
+        $this->browse(function (Browser $browser) use ($admin): void {
+            $browser->loginAs($admin, 'admin')
+                ->visit('/admin/auth/social/providers/entra')
+                ->waitFor('@asl-provider-form');
+            $this->assertInPanel($browser, 'admin.social.providers');
+
+            $browser->type('@asl-client-id', 'entra-client')
+                ->type('@asl-setting-tenant', 'not a tenant!')
+                ->press('@asl-save')
+                ->waitFor('@asl-setting-tenant-error')
+                ->assertPathIs('/admin/auth/social/providers/entra')
+                ->assertInputValue('@asl-client-id', 'entra-client')
+                ->assertInputValue('@asl-setting-tenant', 'not a tenant!');
+        });
+
+        $this->assertFalse(SocialProvider::query()->where('key', 'entra')->exists());
     }
 }
