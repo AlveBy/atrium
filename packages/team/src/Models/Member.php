@@ -107,8 +107,8 @@ class Member extends Model implements Administrable
             BelongsToField::make('department_id')->label(__('atrium-team::team.fields.department'))->model(Department::class),
             NumberField::make('sort')->label(__('atrium::fields.standard.sort'))->default(500),
             ImageField::make('preview_picture')->label(__('atrium-team::team.fields.photo'))->directory('team'),
-            ContentField::make('preview_text')->label(__('atrium-team::team.fields.summary')),
-            ContentField::make('detail_text')->label(__('atrium-team::team.fields.biography')),
+            ContentField::make('preview_text')->label(__('atrium-team::team.fields.summary'))->ai('preview', from: 'detail_text'),
+            ContentField::make('detail_text')->label(__('atrium-team::team.fields.biography'))->ai(),
             TextField::make('email')->label(__('atrium-team::team.fields.email'))->email(),
             TextField::make('phone')->label(__('atrium-team::team.fields.phone'))->tel(),
         ];

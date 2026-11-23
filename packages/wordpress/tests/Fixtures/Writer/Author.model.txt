@@ -51,7 +51,7 @@ class Author extends Model implements Administrable
             Fields\TextField::make('code')->label(__('atrium::fields.standard.code')),
             Fields\TextField::make('email')->label('E-mail'),
             Fields\TextField::make('url')->label('Website'),
-            Fields\TextareaField::make('description')->label('Description'),
+            Fields\TextareaField::make('description')->label('Description')->ai(),
             Fields\BelongsToManyField::make('news')->label('Posts')->model(\Atrium\News\Models\News::class),
             Fields\BelongsToManyField::make('recipes')->label('Recipes')->model(\App\Models\Recipe::class),
             Fields\BelongsToManyField::make('dishes')->label('Dishes')->model(\App\Models\Dish::class),

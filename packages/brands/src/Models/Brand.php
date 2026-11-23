@@ -66,7 +66,7 @@ class Brand extends Model implements Administrable, Cacheable
             ImageField::make('logo')->label(__('atrium-brands::brands.fields.logo'))->directory('brands'),
             ColorField::make('color')->label(__('atrium-brands::brands.fields.color')),
             TextField::make('website')->label(__('atrium-brands::brands.fields.website'))->rules(['url']),
-            TextareaField::make('description')->label(__('atrium::fields.standard.description')),
+            TextareaField::make('description')->label(__('atrium::fields.standard.description'))->ai(),
         ];
     }
 
