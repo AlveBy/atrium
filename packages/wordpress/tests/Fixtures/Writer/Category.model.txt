@@ -62,7 +62,7 @@ class Category extends Model implements Administrable
             Fields\SlugField::make('code')->label(__('atrium::fields.standard.code'))->from('name'),
             Fields\TreeSelectField::make('parent_id')->label('Parent')->model(self::class),
             Fields\NumberField::make('sort')->label(__('atrium::fields.standard.sort'))->default(500),
-            Fields\TextareaField::make('description')->label('Description'),
+            Fields\TextareaField::make('description')->label('Description')->ai(),
             Fields\BelongsToManyField::make('news')->label('Posts')->model(\Atrium\News\Models\News::class),
         ];
     }

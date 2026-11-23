@@ -274,8 +274,8 @@ final class Writer
 
         array_push($fields,
             "Fields\\ImageField::make('preview_picture')->label(__('atrium::fields.standard.preview_picture'))->directory('{$type->table}'),",
-            "Fields\\ContentField::make('preview_text')->label(__('atrium::fields.standard.preview_text')),",
-            "Fields\\ContentField::make('detail_text')->label(__('atrium::fields.standard.detail_text')),",
+            "Fields\\ContentField::make('preview_text')->label(__('atrium::fields.standard.preview_text'))->ai('preview', from: 'detail_text'),",
+            "Fields\\ContentField::make('detail_text')->label(__('atrium::fields.standard.detail_text'))->ai(),",
         );
 
         foreach ($type->fields as $field) {
@@ -332,7 +332,7 @@ final class Writer
         }
 
         $fields[] = "Fields\\NumberField::make('sort')->label(__('atrium::fields.standard.sort'))->default(500),";
-        $fields[] = "Fields\\TextareaField::make('description')->label('Description'),";
+        $fields[] = "Fields\\TextareaField::make('description')->label('Description')->ai(),";
 
         $relations = [];
 
@@ -370,7 +370,7 @@ final class Writer
             "Fields\\TextField::make('code')->label(__('atrium::fields.standard.code')),",
             "Fields\\TextField::make('email')->label('E-mail'),",
             "Fields\\TextField::make('url')->label('Website'),",
-            "Fields\\TextareaField::make('description')->label('Description'),",
+            "Fields\\TextareaField::make('description')->label('Description')->ai(),",
         ];
         $relations = [];
 

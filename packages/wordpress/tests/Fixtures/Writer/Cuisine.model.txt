@@ -61,7 +61,7 @@ class Cuisine extends Model implements Administrable
             Fields\TextField::make('name')->label(__('atrium::fields.standard.name'))->required(),
             Fields\SlugField::make('code')->label(__('atrium::fields.standard.code'))->from('name'),
             Fields\NumberField::make('sort')->label(__('atrium::fields.standard.sort'))->default(500),
-            Fields\TextareaField::make('description')->label('Description'),
+            Fields\TextareaField::make('description')->label('Description')->ai(),
             Fields\BelongsToManyField::make('recipes')->label('Recipes')->model(\App\Models\Recipe::class),
         ];
     }
