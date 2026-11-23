@@ -27,6 +27,9 @@ final class FormsTest extends AdminTestCase
     /** A page of someone's site with the form put on it in one line. */
     private const PAGE = 'dusk-forms-window.html';
 
+    /** A page built from the snippets on the form's page in the admin. */
+    private const SNIPPET_PAGE = 'dusk-forms-snippet.html';
+
     protected function setUp(): void
     {
         parent::setUp();
@@ -38,6 +41,7 @@ final class FormsTest extends AdminTestCase
     protected function tearDown(): void
     {
         @unlink(public_path(self::PAGE));
+        @unlink(public_path(self::SNIPPET_PAGE));
 
         parent::tearDown();
     }
@@ -212,6 +216,66 @@ final class FormsTest extends AdminTestCase
             $browser->clickLink('Go')->waitForLocation('/forms/contact')->assertQueryStringHas('from', 'button');
             $this->assertStringEndsWith('/forms/contact?from=button', $href);
         });
+    }
+
+    public function test_the_markup_and_the_fetch_example_from_the_admin_send_the_form(): void
+    {
+        $form = $this->contactForm();
+
+        $this->withEnv(['ATRIUM_FORMS_MIN_SECONDS' => '1'], function () use ($form): void {
+            $this->browse(function (Browser $browser) use ($form): void {
+                $browser->loginAs($this->admin(), 'admin')
+                    ->visit("/admin/forms/{$form->id}/edit")
+                    ->waitFor('[data-snippet="fetch"]')
+                    ->assertSeeIn('[data-snippet="blade"]', '<x-atrium-forms::form code="contact" />')
+                    ->assertSeeIn('[data-form-snippets]', 'What the server answers');
+                $browser->script("document.querySelector('[data-form-snippets]').scrollIntoView();");
+                $browser->screenshot('forms-snippets');
+                // The long lines scroll inside their block, not past the card.
+                $this->assertTrue($browser->script("const box = document.querySelector('[data-form-snippets]').closest('form').getBoundingClientRect(); return [...document.querySelectorAll('[data-snippet]')].every((code) => code.getBoundingClientRect().right <= box.right + 1);")[0]);
+
+                // The code and the notes read at 4.5:1 or more in every theme of the panel.
+                foreach (['graphite', 'day', 'night', 'sand', 'contrast'] as $theme) {
+                    $browser->script("document.documentElement.dataset.theme = '{$theme}';");
+
+                    foreach (['[data-snippet="fetch"]' => 'code', '[data-form-snippets] p' => 'a note'] as $selector => $what) {
+                        $ratio = $this->contrast($browser, $selector);
+                        $this->assertGreaterThanOrEqual(4.5, $ratio, "{$what} in the {$theme} theme reads at {$ratio}:1");
+                    }
+                }
+
+                // Copied as the developer sees them, onto a page of the site.
+                [$markup, $fetch] = $browser->script("return ['markup', 'fetch'].map((name) => document.querySelector('[data-snippet=\"' + name + '\"]').textContent);")[0];
+                file_put_contents(public_path(self::SNIPPET_PAGE), Blade::render(
+                    '<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><title>Write to us</title></head><body>'
+                    .$markup.'<script>'.$fetch.'</script></body></html>'
+                ));
+
+                $browser->logout('admin')->visit('/')->visit('/'.self::SNIPPET_PAGE)->waitFor('#form-contact');
+                $browser->script('window.stillHere = true;');
+
+                // Nothing filled in: the browser stops it at the required fields;
+                // past them, the server's errors come into the alert.
+                $browser->pause(1100)->press('Send')->pause(300);
+                $this->assertSame(0, FormSubmission::query()->count());
+                $browser->script("document.getElementById('form-contact').noValidate = true;");
+                $browser->press('Send')
+                    ->waitForTextIn('[data-atrium-alert]', 'The your name field is required.')
+                    ->assertSeeIn('[data-atrium-alert]', 'The e-mail field is required.');
+                $this->assertSame(0, FormSubmission::query()->count());
+
+                $browser->type('#form-contact-name', 'Ann')
+                    ->type('#form-contact-email', 'ann@example.com')
+                    ->type('#form-contact-message', 'Call me back')
+                    ->press('Send')
+                    ->waitForTextIn('[data-atrium-sent]', 'Thank you! Your message has been sent.')
+                    ->assertSeeNothingIn('[data-atrium-alert]')
+                    ->assertInputValue('#form-contact-name', '');
+                $this->assertTrue($browser->script('return window.stillHere === true;')[0]);
+            });
+        });
+
+        $this->assertSame(['Ann', 'ann@example.com', 'Call me back'], array_column(FormSubmission::query()->sole()->data, 'value'));
     }
 
     private function contactForm(): Form

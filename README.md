@@ -136,6 +136,7 @@ The Bitrix database is only read. The tabs, field order and list columns come ou
 - [AI writing help: free and paid providers, descriptions, SEO, alt texts, translations](docs/ai.md)
 - [SEO: titles, hreflang, sitemaps, schema.org, redirects, the SEO check](docs/seo.md)
 - [Menus: header and footer, a tree of links, items that unfold a module](docs/menus.md)
+- [Forms: a builder in columns, without reloading the page, in a window, your own markup and fetch](docs/forms.md)
 - [Search: the results page, the admin box, what is searched and how](docs/search.md)
 - [Your own module: fields, columns, tabs, permissions, languages, tests, a package](docs/modules.md)
 - [Custom fields: add fields to any module from the admin, filters and facets on 100 000 records](docs/custom-fields.md)
