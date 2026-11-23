@@ -97,6 +97,16 @@ class Article extends Model implements Administrable
 
 Товар демо-магазина (`packages/catalog/src/Models/Product.php`) использует почти все.
 
+### Поля связей, когда записей много
+
+`BelongsToField` и `BelongsToManyField` кладут в форму все записи связанной модели: выпадающим списком или списком флажков (с полем фильтра, если записей больше десяти). Когда записей больше 50, форма их ищет: выбранные записи — плашки, новые находятся по части названия или по id в поле поиска, по двадцать, следующие — при прокрутке; работают стрелки, Enter и Escape. Порог задаётся у поля:
+
+```php
+BelongsToManyField::make('related')->model(Product::class)->searchThreshold(100),
+```
+
+Записи приходят из `GET /admin/{module}/fields/{field}/options?q=…&page=…`, ответ — `{"data": [{"value": 7, "label": "Quiet One"}], "more": true}`. Поиск идёт по `displayColumn()` (переводимое поле — на всех языках контента) и по id, с учётом `query()` поля и `scopeAdminList()` связанного модуля, текущего сайта и того, какие записи этому сайту видны. Открыт тому, кто может открыть модуль и видеть связанный. Сохранение, проверка, `maxItems()` / `minItems()`, API, MCP и импорт читают и пишут такие поля как раньше. `searchRoute('имя или адрес')` отправляет поиск в другое место при любом числе записей, теперь и у `BelongsToManyField`; такой маршрут должен принимать `q` и `page` и отвечать в том же виде.
+
 ## Колонки списка
 
 `TextColumn`, `BooleanColumn`, `DateColumn` и `ImageColumn`, у каждой `label()`, `sortable()`, `searchable()`, `width()` и `alignRight()`. Поиск ищет по всем колонкам с `searchable()`.

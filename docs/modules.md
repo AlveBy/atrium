@@ -97,6 +97,16 @@ Every field is made with `::make('column')` and takes `label()`, `required()`, `
 
 The demo shop's product (`packages/catalog/src/Models/Product.php`) uses nearly all of them.
 
+### Relation fields with many records
+
+`BelongsToField` and `BelongsToManyField` put every record of the linked model in the form, as a dropdown or a list of checkboxes (with a filter box past ten records). Past 50 records the form searches instead: the chosen records are chips, and new ones are found by a part of their name or by their id in a search box, twenty at a time, more on scrolling, with the arrow keys, Enter and Escape. The limit is per field:
+
+```php
+BelongsToManyField::make('related')->model(Product::class)->searchThreshold(100),
+```
+
+The records come from `GET /admin/{module}/fields/{field}/options?q=…&page=…`, which answers `{"data": [{"value": 7, "label": "Quiet One"}], "more": true}`. It searches the `displayColumn()` (a translatable one in every content language) and the id, keeps the field's `query()` and the linked module's `scopeAdminList()`, the current site and the records that site may see, and is open to whoever may open the module and see the linked one. Saving, validation, `maxItems()` / `minItems()`, the API, MCP and import read and write these fields as before. `searchRoute('name or address')` sends the search elsewhere whatever the number of records, on `BelongsToManyField` too; that route must answer the same shape and take `q` and `page`.
+
 ## List columns
 
 `TextColumn`, `BooleanColumn`, `DateColumn` and `ImageColumn`, each with `label()`, `sortable()`, `searchable()`, `width()` and `alignRight()`. The search box looks in every `searchable()` column.
