@@ -2,7 +2,7 @@
 
 [English](ai.md) · [Русский](ai.ru.md)
 
-The `alveby/atrium-ai` module puts a **Generate** link under the text fields of the admin. It writes descriptions, previews, SEO tags and picture alt texts, and translates a field into the site's other languages. The editor reads the text in a dialog and decides whether to use it. Nothing is saved until **Save**.
+The `alveby/atrium-ai` module puts a **Generate** link under the text fields of the admin. It writes descriptions, previews, SEO tags and picture alt texts, **improves** a text the editor has already written (spelling, punctuation, clarity) and translates a field into the site's other languages. The editor reads the text in a dialog and decides whether to use it. Nothing is saved until **Save**.
 
 It runs on the official [Laravel AI SDK](https://laravel.com/docs/13.x/ai-sdk), so any provider the SDK knows will do. This guide sets it up with a free one. The full reference is in [packages/ai/README.md](../packages/ai/README.md).
 
@@ -137,7 +137,7 @@ Keep the worker running with Supervisor or systemd.
 
 ## 4. Choose the fields
 
-The SEO fields (title, description, keywords, picture alt) have the buttons already. In your own modules a field opts in with `->ai()`:
+The texts a site's editors write have the buttons already: the description of a product, a section, a brand, a news item, an article, a store, a team member (the preview is written from the full text) and a page, the answer to a FAQ question (from the question), and the SEO fields (title, description, keywords, picture alt). Visitors' texts (reviews, form submissions) and technical fields (head code, `robots.txt`, recipients, options) have none. In your own modules a field opts in with `->ai()`:
 
 ```php
 ContentField::make('detail_text')->label('Description')->ai(),
@@ -145,7 +145,15 @@ ContentField::make('preview_text')->label('Preview')->ai('preview', from: 'detai
 TextField::make('picture_alt')->label('Picture alt')->ai('alt', from: 'picture'),
 ```
 
-Without arguments it writes the field from everything else in the form. `preview`, `seo_title`, `seo_description`, `seo_keywords` and `alt` are the other tasks; `from` names the fields to work from.
+Without arguments it writes the field from everything else in the form. `preview`, `seo_title`, `seo_description`, `seo_keywords` and `alt` are the other tasks (`improve` needs no setting: any field with `->ai()` has it); `from` names the fields to work from.
+
+Every such field also gets **Improve** when it is not empty. It sends the text that is in the field now, as it is in the form, and gets it back corrected: spelling, punctuation and clarity, in the same language, with the same HTML (tags and links stay). It never adds facts and does not translate.
+
+- **Text and Textarea fields, and a content field in Text or HTML mode:** the links are under the field: **Generate · Improve · Translate**.
+- **A content field in the visual editor:** the same actions are in a menu behind the sparkle button at the right end of the editor's toolbar: **Generate**, **Improve** and **Translate**. Select a piece of the text first and the item reads **Improve the selection**: only that piece is sent, and only it is replaced when you accept. With nothing selected the whole text is improved. Pieces are replaced in place, so formatting around them stays.
+- A very long text is not cut: the dialog says it is too long to improve in one go, and you improve it in parts, a selection at a time.
+
+As with everything else, the result is only offered in the dialog (**Use this text** / edit / **Cancel**), and nothing is saved until **Save**.
 
 A translatable field also gets **Translate** when the site has more than one content language: it translates the language being edited into the others. Every Atrium language works, and the model is told the script where it matters (Uzbek in Latin, Kazakh and Belarusian in Cyrillic).
 

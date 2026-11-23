@@ -13,7 +13,9 @@ declare(strict_types=1);
  * talks to it as to a real provider, so nothing leaves the machine.
  *
  * It answers with the question it was asked and how many questions the
- * conversation holds; a question with "broken" in it gets an error.
+ * conversation holds; a question with "broken" in it gets an error. An
+ * "Improve the text" request gets its text back with the typos "veiw" and
+ * "teh" corrected: what comes back shows which piece was sent.
  */
 
 $body = json_decode((string) file_get_contents('php://input'), true) ?: [];
@@ -29,11 +31,15 @@ if (str_contains($question, 'broken')) {
     return;
 }
 
+$improved = str_starts_with($question, 'Improve the text of the field')
+    ? str_replace(['veiw', 'teh'], ['view', 'the'], (string) substr($question, (int) strpos($question, "Text:\n") + 6))
+    : null;
+
 echo json_encode([
     'model' => 'fake',
     'message' => [
         'role' => 'assistant',
-        'content' => implode("\n", [
+        'content' => $improved ?? implode("\n", [
             '**Question '.count($questions).'**: '.$question,
             '- [Articles](/admin/articles)',
             '- [Elsewhere](https://example.com/)',
