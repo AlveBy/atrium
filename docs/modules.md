@@ -584,6 +584,28 @@ The core fires these:
 
 The record hooks see only what the panel and the API save; a seeder or an import that writes with Eloquent does not fire them (listen to Eloquent's own events for that).
 
+### Slots in the site's templates
+
+A slot is a place in the public theme where modules add their HTML: a banner over the header, a chat button before `</body>`, a subscription form under every page. The theme's frame (`atrium-theme::layout`) has these, in the order of the page, with every skin:
+
+| Slot | Where |
+|---|---|
+| `body.start` | right after `<body>` and the site's counters, before the skip link |
+| `header.start` / `header.end` | inside the header, before the site's name / after the language and theme switches |
+| `content.before` / `content.after` | inside `<main>`, around the page's content, under the breadcrumbs |
+| `footer.start` / `footer.end` | inside the footer, before / after the theme's or the skin's footer |
+| `body.end` | before `</body>`, after the site's code for the end of the page |
+
+`<head>` is the `atrium.head` filter (see the table above).
+
+```php
+// In the service provider's boot(), only while the module is installed:
+Hook::slot('footer.end', 'shop::partials.cart-button');            // a view
+Hook::slot('body.start', fn (array $page): string => '<div class="promo">…</div>', 5); // or a closure
+```
+
+The view, or the closure, gets the page's variables: `$siteName`, `$homeUrl`, `$skin`, `$breadcrumbs`, and on a record's page `$page` with its `record`. Lower priority comes first, the default is 10. A slot is the filter `atrium.slot.{name}` of an HTML string, so `Hook::filter('atrium.slot.footer.end', ...)` may change or drop what others put there. A theme of your own marks its places with `@atriumSlot('footer.end')`: name new ones the same way, `{area}.{start|end|before|after}`.
+
 ## Links to other modules
 
 Modules link to each other softly: products work without brands, and the "Brand" field and column appear only when the Brands module is installed. Nothing in Composer's `require` makes one module install another. The demo shop is built this way: `alveby/atrium-catalog` links to `alveby/atrium-brands` and `alveby/atrium-stores` (`packages/catalog/src/Models/Product.php`).
