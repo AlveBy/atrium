@@ -119,6 +119,19 @@ To narrow the list or load relations, override `scopeAdminList(Builder $query)`.
 
 A column may show an attribute of a related record: `TextColumn::make('brand.name')` loads the `brand` relation for the page and shows the brand's name. Such a column is neither sorted nor searched by.
 
+A column may bring its own value, and be shown only to those with a permission. That is how another module adds a column to your list without touching it:
+
+```php
+Hook::filter('atrium.module.columns', fn (array $columns, string $model) => $model === Customer::class ? [
+    ...$columns,
+    TextColumn::make('orders.count')->label(__('shop::orders.count'))
+        ->value(fn (Customer $customer) => $customer->orders()->count())
+        ->permission('orders.view'),
+] : $columns);
+```
+
+`value()` gets the record and returns what the cell shows; a column with it is neither sorted nor searched by. `permission()` takes a bare action of the module (`view`) or a full name (`orders.view`); without it the column is dropped from the list, and from its export too.
+
 A button on a record, in its list row and on its form, opens the create form filled from it. A subpage gets the page as its parent:
 
 ```php
@@ -204,6 +217,34 @@ Hook::filter('atrium.module.actions', fn (array $actions, string $model) => app(
 
 The same server actions are in the API and MCP: `GET /api/v1/{module}/actions`, `POST /api/v1/{module}/{id}/actions/{name}`, `POST /api/v1/{module}/bulk/{name}` with `{"ids": [...]}`; the tools `list_actions`, `run_record_action`, `run_bulk_action`. An action whose permission is a `view` needs a reading token, any other a writing one. Links and filled create forms are the panel's own and are not there.
 
+### Filters above the list
+
+A module returns its filters from `getAdministrationFilters()`; each is drawn above the list, next to the search, and the list, its export, the API's `filter[name]=` and MCP's `list_records` narrow by it alike:
+
+```php
+use Atrium\Admin\Filters\BooleanFilter;
+use Atrium\Admin\Filters\SelectFilter;
+
+public static function getAdministrationFilters(): array
+{
+    return [
+        BooleanFilter::make('active')->label('Active'),
+        SelectFilter::make('brand_id')->label('Brand')
+            ->options(fn () => Brand::query()->orderBy('name')->pluck('name', 'id')->all()),
+    ];
+}
+```
+
+The name is the filter's key in the address (`/admin/products?brand_id=4`). A value that is not one of the filter's own (`?active=maybe`, a brand that is not in the options) is no filter at all. Without `query()` a filter is a condition on the column of its name, and `atrium.query.filter` may take it over as before; with it, the filter narrows its own way:
+
+```php
+SelectFilter::make('stock')->label('Stock')
+    ->options(['out' => 'Out of stock', 'low' => 'Fewer than 5'])
+    ->query(fn (Builder $query, string $value) => $value === 'out' ? $query->where('stock', 0) : $query->whereBetween('stock', [1, 4])),
+```
+
+Other modules add theirs through `atrium.module.filters`. A filter with `permission()` is not drawn, applied or described to someone without it, in the API and MCP by the token owner's rights. A bare name in the list (`'module'`) is still a filter of the address that is kept but not drawn.
+
 ## Tabs
 
 Add `HasAdminTabs`, list the tabs and put each field on one with `tab()`:
@@ -226,6 +267,16 @@ ContentField::make('detail_text')->label('Detail text')->tab('detail'),
 ```
 
 A field without `tab()` goes to `params`. `HasAdminSeo` adds the meta title, description and keywords to the `seo` tab by itself.
+
+Another module puts its fields on a tab of its own: it adds the fields through `atrium.module.fields` with `tab('shop')`, and the tab through `atrium.module.tabs`. A tab with no fields is not shown, so the tab goes away with the module's fields:
+
+```php
+use Atrium\Admin\Tabs\Tab;
+
+Hook::filter('atrium.module.tabs', fn (array $tabs, string $model) => $model === Product::class
+    ? [...$tabs, Tab::make('shop')->label(__('shop::tabs.shop'))->order(50)]
+    : $tabs);
+```
 
 ## Validation and hooks
 
@@ -570,7 +621,9 @@ The core fires these:
 | `atrium.admin.menu` | filter | `array $items`, `?AdminUser $user` | The panel's menu is built; an item is `['label' => ..., 'route' => ..., 'icon' => ...]`, and items the user may not open are dropped afterwards |
 | `atrium.record.present` | filter | `array $data`, `Model $record`, `string $context` (`form` or `list`) | A record is handed to the edit form or to a list row, the API's included |
 | `atrium.module.fields` | filter | `array $fields`, `string $model` | A module's form fields are read: the form, validation, the API and its documentation, MCP |
-| `atrium.module.columns` | filter | `array $columns`, `string $model` | A module's list columns are read, in the panel and for the API's `search=` |
+| `atrium.module.columns` | filter | `array $columns`, `string $model` | A module's list columns are read, in the panel and for the API's `search=`; a `Column` may carry `value()` and `permission()` (see "List columns") |
+| `atrium.module.filters` | filter | `array $filters`, `string $model` | A module's list filters are read: the list, its export, the API's `filter[]=` and MCP; `SelectFilter`, `BooleanFilter` or a bare name (see "Filters above the list") |
+| `atrium.module.tabs` | filter | `array $tabs`, `string $model` | A module's form tabs are read; add a `Tab` for the fields you add with `tab()` (see "Tabs") |
 | `atrium.module.translatable` | filter | `array $names`, `string $model` | The names of a module's fields that hold a value per content language |
 | `atrium.module.links` | filter | `array $links`, `string $model` | Buttons above a module's list: `['name' => ..., 'label' => ..., 'href' => ...]` |
 | `atrium.module.actions` | filter | `array $actions`, `string $model` | Buttons on a record of a module, in its list row and on its form: `CreateFromRecord`, `LinkAction`, `RecordAction` (see "List columns") |
