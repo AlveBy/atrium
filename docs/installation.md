@@ -117,12 +117,21 @@ Ordinary shared hosting is enough: no Docker, no Node, no root access.
 1. **PHP version.** Pick PHP 8.3 or newer for the site in the panel. The console may have its own PHP: in ISPmanager it is usually `/opt/php83/bin/php` (or `php8.3`), in cPanel `/opt/cpanel/ea-php83/root/usr/bin/php`. Use that path in place of `php` below; `php -v` shows which one you got.
 2. **Database.** Create a MySQL database and a user in the panel.
 3. **Files.** Open the panel's terminal (ISPmanager: "Shell client", cPanel: "Terminal") or connect over SSH, go to the site's folder and run the commands from [Your own server](#your-own-server): `git clone` (or upload and unpack an archive of the repository), `composer install --no-dev --optimize-autoloader`, `.env`, `atrium:install`. If there is no `composer` command, download `composer.phar` from getcomposer.org and run it with the same PHP.
-4. **Document root.** Point the site at the `public` folder: in ISPmanager, the site's settings → "Root directory"; in cPanel, Domains → the domain → "Document Root". Hosting runs Apache (often behind nginx), so `public/.htaccess` works as is.
+4. **Document root.** Point the site at the `public` folder: in ISPmanager, the site's settings → "Root directory"; in cPanel, Domains → the domain → "Document Root". Hosting runs Apache (often behind nginx), so `public/.htaccess` works as is. If the panel does not let you choose the folder, see [When the document root is fixed](#when-the-document-root-is-fixed-public_html-www).
 5. **Mail.** Create a mailbox for the site in the panel and put its SMTP settings into `.env`.
 
 If the hosting forbids symbolic links, `storage:link` fails and uploaded files answer 404. Then serve the `public` disk from inside `public`: in `config/filesystems.php` set the disk's `root` to `public_path('storage')`.
 
 No console at all? Install on your own computer with the same `.env`, pointed at a local database, then upload the files and import a dump of that database through the panel.
+
+### When the document root is fixed (public_html, www)
+
+Many shared hostings serve a fixed folder that cannot be changed to `public`. Timeweb and Beget, for example, give a site a folder of its own and serve `public_html` inside it. Put the project into the site's folder, next to that one, and do one of two things:
+
+- **A link.** Empty `public_html` of what the hosting put there, remove it and put a link to `public` in its place: `rm -r public_html && ln -s public public_html`. Timeweb's own guide for Laravel does this. The project stays as it is, and `git pull` works as usual.
+- **A rename.** If the hosting does not serve a site through a link, remove `public_html` and rename `public` to `public_html` (or whatever the hosting calls its folder). Nothing else needs setting: a request learns its folder from `index.php`, and artisan finds it by itself, as the only folder of the project whose `index.php` starts Atrium. `storage:link`, `atrium:install` and `npm run build` write there.
+
+After a rename there must be no `public` with an `index.php` left: while there is one, artisan writes into it. Two renamed copies are not guessed between either, and artisan keeps to `public`. In a git checkout the renamed folder shows as deleted, and `git pull` stops when `public` changes upstream: for updates through git the link is simpler.
 
 ## Docker
 
@@ -166,5 +175,7 @@ The public theme and the 1C-Bitrix migrator are packages of their own:
 composer require alveby/atrium-theme
 composer require alveby/atrium-bitrix --dev
 ```
+
+If the web root of your app is not called `public`, tell Laravel where it is: `$app->usePublicPath(__DIR__);` in its `index.php` after `bootstrap/app.php` is loaded, and `->usePublicPath(\Atrium\Admin\Support\PublicFolder::find(dirname(__DIR__)))` after `->create()` in `bootstrap/app.php` for artisan, as this repository does.
 
 Routes in your `routes/web.php` win over the theme's. A new Laravel app answers `/` with its welcome page from there: delete that route, and the theme draws the home page.
