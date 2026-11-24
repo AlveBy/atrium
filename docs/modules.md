@@ -256,6 +256,35 @@ SelectFilter::make('stock')->label('Stock')
 
 Other modules add theirs through `atrium.module.filters`. A filter with `permission()` is not drawn, applied or described to someone without it, in the API and MCP by the token owner's rights. A bare name in the list (`'module'`) is still a filter of the address that is kept but not drawn.
 
+### Kanban board
+
+A module may offer its list as a board, cards in columns, besides the table. Return the view from `getAdministrationViews()`, one line:
+
+```php
+use Atrium\Admin\Views\KanbanView;
+
+public static function getAdministrationViews(): array
+{
+    return [
+        KanbanView::make('status')->title('author_name')->cards('rating', 'posted_at'),
+    ];
+}
+```
+
+The columns are the options of the field: a `SelectField` or a `BelongsToField` (its first 40 records). Records that have no value, or a value the options no longer have, go to a "No value" column that exists only while it has cards. A card shows the title (the `title()` field, else the record's `getAdminTitle()`) and up to three fields under it (`cards()` throws on a fourth); it opens the record on a click.
+
+Dragging a card to another column saves the new value **the way the form does**: `PATCH {module}/{id}/move` runs the module's own validation rules, `atrium.record.data` (a hook may refuse with `Refused`), `atrium.record.saved` and the site and permission checks, so a move can do nothing the form could not. It validates and writes only the fields the view owns: the column field and, with `order()`, the order field. The table, the form and `/api/v1` are not changed. Without the `update` permission the cards are not draggable and the server answers 403.
+
+```php
+KanbanView::make('category_id')->title('question')->order('sort')->perColumn(10)
+```
+
+With `order('sort')` (a `NumberField`) the order of the cards inside a column is saved too: a card gets a value halfway between its new neighbours, and a column that has no room left is numbered 10, 20, 30… in the same transaction. Without it a column is in the order of the module's list and dropping a card inside its own column changes nothing.
+
+A column loads `perColumn()` cards (20) and a **Show more** button loads the next ones (`GET {module}/cards?column=draft&page=2`, the `view` permission). The board is narrowed by the same search and filters as the table, in the same site. The list's **Table / Kanban** switch appears only for a module that declared a view; the choice is remembered per administrator and module (`admin_users.list_views`). Every card also has a **Move to column** select, for the keyboard and touch screens, and a column is told apart by its name and its dashed border, never by colour alone.
+
+Other modules add a view with the `atrium.module.views` filter. A view built on a field the form does not have, or of the wrong type, throws a clear error when the list opens. The drag library (SortableJS) is loaded in a separate file, only on a list that shows a board.
+
 ## Tabs
 
 Add `HasAdminTabs`, list the tabs and put each field on one with `tab()`:
@@ -762,6 +791,7 @@ The core fires these:
 | `atrium.module.fields` | filter | `array $fields`, `string $model` | A module's form fields are read: the form, validation, the API and its documentation, MCP |
 | `atrium.module.columns` | filter | `array $columns`, `string $model` | A module's list columns are read, in the panel and for the API's `search=`; a `Column` may carry `value()` and `permission()` (see "List columns") |
 | `atrium.module.filters` | filter | `array $filters`, `string $model` | A module's list filters are read: the list, its export, the API's `filter[]=` and MCP; `SelectFilter`, `BooleanFilter` or a bare name (see "Filters above the list") |
+| `atrium.module.views` | filter | `array $views`, `string $model` | A module's other looks of its list are read (`KanbanView`; see "Kanban board"); of two views of one type the first wins |
 | `atrium.module.tabs` | filter | `array $tabs`, `string $model` | A module's form tabs are read; add a `Tab` for the fields you add with `tab()` (see "Tabs") |
 | `atrium.module.translatable` | filter | `array $names`, `string $model` | The names of a module's fields that hold a value per content language |
 | `atrium.module.links` | filter | `array $links`, `string $model` | Buttons above a module's list: `['name' => ..., 'label' => ..., 'href' => ...]` |
