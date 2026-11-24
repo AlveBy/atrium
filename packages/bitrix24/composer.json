@@ -1,0 +1,62 @@
+{
+    "name": "alveby/atrium-bitrix24",
+    "description": "Bitrix24 for Atrium: form submissions become leads (or a deal with a contact) through an incoming webhook, and the open-lines chat widget on the site",
+    "type": "atrium-module",
+    "license": "MIT",
+    "homepage": "https://github.com/AlveBy/atrium",
+    "support": {
+        "issues": "https://github.com/AlveBy/atrium/issues",
+        "source": "https://github.com/AlveBy/atrium"
+    },
+    "keywords": [
+        "laravel",
+        "admin",
+        "cms",
+        "bitrix24",
+        "crm",
+        "leads",
+        "webhook"
+    ],
+    "require": {
+        "php": "^8.3",
+        "illuminate/support": "^13.0",
+        "alveby/atrium": "^0.2",
+        "alveby/atrium-forms": "^0.2",
+        "alveby/atrium-integrations": "^0.2"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^11.0",
+        "phpunit/phpunit": "^12.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Atrium\\Bitrix24\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Atrium\\Bitrix24\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "atrium": {
+            "key": "bitrix24",
+            "title": "atrium-bitrix24::bitrix24.title",
+            "settings": "Atrium\\Bitrix24\\Bitrix24Settings",
+            "resources": [
+                "Atrium\\Bitrix24\\Models\\FormLink"
+            ],
+            "migrations": "database/migrations"
+        },
+        "laravel": {
+            "providers": [
+                "Atrium\\Bitrix24\\Bitrix24ServiceProvider"
+            ]
+        },
+        "branch-alias": {
+            "dev-main": "0.2.x-dev"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

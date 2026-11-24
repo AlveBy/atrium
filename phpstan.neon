@@ -26,6 +26,7 @@ parameters:
         - packages/faq/src
         - packages/forms/src
         - packages/integrations/src
+        - packages/bitrix24/src
         - packages/monitoring/src
         - packages/menus/src
         - packages/search/src
@@ -70,6 +71,7 @@ parameters:
         - packages/faq/database/migrations
         - packages/forms/database/migrations
         - packages/integrations/database/migrations
+        - packages/bitrix24/database/migrations
         - packages/monitoring/database/migrations
         - packages/menus/database/migrations
         - packages/search/database/migrations
