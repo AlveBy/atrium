@@ -160,9 +160,9 @@ After WordPress the order follows requests in Issues.
 ## 0.5 — 1C and Bitrix24
 
 **1C**
-- Exchange over the standard CommerceML 2 protocol, the same one Bitrix uses. Stock 1C configurations connect to Atrium without changes on the 1C side: only the site address in the exchange settings changes.
-- From 1C: catalogue, properties, images, prices, stock. To 1C: orders and their statuses.
-- An exchange screen in the admin: when it last ran, what came in, errors.
+- ~~Exchange over the standard CommerceML 2 protocol, the same one Bitrix uses. Stock 1C configurations connect to Atrium without changes on the 1C side: only the site address in the exchange settings changes.~~ done (`alveby/atrium-1c`, [docs](docs/1c.md)): login and password in the module's settings, files in chunks and in zip, the old `/bitrix/admin/1c_exchange.php` address too.
+- ~~From 1C: catalogue, properties, images, prices, stock.~~ done: sections, products, features, pictures, prices and in stock / not in stock, matched by the 1C identifier so a repeat updates; a big file is imported in steps. To 1C: orders and their statuses: wait for the shop (1C is answered that there are no orders).
+- ~~An exchange screen in the admin: when it last ran, what came in, errors.~~ done: **Modules → 1C exchange** and the exchange log.
 
 **Bitrix24**
 - Form submissions and orders become leads or deals, customers become contacts. ~~Form submissions → a lead, or a contact with a deal~~ done (`alveby/atrium-bitrix24`, [docs](docs/bitrix24.md)), with a per-form choice of the field mapping; orders and customers wait for the shop.

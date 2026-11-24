@@ -153,6 +153,7 @@ O banco de dados do Bitrix é apenas lido. As abas, a ordem dos campos e as colu
 - [Velocidade e disponibilidade: tempos do servidor, Web Vitals dos visitantes, verificações de disponibilidade com alertas](../monitoring.md)
 - [Integrações: a base dos conectores de 1C e Bitrix24, fila com novas tentativas, registro de trocas, alertas para os administradores](../integrations.md)
 - [Bitrix24: os envios de formulários viram leads ou negócios, o widget de chat no site, um único webhook colado](../bitrix24.md)
+- [1C: o catálogo do 1C:Enterprise pela troca padrão CommerceML, uma tela de troca](../1c.md)
 - [CDN: imagens, cópias redimensionadas e WebP/AVIF, limpeza de cache, uploads para S3](../cdn.md)
 - [Acesso em duas etapas: apps autenticadores, passkeys, códigos, o registro de acessos](../two-factor.md)
 - [Acesso social: provedores, registro do aplicativo, URLs de redirecionamento](../social-login.md)
@@ -173,6 +174,7 @@ O banco de dados do Bitrix é apenas lido. As abas, a ordem dos campos e as colu
 | [`alveby/atrium-monitoring`](../../packages/monitoring/README.md) | Velocidade do servidor e dos visitantes, disponibilidade e alertas, sem serviços externos |
 | [`alveby/atrium-integrations`](../../packages/integrations/README.md) | A base dos conectores: fila com novas tentativas, registro de trocas, alerta em caso de falha |
 | [`alveby/atrium-bitrix24`](../../packages/bitrix24/README.md) | Envios de formulários para o Bitrix24 como leads ou negócios, o widget de chat |
+| [`alveby/atrium-1c`](../../packages/onec/README.md) | Produtos, preços e estoque do 1C via CommerceML |
 | [`alveby/atrium-news`](../../packages/news/README.md) | Notícias |
 | [`alveby/atrium-pages`](../../packages/pages/README.md) | Páginas estáticas, com importação de páginas do 1C-Bitrix |
 | [`alveby/atrium-catalog`](../../packages/catalog/README.md) | Catálogo de produtos com seções aninhadas |

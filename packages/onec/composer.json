@@ -1,0 +1,65 @@
+{
+    "name": "alveby/atrium-1c",
+    "description": "1C for Atrium: the standard CommerceML 2 catalogue exchange (sections, products, properties, pictures, prices, stock) from 1C:Enterprise into the catalogue, with an exchange screen",
+    "type": "atrium-module",
+    "license": "MIT",
+    "homepage": "https://github.com/AlveBy/atrium",
+    "support": {
+        "issues": "https://github.com/AlveBy/atrium/issues",
+        "source": "https://github.com/AlveBy/atrium"
+    },
+    "keywords": [
+        "laravel",
+        "admin",
+        "cms",
+        "1c",
+        "commerceml",
+        "catalog",
+        "import"
+    ],
+    "require": {
+        "php": "^8.3",
+        "ext-dom": "*",
+        "ext-xmlreader": "*",
+        "ext-zip": "*",
+        "illuminate/support": "^13.0",
+        "alveby/atrium": "^0.2",
+        "alveby/atrium-catalog": "^0.2",
+        "alveby/atrium-integrations": "^0.2"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^11.0",
+        "phpunit/phpunit": "^12.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Atrium\\OneC\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Atrium\\OneC\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "atrium": {
+            "key": "1c",
+            "title": "atrium-1c::onec.title",
+            "settings": "Atrium\\OneC\\OneCSettings",
+            "resources": [
+                "Atrium\\OneC\\Models\\Run"
+            ],
+            "migrations": "database/migrations"
+        },
+        "laravel": {
+            "providers": [
+                "Atrium\\OneC\\OneCServiceProvider"
+            ]
+        },
+        "branch-alias": {
+            "dev-main": "0.2.x-dev"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

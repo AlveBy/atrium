@@ -153,6 +153,7 @@ Bitrix のデータベースは読み取るだけです。タブ、フィール�
 - [速度と稼働状況：サーバーの計測、訪問者の Web Vitals、通知付きの死活監視](../monitoring.md)
 - [連携：1C と Bitrix24 コネクターの基盤、再試行付きキュー、交換ログ、管理者への通知](../integrations.md)
 - [Bitrix24：フォームの送信がリードまたは取引になる、サイト上のチャットウィジェット、貼り付けるだけの Webhook 1 つ](../bitrix24.md)
+- [1C：標準のCommerceML交換で1C:Enterpriseからカタログを取り込み、交換画面で状況を確認](../1c.md)
 - [CDN：画像、リサイズしたコピーと WebP/AVIF、キャッシュの削除、S3 へのアップロード](../cdn.md)
 - [二要素サインイン：認証アプリ、パスキー、コード、サインイン履歴](../two-factor.md)
 - [ソーシャルログイン：プロバイダー、アプリの登録、リダイレクトURL](../social-login.md)
@@ -173,6 +174,7 @@ Bitrix のデータベースは読み取るだけです。タブ、フィール�
 | [`alveby/atrium-monitoring`](../../packages/monitoring/README.md) | サーバーと訪問者の速度、稼働状況と通知、外部サービスなし |
 | [`alveby/atrium-integrations`](../../packages/integrations/README.md) | コネクターの基盤：再試行付きキュー、交換ログ、失敗時の通知 |
 | [`alveby/atrium-bitrix24`](../../packages/bitrix24/README.md) | フォーム送信を Bitrix24 にリードまたは取引として登録、チャットウィジェット |
+| [`alveby/atrium-1c`](../../packages/onec/README.md) | CommerceMLで1Cから商品・価格・在庫を取り込み |
 | [`alveby/atrium-news`](../../packages/news/README.md) | ニュース |
 | [`alveby/atrium-pages`](../../packages/pages/README.md) | 静的ページ（1C-Bitrix のページのインポートつき） |
 | [`alveby/atrium-catalog`](../../packages/catalog/README.md) | 入れ子のセクションを持つ商品カタログ |
