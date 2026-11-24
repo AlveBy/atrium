@@ -672,6 +672,42 @@ Hook::filter('atrium.search.sources', DropDrafts::class, 20); // an invokable cl
 
 Хуки записей видят только то, что сохраняют панель и API; сидер или импорт, пишущий через Eloquent, их не вызывает (для этого слушайте события самого Eloquent).
 
+### Каталог событий
+
+Действие — это имя, которое знает только его модуль. Чтобы его услышали правила автоматизации, вебхуки и внешние приложения, объявите его в каталоге: ключ, который видят люди и программы, подпись, запись, о которой событие, и данные, которые оно сообщает. Хук запускайте как и раньше.
+
+```php
+use Atrium\Admin\Extensions\Event;
+
+// В boot() сервис-провайдера, пока модуль установлен:
+Hook::register('atrium.events', 'shop.order.paid', Event::make('atrium.order.paid')
+    ->label('shop::events.order_paid')                      // текст или ключ перевода
+    ->subject(Order::class)                                  // первый аргумент хука — запись
+    ->payload(fn (Order $order): array => ['total' => $order->total, 'currency' => $order->currency]));
+```
+
+- **Ключ** (`shop.order.paid`) публичный: называйте его `{module}.{what}.{happened}` и меняйте так же осторожно, как API.
+- **Предмет** — первый аргумент хука, модель этого класса; запуск с чем-то другим — не это событие. Кто может услышать событие, будет решать модуль предмета.
+- **Данные** получают аргументы хука и возвращают простые значения, которые уходят JSON-ом: без секретов и без моделей. Всё, что не массив, считается отсутствием данных.
+- `->when(fn (...$args): bool => …)` делает из одного хука несколько событий; считается только `true`.
+
+У каждого модуля панели есть три события без единой строки кода: `{module}.created`, `{module}.updated` и `{module}.deleted` (`posts.created`); они слышны из `atrium.record.saved` и `atrium.record.deleted`, то есть из панели, API и MCP.
+
+Когда срабатывает объявленный хук, каталог запускает одно действие `atrium.event.occurred` с `Atrium\Admin\Extensions\Occurrence` на каждое событие, которое означает этот запуск; пока его никто не слушает, ничего не собирается:
+
+```php
+Hook::on('atrium.event.occurred', function (Occurrence $occurrence): void {
+    $occurrence->event;    // 'shop.order.paid'
+    $occurrence->subject;  // Order
+    $occurrence->module;   // 'orders' или null, если предмет — не модуль панели
+    $occurrence->data;     // ['total' => 120, 'currency' => 'EUR']
+    $occurrence->actor;    // администратор, который это сделал; null в консоли и в очереди
+    $occurrence->toArray(); // id, event, occurred_at, site, actor, subject, data — то, что отправит вебхук
+});
+```
+
+Каталог начинает слушать, когда загрузились все модули, поэтому объявляйте события в `boot()`. Объявленное позже (в тесте) слышно после `app(Events::class)->listen()`. `php artisan atrium:events` выводит каталог: ключ, подпись, хук и модуль предмета. Это первая часть [платформы расширений](extensions.ru.md).
+
 ## Связи с другими модулями
 
 Модули связаны мягко: товары работают без брендов, а поле и колонка «Бренд» появляются, только когда установлен модуль брендов. Ничто в `require` Composer не заставляет один модуль ставить другой. Так устроен демо-магазин: `alveby/atrium-catalog` ссылается на `alveby/atrium-brands` и `alveby/atrium-stores` (`packages/catalog/src/Models/Product.php`).
