@@ -144,6 +144,7 @@ Baza danych Bitrixa jest tylko odczytywana. Karty, kolejność pól i kolumny li
 - [Osadzenia: formularz lub blok w tekście i jak moduł rejestruje własny typ](../embeds.md)
 - [Wyszukiwanie: strona wyników, pole w panelu, co i jak jest wyszukiwane](../search.md)
 - [Własny moduł: pola, kolumny, zakładki, uprawnienia, języki, testy, pakiet](../modules.md)
+- [Rozszerzenia: projekt platformy — kreator bez kodu, formuły, wtyczki, zewnętrzne aplikacje, plan](../extensions.md)
 - [Własne pola: dodawanie pól do dowolnego modułu z panelu, filtry i fasety na 100 000 rekordów](../custom-fields.md)
 - [Import i eksport: CSV i Excel dla każdego modułu, kolumny, sprawdzenie przed zapisem, konsola i harmonogram](../import-export.md)
 - [Cache: szybkie strony z dziesiątkami właściwości, Redis, cache stron, nagłówki dla CDN](../cache.md)

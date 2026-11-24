@@ -144,6 +144,7 @@ Bitrix maʼlumotlar bazasi faqat oʻqiladi. Yorliqlar, maydonlar tartibi va roʻ
 - [Qo‘shimchalar: matn ichidagi forma yoki blok va modul o‘z turini qanday ro‘yxatdan o‘tkazadi](../embeds.md)
 - [Qidiruv: natijalar sahifasi, admin paneldagi qator, nima va qanday qidiriladi](../search.md)
 - [Oʻz modulingiz: maydonlar, ustunlar, yorliqlar, huquqlar, tillar, testlar, paket](../modules.md)
+- [Kengaytmalar: platforma loyihasi — kodsiz konstruktor, formulalar, plaginlar, tashqi ilovalar, reja](../extensions.md)
 - [Oʻz maydonlaringiz: istalgan modulga admin paneldan maydon qoʻshish, 100 000 yozuvda filtrlar va fasetlar](../custom-fields.md)
 - [Import va eksport: istalgan modul uchun CSV va Excel, ustunlar, yozishdan oldin tekshiruv, konsol va jadval](../import-export.md)
 - [Kesh: oʻnlab xususiyatli tez sahifalar, Redis, sahifalar keshi, CDN sarlavhalari](../cache.md)

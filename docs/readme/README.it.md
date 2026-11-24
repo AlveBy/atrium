@@ -144,6 +144,7 @@ Il database di Bitrix viene solo letto. Le schede, l'ordine dei campi e le colon
 - [Incorporamenti: un modulo o un blocco dentro un testo e come un modulo registra un proprio tipo](../embeds.md)
 - [Ricerca: la pagina dei risultati, il campo nel pannello, cosa si cerca e come](../search.md)
 - [Il tuo modulo: campi, colonne, schede, permessi, lingue, test, pacchetto](../modules.md)
+- [Estensioni: il progetto della piattaforma — costruttore senza codice, formule, plugin, app esterne, il piano](../extensions.md)
 - [Campi personalizzati: aggiungere campi a qualsiasi modulo dal pannello, filtri e faccette su 100 000 record](../custom-fields.md)
 - [Importazione ed esportazione: CSV ed Excel per ogni modulo, colonne, un controllo prima di scrivere, la console e una pianificazione](../import-export.md)
 - [Cache: pagine veloci con decine di proprietà, Redis, cache delle pagine, intestazioni per CDN](../cache.md)

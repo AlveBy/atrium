@@ -140,6 +140,7 @@ The Bitrix database is only read. The tabs, field order and list columns come ou
 - [Embeds: a form or a block inside a text, and how a module registers its own type](docs/embeds.md)
 - [Search: the results page, the admin box, what is searched and how](docs/search.md)
 - [Your own module: fields, columns, tabs, permissions, languages, tests, a package](docs/modules.md)
+- [Extensions: the platform design — the no-code builder, formulas, plugins, outside apps, the plan](docs/extensions.md)
 - [Custom fields: add fields to any module from the admin, filters and facets on 100 000 records](docs/custom-fields.md)
 - [Import and export: CSV and Excel for any module, columns, a check before writing, the console and a schedule](docs/import-export.md)
 - [Cache: fast pages with dozens of properties, Redis, the page cache, CDN headers](docs/cache.md)

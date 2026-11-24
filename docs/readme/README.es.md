@@ -144,6 +144,7 @@ La base de datos de Bitrix solo se lee. Las pestañas, el orden de los campos y 
 - [Inserciones: un formulario o un bloque dentro de un texto y cómo un módulo registra su propio tipo](../embeds.md)
 - [Búsqueda: la página de resultados, el buscador del panel, qué se busca y cómo](../search.md)
 - [Tu propio módulo: campos, columnas, pestañas, permisos, idiomas, pruebas, paquete](../modules.md)
+- [Extensiones: el diseño de la plataforma — constructor sin código, fórmulas, plugins, apps externas, el plan](../extensions.md)
 - [Campos propios: añadir campos a cualquier módulo desde el panel, filtros y facetas con 100 000 registros](../custom-fields.md)
 - [Importar y exportar: CSV y Excel para cualquier módulo, columnas, una comprobación antes de escribir, la consola y una programación](../import-export.md)
 - [Caché: páginas rápidas con decenas de propiedades, Redis, caché de páginas, cabeceras para CDN](../cache.md)
