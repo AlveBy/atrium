@@ -93,6 +93,12 @@ final class FormLinkTest extends TestCase
         $this->assertSame(0, FormLink::query()->count());
     }
 
+    public function test_the_fields_must_be_text_not_a_list(): void
+    {
+        $this->actingAs($this->admin(), 'admin')->post('/admin/bitrix24_forms', ['form_id' => $this->form()->id, 'mode' => 'lead', 'mapping' => ['a = NAME']])->assertSessionHasErrors('mapping');
+        $this->assertSame(0, FormLink::query()->count());
+    }
+
     public function test_empty_fields_are_fine(): void
     {
         $this->actingAs($this->admin(), 'admin')->post('/admin/bitrix24_forms', ['form_id' => $this->form()->id, 'mode' => 'lead', 'mapping' => ''])->assertSessionHasNoErrors();
