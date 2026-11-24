@@ -81,6 +81,8 @@ final class SettingsTest extends TestCase
             'webhook: too long' => ['webhook', 'https://portal.bitrix24.com/rest/1/'.str_repeat('a', 500).'/', false],
             'webhook: sent empty as null' => ['webhook', null, true],
             'widget: sent empty as null' => ['widget_code', null, true],
+            'webhook: a list' => ['webhook', ['https://portal.bitrix24.com/rest/1/abc123/'], false],
+            'widget: a list' => ['widget_code', ['<script></script>'], false],
             'widget: code' => ['widget_code', '<script>1</script>', true],
             'widget: the limit' => ['widget_code', str_repeat('a', 20000), true],
             'widget: over the limit' => ['widget_code', str_repeat('a', 20001), false],
