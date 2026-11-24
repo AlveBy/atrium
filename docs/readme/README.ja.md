@@ -188,7 +188,7 @@ Bitrix のデータベースは読み取るだけです。タブ、フィール�
 パッケージは Packagist に公開されていますが、0.1 にタグが付くまでは開発版のみです。そのため次のように指定します。
 
 ```bash
-composer require alveby/atrium:^0.1
+composer require alveby/atrium:^0.2
 php artisan atrium:install
 ```
 

@@ -165,7 +165,7 @@ php artisan view:cache
 The steps above install this repository: a Laravel app with Atrium already in it. The packages also go into any Laravel 13 app. They are on Packagist:
 
 ```bash
-composer require alveby/atrium:^0.1
+composer require alveby/atrium:^0.2
 php artisan atrium:install
 ```
 

@@ -188,7 +188,7 @@ Bitrix maʼlumotlar bazasi faqat oʻqiladi. Yorliqlar, maydonlar tartibi va roʻ
 Paketlar Packagist saytida bor, lekin 0.1 teg bilan belgilanmaguncha faqat ishlab chiqish versiyasi sifatida — shuning uchun uni koʻrsating:
 
 ```bash
-composer require alveby/atrium:^0.1
+composer require alveby/atrium:^0.2
 php artisan atrium:install
 ```
 

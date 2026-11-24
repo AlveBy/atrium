@@ -165,7 +165,7 @@ php artisan view:cache
 Выше устанавливается этот репозиторий — приложение на Laravel, в которое Atrium уже встроен. Пакеты ставятся и в любое приложение на Laravel 13. Они есть на Packagist:
 
 ```bash
-composer require alveby/atrium:^0.1
+composer require alveby/atrium:^0.2
 php artisan atrium:install
 ```
 

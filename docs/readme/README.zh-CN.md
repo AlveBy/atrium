@@ -188,7 +188,7 @@ Bitrix 数据库只读不写。标签页、字段顺序和列表列会保持编�
 这些包已在 Packagist 上，但在 0.1 打标签之前只有开发版，所以需要写明版本：
 
 ```bash
-composer require alveby/atrium:^0.1
+composer require alveby/atrium:^0.2
 php artisan atrium:install
 ```
 

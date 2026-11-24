@@ -4,15 +4,15 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9ffa2db236bbb7fac092078c92dec0fe",
+    "content-hash": "fc03911e33d01d65c5c145f645181cef",
     "packages": [
         {
             "name": "alveby/atrium",
-            "version": "0.1.x-dev",
+            "version": "0.2.x-dev",
             "dist": {
                 "type": "path",
                 "url": "packages/admin",
-                "reference": "92145ee1d6dd9f969cd9022f3ae5db5a64e50f01"
+                "reference": "162fe6f9fcabf0a44e881a214493116f8563541c"
             },
             "require": {
                 "illuminate/database": "^13.0",
@@ -21,6 +21,7 @@
                 "inertiajs/inertia-laravel": "^3.0",
                 "laravel/mcp": "^1.2",
                 "laravel/sanctum": "^4.0",
+                "openspout/openspout": "^4.33",
                 "php": "^8.3",
                 "spatie/laravel-translatable": "^6.14",
                 "tightenco/ziggy": "^2.6"
@@ -37,7 +38,7 @@
                     ]
                 },
                 "branch-alias": {
-                    "dev-main": "0.1.x-dev"
+                    "dev-main": "0.2.x-dev"
                 }
             },
             "autoload": {
@@ -75,14 +76,14 @@
         },
         {
             "name": "alveby/atrium-2fa",
-            "version": "0.1.x-dev",
+            "version": "0.2.x-dev",
             "dist": {
                 "type": "path",
                 "url": "packages/two-factor",
-                "reference": "1c4ff32147f69801259bb19945fae9614475ed61"
+                "reference": "f46937667fbfc8ced247b10e946e657a08574d29"
             },
             "require": {
-                "alveby/atrium": "^0.1",
+                "alveby/atrium": "^0.2",
                 "bacon/bacon-qr-code": "^3.0",
                 "ext-openssl": "*",
                 "illuminate/support": "^13.0",
@@ -107,7 +108,7 @@
                     ]
                 },
                 "branch-alias": {
-                    "dev-main": "0.1.x-dev"
+                    "dev-main": "0.2.x-dev"
                 }
             },
             "autoload": {
@@ -148,14 +149,14 @@
         },
         {
             "name": "alveby/atrium-ai",
-            "version": "0.1.x-dev",
+            "version": "0.2.x-dev",
             "dist": {
                 "type": "path",
                 "url": "packages/ai",
-                "reference": "2e0efa173621a82cf2bd6279e4fbf9001c724748"
+                "reference": "9fe06ef5d6cd5ca2f1d6e658956f20374b8f2979"
             },
             "require": {
-                "alveby/atrium": "^0.1",
+                "alveby/atrium": "^0.2",
                 "illuminate/support": "^13.0",
                 "laravel/ai": "^1.4",
                 "php": "^8.3"
@@ -177,7 +178,7 @@
                     ]
                 },
                 "branch-alias": {
-                    "dev-main": "0.1.x-dev"
+                    "dev-main": "0.2.x-dev"
                 }
             },
             "autoload": {
@@ -217,14 +218,14 @@
         },
         {
             "name": "alveby/atrium-backup",
-            "version": "0.1.x-dev",
+            "version": "0.2.x-dev",
             "dist": {
                 "type": "path",
                 "url": "packages/backup",
-                "reference": "b543735cedb64e946e0a9aa5e4472436a0c65a2a"
+                "reference": "2a375858324cb7d945c7f4785c55ccbb20b5e801"
             },
             "require": {
-                "alveby/atrium": "^0.1",
+                "alveby/atrium": "^0.2",
                 "ext-zip": "*",
                 "illuminate/support": "^13.0",
                 "php": "^8.3",
@@ -252,7 +253,7 @@
                     ]
                 },
                 "branch-alias": {
-                    "dev-main": "0.1.x-dev"
+                    "dev-main": "0.2.x-dev"
                 }
             },
             "autoload": {
@@ -291,19 +292,19 @@
         },
         {
             "name": "alveby/atrium-brands",
-            "version": "0.1.x-dev",
+            "version": "0.2.x-dev",
             "dist": {
                 "type": "path",
                 "url": "packages/brands",
-                "reference": "d4488fb991e413662b49a8ad80f57bc77d87c474"
+                "reference": "ccfbdab2f03df6cdd3f548cd7f131f11587805f1"
             },
             "require": {
-                "alveby/atrium": "^0.1",
+                "alveby/atrium": "^0.2",
                 "illuminate/support": "^13.0",
                 "php": "^8.3"
             },
             "require-dev": {
-                "alveby/atrium-theme": "^0.1",
+                "alveby/atrium-theme": "^0.2",
                 "orchestra/testbench": "^11.0",
                 "phpunit/phpunit": "^12.5"
             },
@@ -322,7 +323,7 @@
                     ]
                 },
                 "branch-alias": {
-                    "dev-main": "0.1.x-dev"
+                    "dev-main": "0.2.x-dev"
                 }
             },
             "autoload": {
@@ -357,23 +358,22 @@
         },
         {
             "name": "alveby/atrium-catalog",
-            "version": "0.1.x-dev",
+            "version": "0.2.x-dev",
             "dist": {
                 "type": "path",
                 "url": "packages/catalog",
-                "reference": "3a2a86d6b56fed0c2c0be831d7774dd7ec3db3b4"
+                "reference": "3dcf3df61b0821ac6582c7034b12287114a2462e"
             },
             "require": {
-                "alveby/atrium": "^0.1",
+                "alveby/atrium": "^0.2",
                 "illuminate/support": "^13.0",
-                "openspout/openspout": "^4.33",
                 "php": "^8.3"
             },
             "require-dev": {
-                "alveby/atrium-brands": "^0.1",
-                "alveby/atrium-news": "^0.1",
-                "alveby/atrium-stores": "^0.1",
-                "alveby/atrium-theme": "^0.1",
+                "alveby/atrium-brands": "^0.2",
+                "alveby/atrium-news": "^0.2",
+                "alveby/atrium-stores": "^0.2",
+                "alveby/atrium-theme": "^0.2",
                 "orchestra/testbench": "^11.0",
                 "phpunit/phpunit": "^12.5"
             },
@@ -410,7 +410,7 @@
                     ]
                 },
                 "branch-alias": {
-                    "dev-main": "0.1.x-dev"
+                    "dev-main": "0.2.x-dev"
                 }
             },
             "autoload": {
@@ -447,20 +447,20 @@
         },
         {
             "name": "alveby/atrium-custom-fields",
-            "version": "0.1.x-dev",
+            "version": "0.2.x-dev",
             "dist": {
                 "type": "path",
                 "url": "packages/custom-fields",
-                "reference": "476b115ec3eae0a613fbbed728dda00868177da8"
+                "reference": "b70eb8ecefdcd61f4ca0ca180f61f5fee921af47"
             },
             "require": {
-                "alveby/atrium": "^0.1",
+                "alveby/atrium": "^0.2",
                 "illuminate/support": "^13.0",
                 "php": "^8.3"
             },
             "require-dev": {
-                "alveby/atrium-brands": "^0.1",
-                "alveby/atrium-catalog": "^0.1",
+                "alveby/atrium-brands": "^0.2",
+                "alveby/atrium-catalog": "^0.2",
                 "orchestra/testbench": "^11.0",
                 "phpunit/phpunit": "^12.5"
             },
@@ -482,7 +482,7 @@
                     ]
                 },
                 "branch-alias": {
-                    "dev-main": "0.1.x-dev"
+                    "dev-main": "0.2.x-dev"
                 }
             },
             "autoload": {
@@ -520,14 +520,14 @@
         },
         {
             "name": "alveby/atrium-docs",
-            "version": "0.1.x-dev",
+            "version": "0.2.x-dev",
             "dist": {
                 "type": "path",
                 "url": "packages/docs",
-                "reference": "533d8ac582a85776561c455c641df3bc06f03d86"
+                "reference": "6019f93f8640763ea650d82688da2c219a35b996"
             },
             "require": {
-                "alveby/atrium": "^0.1",
+                "alveby/atrium": "^0.2",
                 "illuminate/support": "^13.0",
                 "league/commonmark": "^2.7",
                 "phiki/phiki": "^2.0",
@@ -548,7 +548,7 @@
                     ]
                 },
                 "branch-alias": {
-                    "dev-main": "0.1.x-dev"
+                    "dev-main": "0.2.x-dev"
                 }
             },
             "autoload": {
@@ -584,14 +584,14 @@
         },
         {
             "name": "alveby/atrium-errors",
-            "version": "0.1.x-dev",
+            "version": "0.2.x-dev",
             "dist": {
                 "type": "path",
                 "url": "packages/errors",
-                "reference": "a3ce2a80a3d4dfd1179b1367ad677b6dd66addd6"
+                "reference": "0d94f50e8ebb85d1f3f8351011ff53395a10df19"
             },
             "require": {
-                "alveby/atrium": "^0.1",
+                "alveby/atrium": "^0.2",
                 "illuminate/support": "^13.0",
                 "php": "^8.3"
             },
@@ -622,7 +622,7 @@
                     ]
                 },
                 "branch-alias": {
-                    "dev-main": "0.1.x-dev"
+                    "dev-main": "0.2.x-dev"
                 }
             },
             "autoload": {
@@ -661,19 +661,19 @@
         },
         {
             "name": "alveby/atrium-faq",
-            "version": "0.1.x-dev",
+            "version": "0.2.x-dev",
             "dist": {
                 "type": "path",
                 "url": "packages/faq",
-                "reference": "e117be85c56e38d0e4db8f8d1cc02e15f9942830"
+                "reference": "ca89b9344a30718b025746e735ae0b265a4d96ca"
             },
             "require": {
-                "alveby/atrium": "^0.1",
+                "alveby/atrium": "^0.2",
                 "illuminate/support": "^13.0",
                 "php": "^8.3"
             },
             "require-dev": {
-                "alveby/atrium-theme": "^0.1",
+                "alveby/atrium-theme": "^0.2",
                 "orchestra/testbench": "^11.0",
                 "phpunit/phpunit": "^12.5"
             },
@@ -701,7 +701,7 @@
                     ]
                 },
                 "branch-alias": {
-                    "dev-main": "0.1.x-dev"
+                    "dev-main": "0.2.x-dev"
                 }
             },
             "autoload": {
@@ -739,14 +739,14 @@
         },
         {
             "name": "alveby/atrium-forms",
-            "version": "0.1.x-dev",
+            "version": "0.2.x-dev",
             "dist": {
                 "type": "path",
                 "url": "packages/forms",
-                "reference": "d8711255cdb5fd72940640bd2a1043df111d370c"
+                "reference": "6c4e7e4ce523e7ffff5c50d3316b589d2395a951"
             },
             "require": {
-                "alveby/atrium": "^0.1",
+                "alveby/atrium": "^0.2",
                 "illuminate/support": "^13.0",
                 "php": "^8.3"
             },
@@ -759,7 +759,6 @@
                 "atrium": {
                     "resources": [
                         "Atrium\\Forms\\Models\\Form",
-                        "Atrium\\Forms\\Models\\FormField",
                         "Atrium\\Forms\\Models\\FormSubmission"
                     ],
                     "migrations": "database/migrations"
@@ -770,7 +769,7 @@
                     ]
                 },
                 "branch-alias": {
-                    "dev-main": "0.1.x-dev"
+                    "dev-main": "0.2.x-dev"
                 }
             },
             "autoload": {
@@ -807,19 +806,19 @@
         },
         {
             "name": "alveby/atrium-menus",
-            "version": "0.1.x-dev",
+            "version": "0.2.x-dev",
             "dist": {
                 "type": "path",
                 "url": "packages/menus",
-                "reference": "0191df5a64f26751fb65e0b75e4350f1c453bbb0"
+                "reference": "29ee78f295d2b1e2931a353baac6406e387a52f4"
             },
             "require": {
-                "alveby/atrium": "^0.1",
+                "alveby/atrium": "^0.2",
                 "illuminate/support": "^13.0",
                 "php": "^8.3"
             },
             "require-dev": {
-                "alveby/atrium-theme": "^0.1",
+                "alveby/atrium-theme": "^0.2",
                 "orchestra/testbench": "^11.0",
                 "phpunit/phpunit": "^12.5"
             },
@@ -843,7 +842,7 @@
                     ]
                 },
                 "branch-alias": {
-                    "dev-main": "0.1.x-dev"
+                    "dev-main": "0.2.x-dev"
                 }
             },
             "autoload": {
@@ -884,14 +883,14 @@
         },
         {
             "name": "alveby/atrium-monitoring",
-            "version": "0.1.x-dev",
+            "version": "0.2.x-dev",
             "dist": {
                 "type": "path",
                 "url": "packages/monitoring",
-                "reference": "bbea1652fb6d8333c7dd5af2c1558712c1149a73"
+                "reference": "965226720eda2e04cb280267ab797ec7d15dee93"
             },
             "require": {
-                "alveby/atrium": "^0.1",
+                "alveby/atrium": "^0.2",
                 "illuminate/support": "^13.0",
                 "php": "^8.3"
             },
@@ -927,7 +926,7 @@
                     ]
                 },
                 "branch-alias": {
-                    "dev-main": "0.1.x-dev"
+                    "dev-main": "0.2.x-dev"
                 }
             },
             "autoload": {
@@ -966,19 +965,19 @@
         },
         {
             "name": "alveby/atrium-news",
-            "version": "0.1.x-dev",
+            "version": "0.2.x-dev",
             "dist": {
                 "type": "path",
                 "url": "packages/news",
-                "reference": "287c4806ee1676726ed92a3f93f57d0905202f51"
+                "reference": "7f58906149f0780c78aa2c72a478972b0b45800e"
             },
             "require": {
-                "alveby/atrium": "^0.1",
+                "alveby/atrium": "^0.2",
                 "illuminate/support": "^13.0",
                 "php": "^8.3"
             },
             "require-dev": {
-                "alveby/atrium-theme": "^0.1",
+                "alveby/atrium-theme": "^0.2",
                 "orchestra/testbench": "^11.0",
                 "phpunit/phpunit": "^12.5"
             },
@@ -1002,7 +1001,7 @@
                     ]
                 },
                 "branch-alias": {
-                    "dev-main": "0.1.x-dev"
+                    "dev-main": "0.2.x-dev"
                 }
             },
             "autoload": {
@@ -1039,15 +1038,15 @@
         },
         {
             "name": "alveby/atrium-pages",
-            "version": "0.1.x-dev",
+            "version": "0.2.x-dev",
             "dist": {
                 "type": "path",
                 "url": "packages/pages",
-                "reference": "54d229fb4aead0321cb4226f3c395ae51c741ac1"
+                "reference": "caef72bd2fa7a1a374c484897888abab6193e531"
             },
             "require": {
-                "alveby/atrium": "^0.1",
-                "alveby/atrium-theme": "^0.1",
+                "alveby/atrium": "^0.2",
+                "alveby/atrium-theme": "^0.2",
                 "illuminate/support": "^13.0",
                 "php": "^8.3"
             },
@@ -1077,7 +1076,7 @@
                     ]
                 },
                 "branch-alias": {
-                    "dev-main": "0.1.x-dev"
+                    "dev-main": "0.2.x-dev"
                 }
             },
             "autoload": {
@@ -1115,14 +1114,14 @@
         },
         {
             "name": "alveby/atrium-reviews",
-            "version": "0.1.x-dev",
+            "version": "0.2.x-dev",
             "dist": {
                 "type": "path",
                 "url": "packages/reviews",
-                "reference": "cbc03062383da4027901fdd93221f5d44c83f585"
+                "reference": "61e48a222a229c53484e5b5b5b41088b6e0bb238"
             },
             "require": {
-                "alveby/atrium": "^0.1",
+                "alveby/atrium": "^0.2",
                 "illuminate/support": "^13.0",
                 "php": "^8.3"
             },
@@ -1147,7 +1146,7 @@
                     ]
                 },
                 "branch-alias": {
-                    "dev-main": "0.1.x-dev"
+                    "dev-main": "0.2.x-dev"
                 }
             },
             "autoload": {
@@ -1185,19 +1184,19 @@
         },
         {
             "name": "alveby/atrium-search",
-            "version": "0.1.x-dev",
+            "version": "0.2.x-dev",
             "dist": {
                 "type": "path",
                 "url": "packages/search",
-                "reference": "3dcb645e03b54ae186ec1c29f1b0292779df0db0"
+                "reference": "927e91c56c8de6164ab10a34c51dae7503785cf1"
             },
             "require": {
-                "alveby/atrium": "^0.1",
+                "alveby/atrium": "^0.2",
                 "illuminate/support": "^13.0",
                 "php": "^8.3"
             },
             "require-dev": {
-                "alveby/atrium-theme": "^0.1",
+                "alveby/atrium-theme": "^0.2",
                 "orchestra/testbench": "^11.0",
                 "phpunit/phpunit": "^12.5"
             },
@@ -1215,7 +1214,7 @@
                     ]
                 },
                 "branch-alias": {
-                    "dev-main": "0.1.x-dev"
+                    "dev-main": "0.2.x-dev"
                 }
             },
             "autoload": {
@@ -1253,14 +1252,14 @@
         },
         {
             "name": "alveby/atrium-seo",
-            "version": "0.1.x-dev",
+            "version": "0.2.x-dev",
             "dist": {
                 "type": "path",
                 "url": "packages/seo",
-                "reference": "7c765dc35f2cfb7c19d94c9aa7a9e9e9125b2b86"
+                "reference": "ba7e8ed6525b49e5a3edf769e361f0363b2ead7e"
             },
             "require": {
-                "alveby/atrium": "^0.1",
+                "alveby/atrium": "^0.2",
                 "ext-dom": "*",
                 "ext-intl": "*",
                 "ext-xmlwriter": "*",
@@ -1268,13 +1267,13 @@
                 "php": "^8.3"
             },
             "require-dev": {
-                "alveby/atrium-brands": "^0.1",
-                "alveby/atrium-catalog": "^0.1",
-                "alveby/atrium-faq": "^0.1",
-                "alveby/atrium-news": "^0.1",
-                "alveby/atrium-reviews": "^0.1",
-                "alveby/atrium-stores": "^0.1",
-                "alveby/atrium-theme": "^0.1",
+                "alveby/atrium-brands": "^0.2",
+                "alveby/atrium-catalog": "^0.2",
+                "alveby/atrium-faq": "^0.2",
+                "alveby/atrium-news": "^0.2",
+                "alveby/atrium-reviews": "^0.2",
+                "alveby/atrium-stores": "^0.2",
+                "alveby/atrium-theme": "^0.2",
                 "orchestra/testbench": "^11.0",
                 "phpunit/phpunit": "^12.5"
             },
@@ -1303,7 +1302,7 @@
                     ]
                 },
                 "branch-alias": {
-                    "dev-main": "0.1.x-dev"
+                    "dev-main": "0.2.x-dev"
                 }
             },
             "autoload": {
@@ -1346,14 +1345,14 @@
         },
         {
             "name": "alveby/atrium-social-login",
-            "version": "0.1.x-dev",
+            "version": "0.2.x-dev",
             "dist": {
                 "type": "path",
                 "url": "packages/social-login",
-                "reference": "ba9a2c6f128cc68d4673ce183ca95c4597a37f1e"
+                "reference": "2ab4f897394f28beaf64e54cbbcb5ddb30ff867f"
             },
             "require": {
-                "alveby/atrium": "^0.1",
+                "alveby/atrium": "^0.2",
                 "illuminate/support": "^13.0",
                 "laravel/socialite": "^5.24",
                 "php": "^8.3",
@@ -1384,7 +1383,7 @@
                     ]
                 },
                 "branch-alias": {
-                    "dev-main": "0.1.x-dev"
+                    "dev-main": "0.2.x-dev"
                 }
             },
             "autoload": {
@@ -1424,28 +1423,28 @@
         },
         {
             "name": "alveby/atrium-solutions",
-            "version": "0.1.x-dev",
+            "version": "0.2.x-dev",
             "dist": {
                 "type": "path",
                 "url": "packages/solutions",
-                "reference": "7fa6700e2ba67d5956f033093dc6b27f903d1d20"
+                "reference": "7b44374c166470c8e4abdd6b027c5914e53e0c5c"
             },
             "require": {
-                "alveby/atrium": "^0.1",
-                "alveby/atrium-theme": "^0.1",
+                "alveby/atrium": "^0.2",
+                "alveby/atrium-theme": "^0.2",
                 "illuminate/support": "^13.0",
                 "php": "^8.3"
             },
             "require-dev": {
-                "alveby/atrium-brands": "^0.1",
-                "alveby/atrium-catalog": "^0.1",
-                "alveby/atrium-faq": "^0.1",
-                "alveby/atrium-forms": "^0.1",
-                "alveby/atrium-news": "^0.1",
-                "alveby/atrium-pages": "^0.1",
-                "alveby/atrium-reviews": "^0.1",
-                "alveby/atrium-stores": "^0.1",
-                "alveby/atrium-team": "^0.1",
+                "alveby/atrium-brands": "^0.2",
+                "alveby/atrium-catalog": "^0.2",
+                "alveby/atrium-faq": "^0.2",
+                "alveby/atrium-forms": "^0.2",
+                "alveby/atrium-news": "^0.2",
+                "alveby/atrium-pages": "^0.2",
+                "alveby/atrium-reviews": "^0.2",
+                "alveby/atrium-stores": "^0.2",
+                "alveby/atrium-team": "^0.2",
                 "orchestra/testbench": "^11.0",
                 "phpunit/phpunit": "^12.5"
             },
@@ -1463,7 +1462,7 @@
                     ]
                 },
                 "branch-alias": {
-                    "dev-main": "0.1.x-dev"
+                    "dev-main": "0.2.x-dev"
                 }
             },
             "autoload": {
@@ -1501,19 +1500,19 @@
         },
         {
             "name": "alveby/atrium-stores",
-            "version": "0.1.x-dev",
+            "version": "0.2.x-dev",
             "dist": {
                 "type": "path",
                 "url": "packages/stores",
-                "reference": "42d998de5674f784f29fe70122b9b11c1325017d"
+                "reference": "c5e4e67a3410ee5f8d5f8266075492318619226c"
             },
             "require": {
-                "alveby/atrium": "^0.1",
+                "alveby/atrium": "^0.2",
                 "illuminate/support": "^13.0",
                 "php": "^8.3"
             },
             "require-dev": {
-                "alveby/atrium-theme": "^0.1",
+                "alveby/atrium-theme": "^0.2",
                 "orchestra/testbench": "^11.0",
                 "phpunit/phpunit": "^12.5"
             },
@@ -1537,7 +1536,7 @@
                     ]
                 },
                 "branch-alias": {
-                    "dev-main": "0.1.x-dev"
+                    "dev-main": "0.2.x-dev"
                 }
             },
             "autoload": {
@@ -1573,19 +1572,19 @@
         },
         {
             "name": "alveby/atrium-team",
-            "version": "0.1.x-dev",
+            "version": "0.2.x-dev",
             "dist": {
                 "type": "path",
                 "url": "packages/team",
-                "reference": "bcf0578aba4d0dedd82ad5c60d192eca40e5f7ba"
+                "reference": "7a6b7f8782fdc46a4361019046a06883acdc6d42"
             },
             "require": {
-                "alveby/atrium": "^0.1",
+                "alveby/atrium": "^0.2",
                 "illuminate/support": "^13.0",
                 "php": "^8.3"
             },
             "require-dev": {
-                "alveby/atrium-theme": "^0.1",
+                "alveby/atrium-theme": "^0.2",
                 "orchestra/testbench": "^11.0",
                 "phpunit/phpunit": "^12.5"
             },
@@ -1613,7 +1612,7 @@
                     ]
                 },
                 "branch-alias": {
-                    "dev-main": "0.1.x-dev"
+                    "dev-main": "0.2.x-dev"
                 }
             },
             "autoload": {
@@ -1651,14 +1650,14 @@
         },
         {
             "name": "alveby/atrium-theme",
-            "version": "0.1.x-dev",
+            "version": "0.2.x-dev",
             "dist": {
                 "type": "path",
                 "url": "packages/theme",
-                "reference": "c6085995be8d2a3d004670564bfa8813622b6fde"
+                "reference": "8dd6989c58eb271c4b88aaec3262767b0135c4b0"
             },
             "require": {
-                "alveby/atrium": "^0.1",
+                "alveby/atrium": "^0.2",
                 "ext-intl": "*",
                 "illuminate/support": "^13.0",
                 "php": "^8.3"
@@ -1675,7 +1674,7 @@
                     ]
                 },
                 "branch-alias": {
-                    "dev-main": "0.1.x-dev"
+                    "dev-main": "0.2.x-dev"
                 }
             },
             "autoload": {
@@ -9992,14 +9991,14 @@
     "packages-dev": [
         {
             "name": "alveby/atrium-bitrix",
-            "version": "0.1.x-dev",
+            "version": "0.2.x-dev",
             "dist": {
                 "type": "path",
                 "url": "packages/bitrix",
-                "reference": "a34d9e84597669e68d6eb7426a5c4e9b4d0a5e12"
+                "reference": "026af2ac0fc5e7d33b4d8eba6a25945b7a7815c9"
             },
             "require": {
-                "alveby/atrium": "^0.1",
+                "alveby/atrium": "^0.2",
                 "illuminate/console": "^13.0",
                 "illuminate/database": "^13.0",
                 "illuminate/support": "^13.0",
@@ -10018,7 +10017,7 @@
                     ]
                 },
                 "branch-alias": {
-                    "dev-main": "0.1.x-dev"
+                    "dev-main": "0.2.x-dev"
                 }
             },
             "autoload": {
@@ -10056,24 +10055,24 @@
         },
         {
             "name": "alveby/atrium-wordpress",
-            "version": "0.1.x-dev",
+            "version": "0.2.x-dev",
             "dist": {
                 "type": "path",
                 "url": "packages/wordpress",
-                "reference": "7f6da31bca0c6341471dc2a81ba27e67745a5d51"
+                "reference": "37df638cb05110664d25d6865fb60c78f33c9c7c"
             },
             "require": {
-                "alveby/atrium": "^0.1",
+                "alveby/atrium": "^0.2",
                 "illuminate/console": "^13.0",
                 "illuminate/database": "^13.0",
                 "illuminate/support": "^13.0",
                 "php": "^8.3"
             },
             "require-dev": {
-                "alveby/atrium-menus": "^0.1",
-                "alveby/atrium-news": "^0.1",
-                "alveby/atrium-pages": "^0.1",
-                "alveby/atrium-theme": "^0.1",
+                "alveby/atrium-menus": "^0.2",
+                "alveby/atrium-news": "^0.2",
+                "alveby/atrium-pages": "^0.2",
+                "alveby/atrium-theme": "^0.2",
                 "orchestra/testbench": "^11.0",
                 "phpunit/phpunit": "^12.5"
             },
@@ -10090,7 +10089,7 @@
                     ]
                 },
                 "branch-alias": {
-                    "dev-main": "0.1.x-dev"
+                    "dev-main": "0.2.x-dev"
                 }
             },
             "autoload": {

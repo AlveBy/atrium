@@ -184,7 +184,7 @@ The Bitrix database is only read. The tabs, field order and list columns come ou
 The packages are on Packagist:
 
 ```bash
-composer require alveby/atrium:^0.1
+composer require alveby/atrium:^0.2
 php artisan atrium:install
 ```
 
