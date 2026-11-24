@@ -188,7 +188,7 @@ Baza danych Bitrixa jest tylko odczytywana. Karty, kolejność pól i kolumny li
 Pakiety są na Packagist, ale dopóki 0.1 nie ma tagu, tylko jako wersja rozwojowa, więc trzeba ją wskazać:
 
 ```bash
-composer require alveby/atrium:^0.1
+composer require alveby/atrium:^0.2
 php artisan atrium:install
 ```
 

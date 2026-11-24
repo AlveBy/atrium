@@ -188,7 +188,7 @@ php artisan atrium:bitrix:parity
 Пакети вже на Packagist, але доки 0.1 не позначено тегом — лише як версія для розробки, тож вкажіть її:
 
 ```bash
-composer require alveby/atrium:^0.1
+composer require alveby/atrium:^0.2
 php artisan atrium:install
 ```
 

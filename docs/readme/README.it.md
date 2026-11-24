@@ -188,7 +188,7 @@ Il database di Bitrix viene solo letto. Le schede, l'ordine dei campi e le colon
 I pacchetti sono su Packagist, ma finché la 0.1 non ha un tag solo come versione di sviluppo, quindi va indicata:
 
 ```bash
-composer require alveby/atrium:^0.1
+composer require alveby/atrium:^0.2
 php artisan atrium:install
 ```
 

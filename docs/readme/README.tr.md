@@ -188,7 +188,7 @@ Bitrix veritabanından yalnızca okuma yapılır. Sekmeler, alan sırası ve lis
 Paketler Packagist'te var, ancak 0.1 etiketlenene kadar yalnızca geliştirme sürümü olarak; bu yüzden açıkça belirtilmesi gerekir:
 
 ```bash
-composer require alveby/atrium:^0.1
+composer require alveby/atrium:^0.2
 php artisan atrium:install
 ```
 

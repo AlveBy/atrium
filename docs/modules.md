@@ -443,7 +443,7 @@ The `composer.json` says what the module brings, in `extra.atrium`:
     "type": "atrium-module",
     "require": {
         "php": "^8.3",
-        "alveby/atrium": "^0.1"
+        "alveby/atrium": "^0.2"
     },
     "suggest": {
         "alveby/atrium-catalog": "Reviews of products"

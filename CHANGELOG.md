@@ -4,6 +4,8 @@ All notable changes are listed here. The format follows [Keep a Changelog](https
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-11-24
+
 ### Added
 - Hooks may say no before a record is written. A new action, `atrium.record.deleting`, runs before a record is deleted in the panel, through the API, MCP or the bulk **Delete**, inside the delete's transaction. A listener of it, or a filter of `atrium.record.data`, throws `Atrium\Admin\Hooks\Refused` with a message: nothing is saved or deleted, the form shows the message under the field it names or above the form, the list shows it, the API answers 422 for a save and 409 for a delete with the message, MCP passes it to the assistant, and the bulk **Delete** keeps the refused records and adds each reason once. See "Saying no before a save or a delete" in [docs/modules.md](docs/modules.md).
 - The `atrium` skin (`ATRIUM_THEME_SKIN=atrium`, the public demo's default): an indigo and amber design in Unbounded and Inter that draws the inner pages as well as the home page, light and dark, from a phone to a wide screen, in all 15 languages. Home: a hero with newest products as tiles, brands, sections as a bento grid, products, news, stores, the team, reviews, questions and a contact form, each left out when its module is not installed. Catalog: filters by brand and stock and a price sort in about 40 lines of JavaScript, working without it as a plain list. Product: a gallery, badge, price, a stock mark that is a tick and words, colours, features, the stores that have it, details, specifications, downloads and related products. Stores: facts and an OpenStreetMap map loaded only when the visitor asks for it. A skin may have the views `list` and `page` to draw the theme's lists and records, and `RecordView::blocks()` tells each property's field name (`code`). Contrast measured and checked in `SkinsContrastTest`; no colour carries meaning alone. See [docs/skins.md](docs/skins.md).
@@ -196,5 +198,6 @@ All notable changes are listed here. The format follows [Keep a Changelog](https
 - API tokens and MCP keep to the sites their administrator may work with, as the panel does: records of other sites are not listed, read, changed or deleted, `?site=` naming another site answers 404, and new records go to an allowed site. Neither the API nor the panel takes `site_id` from the request any more, so a record cannot be moved to another site.
 - Uploads are judged by what the file contains, not by the name the client sends: a script, a page or any other file whose content does not match its extension is refused, and an SVG that can run code (scripts, event handlers, `javascript:` links, embedded HTML, entities) is refused too.
 
-[Unreleased]: https://github.com/AlveBy/atrium/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/AlveBy/atrium/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/AlveBy/atrium/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/AlveBy/atrium/releases/tag/v0.1.0

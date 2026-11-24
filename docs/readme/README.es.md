@@ -188,7 +188,7 @@ La base de datos de Bitrix solo se lee. Las pestañas, el orden de los campos y 
 Los paquetes ya están en Packagist, pero mientras la 0.1 no tenga etiqueta solo como versión de desarrollo, así que hay que indicarla:
 
 ```bash
-composer require alveby/atrium:^0.1
+composer require alveby/atrium:^0.2
 php artisan atrium:install
 ```
 
