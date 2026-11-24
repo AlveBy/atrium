@@ -145,6 +145,7 @@ Bitrix veritabanından yalnızca okuma yapılır. Sekmeler, alan sırası ve lis
 - [Bloklar: bir kez yazılan telefon veya afiş, şablonlarda ve metinlerde gösterilir](../blocks.md)
 - [Arama: sonuç sayfası, yönetim panelindeki kutu, neyin nasıl arandığı](../search.md)
 - [Kendi modülünüz: alanlar, sütunlar, sekmeler, yetkiler, diller, testler, paket](../modules.md)
+- [Eklentiler: platform tasarımı — kodsuz oluşturucu, formüller, eklentiler, dış uygulamalar, plan](../extensions.md)
 - [Özel alanlar: yönetim panelinden her modüle alan ekleme, 100 000 kayıtta filtreler ve faset sayıları](../custom-fields.md)
 - [İçe ve dışa aktarma: her modül için CSV ve Excel, sütunlar, yazmadan önce kontrol, konsol ve zamanlama](../import-export.md)
 - [Önbellek: onlarca özellikli hızlı sayfalar, Redis, sayfa önbelleği, CDN başlıkları](../cache.md)

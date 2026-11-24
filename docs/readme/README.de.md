@@ -145,6 +145,7 @@ Die Bitrix-Datenbank wird nur gelesen. Tabs, Feldreihenfolge und Listenspalten k
 - [Blöcke: eine Telefonnummer oder ein Banner, einmal geschrieben und in Vorlagen und Texten gezeigt](../blocks.md)
 - [Suche: die Ergebnisseite, das Suchfeld im Admin-Bereich, was und wie gesucht wird](../search.md)
 - [Eigenes Modul: Felder, Spalten, Tabs, Rechte, Sprachen, Tests, als Paket](../modules.md)
+- [Erweiterungen: Entwurf der Plattform — Baukasten ohne Code, Formeln, Plugins, externe Apps, der Plan](../extensions.md)
 - [Eigene Felder: Felder für jedes Modul im Admin-Bereich anlegen, Filter und Facetten bei 100 000 Einträgen](../custom-fields.md)
 - [Import und Export: CSV und Excel für jedes Modul, Spalten, eine Prüfung vor dem Schreiben, Konsole und Zeitplan](../import-export.md)
 - [Cache: schnelle Seiten mit Dutzenden Eigenschaften, Redis, Seiten-Cache, CDN-Header](../cache.md)

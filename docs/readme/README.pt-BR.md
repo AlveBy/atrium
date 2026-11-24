@@ -145,6 +145,7 @@ O banco de dados do Bitrix é apenas lido. As abas, a ordem dos campos e as colu
 - [Blocos: um telefone ou banner escrito uma vez e exibido em modelos e textos](../blocks.md)
 - [Busca: a página de resultados, a caixa do painel, o que é buscado e como](../search.md)
 - [Seu próprio módulo: campos, colunas, abas, permissões, idiomas, testes, pacote](../modules.md)
+- [Extensões: o projeto da plataforma — construtor sem código, fórmulas, plugins, apps externos, o plano](../extensions.md)
 - [Campos personalizados: adicionar campos a qualquer módulo pelo painel, filtros e facetas com 100 000 registros](../custom-fields.md)
 - [Importar e exportar: CSV e Excel para qualquer módulo, colunas, uma verificação antes de gravar, o console e um agendamento](../import-export.md)
 - [Cache: páginas rápidas com dezenas de propriedades, Redis, cache de páginas, cabeçalhos para CDN](../cache.md)
