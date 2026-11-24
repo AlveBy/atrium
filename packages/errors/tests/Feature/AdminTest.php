@@ -11,6 +11,7 @@ namespace Atrium\Errors\Tests\Feature;
 
 use Atrium\Admin\Auth\Permissions;
 use Atrium\Admin\Dashboard\Gadget;
+use Atrium\Admin\Facades\Hook;
 use Atrium\Admin\Models\Site;
 use Atrium\Admin\Modules\Module;
 use Atrium\Admin\Support\Menu as AdminMenu;
@@ -311,7 +312,7 @@ final class AdminTest extends TestCase
 
     public function test_the_tile_is_on_the_dashboard_for_those_who_may_see_errors(): void
     {
-        $this->assertContains(ErrorsGadget::class, config('atrium.dashboard.gadgets'));
+        $this->assertSame(ErrorsGadget::class, Hook::resolve('atrium.ui.gadgets', 'errors'));
 
         $this->actingAs($this->admin(), 'admin');
         $this->assertTrue((new ErrorsGadget)->isVisible());
@@ -361,12 +362,14 @@ final class AdminTest extends TestCase
         $this->assertSame('Error alerts', __(config('atrium-mail.purposes.errors')));
     }
 
-    public function test_the_tile_is_on_the_dashboard_once_after_config_cache(): void
+    public function test_the_tile_is_on_the_dashboard_once_even_when_the_layout_names_it(): void
     {
-        // A cached config already holds the tile: booting on top of it must not add it again.
+        // Booting again registers the same key; an older layout may still name the class.
         $this->app->getProvider(ErrorsServiceProvider::class)->boot();
+        config(['atrium.dashboard.gadgets' => [ErrorsGadget::class]]);
 
-        $this->assertSame(1, array_count_values((array) config('atrium.dashboard.gadgets'))[ErrorsGadget::class]);
+        $this->actingAs($this->admin(), 'admin')->get('/admin')->assertInertia(fn (AssertableInertia $page) => $page
+            ->where('gadgets', fn ($gadgets): bool => collect($gadgets)->where('component', 'ErrorsGadget')->pluck('key')->all() === ['gadget-0']));
     }
 }
 
