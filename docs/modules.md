@@ -291,6 +291,27 @@ Hook::filter('atrium.module.tabs', fn (array $tabs, string $model) => $model ===
 
 A module whose form has no tabs (it lacks `HasAdminTabs`, or `usesTabs()` is `false`) is drawn flat. Once another module adds a tab for it through `atrium.module.tabs`, and a field sits on that tab, the form gets tabs: the module's own fields, and every field on a tab the form does not have, stay together on a first tab, "General", and the added tabs follow. The custom fields package does exactly this with the tabs an administrator adds ([Custom fields](custom-fields.md#tabs)).
 
+## Panels on a record
+
+Another module can show a block on a record's page: the time logged on a task, the orders of a customer, a preview. A panel is drawn by a Blade view and registered in `atrium.ui.panels`, for one module (`for()`) or for every module:
+
+```php
+use Atrium\Admin\Extensions\Panel;
+
+Hook::register('atrium.ui.panels', 'time.task', Panel::make('time.task')
+    ->for(Task::class)
+    ->label('acme-time::panels.time')
+    ->html('acme-time::panels.task')
+    ->side()
+    ->permission('time.view'));
+```
+
+- **Where**: `below()` the form (the default), `side()` in a column beside it on a wide screen, or `tab()` after the form's own tabs (under the form when it has none).
+- **Who**: `permission()` shows it only to administrators with that permission; `when(fn (Model $record, ?AdminUser $user): bool => …)` decides by the record. Only `true` shows it.
+- **What**: the view gets the record as `$record` and the administrator as `$user`. The page shows the HTML as it is, so print values with `{{ }}`, which escapes them.
+
+Panels come in the order they were registered (lower priority first), and the registry hears the record, so `Hook::filter('atrium.ui.panels', fn (array $panels, Model $record) => …)` may drop one for some records. A panel whose view fails is reported and left out: the record stays editable. Panels are shown on the edit page, not on the create form, where there is no record yet.
+
 ## Validation and hooks
 
 Rules come from the fields (`required()`, `unique()`, `rules()`). To replace them as a whole, return your own from `getCreateValidationRules()` and `getUpdateValidationRules()`.
