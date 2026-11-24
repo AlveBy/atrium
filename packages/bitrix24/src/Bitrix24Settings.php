@@ -36,7 +36,7 @@ final class Bitrix24Settings extends ModuleSettings implements HasActions
             TextField::make('webhook')->label(__('atrium-bitrix24::bitrix24.settings.webhook'))
                 ->hint(__('atrium-bitrix24::bitrix24.settings.webhook_hint'))
                 ->placeholder('https://portal.bitrix24.com/rest/1/xxxxxxxxxxxxxxxx/')
-                ->rules(['nullable', 'string', 'max:500', 'regex:'.Client::WEBHOOK_PATTERN]),
+                ->rules(['string', 'max:500', 'regex:'.Client::WEBHOOK_PATTERN]),
             CheckboxField::make('send_forms')->label(__('atrium-bitrix24::bitrix24.settings.send_forms'))
                 ->hint(__('atrium-bitrix24::bitrix24.settings.send_forms_hint'))
                 ->default(true),
@@ -44,7 +44,7 @@ final class Bitrix24Settings extends ModuleSettings implements HasActions
                 ->hint(__('atrium-bitrix24::bitrix24.settings.widget_code_hint'))
                 ->placeholder('<script>...</script>')
                 ->rows(8)
-                ->rules(['nullable', 'string', 'max:20000']),
+                ->rules(['string', 'max:20000']),
         ];
     }
 
