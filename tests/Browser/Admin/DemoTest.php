@@ -75,23 +75,19 @@ final class DemoTest extends AdminTestCase
 
         $this->withEnv(['ATRIUM_DEMO' => 'true'], function (): void {
             $this->browse(function (Browser $browser): void {
-                $browser->visit('/admin/login')
-                    ->waitFor(self::NOTE);
+                $browser->visit('/admin/login')->waitFor(self::NOTE);
+                $browser->script('window.__log = []; const t0 = performance.now(); const note = (name, extra) => window.__log.push([Math.round(performance.now() - t0), name, extra]); window.__log.push(["attach", document.readyState, document.hasFocus(), document.visibilityState, document.fonts.status]); window.addEventListener("load", () => note("load", document.readyState)); document.addEventListener("visibilitychange", () => note("visibility", document.visibilityState)); window.addEventListener("focus", () => note("win-focus", "")); window.addEventListener("blur", () => note("win-blur", "")); document.fonts.ready.then(() => note("fonts-ready", "")); const p = document.querySelector("#password"); p.__marker = 1; for (const e of ["input", "change", "focus", "blur", "invalid"]) { p.addEventListener(e, (ev) => note("pw-" + ev.type, p.value)); } document.querySelector("form").addEventListener("submit", () => note("submit", p.value)); for (const e of ["start", "finish", "error", "success", "invalid", "exception", "navigate"]) { document.addEventListener("inertia:" + e, () => note("inertia-" + e, p.value)); } new MutationObserver(() => note("dom", document.querySelector("#password") === p ? "same" : "replaced")).observe(document.body, {childList: true, subtree: true});');
+                $browser->type('#password', 'not-the-password');
+                $browser->script('window.__log.push(["after-type", document.querySelector("#password").value, document.activeElement.id, document.hasFocus(), document.visibilityState, document.readyState, document.fonts.status]);');
+                $browser->press('button[type="submit"]');
 
-                // The field comes filled in, so typing clears it first. A
-                // keystroke that goes astray leaves it empty, and the
-                // browser itself then refuses to send the form (required):
-                // no request, no error. Type until the text is really there.
-                $browser->waitUsing(5, 100, function () use ($browser): bool {
-                    $browser->type('#password', 'not-the-password');
+                try {
+                    $browser->waitFor('[data-error]');
+                } catch (\Throwable $e) {
+                    throw new \RuntimeException('DIAG '.json_encode($browser->script('const p = document.querySelector("#password"); return {log: window.__log ?? null, value: p.value, marker: p.__marker ?? null, active: document.activeElement.id || document.activeElement.tagName, valid: document.querySelector("form").checkValidity(), disabled: document.querySelector("button[type=submit]").disabled, href: location.href, nav: performance.getEntriesByType("navigation").map((n) => n.type)};')[0]), 0, $e);
+                }
 
-                    return $browser->inputValue('#password') === 'not-the-password';
-                }, 'The wrong password did not land in the field.');
-
-                $browser->press('button[type="submit"]')
-                    ->waitFor('[data-error]')
-                    ->assertPathIs('/admin/login')
-                    ->assertInputValue('#password', 'demo');
+                $browser->assertPathIs('/admin/login')->assertInputValue('#password', 'demo');
             });
         });
     }
