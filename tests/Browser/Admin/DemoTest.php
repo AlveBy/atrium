@@ -116,6 +116,73 @@ final class DemoTest extends AdminTestCase
         });
     }
 
+    public function test_diag_many(): void
+    {
+        $this->visitor();
+        $rounds = (int) (getenv('DIAG_ROUNDS') ?: 40);
+
+        $this->withEnv(['ATRIUM_DEMO' => 'true'], function () use ($rounds): void {
+            $this->browse(function (Browser $browser) use ($rounds): void {
+                $logger = <<<'JS'
+                    window.__log = [];
+                    const t0 = performance.now();
+                    const note = (name, extra) => window.__log.push([Math.round(performance.now() - t0), name, extra]);
+                    const what = (ev) => (ev.target.id || ev.target.tagName || 'win') + ':' + (ev.target.value ?? '');
+                    for (const e of ['focusin', 'focusout', 'beforeinput', 'input', 'change', 'keydown', 'keyup']) {
+                        document.addEventListener(e, (ev) => note(e, what(ev)), true);
+                    }
+                    window.addEventListener('focus', () => note('win-focus', ''));
+                    window.addEventListener('blur', () => note('win-blur', ''));
+                    let seen = false;
+                    new MutationObserver(() => {
+                        if (!seen && document.querySelector('[dusk="login-demo"]')) {
+                            seen = true;
+                            note('note-mounted', [document.readyState, document.hasFocus()].join(','));
+                        }
+                    }).observe(document, {childList: true, subtree: true});
+                JS;
+                $browser->driver->executeCustomCommand('/session/:sessionId/goog/cdp/execute', 'POST', ['cmd' => 'Page.addScriptToEvaluateOnNewDocument', 'params' => ['source' => $logger]]);
+
+                $failed = ['clear_type' => 0, 'select_keys' => 0, 'retry_attempts' => 0];
+                $logs = [];
+
+                for ($i = 0; $i < $rounds; $i++) {
+                    // 1. what the test did: Dusk's clear, then the keys.
+                    $browser->visit('/admin/login')->waitFor(self::NOTE)->type('#password', 'not-the-password');
+
+                    if ($browser->inputValue('#password') !== 'not-the-password') {
+                        $failed['clear_type']++;
+                        $logs[] = $browser->script('return [window.__log, document.hasFocus(), document.activeElement.id];')[0];
+                    }
+
+                    // 2. select what is there and type over it.
+                    $browser->visit('/admin/login')->waitFor(self::NOTE);
+                    $browser->script('const p = document.querySelector("#password"); p.focus(); p.select();');
+                    $browser->keys('#password', 'not-the-password');
+
+                    if ($browser->inputValue('#password') !== 'not-the-password') {
+                        $failed['select_keys']++;
+                    }
+
+                    // 3. the retry on main: how many times the type is repeated.
+                    $browser->visit('/admin/login')->waitFor(self::NOTE);
+
+                    for ($try = 0; $try < 20; $try++) {
+                        $browser->type('#password', 'not-the-password');
+
+                        if ($browser->inputValue('#password') === 'not-the-password') {
+                            break;
+                        }
+
+                        $failed['retry_attempts']++;
+                    }
+                }
+
+                throw new \RuntimeException('DIAG '.json_encode(['rounds' => $rounds, 'failed' => $failed, 'logs' => array_slice($logs, 0, 2)]));
+            });
+        });
+    }
+
     /**
      * @return array<string, array{string}>
      */
