@@ -165,11 +165,10 @@ After WordPress the order follows requests in Issues.
 - An exchange screen in the admin: when it last ran, what came in, errors.
 
 **Bitrix24**
-- Form submissions and orders become leads or deals, customers become contacts.
-- Deal stages come back to the site (order paid, shipped).
-- The Bitrix24 open channels / live chat widget on the site.
-- Connected with an inbound webhook: paste the URL and it works.
-- "Form → lead" is simple and almost everyone needs it, so it may ship earlier, together with the Forms module in 0.2.
+- Form submissions and orders become leads or deals, customers become contacts. ~~Form submissions → a lead, or a contact with a deal~~ done (`alveby/atrium-bitrix24`, [docs](docs/bitrix24.md)), with a per-form choice of the field mapping; orders and customers wait for the shop.
+- Deal stages come back to the site (order paid, shipped): waits for the shop.
+- ~~The Bitrix24 open channels / live chat widget on the site.~~ done: paste the widget code in the module's settings.
+- ~~Connected with an inbound webhook: paste the URL and it works.~~ done: stored encrypted, with a **Check connection** button.
 
 **Shared by all integrations:** ~~a queue with retries, an exchange log, an alert to the admin on failure~~ done (`alveby/atrium-integrations`, [docs](docs/integrations.md)): five attempts with growing pauses, a log screen with secrets hidden, one letter per integration per hour. Other connectors (amoCRM and the like) can be built on the same base on request.
 

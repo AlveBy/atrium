@@ -29,7 +29,8 @@ final class SettingsTest extends TestCase
             ->where('actions', [['name' => 'check', 'label' => 'Check connection']])
             ->where('fields.0.name', 'webhook')
             ->where('fields.1.name', 'send_forms')
-            ->where('fields.2.name', 'widget_code'));
+            ->where('fields.2.name', 'widget_code')
+            ->where('fields.2.rows', 8));
     }
 
     public function test_the_webhook_is_stored_encrypted_and_the_screen_shows_only_where_it_points(): void
@@ -78,6 +79,8 @@ final class SettingsTest extends TestCase
             'webhook: a method on the end' => ['webhook', 'https://portal.bitrix24.com/rest/1/abc123/profile.json', false],
             'webhook: no scheme' => ['webhook', 'portal.bitrix24.com/rest/1/abc123/', false],
             'webhook: too long' => ['webhook', 'https://portal.bitrix24.com/rest/1/'.str_repeat('a', 500).'/', false],
+            'webhook: sent empty as null' => ['webhook', null, true],
+            'widget: sent empty as null' => ['widget_code', null, true],
             'widget: code' => ['widget_code', '<script>1</script>', true],
             'widget: the limit' => ['widget_code', str_repeat('a', 20000), true],
             'widget: over the limit' => ['widget_code', str_repeat('a', 20001), false],

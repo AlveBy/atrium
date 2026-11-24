@@ -152,6 +152,7 @@ Die Bitrix-Datenbank wird nur gelesen. Tabs, Feldreihenfolge und Listenspalten k
 - [Fehler: PHP-, Warteschlangen- und JavaScript-Fehler in der Datenbank der Website, Benachrichtigungen, Sentry und eigene Treiber](../errors.md)
 - [Geschwindigkeit und Erreichbarkeit: Server-Timings, Web Vitals der Besucher, Erreichbarkeitsprüfungen mit Benachrichtigungen](../monitoring.md)
 - [Integrationen: Basis der Konnektoren für 1C und Bitrix24, Warteschlange mit Wiederholungen, Austauschprotokoll, Benachrichtigungen an Administratoren](../integrations.md)
+- [Bitrix24: Formularanfragen werden zu Leads oder Deals, das Chat-Widget auf der Website, ein einziger eingefügter Webhook](../bitrix24.md)
 - [CDN: Bilder, verkleinerte Kopien und WebP/AVIF, Cache leeren, Uploads zu S3](../cdn.md)
 - [Zwei-Faktor-Anmeldung: Authenticator-Apps, Passkeys, Codes, das Anmeldeprotokoll](../two-factor.md)
 - [Anmeldung über soziale Netzwerke: Anbieter, App-Registrierung, Weiterleitungs-URLs](../social-login.md)
@@ -171,6 +172,7 @@ Die Bitrix-Datenbank wird nur gelesen. Tabs, Feldreihenfolge und Listenspalten k
 | [`alveby/atrium-errors`](../../packages/errors/README.md) | Fehlererfassung in der Datenbank der Website, Benachrichtigungen, Sentry |
 | [`alveby/atrium-monitoring`](../../packages/monitoring/README.md) | Geschwindigkeit von Server und Besuchern, Erreichbarkeit und Benachrichtigungen, ohne externe Dienste |
 | [`alveby/atrium-integrations`](../../packages/integrations/README.md) | Basis der Konnektoren: Warteschlange mit Wiederholungen, Austauschprotokoll, Benachrichtigung bei Fehlern |
+| [`alveby/atrium-bitrix24`](../../packages/bitrix24/README.md) | Formularanfragen als Leads oder Deals in Bitrix24, das Chat-Widget |
 | [`alveby/atrium-news`](../../packages/news/README.md) | Neuigkeiten |
 | [`alveby/atrium-pages`](../../packages/pages/README.md) | Statische Seiten, mit Import von 1C-Bitrix-Seiten |
 | [`alveby/atrium-catalog`](../../packages/catalog/README.md) | Produktkatalog mit verschachtelten Rubriken |

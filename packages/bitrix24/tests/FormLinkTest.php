@@ -120,6 +120,39 @@ final class FormLinkTest extends TestCase
         $this->assertSame('bitrix24_forms', FormLink::getAdminRoutePrefix());
     }
 
+    public function test_the_screen_asks_for_the_fields_as_a_text_of_eight_rows_and_a_link_starts_active(): void
+    {
+        $fields = [];
+
+        foreach (FormLink::getAdministrationFields() as $field) {
+            $fields[$field->getName()] = $field->toArray();
+        }
+
+        $this->assertSame(['form_id', 'mode', 'active', 'mapping'], array_keys($fields));
+        $this->assertSame(8, $fields['mapping']['rows']);
+        $this->assertTrue($fields['active']['default']);
+        $this->assertSame('lead', $fields['mode']['default']);
+    }
+
+    public function test_the_list_shows_the_form_the_mode_and_whether_it_is_on(): void
+    {
+        $names = array_map(fn ($column): string => $column->getName(), FormLink::getAdministrationListColumns());
+
+        $this->assertSame(['form_name', 'mode_label', 'active'], $names);
+    }
+
+    public function test_a_link_belongs_to_its_form_through_a_public_relation(): void
+    {
+        $this->assertTrue((new \ReflectionMethod(FormLink::class, 'form'))->isPublic());
+    }
+
+    public function test_a_mapping_may_be_sent_as_nothing(): void
+    {
+        $this->actingAs($this->admin(), 'admin')->post('/admin/bitrix24_forms', ['form_id' => $this->form()->id, 'mode' => 'lead', 'mapping' => null])->assertSessionHasNoErrors();
+
+        $this->assertNull(FormLink::query()->sole()->mapping);
+    }
+
     public function test_the_validator_of_the_fields_is_the_one_the_sender_reads_by(): void
     {
         $this->assertNull(Payload::badLine("a = NAME\nb = PHONE"));

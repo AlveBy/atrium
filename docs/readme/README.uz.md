@@ -152,6 +152,7 @@ Bitrix maʼlumotlar bazasi faqat oʻqiladi. Yorliqlar, maydonlar tartibi va roʻ
 - [Xatolar: PHP, navbat va JavaScript xatolari sayt bazasida, ogohlantirishlar, Sentry va oʻz drayverlaringiz](../errors.md)
 - [Tezlik va mavjudlik: server o‘lchovlari, tashrifchilarning Web Vitals ko‘rsatkichlari, xabarnomali mavjudlik tekshiruvlari](../monitoring.md)
 - [Integratsiyalar: 1C va Bitrix24 konnektorlarining asosi, qayta urinishli navbat, almashinuv jurnali, administratorlarga xabarnomalar](../integrations.md)
+- [Bitrix24: formalardan kelgan arizalar lidlar yoki bitimlarga aylanadi, saytdagi chat vidjeti, bitta qo'yilgan vebxuk](../bitrix24.md)
 - [CDN: rasmlar, kichraytirilgan nusxalar va WebP/AVIF, keshni tozalash, S3 ga yuklash](../cdn.md)
 - [Ikki bosqichli kirish: autentifikator ilovalari, passkey kalitlari, kodlar, kirish jurnali](../two-factor.md)
 - [Ijtimoiy tarmoq orqali kirish: provayderlar, ilovani roʻyxatdan oʻtkazish, yoʻnaltirish manzillari](../social-login.md)
@@ -171,6 +172,7 @@ Bitrix maʼlumotlar bazasi faqat oʻqiladi. Yorliqlar, maydonlar tartibi va roʻ
 | [`alveby/atrium-errors`](../../packages/errors/README.md) | Sayt bazasida xatolar hisobi, ogohlantirishlar, Sentry |
 | [`alveby/atrium-monitoring`](../../packages/monitoring/README.md) | Server va tashrifchilar tezligi, mavjudlik va xabarnomalar, tashqi xizmatlarsiz |
 | [`alveby/atrium-integrations`](../../packages/integrations/README.md) | Konnektorlar asosi: qayta urinishli navbat, almashinuv jurnali, nosozlik haqida xabarnoma |
+| [`alveby/atrium-bitrix24`](../../packages/bitrix24/README.md) | Formalardan Bitrix24 ga lid yoki bitim sifatida arizalar, chat vidjeti |
 | [`alveby/atrium-news`](../../packages/news/README.md) | Yangiliklar |
 | [`alveby/atrium-pages`](../../packages/pages/README.md) | Statik sahifalar, 1C-Bitrix sahifalarini import qilish bilan |
 | [`alveby/atrium-catalog`](../../packages/catalog/README.md) | Ichki boʻlimli mahsulotlar katalogi |

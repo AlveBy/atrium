@@ -26,7 +26,7 @@ final class Client
     {
         $webhook = Setting::get('bitrix24.webhook');
 
-        return is_string($webhook) && $webhook !== '' ? $webhook : null;
+        return is_string($webhook) ? $webhook : null;
     }
 
     /**
@@ -49,7 +49,7 @@ final class Client
 
         if ($error !== null || $response->failed()) {
             throw new Bitrix24Exception(__('atrium-bitrix24::bitrix24.errors.portal', [
-                'error' => is_string($error) ? trim($error.' '.(string) $response->json('error_description')) : 'HTTP '.$response->status(),
+                'error' => is_string($error) ? trim($error.' '.$response->json('error_description')) : 'HTTP '.$response->status(),
             ]));
         }
 

@@ -152,6 +152,7 @@ Bitrix のデータベースは読み取るだけです。タブ、フィール�
 - [エラー：PHP・キュー・JavaScript のエラーをサイトのデータベースに保存、通知、Sentry、独自ドライバー](../errors.md)
 - [速度と稼働状況：サーバーの計測、訪問者の Web Vitals、通知付きの死活監視](../monitoring.md)
 - [連携：1C と Bitrix24 コネクターの基盤、再試行付きキュー、交換ログ、管理者への通知](../integrations.md)
+- [Bitrix24：フォームの送信がリードまたは取引になる、サイト上のチャットウィジェット、貼り付けるだけの Webhook 1 つ](../bitrix24.md)
 - [CDN：画像、リサイズしたコピーと WebP/AVIF、キャッシュの削除、S3 へのアップロード](../cdn.md)
 - [二要素サインイン：認証アプリ、パスキー、コード、サインイン履歴](../two-factor.md)
 - [ソーシャルログイン：プロバイダー、アプリの登録、リダイレクトURL](../social-login.md)
@@ -171,6 +172,7 @@ Bitrix のデータベースは読み取るだけです。タブ、フィール�
 | [`alveby/atrium-errors`](../../packages/errors/README.md) | サイトのデータベースでのエラー追跡、通知、Sentry |
 | [`alveby/atrium-monitoring`](../../packages/monitoring/README.md) | サーバーと訪問者の速度、稼働状況と通知、外部サービスなし |
 | [`alveby/atrium-integrations`](../../packages/integrations/README.md) | コネクターの基盤：再試行付きキュー、交換ログ、失敗時の通知 |
+| [`alveby/atrium-bitrix24`](../../packages/bitrix24/README.md) | フォーム送信を Bitrix24 にリードまたは取引として登録、チャットウィジェット |
 | [`alveby/atrium-news`](../../packages/news/README.md) | ニュース |
 | [`alveby/atrium-pages`](../../packages/pages/README.md) | 静的ページ（1C-Bitrix のページのインポートつき） |
 | [`alveby/atrium-catalog`](../../packages/catalog/README.md) | 入れ子のセクションを持つ商品カタログ |
