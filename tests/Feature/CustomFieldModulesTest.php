@@ -18,6 +18,7 @@ use Atrium\Brands\Models\Brand;
 use Atrium\Catalog\Models\CatalogSection;
 use Atrium\Catalog\Models\Product;
 use Atrium\CustomFields\Models\CustomField;
+use Atrium\CustomFields\Models\CustomFieldTab;
 use Atrium\CustomFields\Support\ModuleList;
 use Atrium\Faq\Models\Category;
 use Atrium\Faq\Models\Question;
@@ -55,7 +56,7 @@ final class CustomFieldModulesTest extends TestCase
 
     /** @var list<class-string> */
     private const SERVICE = [
-        Language::class, CustomField::class, Issue::class, NotFound::class, RedirectImport::class, Redirect::class,
+        Language::class, CustomField::class, CustomFieldTab::class, Issue::class, NotFound::class, RedirectImport::class, Redirect::class,
         PageMeta::class, Template::class, Incident::class, UptimeCheck::class, FormSubmission::class,
     ];
 
