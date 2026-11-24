@@ -30,6 +30,7 @@ The admin core is ported and covered by tests. Still to do:
 - ~~`sitemap.xml` and `robots.txt`~~ done: built by the core for every site, every language, with `hreflang`; off production robots.txt always says `Disallow: /`;
 - ~~the 1C-Bitrix migrator~~ done (`alveby/atrium-bitrix`): models, migrations and admin forms are built from the Bitrix database (tabs, field order and list columns as the editors had them in Bitrix); data, files, SEO and the media library move over; `atrium:bitrix:parity` checks before against after, `atrium:bitrix:sync` catches up with edits while the old site is still live; tested on MySQL, PostgreSQL and SQLite. Static pages move with the Pages module in 0.2;
 - ~~a neutral public theme~~ done (`alveby/atrium-theme`): draws every module and migrated iblock from its admin form, light and dark, with a language switcher; contrast is checked by a test;
+- ~~own tabs for custom fields~~ done: the **Tabs** button of a module's list adds a tab to its form, a field picks it, the tab appears at its sort number and goes away with its last field, and a form with no tabs gets them with the first one;
 - ~~demo data~~ done: `php artisan atrium:install --demo` adds a small shop with every field type, news in three languages and a second site;
 - ~~the README in 15 languages~~ done: English and Russian by hand, the rest machine-translated, with screenshots; a test keeps the commands and links of every translation in step with English.
 

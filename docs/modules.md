@@ -289,6 +289,8 @@ Hook::filter('atrium.module.tabs', fn (array $tabs, string $model) => $model ===
     : $tabs);
 ```
 
+A module whose form has no tabs (it lacks `HasAdminTabs`, or `usesTabs()` is `false`) is drawn flat. Once another module adds a tab for it through `atrium.module.tabs`, and a field sits on that tab, the form gets tabs: the module's own fields, and every field on a tab the form does not have, stay together on a first tab, "General", and the added tabs follow. The custom fields package does exactly this with the tabs an administrator adds ([Custom fields](custom-fields.md#tabs)).
+
 ## Validation and hooks
 
 Rules come from the fields (`required()`, `unique()`, `rules()`). To replace them as a whole, return your own from `getCreateValidationRules()` and `getUpdateValidationRules()`.
