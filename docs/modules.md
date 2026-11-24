@@ -783,6 +783,42 @@ Hook::slot('body.start', fn (array $page): string => '<div class="promo">…</di
 
 The view, or the closure, gets the page's variables: `$siteName`, `$homeUrl`, `$skin`, `$breadcrumbs`, and on a record's page `$page` with its `record`. Lower priority comes first, the default is 10. A slot is the filter `atrium.slot.{name}` of an HTML string, so `Hook::filter('atrium.slot.footer.end', ...)` may change or drop what others put there. A theme of your own marks its places with `@atriumSlot('footer.end')`: name new ones the same way, `{area}.{start|end|before|after}`.
 
+### The event catalogue
+
+An action is a name only its module knows. To let automation rules, webhooks and outside apps hear it, declare it in the catalogue: a key people and programs see, a label, the record it is about and the data it tells. Keep firing the hook as before.
+
+```php
+use Atrium\Admin\Extensions\Event;
+
+// In the service provider's boot(), while the module is installed:
+Hook::register('atrium.events', 'shop.order.paid', Event::make('atrium.order.paid')
+    ->label('shop::events.order_paid')                      // text or a translation key
+    ->subject(Order::class)                                  // the hook's first argument is the record
+    ->payload(fn (Order $order): array => ['total' => $order->total, 'currency' => $order->currency]));
+```
+
+- The **key** (`shop.order.paid`) is public: name it `{module}.{what}.{happened}` and change it only as you would change an API.
+- The **subject** is the hook's first argument, a model of that class; a firing with anything else is not the event. Who may hear an event will be decided by the subject's module.
+- The **payload** gets the hook's arguments and returns plain data, sent as JSON: no secrets, no models. Anything but an array counts as no data.
+- `->when(fn (...$args): bool => …)` makes one hook mean several events; only `true` counts.
+
+Every module of the panel has three events without a line of its own: `{module}.created`, `{module}.updated` and `{module}.deleted` (`posts.created`), heard from `atrium.record.saved` and `atrium.record.deleted`, so from the panel, the API and MCP.
+
+When a declared hook fires, the catalogue fires one action, `atrium.event.occurred`, with an `Atrium\Admin\Extensions\Occurrence` for every event the firing means; nothing is built while nothing listens to it:
+
+```php
+Hook::on('atrium.event.occurred', function (Occurrence $occurrence): void {
+    $occurrence->event;    // 'shop.order.paid'
+    $occurrence->subject;  // the Order
+    $occurrence->module;   // 'orders', or null when the subject is not a module of the panel
+    $occurrence->data;     // ['total' => 120, 'currency' => 'EUR']
+    $occurrence->actor;    // the administrator who did it, null in the console or the queue
+    $occurrence->toArray(); // id, event, occurred_at, site, actor, subject, data: what a webhook will send
+});
+```
+
+The catalogue starts listening once every module has booted, so declare events in `boot()`. One declared later (in a test) is heard after `app(Events::class)->listen()`. `php artisan atrium:events` lists the catalogue: key, label, hook and the subject's module. It is the first part of the [extension platform](extensions.md).
+
 ## Links to other modules
 
 Modules link to each other softly: products work without brands, and the "Brand" field and column appear only when the Brands module is installed. Nothing in Composer's `require` makes one module install another. The demo shop is built this way: `alveby/atrium-catalog` links to `alveby/atrium-brands` and `alveby/atrium-stores` (`packages/catalog/src/Models/Product.php`).
