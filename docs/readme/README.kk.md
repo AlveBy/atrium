@@ -55,7 +55,7 @@ Laravel 13 негізіндегі кез келген санды көптілд�
 Docker болса, басқа ештеңе керек емес:
 
 ```bash
-git clone https://github.com/AlveBy/atrium.git
+git clone -b stable https://github.com/AlveBy/atrium.git
 cd atrium
 docker compose up
 ```
@@ -65,7 +65,7 @@ docker compose up
 Docker-сіз PHP 8.3 немесе жаңарағы және Composer қажет. Әдепкі дерекқор — SQLite, ал әкімшілік панелі алдын ала жиналған, сондықтан MySQL де, Node да керек емес:
 
 ```bash
-git clone https://github.com/AlveBy/atrium.git
+git clone -b stable https://github.com/AlveBy/atrium.git
 cd atrium
 composer install
 cp .env.example .env

@@ -55,7 +55,7 @@ Modul bir marta tavsiflanadi: maydonlari va roʻyxat ustunlari bilan model sifat
 Docker bilan boshqa hech narsa kerak emas:
 
 ```bash
-git clone https://github.com/AlveBy/atrium.git
+git clone -b stable https://github.com/AlveBy/atrium.git
 cd atrium
 docker compose up
 ```
@@ -65,7 +65,7 @@ Birinchi ishga tushirish bir necha daqiqa davom etadi. Soʻng http://localhost:8
 Docker boʻlmasa, PHP 8.3 yoki undan yangisi va Composer kerak boʻladi. Sukut boʻyicha maʼlumotlar bazasi SQLite, administrator paneli esa oldindan yigʻilgan, shuning uchun MySQL ham, Node ham kerak emas:
 
 ```bash
-git clone https://github.com/AlveBy/atrium.git
+git clone -b stable https://github.com/AlveBy/atrium.git
 cd atrium
 composer install
 cp .env.example .env

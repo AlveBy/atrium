@@ -55,7 +55,7 @@ _このページは英語から機械翻訳されました。修正を歓迎し�
 Docker があれば、ほかには何も要りません。
 
 ```bash
-git clone https://github.com/AlveBy/atrium.git
+git clone -b stable https://github.com/AlveBy/atrium.git
 cd atrium
 docker compose up
 ```
@@ -65,7 +65,7 @@ docker compose up
 Docker を使わない場合は、PHP 8.3 以降と Composer が必要です。データベースはデフォルトで SQLite、管理パネルはビルド済みなので、MySQL も Node も要りません。
 
 ```bash
-git clone https://github.com/AlveBy/atrium.git
+git clone -b stable https://github.com/AlveBy/atrium.git
 cd atrium
 composer install
 cp .env.example .env

@@ -1,0 +1,50 @@
+# This file is part of Atrium (https://github.com/AlveBy/atrium).
+# Copyright (c) 2026 AlveBy. Licensed under the MIT License, see LICENSE.
+
+name: stable
+
+# Keeps the stable branch: main with the admin bundle built, which main does
+# not keep (packages/admin/dist). Sites are installed from it, so a server
+# needs no Node: `git clone -b stable`, then `git pull` as usual. Every push to
+# main adds one commit to stable whose parents are that main commit and the
+# previous stable, so stable only moves forward and a pull never conflicts.
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: stable
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  stable:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: packages/admin/package-lock.json
+
+      - run: npm ci --prefix packages/admin && npm run build --prefix packages/admin
+
+      - name: Commit and push
+        run: |
+          parents="-p $GITHUB_SHA"
+          if git fetch --quiet origin stable 2>/dev/null; then
+            parents="$parents -p $(git rev-parse FETCH_HEAD)"
+          fi
+          index="$RUNNER_TEMP/stable-index"
+          GIT_INDEX_FILE="$index" git read-tree "$GITHUB_SHA"
+          GIT_INDEX_FILE="$index" git add -f packages/admin/dist
+          tree=$(GIT_INDEX_FILE="$index" git write-tree)
+          sha=$(git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+            commit-tree "$tree" $parents -m "Build the admin of ${GITHUB_SHA::10}")
+          git push origin "$sha:refs/heads/stable"

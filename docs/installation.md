@@ -8,7 +8,7 @@ Atrium is a Laravel 13 application with the admin panel in a package. You need:
 - Composer 2;
 - SQLite, MySQL 8 or PostgreSQL.
 
-Node is not needed: the admin comes prebuilt. Neither is a queue worker or a cron job: the panel sends its mail at once and needs no scheduled tasks.
+Node is not needed: the `stable` branch has the admin built (`main` does not keep it, see [CONTRIBUTING.md](../CONTRIBUTING.md)). Neither is a queue worker or a cron job: the panel sends its mail at once and needs no scheduled tasks.
 
 To try Atrium on your own computer, see [Try it](../README.md#try-it) in the README. This page is about a site that people will use.
 
@@ -21,7 +21,7 @@ To try Atrium on your own computer, see [Try it](../README.md#try-it) in the REA
 ## Your own server
 
 ```bash
-git clone https://github.com/AlveBy/atrium.git /var/www/site
+git clone -b stable https://github.com/AlveBy/atrium.git /var/www/site
 cd /var/www/site
 composer install --no-dev --optimize-autoloader
 cp .env.example .env
@@ -116,7 +116,7 @@ Ordinary shared hosting is enough: no Docker, no Node, no root access.
 
 1. **PHP version.** Pick PHP 8.3 or newer for the site in the panel. The console may have its own PHP: in ISPmanager it is usually `/opt/php83/bin/php` (or `php8.3`), in cPanel `/opt/cpanel/ea-php83/root/usr/bin/php`. Use that path in place of `php` below; `php -v` shows which one you got.
 2. **Database.** Create a MySQL database and a user in the panel.
-3. **Files.** Open the panel's terminal (ISPmanager: "Shell client", cPanel: "Terminal") or connect over SSH, go to the site's folder and run the commands from [Your own server](#your-own-server): `git clone` (or upload and unpack an archive of the repository), `composer install --no-dev --optimize-autoloader`, `.env`, `atrium:install`. If there is no `composer` command, download `composer.phar` from getcomposer.org and run it with the same PHP.
+3. **Files.** Open the panel's terminal (ISPmanager: "Shell client", cPanel: "Terminal") or connect over SSH, go to the site's folder and run the commands from [Your own server](#your-own-server): `git clone` (or upload and unpack an archive of the `stable` branch, https://github.com/AlveBy/atrium/archive/refs/heads/stable.zip), `composer install --no-dev --optimize-autoloader`, `.env`, `atrium:install`. If there is no `composer` command, download `composer.phar` from getcomposer.org and run it with the same PHP.
 4. **Document root.** Point the site at the `public` folder: in ISPmanager, the site's settings → "Root directory"; in cPanel, Domains → the domain → "Document Root". Hosting runs Apache (often behind nginx), so `public/.htaccess` works as is. If the panel does not let you choose the folder, see [When the document root is fixed](#when-the-document-root-is-fixed-public_html-www).
 5. **Mail.** Create a mailbox for the site in the panel and put its SMTP settings into `.env`.
 
@@ -158,7 +158,7 @@ php artisan route:cache
 php artisan view:cache
 ```
 
-`atrium:install` on an installed site runs the new migrations and republishes the admin bundle; it does not touch the content or the administrators. See [CHANGELOG.md](../CHANGELOG.md) for what changed.
+`atrium:install` on an installed site runs the new migrations and republishes the admin bundle; it does not touch the content or the administrators. A site cloned from `main` before 0.3 moves to the built branch once: `git fetch origin stable && git checkout stable`. See [CHANGELOG.md](../CHANGELOG.md) for what changed.
 
 ## Into an existing Laravel app
 

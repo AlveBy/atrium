@@ -16,7 +16,10 @@ composer install
 cp .env.example .env && php artisan key:generate
 php artisan migrate
 npm install && npm run build
+npm ci --prefix packages/admin && npm run build --prefix packages/admin
 ```
+
+The built admin, `packages/admin/dist`, is not kept in `main`: build it as above, or run `npm run dev` in `packages/admin` while you work on it. Do not commit it. After every push to `main` GitHub builds it into the `stable` branch, which sites are installed from, and into the `alveby/atrium` package on Packagist.
 
 With Docker instead of a local PHP: `docker compose up` installs everything, fills the demo shop and serves it on http://localhost:8000; run commands in it with `docker compose exec app php artisan …` or `docker compose exec app vendor/bin/phpunit`.
 

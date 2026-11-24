@@ -95,6 +95,13 @@ jobs:
 
       - run: composer install --no-interaction --no-progress --prefer-dist
       - run: cp .env.example .env && php artisan key:generate
+      # The admin bundle is built, not committed: the install tests publish it.
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: packages/admin/package-lock.json
+      - run: npm ci --prefix packages/admin && npm run build --prefix packages/admin
       - run: bin/ci tests --db=${{ matrix.db }}
 
       - uses: actions/upload-artifact@v7
@@ -150,6 +157,13 @@ jobs:
 
       - run: composer install --no-interaction --no-progress --prefer-dist
       - run: cp .env.example .env && php artisan key:generate
+      # The admin bundle is built, not committed: the install tests publish it.
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: packages/admin/package-lock.json
+      - run: npm ci --prefix packages/admin && npm run build --prefix packages/admin
 
       - name: Find what the push changed
         id: base
@@ -195,18 +209,17 @@ jobs:
         with:
           node-version: 22
           cache: npm
+          cache-dependency-path: |
+            package-lock.json
+            packages/admin/package-lock.json
 
       - run: composer install --no-interaction --no-progress --prefer-dist
       - run: npm ci && npm run build
 
-      # The admin ships a prebuilt bundle. Rebuild it from source and fail if
-      # the committed dist/ is stale, then publish it like `atrium:install` does.
+      # The admin bundle is built from source here, then published like
+      # `atrium:install` does.
       - name: Build admin assets
-        working-directory: packages/admin
-        run: |
-          npm ci
-          npm run build
-          git diff --exit-code --stat -- dist || (echo "packages/admin/dist is stale: run npm run build in packages/admin and commit it." && exit 1)
+        run: npm ci --prefix packages/admin && npm run build --prefix packages/admin
       - run: php artisan vendor:publish --tag=atrium-assets --force
 
       - name: Prepare app

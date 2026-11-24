@@ -55,7 +55,7 @@ _本页由英文机器翻译而来，欢迎指正，详见 [CONTRIBUTING.md](../
 有 Docker 就够了，无需安装其他任何东西：
 
 ```bash
-git clone https://github.com/AlveBy/atrium.git
+git clone -b stable https://github.com/AlveBy/atrium.git
 cd atrium
 docker compose up
 ```
@@ -65,7 +65,7 @@ docker compose up
 不使用 Docker 的话，需要 PHP 8.3 或更高版本以及 Composer。数据库默认使用 SQLite，管理面板也已预先构建，因此 MySQL 和 Node 都不需要：
 
 ```bash
-git clone https://github.com/AlveBy/atrium.git
+git clone -b stable https://github.com/AlveBy/atrium.git
 cd atrium
 composer install
 cp .env.example .env

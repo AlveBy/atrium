@@ -51,7 +51,7 @@ You describe a module once, as a model with its fields and list columns. Atrium 
 With Docker, nothing else is needed:
 
 ```bash
-git clone https://github.com/AlveBy/atrium.git
+git clone -b stable https://github.com/AlveBy/atrium.git
 cd atrium
 docker compose up
 ```
@@ -61,7 +61,7 @@ The first start takes a few minutes. Then open http://localhost:8000/admin and s
 Without Docker you need PHP 8.3 or newer and Composer. The database is SQLite by default, and the admin comes prebuilt, so neither MySQL nor Node is needed:
 
 ```bash
-git clone https://github.com/AlveBy/atrium.git
+git clone -b stable https://github.com/AlveBy/atrium.git
 cd atrium
 composer install
 cp .env.example .env

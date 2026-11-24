@@ -18,6 +18,7 @@ services:
     user: "${UID:-1000}:${GID:-1000}"
     volumes:
       - .:/app
+      - /app/packages/admin/node_modules
     ports:
       - "${ATRIUM_PORT:-8000}:8000"
     environment:

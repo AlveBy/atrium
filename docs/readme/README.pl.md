@@ -55,7 +55,7 @@ Moduł opisujesz raz: jako model z jego polami i kolumnami listy. Atrium daje mu
 Z Dockerem nic więcej nie jest potrzebne:
 
 ```bash
-git clone https://github.com/AlveBy/atrium.git
+git clone -b stable https://github.com/AlveBy/atrium.git
 cd atrium
 docker compose up
 ```
@@ -65,7 +65,7 @@ Pierwsze uruchomienie trwa kilka minut. Potem otwórz http://localhost:8000/admi
 Bez Dockera potrzebujesz PHP 8.3 lub nowszego oraz Composera. Domyślną bazą danych jest SQLite, a panel jest już zbudowany, więc nie potrzeba ani MySQL, ani Node:
 
 ```bash
-git clone https://github.com/AlveBy/atrium.git
+git clone -b stable https://github.com/AlveBy/atrium.git
 cd atrium
 composer install
 cp .env.example .env

@@ -55,7 +55,7 @@ Bir modülü yalnızca bir kez, alanları ve liste sütunlarıyla birlikte bir m
 Docker varsa başka hiçbir şeye gerek yok:
 
 ```bash
-git clone https://github.com/AlveBy/atrium.git
+git clone -b stable https://github.com/AlveBy/atrium.git
 cd atrium
 docker compose up
 ```
@@ -65,7 +65,7 @@ docker compose up
 Docker olmadan PHP 8.3 veya daha yenisi ve Composer gerekir. Veritabanı varsayılan olarak SQLite'tır ve panel önceden derlenmiş olarak gelir; bu yüzden ne MySQL ne de Node gerekir:
 
 ```bash
-git clone https://github.com/AlveBy/atrium.git
+git clone -b stable https://github.com/AlveBy/atrium.git
 cd atrium
 composer install
 cp .env.example .env
