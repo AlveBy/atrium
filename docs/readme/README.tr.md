@@ -141,6 +141,7 @@ Bitrix veritabanından yalnızca okuma yapılır. Sekmeler, alan sırası ve lis
 - [SEO: başlıklar, hreflang, site haritaları, schema.org, yönlendirmeler, SEO denetimi](../seo.md)
 - [Menüler: üst ve alt bilgi, bağlantı ağacı, bir modülü açan öğeler](../menus.md)
 - [Formlar: sütunlu bir oluşturucu, sayfayı yenilemeden gönderme, pencerede, kendi işaretlemeniz ve fetch](../forms.md)
+- [Gömmeler: metnin içinde bir form veya blok ve bir modülün kendi türünü nasıl kaydettiği](../embeds.md)
 - [Arama: sonuç sayfası, yönetim panelindeki kutu, neyin nasıl arandığı](../search.md)
 - [Kendi modülünüz: alanlar, sütunlar, sekmeler, yetkiler, diller, testler, paket](../modules.md)
 - [Özel alanlar: yönetim panelinden her modüle alan ekleme, 100 000 kayıtta filtreler ve faset sayıları](../custom-fields.md)

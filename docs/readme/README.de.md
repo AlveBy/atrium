@@ -141,6 +141,7 @@ Die Bitrix-Datenbank wird nur gelesen. Tabs, Feldreihenfolge und Listenspalten k
 - [SEO: Titel, hreflang, Sitemaps, schema.org, Weiterleitungen, die SEO-Prüfung](../seo.md)
 - [Menüs: Kopf- und Fußzeile, ein Linkbaum, Einträge, die ein Modul aufklappen](../menus.md)
 - [Formulare: ein Baukasten in Spalten, Senden ohne Neuladen, im Fenster, eigenes Markup und fetch](../forms.md)
+- [Einbettungen: ein Formular oder Block im Text und wie ein Modul einen eigenen Typ registriert](../embeds.md)
 - [Suche: die Ergebnisseite, das Suchfeld im Admin-Bereich, was und wie gesucht wird](../search.md)
 - [Eigenes Modul: Felder, Spalten, Tabs, Rechte, Sprachen, Tests, als Paket](../modules.md)
 - [Eigene Felder: Felder für jedes Modul im Admin-Bereich anlegen, Filter und Facetten bei 100 000 Einträgen](../custom-fields.md)
