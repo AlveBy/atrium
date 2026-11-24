@@ -30,6 +30,11 @@ final class OneCServiceProvider extends ServiceProvider
     /** The address a 1C configuration that asks only for a site calls. */
     public const PATH_BITRIX = 'bitrix/admin/1c_exchange.php';
 
+    public function register(): void
+    {
+        $this->mergeConfigFrom(__DIR__.'/../config/atrium-1c.php', 'atrium-1c');
+    }
+
     public function boot(): void
     {
         $this->loadTranslationsFrom(__DIR__.'/../lang', 'atrium-1c');
