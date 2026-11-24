@@ -44,7 +44,7 @@ final class Bitrix24Settings extends ModuleSettings implements HasActions
                 ->hint(__('atrium-bitrix24::bitrix24.settings.widget_code_hint'))
                 ->placeholder('<script>...</script>')
                 ->rows(8)
-                ->rules(['string', 'max:20000']),
+                ->rules(['max:20000']),
         ];
     }
 
