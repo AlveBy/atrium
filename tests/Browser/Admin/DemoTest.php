@@ -78,12 +78,17 @@ final class DemoTest extends AdminTestCase
                 $browser->visit('/admin/login')
                     ->waitFor(self::NOTE);
 
-                // The field comes filled in, so typing clears it first. A
-                // keystroke that goes astray leaves it empty, and the
-                // browser itself then refuses to send the form (required):
-                // no request, no error. Type until the text is really there.
+                // The field comes filled in. Dusk's type() would clear() it
+                // first, which blurs the field and sends no input event (the
+                // page still holds "demo"), and on a slow runner the keys
+                // that follow sometimes never arrive. The field stays empty
+                // and the browser itself refuses to send the form (required):
+                // no request, no error. A visitor selects the text and types
+                // over it, so the test does too, and tries again only when the
+                // text is not in the field after all.
                 $browser->waitUsing(5, 100, function () use ($browser): bool {
-                    $browser->type('#password', 'not-the-password');
+                    $browser->script('const field = document.querySelector("#password"); field.focus(); field.select();');
+                    $browser->keys('#password', 'not-the-password');
 
                     return $browser->inputValue('#password') === 'not-the-password';
                 }, 'The wrong password did not land in the field.');
