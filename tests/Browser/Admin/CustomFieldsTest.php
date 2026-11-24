@@ -12,6 +12,7 @@ namespace Tests\Browser\Admin;
 use Atrium\Catalog\Models\Product;
 use Atrium\CustomFields\CustomFields;
 use Atrium\CustomFields\Models\CustomField;
+use Atrium\CustomFields\Models\CustomFieldTab;
 use Illuminate\Support\Facades\Schema;
 use Laravel\Dusk\Browser;
 
@@ -62,5 +63,61 @@ final class CustomFieldsTest extends AdminTestCase
         $product = Product::query()->findOrFail($product->id);
         $this->assertSame('blue', app(CustomFields::class)->get($product, 'colour'));
         $this->assertSame([$product->id], Product::query()->whereCustom('colour', 'blue')->pluck('id')->all());
+    }
+
+    public function test_add_a_tab_to_the_products_form_and_put_a_field_on_it(): void
+    {
+        $admin = $this->admin();
+        $product = Product::query()->create(['name' => 'Aero 14', 'active' => true]);
+
+        $this->browse(function (Browser $browser) use ($admin, $product): void {
+            $browser->loginAs($admin, 'admin')
+                ->visit('/admin/catalog_products')
+                ->waitFor('[data-link="custom-field-tabs"]')
+                ->click('[data-link="custom-field-tabs"]')
+                ->waitForLocation('/admin/custom_field_tabs')
+                ->click('[data-action="create"]')
+                ->waitForLocation('/admin/custom_field_tabs/create')
+                ->waitFor('#code')
+                ->type('#label', 'Delivery')
+                ->type('#code', 'delivery')
+                ->press('[data-action="save"]')
+                ->waitForLocation('/admin/custom_field_tabs')
+                ->waitForText('Delivery');
+
+            $this->assertSame('delivery', CustomFieldTab::query()->sole()->code);
+
+            // No field on the tab yet: the product's form does not have it.
+            $browser->visit("/admin/catalog_products/{$product->id}/edit")
+                ->waitFor('[data-tab="params"]')
+                ->assertMissing('[data-tab="delivery"]')
+                ->visit('/admin/catalog_products')
+                ->waitFor('[data-link="custom-fields"]')
+                ->click('[data-link="custom-fields"]')
+                ->waitForLocation('/admin/custom_fields')
+                ->click('[data-action="create"]')
+                ->waitForLocation('/admin/custom_fields/create')
+                ->waitFor('#code')
+                ->type('#label', 'Courier')
+                ->type('#code', 'courier')
+                ->select('#tab', 'delivery')
+                ->press('[data-action="save"]')
+                ->waitForText('Courier');
+
+            // The tab is there now, with the field on it and none of the others.
+            $browser->visit("/admin/catalog_products/{$product->id}/edit")
+                ->waitFor('[data-tab="delivery"]')
+                ->assertSeeIn('[data-tab="delivery"]', 'Delivery')
+                ->assertMissing('#courier')
+                ->click('[data-tab="delivery"]')
+                ->waitFor('#courier')
+                ->type('#courier', 'DHL')
+                ->press('[data-action="save"]')
+                ->waitForLocation('/admin/catalog_products');
+        });
+
+        app(CustomFields::class)->flush();
+
+        $this->assertSame('DHL', app(CustomFields::class)->get(Product::query()->findOrFail($product->id), 'courier'));
     }
 }

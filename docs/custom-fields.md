@@ -39,7 +39,7 @@ Open a module's list, press **Fields** and **Add a field**. A field has:
 | Linked module | For a link: the module whose records it picks |
 | Hint | A line under the field in the form |
 | Options | For a list: one option per line, `value = Label` or just the label |
-| Tab | The tab of the module's form it goes on |
+| Tab | The tab of the module's form it goes on: one the form has, or one you added (see [Tabs](#tabs)) |
 | Required, Show in the list | |
 | Filterable | The values are copied into the filter index: filters, facet counts, ranges |
 | Sortable | The list and the API can be sorted by it |
@@ -53,6 +53,27 @@ The module's table gets a JSON column `custom` with its first field. A module ma
 ```php
 $table->json('custom')->nullable();
 ```
+
+## Tabs
+
+A module's own tabs are not always the place you want a group of fields. Open the module's list, press **Tabs** and **Add a tab**:
+
+| | |
+|---|---|
+| Name | The tab's title, per content language |
+| Code | Latin letters, digits and `_`: a field names its tab by it. It may not be the code of a tab the form has already (`seo`, `params`…). The module and the code are fixed once the tab exists |
+| Sort | Where the tab stands among the form's tabs, the smaller the nearer the start. A form whose tabs have no numbers of their own is numbered 0, 10, 20 … in the order it lists them, so 15 puts the tab after the second one; the default 500 puts it last |
+| Site | Show the tab on one site only |
+
+Then choose the tab in the **Tab** of a field. The rest follows by itself:
+
+- the tab is drawn in the module's record form at its place, and only while it has fields: a tab nobody put a field on is not shown;
+- **renaming** a tab (or changing its sort) is just editing it, the fields stay on it;
+- **deleting** a tab moves its fields to the default tab (`params`), nothing is lost, the values stay in the records; a tab of another module with the same code is not touched;
+- a field on a tab that the form does not have on this site (a tab of another site) is shown on the form's first tab;
+- a module whose form has **no tabs at all** gets them with its first added tab: its own fields stay together on a first tab, "General", and the added tabs follow. Without an added tab with a field the form stays as it was, flat. This works for any module: another module may add tabs the same way through the `atrium.module.tabs` hook.
+
+Seeders and code may create tabs as rows, as they do with fields: `CustomFieldTab::query()->create(['module' => (new Product)->getMorphClass(), 'code' => 'delivery', 'label' => ['en' => 'Delivery', 'ru' => 'Доставка'], 'sort' => 15])`. Who may open the screen is set by the role: `custom_field_tabs.view`, `.create`, `.update`, `.delete`, apart from the fields' `custom_fields.*`.
 
 ## Types
 

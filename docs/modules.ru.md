@@ -238,6 +238,18 @@ ContentField::make('detail_text')->label('Detail text')->tab('detail'),
 
 Поле без `tab()` попадает в `params`. `HasAdminSeo` сам добавляет на вкладку `seo` мета-заголовок, описание и ключевые слова.
 
+Другой модуль ставит свои поля на отдельную вкладку: поля он добавляет через `atrium.module.fields` с `tab('shop')`, а вкладку — через `atrium.module.tabs`. Вкладка без полей не показывается, так что она уходит вместе с полями модуля:
+
+```php
+use Atrium\Admin\Tabs\Tab;
+
+Hook::filter('atrium.module.tabs', fn (array $tabs, string $model) => $model === Product::class
+    ? [...$tabs, Tab::make('shop')->label(__('shop::tabs.shop'))->order(50)]
+    : $tabs);
+```
+
+Форма модуля без вкладок (нет `HasAdminTabs` или `usesTabs()` возвращает `false`) рисуется плоской. Как только другой модуль добавил для неё вкладку через `atrium.module.tabs` и на этой вкладке стоит поле, у формы появляются вкладки: собственные поля модуля и каждое поле на вкладке, которой у формы нет, остаются вместе на первой, «Основное», а добавленные идут следом. Именно так делает пакет «Свои поля» с вкладками, которые добавляет администратор ([Свои поля](custom-fields.ru.md#вкладки)).
+
 ## Проверка и обработчики
 
 Правила берутся из полей (`required()`, `unique()`, `rules()`). Чтобы заменить их целиком, верните свои из `getCreateValidationRules()` и `getUpdateValidationRules()`.
