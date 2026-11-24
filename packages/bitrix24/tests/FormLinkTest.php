@@ -93,6 +93,14 @@ final class FormLinkTest extends TestCase
         $this->assertSame(0, FormLink::query()->count());
     }
 
+    public function test_fields_that_are_all_right_but_too_long_are_refused_for_their_length(): void
+    {
+        $this->actingAs($this->admin(), 'admin')->post('/admin/bitrix24_forms', ['form_id' => $this->form()->id, 'mode' => 'lead', 'mapping' => str_repeat("a = NAME\n", 600)])
+            ->assertSessionHasErrors('mapping');
+        $this->actingAs($this->admin(), 'admin')->post('/admin/bitrix24_forms', ['form_id' => $this->form()->id, 'mode' => 'lead', 'mapping' => rtrim(str_repeat("a = NAME\n", 500))])
+            ->assertSessionHasNoErrors();
+    }
+
     public function test_the_fields_must_be_text_not_a_list(): void
     {
         $this->actingAs($this->admin(), 'admin')->post('/admin/bitrix24_forms', ['form_id' => $this->form()->id, 'mode' => 'lead', 'mapping' => ['a = NAME']])->assertSessionHasErrors('mapping');
