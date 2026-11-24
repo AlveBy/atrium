@@ -76,9 +76,19 @@ final class DemoTest extends AdminTestCase
         $this->withEnv(['ATRIUM_DEMO' => 'true'], function (): void {
             $this->browse(function (Browser $browser): void {
                 $browser->visit('/admin/login')
-                    ->waitFor(self::NOTE)
-                    ->type('#password', 'not-the-password')
-                    ->press('button[type="submit"]')
+                    ->waitFor(self::NOTE);
+
+                // The field comes filled in, so typing clears it first. A
+                // keystroke that goes astray leaves it empty, and the
+                // browser itself then refuses to send the form (required):
+                // no request, no error. Type until the text is really there.
+                $browser->waitUsing(5, 100, function () use ($browser): bool {
+                    $browser->type('#password', 'not-the-password');
+
+                    return $browser->inputValue('#password') === 'not-the-password';
+                }, 'The wrong password did not land in the field.');
+
+                $browser->press('button[type="submit"]')
                     ->waitFor('[data-error]')
                     ->assertPathIs('/admin/login')
                     ->assertInputValue('#password', 'demo');
