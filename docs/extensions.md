@@ -108,6 +108,7 @@ This table shows what `packages/admin` holds today and where each part goes. "Co
 3. A part leaves `packages/admin` for a plugin **with its table names and class names kept**.
    - The old classes stay as aliases with a deprecation notice for the deprecation period.
    - The tables are not renamed, so no data moves.
+   - Each step has an upgrade test: a site with existing data is upgraded across the step. The test checks that its addresses, SEO, tables and records work unchanged.
 4. The umbrella package `alveby/atrium` requires the moved plugin until 1.0. `composer update` brings it along, and an existing site sees no difference. A new installation may leave it out.
 5. The changelog of each step says what moved, and what to do if a site imports the old class directly.
 
@@ -587,7 +588,7 @@ How it works:
 
 | # | Pull request | Useful at once because |
 |---|---|---|
-| S1 | The site moves out of the core: SEO, slugs, theme, slots and embeds go into `alveby/atrium-site`, with their names kept | The core gets smaller; the site is a plugin like the rest (step 3 of the [move-out](#the-core-and-the-plugins)) |
+| S1 | The site moves out of the core: SEO, slugs, theme, slots and embeds go into `alveby/atrium-site`, with their names kept. An upgrade test takes a site with existing pages, slugs, slug history and SEO data across the move. It checks that every address, redirect, title and description stays the same and that no table changes | The core gets smaller; the site is a plugin like the rest (step 3 of the [move-out](#the-core-and-the-plugins)) |
 | S2 | A page as a tree of blocks, the block registry, rendering, the built-in static blocks | Pages are assembled, not written in HTML |
 | S3 | The editor: drag and drop, settings, preview, draft, versions | People build pages themselves |
 | S4 | Layout per width: phone, tablet, desktop | Pages look right on a phone |
@@ -756,16 +757,17 @@ An update that asks for more shows only the new permissions and waits for a conf
 
 No code from the archive runs during install. If anything fails, the definitions roll back and the old folder comes back.
 
-**PHP plugins from verified authors** need their dependencies resolved against the site's `composer.lock`. A web request must not do that: it is slow, it fails on most shared hosting, and it would run code from the internet with the web server's rights. So there are two ways, and both need the superadmin to confirm with the second factor:
+**PHP plugins from verified authors** need their dependencies resolved against the site's `composer.lock`. A web request must not do that: it is slow, it fails on most shared hosting, and it would run code from the internet with the web server's rights. So nothing runs Composer from the web, and the superadmin confirms each install with the second factor:
 
-- **With Composer on the server** (`atrium.extensions.composer`), the commands run in a **queued job**. A backup is made first (`alveby/atrium-backup`), and the previous `composer.lock` is kept for a rollback.
-- **On hosting without SSH**, the plugin comes as a **signed archive**.
+- From the admin, the plugin comes as a **signed archive**.
   - This works only for a plugin whose dependencies are all packages Atrium already ships; the catalogue checks that on publishing.
   - The plugin is put into `plugins/{vendor}/{name}` and loaded by Atrium's own autoloader.
   - An update swaps the folder and keeps the previous one.
   - A plugin's migrations must have `down()`. If a migration fails, the installer runs it and brings back the old folder.
 
-A plugin that needs other libraries can be installed only with Composer, and the catalogue says so on its page.
+A plugin that needs other libraries is installed from the console (`composer require`, then `php artisan atrium:module:install`), and the catalogue says so on its page.
+
+**Open question: Composer from the admin.** One option is to let the admin run Composer in a **queued job**. It would need the second factor, a backup first (`alveby/atrium-backup`), and the previous `composer.lock` kept for a rollback. That goes against the rule agreed so far, that there is no Composer from the web, so it is not decided and is not built until it is.
 
 **Removal** takes away what the plugin declared it owns: tables by its prefix, permissions, menu items, schedules and settings. It offers to export the plugin's data first. Records of other modules that linked to it keep their own values.
 
@@ -837,7 +839,7 @@ Inside a stage the order follows who is waiting. The tracker needs panels, then 
 | 16 | **Templates**: export and install of a project with its plugins and settings, update with a preview, sample data | A project in one click |
 | 17 | **The extension catalogue**: one screen for plugins, templates, solutions, themes and apps; the manifest of permissions; signed archives; install in one click with rollback; trust levels | Extensions reach a site without the console, safely |
 | 28 | **Checks on publishing**: manifest against code, static analysis, vulnerable dependencies, compatibility, languages, contrast; revocation | A stranger's plugin is checked before anyone installs it |
-| 29 | **PHP plugins from the admin**: the queued Composer job with the second factor, signed archives for hosting without SSH, rollback | Verified plugins install on any hosting |
+| 29 | **PHP plugins from the admin**: signed archives with the second factor, rollback; Composer from the admin stays an [open question](#install-in-one-click-roll-back-by-itself) | Verified plugins install on any hosting |
 | 18 | **Apps**: registration by manifest, OAuth with scopes | Outside apps in any language |
 | 19 | **Frames**: signed context, the bridge script | Apps put their panels into the admin |
 | 30 | **Plugins and apps in the audit log** as actors | You can see what an extension did |
