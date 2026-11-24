@@ -12,6 +12,7 @@ namespace Atrium\Blocks\Tests\Feature;
 use Atrium\Admin\Embeds\Embeds;
 use Atrium\Blocks\Tests\TestCase;
 use Illuminate\Support\Facades\Blade;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 
 /**
@@ -40,8 +41,18 @@ final class NotInstalledTest extends TestCase
     {
         DB::enableQueryLog();
 
-        $this->assertSame('<p></p>', Blade::render("<p>@block('phone')</p>"));
+        $run = uniqid();
+
+        $this->assertSame("<p id=\"{$run}\"></p>", Blade::render("<p id=\"{$run}\">@block('phone')</p>"));
         $this->assertSame('', atrium_block('phone'));
         $this->assertSame([], DB::getQueryLog());
+    }
+
+    public function test_saving_or_deleting_a_block_does_not_touch_the_cache(): void
+    {
+        $block = $this->block('phone', '+1 00');
+        $block->delete();
+
+        $this->assertNull(Cache::get('atrium-blocks:version'));
     }
 }
