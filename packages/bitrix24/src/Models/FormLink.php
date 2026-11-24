@@ -100,7 +100,7 @@ class FormLink extends Model implements Administrable
                 ->hint(__('atrium-bitrix24::bitrix24.fields.mapping_hint'))
                 ->placeholder("phone = PHONE\nmessage = COMMENTS")
                 ->rows(8)
-                ->rules(['nullable', 'string', 'max:5000', static function (string $attribute, mixed $value, Closure $fail): void {
+                ->rules(['string', 'max:5000', static function (string $attribute, mixed $value, Closure $fail): void {
                     $line = Payload::badLine(is_string($value) ? $value : null);
 
                     if ($line !== null) {
