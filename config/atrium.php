@@ -57,6 +57,7 @@ return [
         'alveby/atrium-stores',
         'alveby/atrium-faq',
         'alveby/atrium-forms',
+        'alveby/atrium-integrations',
         'alveby/atrium-pages',
         'alveby/atrium-reviews',
         'alveby/atrium-menus',

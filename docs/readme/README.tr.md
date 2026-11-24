@@ -151,6 +151,7 @@ Bitrix veritabanından yalnızca okuma yapılır. Sekmeler, alan sırası ve lis
 - [Yedekler: veritabanları ve dosyalar birden çok yere, zamanlama, sağlık kontrolleri, geri yükleme](../backup.md)
 - [Hatalar: PHP, kuyruk ve JavaScript hataları sitenin veritabanında, uyarılar, Sentry ve kendi sürücüleriniz](../errors.md)
 - [Hız ve erişilebilirlik: sunucu süreleri, ziyaretçilerin Web Vitals değerleri, uyarılı erişilebilirlik kontrolleri](../monitoring.md)
+- [Entegrasyonlar: 1C ve Bitrix24 bağlayıcılarının temeli, yeniden denemeli kuyruk, değişim günlüğü, yöneticilere uyarılar](../integrations.md)
 - [CDN: görseller, küçültülmüş kopyalar ve WebP/AVIF, önbellek temizleme, S3'e yükleme](../cdn.md)
 - [İki adımlı giriş: doğrulayıcı uygulamalar, geçiş anahtarları, kodlar, giriş günlüğü](../two-factor.md)
 - [Sosyal giriş: sağlayıcılar, uygulama kaydı, yönlendirme adresleri](../social-login.md)
@@ -169,6 +170,7 @@ Bitrix veritabanından yalnızca okuma yapılır. Sekmeler, alan sırası ve lis
 | [`alveby/atrium-backup`](../../packages/backup/README.md) | Veritabanı ve dosya yedekleri, yönetim panelinden geri yükleme |
 | [`alveby/atrium-errors`](../../packages/errors/README.md) | Sitenin veritabanında hata takibi, uyarılar, Sentry |
 | [`alveby/atrium-monitoring`](../../packages/monitoring/README.md) | Sunucu ve ziyaretçi hızı, erişilebilirlik ve uyarılar, dış hizmet olmadan |
+| [`alveby/atrium-integrations`](../../packages/integrations/README.md) | Bağlayıcıların temeli: yeniden denemeli kuyruk, değişim günlüğü, hata durumunda uyarı |
 | [`alveby/atrium-news`](../../packages/news/README.md) | Haberler |
 | [`alveby/atrium-pages`](../../packages/pages/README.md) | Statik sayfalar, 1C-Bitrix sayfalarını içe aktarma ile |
 | [`alveby/atrium-catalog`](../../packages/catalog/README.md) | İç içe bölümleri olan ürün kataloğu |

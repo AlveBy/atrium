@@ -151,6 +151,7 @@ Bitrix 数据库只读不写。标签页、字段顺序和列表列会保持编�
 - [备份：数据库和文件同时存到多个位置、计划任务、健康检查、恢复](../backup.md)
 - [错误：PHP、队列和 JavaScript 错误保存在站点数据库中，告警、Sentry 和自定义驱动](../errors.md)
 - [速度与可用性：服务器耗时、访客的 Web Vitals、带告警的可用性检查](../monitoring.md)
+- [集成：1C 与 Bitrix24 连接器的基础、带重试的队列、交换日志、发给管理员的告警](../integrations.md)
 - [CDN：图片、缩放副本与 WebP/AVIF、清除缓存、上传到 S3](../cdn.md)
 - [双重验证登录：验证器应用、通行密钥、验证码、登录日志](../two-factor.md)
 - [社交登录：登录提供方、应用注册、重定向地址](../social-login.md)
@@ -169,6 +170,7 @@ Bitrix 数据库只读不写。标签页、字段顺序和列表列会保持编�
 | [`alveby/atrium-backup`](../../packages/backup/README.md) | 数据库和文件的备份，可在后台恢复 |
 | [`alveby/atrium-errors`](../../packages/errors/README.md) | 在站点数据库中跟踪错误，告警、Sentry |
 | [`alveby/atrium-monitoring`](../../packages/monitoring/README.md) | 服务器与访客的速度、可用性与告警，无需外部服务 |
+| [`alveby/atrium-integrations`](../../packages/integrations/README.md) | 连接器的基础：带重试的队列、交换日志、失败告警 |
 | [`alveby/atrium-news`](../../packages/news/README.md) | 新闻 |
 | [`alveby/atrium-pages`](../../packages/pages/README.md) | 静态页面，支持导入 1C-Bitrix 页面 |
 | [`alveby/atrium-catalog`](../../packages/catalog/README.md) | 带嵌套分类的商品目录 |

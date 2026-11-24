@@ -151,6 +151,7 @@ php artisan atrium:bitrix:parity
 - [Рэзервовыя копіі: базы і файлы ў некалькі месцаў, расклад, праверкі, аднаўленне](../backup.md)
 - [Памылкі: памылкі PHP, чэргаў і JavaScript у базе сайта, абвесткі, Sentry і свае драйверы](../errors.md)
 - [Хуткасць і даступнасць: таймінгі сервера, Web Vitals наведвальнікаў, праверкі даступнасці з абвесткамі](../monitoring.md)
+- [Інтэграцыі: аснова канектараў 1C і Bitrix24, чарга з паўторамі, журнал абмену, абвесткі адміністратарам](../integrations.md)
 - [CDN: выявы, паменшаныя копіі і WebP/AVIF, ачыстка кэша, загрузкі ў S3](../cdn.md)
 - [Двухфактарны ўваход: праграмы-аўтэнтыфікатары, ключы доступу, коды, журнал уваходаў](../two-factor.md)
 - [Уваход праз сацсеткі: правайдары, рэгістрацыя праграмы, адрасы перанакіравання](../social-login.md)
@@ -169,6 +170,7 @@ php artisan atrium:bitrix:parity
 | [`alveby/atrium-backup`](../../packages/backup/README.md) | Рэзервовыя копіі баз і файлаў, аднаўленне з адмінкі |
 | [`alveby/atrium-errors`](../../packages/errors/README.md) | Улік памылак у базе сайта, абвесткі, Sentry |
 | [`alveby/atrium-monitoring`](../../packages/monitoring/README.md) | Хуткасць сервера і наведвальнікаў, даступнасць і абвесткі, без вонкавых сэрвісаў |
+| [`alveby/atrium-integrations`](../../packages/integrations/README.md) | Аснова канектараў: чарга з паўторамі, журнал абмену, абвестка пра збой |
 | [`alveby/atrium-news`](../../packages/news/README.md) | Навіны |
 | [`alveby/atrium-pages`](../../packages/pages/README.md) | Статычныя старонкі з імпартам старонак 1С-Бітрыкс |
 | [`alveby/atrium-catalog`](../../packages/catalog/README.md) | Каталог тавараў з укладзенымі раздзеламі |
