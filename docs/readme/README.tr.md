@@ -186,6 +186,7 @@ Bitrix veritabanından yalnızca okuma yapılır. Sekmeler, alan sırası ve lis
 | [`alveby/atrium-stores`](../../packages/stores/README.md) | Haritada mağazalar ve ofisler |
 | [`alveby/atrium-team`](../../packages/team/README.md) | Kişiler, departmanlar ve iletişim bilgileri |
 | [`alveby/atrium-faq`](../../packages/faq/README.md) | Sorular ve cevaplar |
+| [`alveby/atrium-tracker`](../../packages/tracker/README.md) | Yönetim panelinde çalışanlar için görevler ve projeler |
 | [`alveby/atrium-forms`](../../packages/forms/README.md) | Form oluşturucu ve gönderiler |
 | [`alveby/atrium-blocks`](../../packages/blocks/README.md) | Yeniden kullanılabilir bloklar: bir kez yazılan telefon veya afiş, her yerde gösterilir |
 | [`alveby/atrium-reviews`](../../packages/reviews/README.md) | Moderasyonlu yorumlar ve puanlar |

@@ -186,6 +186,7 @@ php artisan atrium:bitrix:parity
 | [`alveby/atrium-stores`](../../packages/stores/README.md) | Картадағы дүкендер мен кеңселер |
 | [`alveby/atrium-team`](../../packages/team/README.md) | Адамдар, бөлімдер және байланыстар |
 | [`alveby/atrium-faq`](../../packages/faq/README.md) | Сұрақтар мен жауаптар |
+| [`alveby/atrium-tracker`](../../packages/tracker/README.md) | Әкімші панелінде жұмыс істейтіндерге арналған тапсырмалар мен жобалар |
 | [`alveby/atrium-forms`](../../packages/forms/README.md) | Форма конструкторы және өтінімдер |
 | [`alveby/atrium-blocks`](../../packages/blocks/README.md) | Блоктар: бір рет жазылған телефон немесе жазу, кез келген жерде көрсетіледі |
 | [`alveby/atrium-reviews`](../../packages/reviews/README.md) | Модерациясы бар пікірлер мен бағалар |

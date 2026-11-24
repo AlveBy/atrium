@@ -184,6 +184,7 @@ php artisan atrium:bitrix:parity
 | [`alveby/atrium-stores`](../../packages/stores/README.md) | Магазины и офисы на карте |
 | [`alveby/atrium-team`](../../packages/team/README.md) | Люди, отделы и контакты |
 | [`alveby/atrium-faq`](../../packages/faq/README.md) | Вопросы и ответы |
+| [`alveby/atrium-tracker`](../../packages/tracker/README.md) | Задачи и проекты для тех, кто работает в админке |
 | [`alveby/atrium-forms`](../../packages/forms/README.md) | Конструктор форм и заявки |
 | [`alveby/atrium-blocks`](../../packages/blocks/README.md) | Блоки: телефон или плашка, написанные один раз и показанные где угодно |
 | [`alveby/atrium-reviews`](../../packages/reviews/README.md) | Отзывы и оценки с модерацией |

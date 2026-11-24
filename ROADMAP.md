@@ -78,6 +78,7 @@ The base for everything after it: the shop, the importers and the integrations a
 | Classifieds | A board of ads posted by visitors: categories, photos, moderation, the author's account, expiry; paid placement later as a submodule |
 | Analytics | Beyond the counters of 0.1: visits and sources from Yandex Metrica and Google Analytics on the dashboard, goals sent by themselves when a form is submitted or an order is placed |
 | FAQ | With structured data for search engines |
+| Tracker | ~~Projects, tasks with comments and history, mail on assignment~~ done in `alveby/atrium-tracker` ([docs](docs/tracker.md)); the board, time tracking and reports follow |
 | SEO | Redirects, meta tag templates, broken link report (sitemap.xml and robots.txt are in the core) |
 | Search | Across all modules of a site, language-aware |
 | Media library | A shared file library with folders (part of the core today) |

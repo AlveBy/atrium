@@ -186,6 +186,7 @@ Bitrix maʼlumotlar bazasi faqat oʻqiladi. Yorliqlar, maydonlar tartibi va roʻ
 | [`alveby/atrium-stores`](../../packages/stores/README.md) | Xaritadagi doʻkonlar va ofislar |
 | [`alveby/atrium-team`](../../packages/team/README.md) | Odamlar, boʻlimlar va kontaktlar |
 | [`alveby/atrium-faq`](../../packages/faq/README.md) | Savollar va javoblar |
+| [`alveby/atrium-tracker`](../../packages/tracker/README.md) | Admin panelida ishlovchilar uchun vazifalar va loyihalar |
 | [`alveby/atrium-forms`](../../packages/forms/README.md) | Shakl konstruktori va arizalar |
 | [`alveby/atrium-blocks`](../../packages/blocks/README.md) | Bloklar: bir marta yozilgan telefon yoki yozuv, istalgan joyda ko‘rsatiladi |
 | [`alveby/atrium-reviews`](../../packages/reviews/README.md) | Moderatsiyali sharhlar va baholar |

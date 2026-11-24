@@ -1,0 +1,63 @@
+{
+    "name": "alveby/atrium-tracker",
+    "description": "Tasks for Atrium: projects, tasks with comments and attachments, a board by status, mail on assignment and time tracking",
+    "type": "atrium-module",
+    "license": "MIT",
+    "homepage": "https://github.com/AlveBy/atrium",
+    "support": {
+        "issues": "https://github.com/AlveBy/atrium/issues",
+        "source": "https://github.com/AlveBy/atrium"
+    },
+    "keywords": [
+        "laravel",
+        "admin",
+        "cms",
+        "tracker",
+        "tasks",
+        "projects",
+        "time-tracking"
+    ],
+    "require": {
+        "php": "^8.3",
+        "illuminate/support": "^13.0",
+        "alveby/atrium": "^0.2"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^11.0",
+        "phpunit/phpunit": "^12.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Atrium\\Tracker\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Atrium\\Tracker\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "atrium": {
+            "key": "tracker",
+            "title": "atrium-tracker::tracker.title",
+            "settings": "Atrium\\Tracker\\TrackerSettings",
+            "resources": [
+                "Atrium\\Tracker\\Models\\Project",
+                "Atrium\\Tracker\\Models\\Task",
+                "Atrium\\Tracker\\Models\\Comment"
+            ],
+            "migrations": "database/migrations",
+            "demo": "Atrium\\Tracker\\Database\\TrackerDemoSeeder"
+        },
+        "laravel": {
+            "providers": [
+                "Atrium\\Tracker\\TrackerServiceProvider"
+            ]
+        },
+        "branch-alias": {
+            "dev-main": "0.2.x-dev"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

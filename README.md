@@ -182,6 +182,7 @@ The Bitrix database is only read. The tabs, field order and list columns come ou
 | [`alveby/atrium-stores`](packages/stores/README.md) | Stores and offices on a map |
 | [`alveby/atrium-team`](packages/team/README.md) | People, departments and contacts |
 | [`alveby/atrium-faq`](packages/faq/README.md) | Questions and answers |
+| [`alveby/atrium-tracker`](packages/tracker/README.md) | Tasks and projects for the people who work in the admin |
 | [`alveby/atrium-forms`](packages/forms/README.md) | Form builder and submissions |
 | [`alveby/atrium-blocks`](packages/blocks/README.md) | Reusable blocks: a phone number or a banner written once, shown anywhere |
 | [`alveby/atrium-reviews`](packages/reviews/README.md) | Reviews and ratings with moderation |
