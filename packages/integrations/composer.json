@@ -1,0 +1,59 @@
+{
+    "name": "alveby/atrium-integrations",
+    "description": "The base for Atrium's connectors (1C, Bitrix24 and others): a queue job with retries, an exchange log in the admin and an alert to administrators on failure",
+    "type": "atrium-module",
+    "license": "MIT",
+    "homepage": "https://github.com/AlveBy/atrium",
+    "support": {
+        "issues": "https://github.com/AlveBy/atrium/issues",
+        "source": "https://github.com/AlveBy/atrium"
+    },
+    "keywords": [
+        "laravel",
+        "admin",
+        "cms",
+        "integrations",
+        "queue",
+        "exchange-log"
+    ],
+    "require": {
+        "php": "^8.3",
+        "illuminate/support": "^13.0",
+        "alveby/atrium": "^0.2"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^11.0",
+        "phpunit/phpunit": "^12.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "Atrium\\Integrations\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Atrium\\Integrations\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "atrium": {
+            "key": "integrations",
+            "title": "atrium-integrations::integrations.title",
+            "settings": "Atrium\\Integrations\\IntegrationsSettings",
+            "resources": [
+                "Atrium\\Integrations\\Models\\ExchangeLog"
+            ],
+            "migrations": "database/migrations"
+        },
+        "laravel": {
+            "providers": [
+                "Atrium\\Integrations\\IntegrationsServiceProvider"
+            ]
+        },
+        "branch-alias": {
+            "dev-main": "0.2.x-dev"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

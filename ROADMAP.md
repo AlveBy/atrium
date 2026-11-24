@@ -171,7 +171,7 @@ After WordPress the order follows requests in Issues.
 - Connected with an inbound webhook: paste the URL and it works.
 - "Form → lead" is simple and almost everyone needs it, so it may ship earlier, together with the Forms module in 0.2.
 
-**Shared by all integrations:** a queue with retries, an exchange log, an alert to the admin on failure. Other connectors (amoCRM and the like) can be built on the same base on request.
+**Shared by all integrations:** ~~a queue with retries, an exchange log, an alert to the admin on failure~~ done (`alveby/atrium-integrations`, [docs](docs/integrations.md)): five attempts with growing pauses, a log screen with secrets hidden, one letter per integration per hour. Other connectors (amoCRM and the like) can be built on the same base on request.
 
 ## Project website and documentation
 

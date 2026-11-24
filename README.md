@@ -147,6 +147,7 @@ The Bitrix database is only read. The tabs, field order and list columns come ou
 - [Backups: databases and files to several places, schedules, health checks, restore](docs/backup.md)
 - [Errors: PHP, queue and JavaScript errors in the site's database, alerts, Sentry and your own drivers](docs/errors.md)
 - [Speed and uptime: server timings, visitors' Web Vitals, uptime checks with alerts](docs/monitoring.md)
+- [Integrations: the base of the 1C and Bitrix24 connectors, a queue with retries, an exchange log, alerts to administrators](docs/integrations.md)
 - [CDN: pictures, resized copies and WebP/AVIF, cache purge, uploads to S3](docs/cdn.md)
 - [Two-factor sign-in: authenticator apps, passkeys, codes, the sign-in log](docs/two-factor.md)
 - [Social sign-in: providers, app registration, redirect URLs](docs/social-login.md)
@@ -165,6 +166,7 @@ The Bitrix database is only read. The tabs, field order and list columns come ou
 | [`alveby/atrium-backup`](packages/backup/README.md) | Backups of the databases and files, restore from the admin |
 | [`alveby/atrium-errors`](packages/errors/README.md) | Error tracking in the site's database, alerts, Sentry |
 | [`alveby/atrium-monitoring`](packages/monitoring/README.md) | Server and visitor speed, uptime and alerts, with no outside service |
+| [`alveby/atrium-integrations`](packages/integrations/README.md) | The base of the connectors: a queue with retries, an exchange log, an alert on failure |
 | [`alveby/atrium-news`](packages/news/README.md) | News |
 | [`alveby/atrium-pages`](packages/pages/README.md) | Static pages, with an import of 1C-Bitrix pages |
 | [`alveby/atrium-catalog`](packages/catalog/README.md) | Product catalog with nested sections |

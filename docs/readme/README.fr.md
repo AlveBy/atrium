@@ -151,6 +151,7 @@ La base de données Bitrix est uniquement lue. Les onglets, l'ordre des champs e
 - [Sauvegardes : bases de données et fichiers vers plusieurs destinations, planification, contrôles, restauration](../backup.md)
 - [Erreurs : erreurs PHP, de file d'attente et JavaScript dans la base du site, alertes, Sentry et vos propres pilotes](../errors.md)
 - [Vitesse et disponibilité : temps du serveur, Web Vitals des visiteurs, contrôles de disponibilité avec alertes](../monitoring.md)
+- [Intégrations : socle des connecteurs 1C et Bitrix24, file d'attente avec reprises, journal des échanges, alertes aux administrateurs](../integrations.md)
 - [CDN : images, copies redimensionnées et WebP/AVIF, purge du cache, envois vers S3](../cdn.md)
 - [Connexion à deux facteurs : applications d'authentification, clés d'accès, codes, journal des connexions](../two-factor.md)
 - [Connexion sociale : fournisseurs, enregistrement de l'application, URL de redirection](../social-login.md)
@@ -169,6 +170,7 @@ La base de données Bitrix est uniquement lue. Les onglets, l'ordre des champs e
 | [`alveby/atrium-backup`](../../packages/backup/README.md) | Sauvegardes des bases de données et des fichiers, restauration depuis l'administration |
 | [`alveby/atrium-errors`](../../packages/errors/README.md) | Suivi des erreurs dans la base du site, alertes, Sentry |
 | [`alveby/atrium-monitoring`](../../packages/monitoring/README.md) | Vitesse du serveur et des visiteurs, disponibilité et alertes, sans service externe |
+| [`alveby/atrium-integrations`](../../packages/integrations/README.md) | Socle des connecteurs : file d'attente avec reprises, journal des échanges, alerte en cas d'échec |
 | [`alveby/atrium-news`](../../packages/news/README.md) | Actualités |
 | [`alveby/atrium-pages`](../../packages/pages/README.md) | Pages statiques, avec import des pages 1C-Bitrix |
 | [`alveby/atrium-catalog`](../../packages/catalog/README.md) | Catalogue de produits avec sections imbriquées |

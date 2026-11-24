@@ -4,6 +4,9 @@ All notable changes are listed here. The format follows [Keep a Changelog](https
 
 ## [Unreleased]
 
+### Added
+- `alveby/atrium-integrations`, the base of the 1C and Bitrix24 connectors and of whatever follows them ([docs/integrations.md](docs/integrations.md)): `Atrium\Integrations\Jobs\IntegrationJob`, a queue job that is tried five times with pauses of 10 s, 1, 5 and 15 minutes; an **Exchange log** screen with when, integration, direction, action, what it was about, result, error, attempt and time, narrowed by result and integration, kept 90 days (**Modules → Integrations**); an e-mail to the administrators when a connector gives up for good, to the listed addresses or to every active superadministrator, at most one per integration per hour, with the `atrium.integrations.failed` action for other channels. Passwords and webhook addresses a connector names are replaced by `***` in everything written to the log. `Atrium\Integrations\Exchange::record()` writes a line for work that does not run in the queue, and falls back to the application log when the module is not installed. Labels in 15 languages.
+
 ## [0.2.0] - 2026-11-24
 
 ### Added
