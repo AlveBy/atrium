@@ -186,6 +186,7 @@ La base de données Bitrix est uniquement lue. Les onglets, l'ordre des champs e
 | [`alveby/atrium-stores`](../../packages/stores/README.md) | Magasins et bureaux sur une carte |
 | [`alveby/atrium-team`](../../packages/team/README.md) | Personnes, services et contacts |
 | [`alveby/atrium-faq`](../../packages/faq/README.md) | Questions et réponses |
+| [`alveby/atrium-tracker`](../../packages/tracker/README.md) | Tâches et projets pour ceux qui travaillent dans l’admin |
 | [`alveby/atrium-forms`](../../packages/forms/README.md) | Générateur de formulaires et soumissions |
 | [`alveby/atrium-blocks`](../../packages/blocks/README.md) | Blocs réutilisables : un numéro de téléphone ou un bandeau écrit une fois, affiché partout |
 | [`alveby/atrium-reviews`](../../packages/reviews/README.md) | Avis et notes avec modération |

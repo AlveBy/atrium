@@ -39,6 +39,7 @@ use Atrium\Seo\Models\Template;
 use Atrium\Stores\Models\Store;
 use Atrium\Team\Models\Department;
 use Atrium\Team\Models\Member;
+use Atrium\Tracker\Models\Comment;
 use Tests\TestCase;
 
 /**
@@ -57,7 +58,7 @@ final class CustomFieldModulesTest extends TestCase
     /** @var list<class-string> */
     private const SERVICE = [
         Language::class, CustomField::class, CustomFieldTab::class, Issue::class, NotFound::class, RedirectImport::class, Redirect::class,
-        PageMeta::class, Template::class, Incident::class, UptimeCheck::class, FormSubmission::class,
+        PageMeta::class, Template::class, Incident::class, UptimeCheck::class, FormSubmission::class, Comment::class,
     ];
 
     public function test_the_select_lists_the_content_modules(): void

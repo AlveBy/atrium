@@ -186,6 +186,7 @@ Baza danych Bitrixa jest tylko odczytywana. Karty, kolejność pól i kolumny li
 | [`alveby/atrium-stores`](../../packages/stores/README.md) | Sklepy i biura na mapie |
 | [`alveby/atrium-team`](../../packages/team/README.md) | Osoby, działy i kontakty |
 | [`alveby/atrium-faq`](../../packages/faq/README.md) | Pytania i odpowiedzi |
+| [`alveby/atrium-tracker`](../../packages/tracker/README.md) | Zadania i projekty dla osób pracujących w panelu |
 | [`alveby/atrium-forms`](../../packages/forms/README.md) | Kreator formularzy i zgłoszenia |
 | [`alveby/atrium-blocks`](../../packages/blocks/README.md) | Bloki wielokrotnego użytku: telefon lub baner napisany raz i pokazywany gdziekolwiek |
 | [`alveby/atrium-reviews`](../../packages/reviews/README.md) | Opinie i oceny z moderacją |

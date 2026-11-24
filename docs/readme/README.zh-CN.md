@@ -186,6 +186,7 @@ Bitrix 数据库只读不写。标签页、字段顺序和列表列会保持编�
 | [`alveby/atrium-stores`](../../packages/stores/README.md) | 地图上的门店和办公室 |
 | [`alveby/atrium-team`](../../packages/team/README.md) | 人员、部门和联系方式 |
 | [`alveby/atrium-faq`](../../packages/faq/README.md) | 问答 |
+| [`alveby/atrium-tracker`](../../packages/tracker/README.md) | 为在管理后台工作的人准备的任务和项目 |
 | [`alveby/atrium-forms`](../../packages/forms/README.md) | 表单构建器和提交记录 |
 | [`alveby/atrium-blocks`](../../packages/blocks/README.md) | 可复用区块：电话或横幅只写一次，随处显示 |
 | [`alveby/atrium-reviews`](../../packages/reviews/README.md) | 带审核的评价和评分 |

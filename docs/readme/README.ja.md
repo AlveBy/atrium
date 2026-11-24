@@ -186,6 +186,7 @@ Bitrix のデータベースは読み取るだけです。タブ、フィール�
 | [`alveby/atrium-stores`](../../packages/stores/README.md) | 地図上の店舗とオフィス |
 | [`alveby/atrium-team`](../../packages/team/README.md) | 人、部署、連絡先 |
 | [`alveby/atrium-faq`](../../packages/faq/README.md) | 質問と回答 |
+| [`alveby/atrium-tracker`](../../packages/tracker/README.md) | 管理画面で働く人のためのタスクとプロジェクト |
 | [`alveby/atrium-forms`](../../packages/forms/README.md) | フォームビルダーと送信データ |
 | [`alveby/atrium-blocks`](../../packages/blocks/README.md) | 再利用ブロック：電話番号やバナーを一度書けば、どこにでも表示 |
 | [`alveby/atrium-reviews`](../../packages/reviews/README.md) | 承認制のレビューと評価 |

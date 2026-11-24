@@ -186,6 +186,7 @@ Die Bitrix-Datenbank wird nur gelesen. Tabs, Feldreihenfolge und Listenspalten k
 | [`alveby/atrium-stores`](../../packages/stores/README.md) | Filialen und Büros auf einer Karte |
 | [`alveby/atrium-team`](../../packages/team/README.md) | Personen, Abteilungen und Kontakte |
 | [`alveby/atrium-faq`](../../packages/faq/README.md) | Fragen und Antworten |
+| [`alveby/atrium-tracker`](../../packages/tracker/README.md) | Aufgaben und Projekte für alle, die im Admin arbeiten |
 | [`alveby/atrium-forms`](../../packages/forms/README.md) | Formularbaukasten und Einsendungen |
 | [`alveby/atrium-blocks`](../../packages/blocks/README.md) | Wiederverwendbare Blöcke: eine Telefonnummer oder ein Banner, einmal geschrieben und überall gezeigt |
 | [`alveby/atrium-reviews`](../../packages/reviews/README.md) | Bewertungen und Rezensionen mit Moderation |

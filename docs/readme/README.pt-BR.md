@@ -186,6 +186,7 @@ O banco de dados do Bitrix é apenas lido. As abas, a ordem dos campos e as colu
 | [`alveby/atrium-stores`](../../packages/stores/README.md) | Lojas e escritórios em um mapa |
 | [`alveby/atrium-team`](../../packages/team/README.md) | Pessoas, departamentos e contatos |
 | [`alveby/atrium-faq`](../../packages/faq/README.md) | Perguntas e respostas |
+| [`alveby/atrium-tracker`](../../packages/tracker/README.md) | Tarefas e projetos para quem trabalha no painel |
 | [`alveby/atrium-forms`](../../packages/forms/README.md) | Construtor de formulários e envios |
 | [`alveby/atrium-blocks`](../../packages/blocks/README.md) | Blocos reutilizáveis: um telefone ou banner escrito uma vez e exibido em qualquer lugar |
 | [`alveby/atrium-reviews`](../../packages/reviews/README.md) | Avaliações e notas com moderação |
