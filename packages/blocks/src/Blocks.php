@@ -68,7 +68,7 @@ final class Blocks
      */
     public function flush(): void
     {
-        $this->cache->forever(self::VERSION_KEY, Str::random(12));
+        $this->cache->forever(self::VERSION_KEY, Str::uuid()->toString());
     }
 
     private function written(string $code): string
@@ -77,7 +77,7 @@ final class Blocks
             return '';
         }
 
-        $version = $this->cache->rememberForever(self::VERSION_KEY, static fn (): string => Str::random(12));
+        $version = $this->cache->rememberForever(self::VERSION_KEY, static fn (): string => Str::uuid()->toString());
         $key = implode(':', ['atrium-blocks', $this->sites->current()->id, app()->getLocale(), md5($code), $version]);
 
         // An array: a missing block would not be told apart from a miss.

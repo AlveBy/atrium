@@ -134,9 +134,12 @@ final class BlocksTest extends TestCase
     {
         $this->block('phone', '<b>+1 00</b>');
 
-        $this->assertSame('<p><b>+1 00</b></p>', Blade::render("<p>@block('phone')</p>"));
+        // A new text each run: a compiled copy of an earlier one would hide a missing directive.
+        $run = uniqid();
+
+        $this->assertSame("<p id=\"{$run}\"><b>+1 00</b></p>", Blade::render("<p id=\"{$run}\">@block('phone')</p>"));
         $this->assertSame('<b>+1 00</b>', atrium_block('phone'));
-        $this->assertSame('<p></p>', Blade::render("<p>@block('nothing')</p>"));
+        $this->assertSame("<p id=\"{$run}-2\"></p>", Blade::render("<p id=\"{$run}-2\">@block('nothing')</p>"));
     }
 
     public function test_a_page_of_the_site_shows_its_block_and_not_the_block_of_another_site(): void
