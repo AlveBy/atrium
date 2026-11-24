@@ -37,7 +37,7 @@ final class Bitrix24Test extends AdminTestCase
                 ->assertPresent('[data-action="run-check"]')
                 ->type('#webhook', 'not a webhook')
                 ->press('[data-action="save"]')
-                ->waitForText('The webhook')
+                ->waitForText('field format is invalid')
                 ->type('#webhook', self::WEBHOOK)
                 ->type('#widget_code', '<script>window.b24 = 1;</script>')
                 ->press('[data-action="save"]')
