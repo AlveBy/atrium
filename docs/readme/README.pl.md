@@ -148,6 +148,7 @@ Baza danych Bitrixa jest tylko odczytywana. Karty, kolejność pól i kolumny li
 - [Rozszerzenia: projekt platformy — kreator bez kodu, formuły, wtyczki, zewnętrzne aplikacje, plan](../extensions.md)
 - [Własne pola: dodawanie pól do dowolnego modułu z panelu, filtry i fasety na 100 000 rekordów](../custom-fields.md)
 - [Import i eksport: CSV i Excel dla każdego modułu, kolumny, sprawdzenie przed zapisem, konsola i harmonogram](../import-export.md)
+- [Historia rekordów: dziennik zmian wszystkich modułów, kto, co i kiedy zmienił, bez haseł](../history.md)
 - [Cache: szybkie strony z dziesiątkami właściwości, Redis, cache stron, nagłówki dla CDN](../cache.md)
 - [Przeprowadzka z 1C-Bitrix krok po kroku](../bitrix.md)
 - [Przeprowadzka z WordPressa: połączenie z bazą, przeniesienie, kontrola, mapa 301](../wordpress.md)

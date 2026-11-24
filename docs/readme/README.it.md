@@ -148,6 +148,7 @@ Il database di Bitrix viene solo letto. Le schede, l'ordine dei campi e le colon
 - [Estensioni: il progetto della piattaforma — costruttore senza codice, formule, plugin, app esterne, il piano](../extensions.md)
 - [Campi personalizzati: aggiungere campi a qualsiasi modulo dal pannello, filtri e faccette su 100 000 record](../custom-fields.md)
 - [Importazione ed esportazione: CSV ed Excel per ogni modulo, colonne, un controllo prima di scrivere, la console e una pianificazione](../import-export.md)
+- [Cronologia dei record: il registro delle modifiche di tutti i moduli, chi ha cambiato cosa e quando, senza password](../history.md)
 - [Cache: pagine veloci con decine di proprietà, Redis, cache delle pagine, intestazioni per CDN](../cache.md)
 - [Migrare da 1C-Bitrix, passo per passo](../bitrix.md)
 - [Migrare da WordPress: collegare il database, migrare, verificare, la mappa dei 301](../wordpress.md)

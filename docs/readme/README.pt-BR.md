@@ -148,6 +148,7 @@ O banco de dados do Bitrix é apenas lido. As abas, a ordem dos campos e as colu
 - [Extensões: o projeto da plataforma — construtor sem código, fórmulas, plugins, apps externos, o plano](../extensions.md)
 - [Campos personalizados: adicionar campos a qualquer módulo pelo painel, filtros e facetas com 100 000 registros](../custom-fields.md)
 - [Importar e exportar: CSV e Excel para qualquer módulo, colunas, uma verificação antes de gravar, o console e um agendamento](../import-export.md)
+- [Histórico de registros: o registro de alterações de todos os módulos, quem alterou o quê e quando, sem senhas](../history.md)
 - [Cache: páginas rápidas com dezenas de propriedades, Redis, cache de páginas, cabeçalhos para CDN](../cache.md)
 - [Migrar do 1C-Bitrix, passo a passo](../bitrix.md)
 - [Migrar do WordPress: conectar o banco, migrar, verificar, o mapa de 301](../wordpress.md)
