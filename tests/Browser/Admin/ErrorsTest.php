@@ -33,8 +33,18 @@ final class ErrorsTest extends AdminTestCase
                 ->assertAttribute('@errors-status-new', 'aria-pressed', 'true')
                 ->assertSeeIn('@errors-table', 'Room 12 is not free')
                 ->assertSeeIn('@errors-table', 'The price feed did not answer')
-                ->screenshot('errors/list')
-                ->type('@errors-search', 'Room 12')
+                ->screenshot('errors/list');
+
+            // The search box stands in one line with the selects beside it, its
+            // label above it like theirs.
+            $tops = $browser->script(<<<'JS'
+                return ['search', 'site'].map((name) => Math.round(
+                    document.querySelector(`[dusk="errors-${name}"]`).getBoundingClientRect().top,
+                ));
+            JS)[0];
+            $this->assertSame($tops[1], $tops[0], 'the search box is out of line with the site select');
+
+            $browser->type('@errors-search', 'Room 12')
                 ->click('@errors-apply')
                 ->waitUntilMissingText('The price feed did not answer')
                 ->assertSeeIn('@errors-table', 'Room 12 is not free')
