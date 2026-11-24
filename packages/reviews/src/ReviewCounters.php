@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace Atrium\Reviews;
 
 use Atrium\Admin\Cache\RecordCache;
+use Atrium\Admin\Scopes\SiteScope;
 use Atrium\Reviews\Models\Review;
 use Illuminate\Database\Connection;
 use Illuminate\Database\Query\Builder;
@@ -135,7 +136,7 @@ final class ReviewCounters
 
     private function published(): Builder
     {
-        return Review::query()->withoutGlobalScopes()->toBase()->where('status', ReviewStatus::Published->value);
+        return Review::query()->withoutGlobalScope(SiteScope::class)->toBase()->where('status', ReviewStatus::Published->value);
     }
 
     private function sums(): string

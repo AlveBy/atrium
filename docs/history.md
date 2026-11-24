@@ -2,11 +2,12 @@
 
 [English](history.md) · [Русский](history.ru.md)
 
-Every module of the panel keeps a history of its records with no code of its own: who created, changed or deleted a record, when, from where, and which fields went from what to what; and the versions of each record, to compare two of them and put an older one back.
+Every module of the panel keeps a history of its records with no code of its own: who created, changed or deleted a record, when, from where, and which fields went from what to what; the versions of each record, to compare two of them and put an older one back; and a trash, from which a deleted record is restored.
 
 - [The activity log](#the-activity-log)
 - [What is written, and from where](#what-is-written-and-from-where)
 - [Versions](#versions)
+- [Trash](#trash)
 - [Passwords and other secrets](#passwords-and-other-secrets)
 - [Who sees what](#who-sees-what)
 - [Turning it off](#turning-it-off)
@@ -14,7 +15,7 @@ Every module of the panel keeps a history of its records with no code of its own
 
 ## The activity log
 
-**Activity log** in the menu (`/admin/activity`) lists the changes of every module, newest first, 50 to a page. Each entry says what happened (created, changed, deleted, restored), to which record of which module, by whom, from where (in the panel, through the API, by an import, by a command, by the scheduler) and when, and has a table of the fields that changed: the field's name from the form, what it was and what it is now. The old value is struck through and the new one is not, and the columns are called **Was** and **Now**, so the two never differ by colour alone. A link leads to the record while it is still there.
+**Activity log** in the menu (`/admin/activity`) lists the changes of every module, newest first, 50 to a page. Each entry says what happened (created, changed, deleted, restored, deleted for good), to which record of which module, by whom, from where (in the panel, through the API, by an import, by a command, by the scheduler) and when, and has a table of the fields that changed: the field's name from the form, what it was and what it is now. The old value is struck through and the new one is not, and the columns are called **Was** and **Now**, so the two never differ by colour alone. A link leads to the record while it is still there.
 
 Above the list the journal is narrowed by module, by administrator and by days (**From** and **To**, both days included). The filters stay in the address, so a narrowed journal can be bookmarked or sent.
 
@@ -50,6 +51,18 @@ The newest 50 versions of each record are kept, the older go; the number is set 
 
 Administrators keep no versions: putting an old one back would get around the checks of their form (the last superadministrator, the password).
 
+## Trash
+
+A deleted record of a content module (pages, news, products, the sites themselves) goes to the trash rather than away: it disappears from the panel, the site, the search, the sitemap, the API and MCP, and stays in its table with everything it has: files, SEO, custom fields, links, versions, child records. Service modules (administrators, languages, form submissions, logs, custom fields and SEO settings) delete at once, as before. It is the same from the list's **Delete**, the bulk **Delete**, `DELETE /api/v1/{module}/{id}` and the MCP tool `delete_record`.
+
+**Trash** in the menu (`/admin/trash`) lists what was deleted, newest first, 50 to a page: the record, its module, who deleted it and when, narrowed by module. **Restore** brings the record back as it was and opens its form; **Delete for good**, after a confirmation, deletes it with its files and versions (the activity log keeps what happened). Both are in the log: **Restored** and **Deleted for good**.
+
+What has been in the trash for 30 days is deleted for good by the scheduler every night (`atrium:trash:empty`; the site's cron runs `php artisan schedule:run`). The number of days is `ATRIUM_TRASH_DAYS`; 0 keeps everything until it is deleted by hand. A record the module refuses to delete (`beforeAdminDelete()` or a listener of `atrium.record.deleting`) stays.
+
+Restoring needs `{module}.restore` and deleting for good `{module}.force_delete`, two permissions every module with the trash gets in the role editor; the trash shows the modules the administrator may view and, with several sites, the records of the site the panel works with and of the modules all sites share. The API has the same: `GET /api/v1/{module}/trash` lists the records with `id`, `title`, `deleted_at` and `deleted_by`, `POST /api/v1/{module}/trash/{id}/restore` brings one back and answers with the record, `DELETE /api/v1/{module}/trash/{id}` deletes it for good; MCP has `list_trash`, `restore_from_trash` and `delete_forever`.
+
+A record in the trash keeps its code and its address: a new record cannot take them until the old one is restored or deleted for good.
+
 ## Passwords and other secrets
 
 A password, a key or a token is never written to the log, not even hashed. When one is given a new value, the entry says that the field changed, without the value. A field counts as secret when it is:
@@ -74,7 +87,7 @@ The journal shows the entries of the modules the administrator may view (`{modul
 
 ## Turning it off
 
-For the whole site: `ATRIUM_HISTORY_ENABLED=false` in `.env`. Nothing is written, and the journal, its menu entry and the **History** buttons go away. Entries written before stay in the `admin_activity` table, versions in `admin_revisions`. Versions alone: `ATRIUM_HISTORY_REVISIONS=0`.
+For the whole site: `ATRIUM_HISTORY_ENABLED=false` in `.env`. Nothing is written, and the journal, its menu entry and the **History** buttons go away. Entries written before stay in the `admin_activity` table, versions in `admin_revisions`. Versions alone: `ATRIUM_HISTORY_REVISIONS=0`. The trash does not depend on it.
 
 For one module, in its model:
 
@@ -89,6 +102,15 @@ The module's records are not logged and its form has no **History** button. To k
 
 ```php
 public static function hasAdminRevisions(): bool
+{
+    return false;
+}
+```
+
+To delete the module's records at once, with no trash:
+
+```php
+public static function usesAdminTrash(): bool
 {
     return false;
 }
@@ -112,5 +134,7 @@ $log->during(ActivityLog::SCHEDULE, null, fn () => $this->publishDue());
 // One entry by hand.
 $log->record($order, ActivityLog::UPDATED, ['status' => ['old' => 'new', 'new' => 'paid']]);
 ```
+
+A record in the trash is hidden by a global scope (`Atrium\Admin\Scopes\TrashScope`): a query that drops every scope (`withoutGlobalScopes()`) sees it too, so drop only the one you mean, as `withoutGlobalScope(SiteScope::class)`. `beforeAdminDelete()` and `atrium.record.deleting` run both when a record goes to the trash and when it is deleted for good; `eloquent.deleted` is heard when it goes to the trash, and `eloquent.restored` and `eloquent.saved` when it comes back, so caches and indexes follow it with no code of their own.
 
 `ActivityLog::changes($before, $after)` compares two arrays of field values the way the form does and gives what `record()` takes.
