@@ -150,6 +150,7 @@ php artisan atrium:bitrix:parity
 - [Ошибки: ошибки PHP, очередей и JavaScript в базе сайта, оповещения, Sentry и свои драйверы](../errors.ru.md)
 - [Скорость и доступность: замеры сервера, Web Vitals посетителей, проверки доступности с оповещениями](../monitoring.ru.md)
 - [Интеграции: основа коннекторов 1С и Битрикс24, очередь с повторами, журнал обмена, оповещения администраторам](../integrations.ru.md)
+- [Битрикс24: заявки с форм становятся лидами или сделками, виджет чата на сайте, один вставленный вебхук](../bitrix24.ru.md)
 - [CDN: картинки, уменьшенные копии и WebP/AVIF, сброс кеша, загрузки в S3](../cdn.ru.md)
 - [Двухфакторный вход: приложения-аутентификаторы, passkey, коды, журнал входов](../two-factor.ru.md)
 - [Вход через соцсети: провайдеры, регистрация приложений, адреса возврата](../social-login.ru.md)
@@ -169,6 +170,7 @@ php artisan atrium:bitrix:parity
 | [`alveby/atrium-errors`](../../packages/errors/README.md) | Учёт ошибок в базе сайта, оповещения, Sentry |
 | [`alveby/atrium-monitoring`](../../packages/monitoring/README.md) | Скорость сервера и посетителей, доступность и оповещения, без внешних сервисов |
 | [`alveby/atrium-integrations`](../../packages/integrations/README.md) | Основа коннекторов: очередь с повторами, журнал обмена, оповещение при сбое |
+| [`alveby/atrium-bitrix24`](../../packages/bitrix24/README.md) | Заявки с форм в Битрикс24 лидами или сделками, виджет чата |
 | [`alveby/atrium-news`](../../packages/news/README.md) | Новости |
 | [`alveby/atrium-pages`](../../packages/pages/README.md) | Статические страницы, с импортом страниц 1С-Битрикс |
 | [`alveby/atrium-catalog`](../../packages/catalog/README.md) | Каталог товаров с вложенными разделами |

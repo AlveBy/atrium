@@ -28,11 +28,6 @@ final class Bitrix24ServiceProvider extends ServiceProvider
 {
     public const MODULE = 'alveby/atrium-bitrix24';
 
-    public function register(): void
-    {
-        $this->app->singleton(Client::class);
-    }
-
     public function boot(): void
     {
         $this->loadTranslationsFrom(__DIR__.'/../lang', 'atrium-bitrix24');

@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace Atrium\Bitrix24\Tests;
 
+use Atrium\Admin\Facades\Setting;
 use Atrium\Bitrix24\Jobs\SendSubmission;
 use Atrium\Bitrix24\Models\FormLink;
 use Atrium\Forms\Models\FormSubmission;
@@ -186,6 +187,16 @@ final class SendSubmissionTest extends TestCase
         $this->send($submission->id);
 
         Http::assertSent(fn (Request $request): bool => $request->url() === $this->url('crm.lead.add'));
+    }
+
+    public function test_the_webhook_is_what_the_log_must_hide_and_without_one_there_is_nothing_to_hide(): void
+    {
+        $secrets = new \ReflectionMethod(SendSubmission::class, 'secrets');
+
+        $this->assertSame([self::WEBHOOK], $secrets->invoke(new SendSubmission(1)));
+
+        Setting::save('bitrix24', ['webhook' => '']);
+        $this->assertSame([''], $secrets->invoke(new SendSubmission(1)));
     }
 
     public function test_the_job_is_tried_five_times_on_the_queue_and_is_named_after_bitrix24(): void

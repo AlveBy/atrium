@@ -93,8 +93,12 @@ final class ClientTest extends TestCase
         $this->connect();
         Http::fake(['*' => Http::response(['error' => 'QUERY_LIMIT_EXCEEDED'], 200)]);
 
-        $this->expectExceptionMessage('Bitrix24 refused: QUERY_LIMIT_EXCEEDED');
-        app(Client::class)->call('profile');
+        try {
+            app(Client::class)->call('profile');
+            $this->fail('A refusal must throw.');
+        } catch (Bitrix24Exception $e) {
+            $this->assertSame('Bitrix24 refused: QUERY_LIMIT_EXCEEDED', $e->getMessage());
+        }
     }
 
     public function test_an_error_answer_without_a_reason_is_reported_by_its_status(): void

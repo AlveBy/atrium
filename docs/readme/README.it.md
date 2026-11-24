@@ -152,6 +152,7 @@ Il database di Bitrix viene solo letto. Le schede, l'ordine dei campi e le colon
 - [Errori: errori PHP, delle code e JavaScript nel database del sito, avvisi, Sentry e driver propri](../errors.md)
 - [Velocità e disponibilità: tempi del server, Web Vitals dei visitatori, controlli di disponibilità con avvisi](../monitoring.md)
 - [Integrazioni: la base dei connettori per 1C e Bitrix24, coda con tentativi ripetuti, registro degli scambi, avvisi agli amministratori](../integrations.md)
+- [Bitrix24: gli invii dei moduli diventano lead o trattative, il widget della chat sul sito, un solo webhook incollato](../bitrix24.md)
 - [CDN: immagini, copie ridimensionate e WebP/AVIF, svuotamento della cache, caricamenti su S3](../cdn.md)
 - [Accesso a due fattori: app di autenticazione, passkey, codici, il registro degli accessi](../two-factor.md)
 - [Accesso social: provider, registrazione dell'app, URL di reindirizzamento](../social-login.md)
@@ -171,6 +172,7 @@ Il database di Bitrix viene solo letto. Le schede, l'ordine dei campi e le colon
 | [`alveby/atrium-errors`](../../packages/errors/README.md) | Tracciamento degli errori nel database del sito, avvisi, Sentry |
 | [`alveby/atrium-monitoring`](../../packages/monitoring/README.md) | Velocità del server e dei visitatori, disponibilità e avvisi, senza servizi esterni |
 | [`alveby/atrium-integrations`](../../packages/integrations/README.md) | La base dei connettori: coda con tentativi ripetuti, registro degli scambi, avviso in caso di errore |
+| [`alveby/atrium-bitrix24`](../../packages/bitrix24/README.md) | Invii dei moduli a Bitrix24 come lead o trattative, il widget della chat |
 | [`alveby/atrium-news`](../../packages/news/README.md) | Notizie |
 | [`alveby/atrium-pages`](../../packages/pages/README.md) | Pagine statiche, con importazione delle pagine di 1C-Bitrix |
 | [`alveby/atrium-catalog`](../../packages/catalog/README.md) | Catalogo prodotti con sezioni annidate |

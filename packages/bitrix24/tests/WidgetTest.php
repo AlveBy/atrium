@@ -98,6 +98,21 @@ final class WidgetTest extends TestCase
         $this->get('/cpx')->assertSee('y'.self::CODE, false);
     }
 
+    public function test_the_prefix_of_the_admin_is_compared_without_its_slashes(): void
+    {
+        config(['atrium.prefix' => '/cp/']);
+        $this->app['router']->get('/cp/screen', fn () => response('<html><body>x</body></html>', 200, ['Content-Type' => 'text/html']))->middleware('web');
+
+        $this->get('/cp/screen')->assertDontSee('b24', false);
+    }
+
+    public function test_a_status_of_three_hundred_is_not_a_page(): void
+    {
+        $this->app['router']->get('/multiple', fn () => response('<html><body>pick one</body></html>', 300, ['Content-Type' => 'text/html']))->middleware('web');
+
+        $this->get('/multiple')->assertDontSee('b24', false);
+    }
+
     public function test_when_the_module_is_not_installed_nothing_is_added(): void
     {
         config(['atrium.modules' => ['alveby/atrium-forms']]);

@@ -152,6 +152,7 @@ Baza danych Bitrixa jest tylko odczytywana. Karty, kolejność pól i kolumny li
 - [Błędy: błędy PHP, kolejek i JavaScriptu w bazie strony, powiadomienia, Sentry i własne sterowniki](../errors.md)
 - [Szybkość i dostępność: czasy serwera, Web Vitals odwiedzających, kontrole dostępności z powiadomieniami](../monitoring.md)
 - [Integracje: baza konektorów 1C i Bitrix24, kolejka z ponowieniami, dziennik wymiany, powiadomienia dla administratorów](../integrations.md)
+- [Bitrix24: zgłoszenia z formularzy stają się leadami lub transakcjami, widżet czatu na stronie, jeden wklejony webhook](../bitrix24.md)
 - [CDN: obrazy, pomniejszone kopie i WebP/AVIF, czyszczenie pamięci podręcznej, przesyłanie do S3](../cdn.md)
 - [Logowanie dwuskładnikowe: aplikacje uwierzytelniające, klucze dostępu, kody, dziennik logowań](../two-factor.md)
 - [Logowanie przez serwisy społecznościowe: dostawcy, rejestracja aplikacji, adresy przekierowań](../social-login.md)
@@ -171,6 +172,7 @@ Baza danych Bitrixa jest tylko odczytywana. Karty, kolejność pól i kolumny li
 | [`alveby/atrium-errors`](../../packages/errors/README.md) | Rejestr błędów w bazie strony, powiadomienia, Sentry |
 | [`alveby/atrium-monitoring`](../../packages/monitoring/README.md) | Szybkość serwera i odwiedzających, dostępność i powiadomienia, bez zewnętrznych usług |
 | [`alveby/atrium-integrations`](../../packages/integrations/README.md) | Baza konektorów: kolejka z ponowieniami, dziennik wymiany, powiadomienie o awarii |
+| [`alveby/atrium-bitrix24`](../../packages/bitrix24/README.md) | Zgłoszenia z formularzy do Bitrix24 jako leady lub transakcje, widżet czatu |
 | [`alveby/atrium-news`](../../packages/news/README.md) | Aktualności |
 | [`alveby/atrium-pages`](../../packages/pages/README.md) | Strony statyczne, z importem stron z 1C-Bitrix |
 | [`alveby/atrium-catalog`](../../packages/catalog/README.md) | Katalog produktów z zagnieżdżonymi działami |

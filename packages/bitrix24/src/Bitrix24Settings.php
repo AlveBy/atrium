@@ -78,7 +78,7 @@ final class Bitrix24Settings extends ModuleSettings implements HasActions
         $user = is_array($profile) ? trim((string) ($profile['NAME'] ?? '').' '.(string) ($profile['LAST_NAME'] ?? '')) : '';
 
         return __('atrium-bitrix24::bitrix24.settings.connected', [
-            'portal' => (string) parse_url((string) app(Client::class)->webhook(), PHP_URL_HOST),
+            'portal' => parse_url((string) app(Client::class)->webhook(), PHP_URL_HOST),
             'user' => $user !== '' ? $user : '—',
         ]);
     }

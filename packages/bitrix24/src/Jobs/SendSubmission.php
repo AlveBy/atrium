@@ -34,7 +34,7 @@ final class SendSubmission extends IntegrationJob
         return $this->link()?->mode === FormLink::DEAL ? 'deal.add' : 'lead.add';
     }
 
-    protected function subject(): ?string
+    protected function subject(): string
     {
         return __('atrium-bitrix24::bitrix24.payload.subject', ['id' => $this->submissionId]);
     }
@@ -44,7 +44,7 @@ final class SendSubmission extends IntegrationJob
         return [(string) app(Client::class)->webhook()];
     }
 
-    protected function perform(): ?string
+    protected function perform(): string
     {
         $submission = FormSubmission::withoutGlobalScopes()->find($this->submissionId);
 

@@ -27,7 +27,7 @@ final class Payload
     /** Fields of a contact; in a deal the rest belongs to the deal. */
     public const CONTACT = ['NAME', 'SECOND_NAME', 'LAST_NAME', 'PHONE', 'EMAIL', 'WEB', 'ADDRESS', 'POST'];
 
-    private const LINE = '/^[a-z0-9_.\-]+\s*=\s*[A-Z][A-Z0-9_]*$/i';
+    private const LINE = '/^([a-z0-9_.\-]+)\s*=\s*([A-Z][A-Z0-9_]*)$/i';
 
     private const NAMES = ['name' => 'NAME', 'first_name' => 'NAME', 'fio' => 'NAME', 'full_name' => 'NAME', 'last_name' => 'LAST_NAME', 'surname' => 'LAST_NAME'];
 
@@ -41,9 +41,8 @@ final class Payload
         $map = [];
 
         foreach (self::lines($text) as $line) {
-            if (preg_match(self::LINE, $line) === 1) {
-                [$field, $code] = array_map('trim', explode('=', $line, 2));
-                $map[$field] = strtoupper($code);
+            if (preg_match(self::LINE, $line, $pair) === 1) {
+                $map[$pair[1]] = strtoupper($pair[2]);
             }
         }
 
@@ -72,7 +71,8 @@ final class Payload
     public static function fields(FormSubmission $submission, ?FormLink $link): array
     {
         $map = self::mapping($link?->mapping);
-        $fields = [];
+        $lists = [];
+        $texts = [];
         $comments = [];
 
         foreach ($submission->data as $item) {
@@ -87,11 +87,13 @@ final class Payload
             if ($code === null) {
                 $comments[] = $item['label'].': '.$value;
             } elseif (in_array($code, self::MULTI, true)) {
-                $fields[$code][] = ['VALUE' => $value, 'VALUE_TYPE' => 'WORK'];
+                $lists[$code][] = ['VALUE' => $value, 'VALUE_TYPE' => 'WORK'];
             } else {
-                $fields[$code] = isset($fields[$code]) ? $fields[$code]."\n".$value : $value;
+                $texts[$code] = isset($texts[$code]) ? $texts[$code]."\n".$value : $value;
             }
         }
+
+        $fields = [...$texts, ...$lists];
 
         if ($comments !== []) {
             $fields['COMMENTS'] = implode("\n", isset($fields['COMMENTS']) ? [$fields['COMMENTS'], ...$comments] : $comments);
