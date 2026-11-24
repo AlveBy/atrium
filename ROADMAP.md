@@ -49,14 +49,14 @@ The base for everything after it: the shop, the importers and the integrations a
 **Mechanics**
 - ~~A module is a Composer package with `"type": "atrium-module"` and a description in `extra.atrium`~~ done: resources, public pages, migrations, demo seeder ([docs](docs/modules.md#a-module-as-a-package)); settings come with module settings below.
 - ~~`php artisan atrium:module:install {name}` / `atrium:module:remove {name}`~~ done: migrations, permissions, menu entry; removal asks whether to keep the data. Modules link to each other softly ([docs](docs/modules.md#links-to-other-modules)). Assets of a module's own come with the first module that needs them.
-- A "Modules" screen in the admin: installed modules (enable, disable, configure) and available ones, a catalogue read from Packagist by the `atrium-module` type, described in the admin's language, with the install command.
+- ~~A "Modules" screen in the admin~~ done: installed modules (enable, disable, configure), required but not installed ones, and a catalogue read from Packagist by the `atrium-module` type, with the install commands ([docs](docs/modules.md#the-modules-screen)).
 - A module template repository: structure, tests, CI, translations — press "Use this template" and start writing.
-- **Submodules.** A module can extend another one without touching its code: add fields and tabs to its form, columns to its list, its own screens inside the parent's menu section, its own settings on the parent's settings screen. A submodule installs only next to its parent and goes away with it. Payment methods, carriers and discounts are submodules of the shop; "Ratings" can be a submodule of "Reviews".
+- ~~**Submodules.**~~ done ([docs](docs/modules.md#submodules)). A module can extend another one without touching its code: add fields and tabs to its form, columns to its list, its own screens inside the parent's menu section, its own settings on the parent's settings screen. A submodule installs only next to its parent and goes away with it. Payment methods, carriers and discounts are submodules of the shop; "Ratings" can be a submodule of "Reviews".
 
 **What modules need from the core**
-- Permissions for installed modules: a module declares its own actions beyond view, create, edit and delete ("publish", "export"), and they appear in the role form. Roles per site: the same administrator edits one site and only reads another (roles themselves are in 0.1).
-- Module settings: a settings screen the module describes with fields, the same way it describes a record form.
-- Hooks, as in WordPress but built on Laravel events, so modules and the site itself change behaviour without editing anyone's code:
+- ~~Permissions for installed modules~~ done: a module declares its own actions beyond view, create, edit and delete ("publish", "export"), and they appear in the role form ([docs](docs/modules.md#permissions)). ~~Roles per site~~ done: the same administrator edits one site and only reads another ([docs](docs/modules.md#roles-on-one-site)).
+- ~~Module settings~~ done: a settings screen the module describes with fields, the same way it describes a record form ([docs](docs/modules.md#module-settings)).
+- ~~Hooks, as in WordPress but built on Laravel events~~ done ([docs](docs/modules.md#hooks)), so modules and the site itself change behaviour without editing anyone's code:
   - **actions** — react to something: `Atrium::on('articles.saved', …)`, "form submitted", "order paid", "site switched";
   - **filters** — change something on its way: the fields and tabs of a form, the columns and query of a list, the data of a record before it is saved (mutators) and after it is read, an API response, the menu, the sitemap, the page `<head>`;
   - every hook point is listed in the docs, generated from the code, so the list never goes stale.

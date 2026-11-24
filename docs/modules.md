@@ -347,6 +347,10 @@ A module package that checks more than that declares its own permissions in the 
 
 A name is `{section}.{action}`; a bare action belongs to the module's key (`refund` → `shop.refund`). The label is text or a translation key. While the module is installed, each permission is a checkbox in its section's row of the role form (in the "Other" column, or a row of its own), and the module checks it with `$user->hasAdminPermission('shop.refund')`. `with` names a permission it comes with: when the module is installed, every role that has `orders.view` gets `orders.export` too. `atrium:module:remove` takes them out of the roles.
 
+### Roles on one site
+
+With more than one site, a superadmin also gives an administrator roles on single sites, under **Roles on one site** on the administrator's form. Such a role counts only while its site is the one the panel works with, on top of the roles on every site: an editor of one site who only reads another has the role "Editor" on the first and "Reader" on the second. Switching the site in the header changes the menu, the buttons and what is allowed with it. An API call gets a site's roles when it names the site (`?site=de`); without it only the roles on every site count. A module needs nothing for this: `$user->hasAdminPermission()` already answers for the site the request works with.
+
 ## Content languages and sites
 
 **Languages.** With `Translatable` and the columns listed in `$translatable`, the form gets a language switch and each value is kept per language. The columns must be JSON (`$table->json('name')`). Only the default language is required; the others fall back to it.
