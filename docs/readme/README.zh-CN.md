@@ -153,6 +153,7 @@ Bitrix 数据库只读不写。标签页、字段顺序和列表列会保持编�
 - [速度与可用性：服务器耗时、访客的 Web Vitals、带告警的可用性检查](../monitoring.md)
 - [集成：1C 与 Bitrix24 连接器的基础、带重试的队列、交换日志、发给管理员的告警](../integrations.md)
 - [Bitrix24：表单提交变成线索或交易、网站上的聊天挂件、只需粘贴一个 Webhook](../bitrix24.md)
+- [1C：通过标准 CommerceML 交换从 1C:Enterprise 导入目录，并有交换界面](../1c.md)
 - [CDN：图片、缩放副本与 WebP/AVIF、清除缓存、上传到 S3](../cdn.md)
 - [双重验证登录：验证器应用、通行密钥、验证码、登录日志](../two-factor.md)
 - [社交登录：登录提供方、应用注册、重定向地址](../social-login.md)
@@ -173,6 +174,7 @@ Bitrix 数据库只读不写。标签页、字段顺序和列表列会保持编�
 | [`alveby/atrium-monitoring`](../../packages/monitoring/README.md) | 服务器与访客的速度、可用性与告警，无需外部服务 |
 | [`alveby/atrium-integrations`](../../packages/integrations/README.md) | 连接器的基础：带重试的队列、交换日志、失败告警 |
 | [`alveby/atrium-bitrix24`](../../packages/bitrix24/README.md) | 表单提交以线索或交易形式进入 Bitrix24、聊天挂件 |
+| [`alveby/atrium-1c`](../../packages/onec/README.md) | 通过 CommerceML 从 1C 导入商品、价格和库存 |
 | [`alveby/atrium-news`](../../packages/news/README.md) | 新闻 |
 | [`alveby/atrium-pages`](../../packages/pages/README.md) | 静态页面，支持导入 1C-Bitrix 页面 |
 | [`alveby/atrium-catalog`](../../packages/catalog/README.md) | 带嵌套分类的商品目录 |

@@ -59,6 +59,7 @@ return [
         'alveby/atrium-forms',
         'alveby/atrium-integrations',
         'alveby/atrium-bitrix24',
+        'alveby/atrium-1c',
         'alveby/atrium-pages',
         'alveby/atrium-reviews',
         'alveby/atrium-menus',

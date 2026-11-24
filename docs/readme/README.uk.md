@@ -153,6 +153,7 @@ php artisan atrium:bitrix:parity
 - [Швидкість і доступність: заміри сервера, Web Vitals відвідувачів, перевірки доступності зі сповіщеннями](../monitoring.md)
 - [Інтеграції: основа конекторів 1C і Bitrix24, черга з повторами, журнал обміну, сповіщення адміністраторам](../integrations.md)
 - [Bitrix24: заявки з форм стають лідами або угодами, віджет чату на сайті, один вставлений вебхук](../bitrix24.md)
+- [1С: каталог з 1С:Підприємства за стандартним обміном CommerceML, екран обміну](../1c.md)
 - [CDN: зображення, зменшені копії й WebP/AVIF, очищення кешу, завантаження в S3](../cdn.md)
 - [Двофакторний вхід: застосунки-автентифікатори, ключі доступу, коди, журнал входів](../two-factor.md)
 - [Вхід через соцмережі: провайдери, реєстрація застосунку, адреси перенаправлення](../social-login.md)
@@ -173,6 +174,7 @@ php artisan atrium:bitrix:parity
 | [`alveby/atrium-monitoring`](../../packages/monitoring/README.md) | Швидкість сервера й відвідувачів, доступність і сповіщення, без зовнішніх сервісів |
 | [`alveby/atrium-integrations`](../../packages/integrations/README.md) | Основа конекторів: черга з повторами, журнал обміну, сповіщення про збій |
 | [`alveby/atrium-bitrix24`](../../packages/bitrix24/README.md) | Заявки з форм у Bitrix24 лідами або угодами, віджет чату |
+| [`alveby/atrium-1c`](../../packages/onec/README.md) | Товари, ціни та залишки з 1С за CommerceML |
 | [`alveby/atrium-news`](../../packages/news/README.md) | Новини |
 | [`alveby/atrium-pages`](../../packages/pages/README.md) | Статичні сторінки з імпортом сторінок 1С-Бітрікс |
 | [`alveby/atrium-catalog`](../../packages/catalog/README.md) | Каталог товарів із вкладеними розділами |
