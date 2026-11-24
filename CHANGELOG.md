@@ -13,6 +13,7 @@ All notable changes are listed here. The format follows [Keep a Changelog](https
 
 ### Changed
 - `main` no longer keeps the built admin (`packages/admin/dist`), so pull requests stop conflicting over it. After every push to `main` GitHub builds it into a new branch, `stable`, which sites are installed from without Node (`git clone -b stable`, then `git pull` as before), and into the `alveby/atrium` package on Packagist, so `composer require` still needs no Node. A site cloned from `main` moves once: `git fetch origin stable && git checkout stable`. Working on Atrium itself, build the admin with `npm ci && npm run build` in `packages/admin`; `docker compose up` does it in a checkout of `main`.
+- The demo visitor may import and export the sections they edit. A demo downloads no image by address: a row with one is not imported, and the check before the import says so in the visitor's language.
 
 ## [0.2.0] - 2026-11-24
 
