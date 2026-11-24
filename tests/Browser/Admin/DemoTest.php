@@ -75,16 +75,40 @@ final class DemoTest extends AdminTestCase
 
         $this->withEnv(['ATRIUM_DEMO' => 'true'], function (): void {
             $this->browse(function (Browser $browser): void {
+                // The logger is in the page before its own scripts run, so no
+                // call sits between the note appearing and the typing.
+                $logger = <<<'JS'
+                    window.__log = [];
+                    const t0 = performance.now();
+                    const note = (name, extra) => window.__log.push([Math.round(performance.now() - t0), name, extra]);
+                    const what = (ev) => (ev.target.id || ev.target.tagName || 'win') + ':' + (ev.target.value ?? '');
+                    for (const e of ['focusin', 'focusout', 'beforeinput', 'input', 'change', 'invalid', 'submit', 'keydown', 'keyup', 'mousedown', 'click']) {
+                        document.addEventListener(e, (ev) => note(e, what(ev)), true);
+                    }
+                    for (const e of ['start', 'finish', 'error', 'success', 'invalid', 'exception', 'navigate']) {
+                        document.addEventListener('inertia:' + e, () => note('inertia-' + e, ''));
+                    }
+                    window.addEventListener('focus', () => note('win-focus', ''));
+                    window.addEventListener('blur', () => note('win-blur', ''));
+                    window.addEventListener('load', () => note('load', document.readyState));
+                    let seen = false;
+                    new MutationObserver(() => {
+                        if (!seen && document.querySelector('[dusk="login-demo"]')) {
+                            seen = true;
+                            note('note-mounted', [document.readyState, document.hasFocus(), document.visibilityState].join(','));
+                        }
+                    }).observe(document, {childList: true, subtree: true});
+                JS;
+                $browser->driver->executeCustomCommand('/session/:sessionId/goog/cdp/execute', 'POST', ['cmd' => 'Page.addScriptToEvaluateOnNewDocument', 'params' => ['source' => $logger]]);
+
                 $browser->visit('/admin/login')->waitFor(self::NOTE);
-                $browser->script('window.__log = []; const t0 = performance.now(); const note = (name, extra) => window.__log.push([Math.round(performance.now() - t0), name, extra]); window.__log.push(["attach", document.readyState, document.hasFocus(), document.visibilityState, document.fonts.status]); window.addEventListener("load", () => note("load", document.readyState)); document.addEventListener("visibilitychange", () => note("visibility", document.visibilityState)); window.addEventListener("focus", () => note("win-focus", "")); window.addEventListener("blur", () => note("win-blur", "")); document.fonts.ready.then(() => note("fonts-ready", "")); const p = document.querySelector("#password"); p.__marker = 1; for (const e of ["input", "change", "focus", "blur", "invalid"]) { p.addEventListener(e, (ev) => note("pw-" + ev.type, p.value)); } document.querySelector("form").addEventListener("submit", () => note("submit", p.value)); for (const e of ["start", "finish", "error", "success", "invalid", "exception", "navigate"]) { document.addEventListener("inertia:" + e, () => note("inertia-" + e, p.value)); } new MutationObserver(() => note("dom", document.querySelector("#password") === p ? "same" : "replaced")).observe(document.body, {childList: true, subtree: true});');
                 $browser->type('#password', 'not-the-password');
-                $browser->script('window.__log.push(["after-type", document.querySelector("#password").value, document.activeElement.id, document.hasFocus(), document.visibilityState, document.readyState, document.fonts.status]);');
                 $browser->press('button[type="submit"]');
 
                 try {
                     $browser->waitFor('[data-error]');
                 } catch (\Throwable $e) {
-                    throw new \RuntimeException('DIAG '.json_encode($browser->script('const p = document.querySelector("#password"); return {log: window.__log ?? null, value: p.value, marker: p.__marker ?? null, active: document.activeElement.id || document.activeElement.tagName, valid: document.querySelector("form").checkValidity(), disabled: document.querySelector("button[type=submit]").disabled, href: location.href, nav: performance.getEntriesByType("navigation").map((n) => n.type)};')[0]), 0, $e);
+                    throw new \RuntimeException('DIAG '.json_encode($browser->script('const p = document.querySelector("#password"); return {log: window.__log ?? null, value: p.value, active: document.activeElement.id || document.activeElement.tagName, hasFocus: document.hasFocus(), valid: document.querySelector("form").checkValidity(), href: location.href};')[0]), 0, $e);
                 }
 
                 $browser->assertPathIs('/admin/login')->assertInputValue('#password', 'demo');
