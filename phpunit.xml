@@ -24,6 +24,7 @@
             <directory>packages/faq/tests</directory>
             <directory>packages/forms/tests</directory>
             <directory>packages/integrations/tests</directory>
+            <directory>packages/bitrix24/tests</directory>
             <directory>packages/monitoring/tests</directory>
             <directory>packages/menus/tests</directory>
             <directory>packages/search/tests</directory>
@@ -55,6 +56,7 @@
             <directory>packages/faq/src</directory>
             <directory>packages/forms/src</directory>
             <directory>packages/integrations/src</directory>
+            <directory>packages/bitrix24/src</directory>
             <directory>packages/monitoring/src</directory>
             <directory>packages/menus/src</directory>
             <directory>packages/search/src</directory>
