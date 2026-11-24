@@ -24,11 +24,13 @@ final class Access
 {
     public const COOKIE = 'atrium_1c';
 
-    private const HOUR = 3600;
+    public const HOUR = 3600;
+
+    private const WINDOW = 60;
 
     private const ATTEMPTS = 20;
 
-    public function configured(): bool
+    private function configured(): bool
     {
         return $this->setting('login') !== '' && $this->setting('password') !== '';
     }
@@ -48,7 +50,7 @@ final class Access
         $password = hash_equals($this->setting('password'), (string) $request->getPassword());
 
         if (! $login || ! $password) {
-            RateLimiter::hit($key, 60);
+            RateLimiter::hit($key, self::WINDOW);
 
             return null;
         }
@@ -61,7 +63,7 @@ final class Access
 
     public function allows(Request $request): bool
     {
-        return Cache::has(self::cacheKey($this->token($request)));
+        return Cache::get(self::cacheKey($this->token($request))) === true;
     }
 
     public function token(Request $request): string

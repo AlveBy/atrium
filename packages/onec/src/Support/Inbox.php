@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace Atrium\OneC\Support;
 
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use RuntimeException;
 use ZipArchive;
@@ -45,16 +46,13 @@ final class Inbox
     {
         $path = $this->path($name);
 
-        if (! is_dir(dirname($path))) {
-            mkdir(dirname($path), 0777, true);
-        }
-
+        File::ensureDirectoryExists(dirname($path));
         file_put_contents($path, $content, FILE_APPEND | LOCK_EX);
     }
 
     public function has(string $name): bool
     {
-        return is_file($this->path($name));
+        return $this->valid($name) && is_file($this->path($name));
     }
 
     public function path(string $name): string
@@ -72,24 +70,28 @@ final class Inbox
                 continue;
             }
 
-            $zip = new ZipArchive;
-
-            if ($zip->open(Storage::disk('local')->path($file)) !== true) {
-                throw new RuntimeException('The zip archive '.basename($file).' cannot be opened.');
-            }
-
-            for ($i = 0; $i < $zip->numFiles; $i++) {
-                $this->unpack($zip, $i);
-            }
-
-            $zip->close();
+            $this->unzip($file);
             Storage::disk('local')->delete($file);
+        }
+    }
+
+    /** The zip is closed when this ends, before the file is deleted. */
+    private function unzip(string $file): void
+    {
+        $zip = new ZipArchive;
+
+        if ($zip->open(Storage::disk('local')->path($file)) !== true) {
+            throw new RuntimeException('The zip archive '.basename($file).' cannot be opened.');
+        }
+
+        for ($i = 0; $i < $zip->numFiles; $i++) {
+            $this->unpack($zip, $i);
         }
     }
 
     private function unpack(ZipArchive $zip, int $index): void
     {
-        $name = (string) $zip->getNameIndex($index);
+        $name = $zip->getNameIndex($index) ?: '';
 
         if (str_ends_with($name, '/')) {
             return;
@@ -101,10 +103,7 @@ final class Inbox
 
         $path = $this->path($name);
 
-        if (! is_dir(dirname($path))) {
-            mkdir(dirname($path), 0777, true);
-        }
-
+        File::ensureDirectoryExists(dirname($path));
         $stream = $zip->getStream($zip->getNameIndex($index));
         file_put_contents($path, $stream);
     }
