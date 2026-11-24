@@ -141,6 +141,7 @@ O banco de dados do Bitrix é apenas lido. As abas, a ordem dos campos e as colu
 - [SEO: títulos, hreflang, sitemaps, schema.org, redirecionamentos, a verificação de SEO](../seo.md)
 - [Menus: cabeçalho e rodapé, uma árvore de links, itens que expandem um módulo](../menus.md)
 - [Formulários: um construtor em colunas, envio sem recarregar a página, em uma janela, sua própria marcação e fetch](../forms.md)
+- [Incorporações: um formulário ou bloco dentro de um texto e como um módulo registra o seu próprio tipo](../embeds.md)
 - [Busca: a página de resultados, a caixa do painel, o que é buscado e como](../search.md)
 - [Seu próprio módulo: campos, colunas, abas, permissões, idiomas, testes, pacote](../modules.md)
 - [Campos personalizados: adicionar campos a qualquer módulo pelo painel, filtros e facetas com 100 000 registros](../custom-fields.md)

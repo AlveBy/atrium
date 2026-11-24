@@ -59,6 +59,7 @@ The base for everything after it: the shop, the importers and the integrations a
   - **actions** — react to something: `Atrium::on('articles.saved', …)`, "form submitted", "order paid", "site switched";
   - **filters** — change something on its way: the fields and tabs of a form, the columns and query of a list, the data of a record before it is saved (mutators) and after it is read, an API response, the menu, the sitemap, the page `<head>`;
   - every hook point is listed in the docs, generated from the code, so the list never goes stale.
+- ~~Embeds in the editor~~ done: an editor puts a form into any text with the **+** button of the visual editor, and a module registers more types (`Hook::register(Embeds::REGISTRY, …)`); the site swaps each placeholder for the current item, so a cached text is never stale. Reusable blocks (a phone number changed in one place) come next as their own module. See [docs/embeds.md](docs/embeds.md);
 - Map fields that are maps: pick a point on Yandex Maps or Google Maps, find it by address, draw an area; keys are set in the admin. On the site, a `<x-atrium::map>` component shows one or many records (offices, shops, properties) on the chosen map.
 - Queues and a log: background jobs for modules, with retries and an error screen.
 

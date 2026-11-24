@@ -141,6 +141,7 @@ La base de datos de Bitrix solo se lee. Las pestañas, el orden de los campos y 
 - [SEO: títulos, hreflang, sitemaps, schema.org, redirecciones, la revisión SEO](../seo.md)
 - [Menús: cabecera y pie, un árbol de enlaces, elementos que despliegan un módulo](../menus.md)
 - [Formularios: un constructor en columnas, envío sin recargar la página, en una ventana, tu propio marcado y fetch](../forms.md)
+- [Inserciones: un formulario o un bloque dentro de un texto y cómo un módulo registra su propio tipo](../embeds.md)
 - [Búsqueda: la página de resultados, el buscador del panel, qué se busca y cómo](../search.md)
 - [Tu propio módulo: campos, columnas, pestañas, permisos, idiomas, pruebas, paquete](../modules.md)
 - [Campos propios: añadir campos a cualquier módulo desde el panel, filtros y facetas con 100 000 registros](../custom-fields.md)

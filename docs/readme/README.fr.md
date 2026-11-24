@@ -141,6 +141,7 @@ La base de données Bitrix est uniquement lue. Les onglets, l'ordre des champs e
 - [SEO : titres, hreflang, sitemaps, schema.org, redirections, le contrôle SEO](../seo.md)
 - [Menus : en-tête et pied de page, arbre de liens, éléments qui déplient un module](../menus.md)
 - [Formulaires : un constructeur en colonnes, envoi sans recharger la page, dans une fenêtre, votre propre balisage et fetch](../forms.md)
+- [Intégrations : un formulaire ou un bloc dans un texte, et comment un module enregistre son propre type](../embeds.md)
 - [Recherche : la page de résultats, le champ de l'administration, ce qui est cherché et comment](../search.md)
 - [Votre module : champs, colonnes, onglets, droits, langues, tests, paquet](../modules.md)
 - [Champs personnalisés : ajouter des champs à tout module depuis l'administration, filtres et facettes sur 100 000 fiches](../custom-fields.md)
