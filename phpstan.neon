@@ -16,6 +16,7 @@ parameters:
         - packages/ai/src
         - packages/backup/src
         - packages/bitrix/src
+        - packages/blocks/src
         - packages/brands/src
         - packages/catalog/src
         - packages/custom-fields/src
@@ -65,6 +66,7 @@ parameters:
         - database/migrations
         - packages/admin/database/migrations
         - packages/ai/database/migrations
+        - packages/blocks/database/migrations
         - packages/brands/database/migrations
         - packages/catalog/database/migrations
         - packages/custom-fields/database/migrations

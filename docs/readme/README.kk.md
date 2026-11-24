@@ -142,6 +142,7 @@ php artisan atrium:bitrix:parity
 - [Мәзірлер: тақырып пен төменгі бөлік, сілтемелер ағашы, модульді ашатын тармақтар](../menus.md)
 - [Пішіндер: бағандардағы құрастырушы, бетті қайта жүктемей жіберу, терезеде, өз белгілеуіңіз бен fetch](../forms.md)
 - [Кірістірулер: мәтіннің ішіндегі форма немесе блок және модуль өз түрін қалай тіркейді](../embeds.md)
+- [Блоктар: бір рет жазылған телефон немесе жазу шаблондар мен мәтіндерде көрсетіледі](../blocks.md)
 - [Іздеу: нәтижелер беті, әкімшілік панельдегі жол, не және қалай ізделеді](../search.md)
 - [Өз модуліңіз: өрістер, бағандар, қойындылар, құқықтар, тілдер, тесттер, пакет](../modules.md)
 - [Өз өрістеріңіз: кез келген модульге әкімшілік панельден өріс қосу, 100 000 жазбадағы сүзгілер мен фасеттер](../custom-fields.md)
@@ -184,6 +185,7 @@ php artisan atrium:bitrix:parity
 | [`alveby/atrium-team`](../../packages/team/README.md) | Адамдар, бөлімдер және байланыстар |
 | [`alveby/atrium-faq`](../../packages/faq/README.md) | Сұрақтар мен жауаптар |
 | [`alveby/atrium-forms`](../../packages/forms/README.md) | Форма конструкторы және өтінімдер |
+| [`alveby/atrium-blocks`](../../packages/blocks/README.md) | Блоктар: бір рет жазылған телефон немесе жазу, кез келген жерде көрсетіледі |
 | [`alveby/atrium-reviews`](../../packages/reviews/README.md) | Модерациясы бар пікірлер мен бағалар |
 | [`alveby/atrium-2fa`](../../packages/two-factor/README.md) | Екі факторлы және құпиясөзсіз кіру |
 | [`alveby/atrium-social-login`](../../packages/social-login/README.md) | Google, Microsoft, Apple, GitHub, Telegram және басқалар арқылы кіру |

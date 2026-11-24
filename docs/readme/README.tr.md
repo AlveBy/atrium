@@ -142,6 +142,7 @@ Bitrix veritabanından yalnızca okuma yapılır. Sekmeler, alan sırası ve lis
 - [Menüler: üst ve alt bilgi, bağlantı ağacı, bir modülü açan öğeler](../menus.md)
 - [Formlar: sütunlu bir oluşturucu, sayfayı yenilemeden gönderme, pencerede, kendi işaretlemeniz ve fetch](../forms.md)
 - [Gömmeler: metnin içinde bir form veya blok ve bir modülün kendi türünü nasıl kaydettiği](../embeds.md)
+- [Bloklar: bir kez yazılan telefon veya afiş, şablonlarda ve metinlerde gösterilir](../blocks.md)
 - [Arama: sonuç sayfası, yönetim panelindeki kutu, neyin nasıl arandığı](../search.md)
 - [Kendi modülünüz: alanlar, sütunlar, sekmeler, yetkiler, diller, testler, paket](../modules.md)
 - [Özel alanlar: yönetim panelinden her modüle alan ekleme, 100 000 kayıtta filtreler ve faset sayıları](../custom-fields.md)
@@ -184,6 +185,7 @@ Bitrix veritabanından yalnızca okuma yapılır. Sekmeler, alan sırası ve lis
 | [`alveby/atrium-team`](../../packages/team/README.md) | Kişiler, departmanlar ve iletişim bilgileri |
 | [`alveby/atrium-faq`](../../packages/faq/README.md) | Sorular ve cevaplar |
 | [`alveby/atrium-forms`](../../packages/forms/README.md) | Form oluşturucu ve gönderiler |
+| [`alveby/atrium-blocks`](../../packages/blocks/README.md) | Yeniden kullanılabilir bloklar: bir kez yazılan telefon veya afiş, her yerde gösterilir |
 | [`alveby/atrium-reviews`](../../packages/reviews/README.md) | Moderasyonlu yorumlar ve puanlar |
 | [`alveby/atrium-2fa`](../../packages/two-factor/README.md) | İki adımlı ve parolasız giriş |
 | [`alveby/atrium-social-login`](../../packages/social-login/README.md) | Google, Microsoft, Apple, GitHub, Telegram ve diğerleriyle giriş |

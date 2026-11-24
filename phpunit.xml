@@ -16,6 +16,7 @@
             <directory>packages/ai/tests</directory>
             <directory>packages/backup/tests</directory>
             <directory>packages/bitrix/tests</directory>
+            <directory>packages/blocks/tests</directory>
             <directory>packages/brands/tests</directory>
             <directory>packages/catalog/tests</directory>
             <directory>packages/custom-fields/tests</directory>
@@ -49,6 +50,7 @@
             <directory>packages/ai/src</directory>
             <directory>packages/backup/src</directory>
             <directory>packages/bitrix/src</directory>
+            <directory>packages/blocks/src</directory>
             <directory>packages/brands/src</directory>
             <directory>packages/catalog/src</directory>
             <directory>packages/custom-fields/src</directory>

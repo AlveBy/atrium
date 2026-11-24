@@ -142,6 +142,7 @@ Die Bitrix-Datenbank wird nur gelesen. Tabs, Feldreihenfolge und Listenspalten k
 - [Menüs: Kopf- und Fußzeile, ein Linkbaum, Einträge, die ein Modul aufklappen](../menus.md)
 - [Formulare: ein Baukasten in Spalten, Senden ohne Neuladen, im Fenster, eigenes Markup und fetch](../forms.md)
 - [Einbettungen: ein Formular oder Block im Text und wie ein Modul einen eigenen Typ registriert](../embeds.md)
+- [Blöcke: eine Telefonnummer oder ein Banner, einmal geschrieben und in Vorlagen und Texten gezeigt](../blocks.md)
 - [Suche: die Ergebnisseite, das Suchfeld im Admin-Bereich, was und wie gesucht wird](../search.md)
 - [Eigenes Modul: Felder, Spalten, Tabs, Rechte, Sprachen, Tests, als Paket](../modules.md)
 - [Eigene Felder: Felder für jedes Modul im Admin-Bereich anlegen, Filter und Facetten bei 100 000 Einträgen](../custom-fields.md)
@@ -184,6 +185,7 @@ Die Bitrix-Datenbank wird nur gelesen. Tabs, Feldreihenfolge und Listenspalten k
 | [`alveby/atrium-team`](../../packages/team/README.md) | Personen, Abteilungen und Kontakte |
 | [`alveby/atrium-faq`](../../packages/faq/README.md) | Fragen und Antworten |
 | [`alveby/atrium-forms`](../../packages/forms/README.md) | Formularbaukasten und Einsendungen |
+| [`alveby/atrium-blocks`](../../packages/blocks/README.md) | Wiederverwendbare Blöcke: eine Telefonnummer oder ein Banner, einmal geschrieben und überall gezeigt |
 | [`alveby/atrium-reviews`](../../packages/reviews/README.md) | Bewertungen und Rezensionen mit Moderation |
 | [`alveby/atrium-2fa`](../../packages/two-factor/README.md) | Zwei-Faktor- und passwortlose Anmeldung |
 | [`alveby/atrium-social-login`](../../packages/social-login/README.md) | Anmeldung mit Google, Microsoft, Apple, GitHub, Telegram und anderen |

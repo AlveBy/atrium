@@ -142,6 +142,7 @@ La base de datos de Bitrix solo se lee. Las pestañas, el orden de los campos y 
 - [Menús: cabecera y pie, un árbol de enlaces, elementos que despliegan un módulo](../menus.md)
 - [Formularios: un constructor en columnas, envío sin recargar la página, en una ventana, tu propio marcado y fetch](../forms.md)
 - [Inserciones: un formulario o un bloque dentro de un texto y cómo un módulo registra su propio tipo](../embeds.md)
+- [Bloques: un teléfono o un banner escrito una vez y mostrado en plantillas y textos](../blocks.md)
 - [Búsqueda: la página de resultados, el buscador del panel, qué se busca y cómo](../search.md)
 - [Tu propio módulo: campos, columnas, pestañas, permisos, idiomas, pruebas, paquete](../modules.md)
 - [Campos propios: añadir campos a cualquier módulo desde el panel, filtros y facetas con 100 000 registros](../custom-fields.md)
@@ -184,6 +185,7 @@ La base de datos de Bitrix solo se lee. Las pestañas, el orden de los campos y 
 | [`alveby/atrium-team`](../../packages/team/README.md) | Personas, departamentos y contactos |
 | [`alveby/atrium-faq`](../../packages/faq/README.md) | Preguntas y respuestas |
 | [`alveby/atrium-forms`](../../packages/forms/README.md) | Constructor de formularios y envíos |
+| [`alveby/atrium-blocks`](../../packages/blocks/README.md) | Bloques reutilizables: un teléfono o un banner escrito una vez y mostrado en cualquier lugar |
 | [`alveby/atrium-reviews`](../../packages/reviews/README.md) | Reseñas y valoraciones con moderación |
 | [`alveby/atrium-2fa`](../../packages/two-factor/README.md) | Acceso en dos pasos y sin contraseña |
 | [`alveby/atrium-social-login`](../../packages/social-login/README.md) | Acceso con Google, Microsoft, Apple, GitHub, Telegram y otros |

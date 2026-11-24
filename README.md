@@ -138,6 +138,7 @@ The Bitrix database is only read. The tabs, field order and list columns come ou
 - [Menus: header and footer, a tree of links, items that unfold a module](docs/menus.md)
 - [Forms: a builder in columns, without reloading the page, in a window, your own markup and fetch](docs/forms.md)
 - [Embeds: a form or a block inside a text, and how a module registers its own type](docs/embeds.md)
+- [Blocks: a phone number or a banner written once and shown in templates and texts](docs/blocks.md)
 - [Search: the results page, the admin box, what is searched and how](docs/search.md)
 - [Your own module: fields, columns, tabs, permissions, languages, tests, a package](docs/modules.md)
 - [Custom fields: add fields to any module from the admin, filters and facets on 100 000 records](docs/custom-fields.md)
@@ -180,6 +181,7 @@ The Bitrix database is only read. The tabs, field order and list columns come ou
 | [`alveby/atrium-team`](packages/team/README.md) | People, departments and contacts |
 | [`alveby/atrium-faq`](packages/faq/README.md) | Questions and answers |
 | [`alveby/atrium-forms`](packages/forms/README.md) | Form builder and submissions |
+| [`alveby/atrium-blocks`](packages/blocks/README.md) | Reusable blocks: a phone number or a banner written once, shown anywhere |
 | [`alveby/atrium-reviews`](packages/reviews/README.md) | Reviews and ratings with moderation |
 | [`alveby/atrium-2fa`](packages/two-factor/README.md) | Two-factor and passwordless sign-in |
 | [`alveby/atrium-social-login`](packages/social-login/README.md) | Sign-in with Google, Microsoft, Apple, GitHub, Telegram and others |

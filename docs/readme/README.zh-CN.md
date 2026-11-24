@@ -142,6 +142,7 @@ Bitrix 数据库只读不写。标签页、字段顺序和列表列会保持编�
 - [菜单：页眉与页脚、链接树、展开模块的菜单项](../menus.md)
 - [表单：分栏构建器、无需刷新页面提交、在弹窗中打开、自定义标记与 fetch](../forms.md)
 - [嵌入：文本中的表单或区块，以及模块如何注册自己的类型](../embeds.md)
+- [区块：电话或横幅只写一次，在模板和文本中显示](../blocks.md)
 - [搜索：结果页、后台搜索框、搜索内容与方式](../search.md)
 - [自定义模块：字段、列、标签页、权限、语言、测试、打包](../modules.md)
 - [自定义字段：在后台为任意模块添加字段，10 万条记录上的筛选与分面](../custom-fields.md)
@@ -184,6 +185,7 @@ Bitrix 数据库只读不写。标签页、字段顺序和列表列会保持编�
 | [`alveby/atrium-team`](../../packages/team/README.md) | 人员、部门和联系方式 |
 | [`alveby/atrium-faq`](../../packages/faq/README.md) | 问答 |
 | [`alveby/atrium-forms`](../../packages/forms/README.md) | 表单构建器和提交记录 |
+| [`alveby/atrium-blocks`](../../packages/blocks/README.md) | 可复用区块：电话或横幅只写一次，随处显示 |
 | [`alveby/atrium-reviews`](../../packages/reviews/README.md) | 带审核的评价和评分 |
 | [`alveby/atrium-2fa`](../../packages/two-factor/README.md) | 双重验证和免密码登录 |
 | [`alveby/atrium-social-login`](../../packages/social-login/README.md) | 使用 Google、Microsoft、Apple、GitHub、Telegram 等登录 |

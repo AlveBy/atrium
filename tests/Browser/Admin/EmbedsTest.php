@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace Tests\Browser\Admin;
 
+use Atrium\Blocks\Models\Block;
 use Atrium\Forms\Models\Form;
 use Atrium\News\Models\News;
 use Laravel\Dusk\Browser;
@@ -102,6 +103,38 @@ final class EmbedsTest extends AdminTestCase
                 ->keys(self::BUTTON, ['{escape}'])
                 ->waitUntilMissing(self::MENU)
                 ->assertMissing(self::EDITOR.' .atrium-embed');
+        });
+    }
+
+    public function test_a_block_is_picked_by_name_and_the_site_shows_its_text(): void
+    {
+        $admin = $this->admin();
+        $block = Block::query()->create(['name' => 'Phone number', 'code' => 'phone', 'content' => ['en' => 'Call +1 555 0100']]);
+        $news = News::query()->create(['name' => 'Spring', 'code' => 'spring', 'active' => true, 'sort' => 500, 'detail_text' => '<p>First</p>']);
+
+        $this->browse(function (Browser $browser) use ($admin, $news, $block): void {
+            $browser->loginAs($admin, 'admin')->visit('/admin');
+            $browser->script("localStorage.removeItem('content-field-mode-detail_text');");
+
+            $browser->visit("/admin/news/{$news->id}/edit")
+                ->waitFor(self::EDITOR)
+                ->click(self::EDITOR)
+                ->click(self::BUTTON)
+                ->waitFor(self::MENU)
+                ->assertSeeIn(self::MENU, 'Form')
+                ->click('[data-embed-type="block"]')
+                ->waitFor('[data-embed-item="'.$block->id.'"]')
+                ->assertSeeIn(self::MENU, 'Phone number')
+                ->click('[data-embed-item="'.$block->id.'"]')
+                ->waitFor(self::EDITOR.' .atrium-embed')
+                ->assertSeeIn(self::EDITOR.' .atrium-embed', 'Phone number')
+                ->press('Save')
+                ->waitForLocation('/admin/news');
+
+            // The visitor sees the block's text, not a placeholder or a chip.
+            $browser->visit('/news/spring')
+                ->assertSee('Call +1 555 0100')
+                ->assertSourceMissing('data-atrium-embed');
         });
     }
 }

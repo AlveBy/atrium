@@ -142,6 +142,7 @@ php artisan atrium:bitrix:parity
 - [Меню: шапка й підвал, дерево посилань, пункти, що розгортають модуль](../menus.md)
 - [Форми: конструктор у колонках, надсилання без перезавантаження, у вікні, своя розмітка і fetch](../forms.md)
 - [Вставки: форма або блок усередині тексту і як модуль реєструє свій тип](../embeds.md)
+- [Блоки: телефон чи плашка, написані один раз і показані в шаблонах і текстах](../blocks.md)
 - [Пошук: сторінка результатів, рядок в адмінці, що і як шукається](../search.md)
 - [Власний модуль: поля, колонки, вкладки, права, мови, тести, пакет](../modules.md)
 - [Власні поля: додати поле в будь-який модуль з адмінки, фільтри й фасети на 100 000 записів](../custom-fields.md)
@@ -184,6 +185,7 @@ php artisan atrium:bitrix:parity
 | [`alveby/atrium-team`](../../packages/team/README.md) | Люди, відділи та контакти |
 | [`alveby/atrium-faq`](../../packages/faq/README.md) | Питання й відповіді |
 | [`alveby/atrium-forms`](../../packages/forms/README.md) | Конструктор форм і заявки |
+| [`alveby/atrium-blocks`](../../packages/blocks/README.md) | Блоки: телефон чи плашка, написані один раз і показані де завгодно |
 | [`alveby/atrium-reviews`](../../packages/reviews/README.md) | Відгуки та оцінки з модерацією |
 | [`alveby/atrium-2fa`](../../packages/two-factor/README.md) | Двофакторний і безпарольний вхід |
 | [`alveby/atrium-social-login`](../../packages/social-login/README.md) | Вхід через Google, Microsoft, Apple, GitHub, Telegram та інші |

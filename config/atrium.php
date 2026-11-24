@@ -73,6 +73,7 @@ return [
         'alveby/atrium-seo',
         'alveby/atrium-errors',
         'alveby/atrium-monitoring',
+        'alveby/atrium-blocks',
     ],
 
     /*
