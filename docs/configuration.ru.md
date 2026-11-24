@@ -120,7 +120,7 @@ curl -H "Authorization: Bearer <token>" https://example.com/api/v1/articles
 
 ## ИИ-ассистенты (MCP)
 
-ИИ-ассистент, который умеет MCP (Claude, ChatGPT, Cursor и другие), подключается к `/mcp` с API-токеном и читает и правит модули за вас: «добавь три новости», «подними цены в разделе на 5%». У него десять инструментов: `list_modules`, `describe_module`, `list_records`, `get_record`, `create_record`, `update_record`, `delete_record`, а для кнопок модулей (опубликовать, скрыть, удалить несколько записей сразу) — `list_actions`, `run_record_action`, `run_bulk_action`.
+ИИ-ассистент, который умеет MCP (Claude, ChatGPT, Cursor и другие), подключается к `/mcp` с API-токеном и читает и правит модули за вас: «добавь три новости», «подними цены в разделе на 5%». У него двенадцать инструментов: `list_modules`, `describe_module`, `list_records`, `get_record`, `create_record`, `update_record`, `delete_record`; для кнопок модулей (опубликовать, скрыть, удалить несколько записей сразу) — `list_actions`, `run_record_action`, `run_bulk_action`; для прежних версий записи — `list_versions` и `restore_version` ([история](history.ru.md#версии)).
 
 Каждый вызов проходит через API, поэтому ассистент может ровно то же, что его токен: те же модули, то же чтение или запись, та же проверка полей, что в форме админки. Дайте ассистенту отдельный токен — только с нужным и со сроком действия.
 

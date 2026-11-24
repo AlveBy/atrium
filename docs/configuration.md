@@ -120,7 +120,7 @@ A token never has more rights than its owner has now: if an administrator loses 
 
 ## AI assistants (MCP)
 
-An AI assistant that speaks MCP (Claude, ChatGPT, Cursor and others) connects to `/mcp` with an API token and reads and edits the modules for you: "add three news items", "raise the prices in this section by 5%". It gets ten tools: `list_modules`, `describe_module`, `list_records`, `get_record`, `create_record`, `update_record`, `delete_record`, and `list_actions`, `run_record_action`, `run_bulk_action` for the modules' buttons (publish, hide, delete several records at once).
+An AI assistant that speaks MCP (Claude, ChatGPT, Cursor and others) connects to `/mcp` with an API token and reads and edits the modules for you: "add three news items", "raise the prices in this section by 5%". It gets twelve tools: `list_modules`, `describe_module`, `list_records`, `get_record`, `create_record`, `update_record`, `delete_record`, `list_actions`, `run_record_action`, `run_bulk_action` for the modules' buttons (publish, hide, delete several records at once), and `list_versions`, `restore_version` for the earlier versions of a record ([history](history.md#versions)).
 
 Every call goes through the API, so the assistant can do exactly what its token can: the same modules, the same reading or writing, the same validation as the admin form. Give an assistant its own token with only what it needs, and an expiry date.
 
