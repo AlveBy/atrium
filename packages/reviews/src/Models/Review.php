@@ -85,6 +85,8 @@ class Review extends Model implements Administrable, Cacheable
             }
         });
         static::deleted(static fn (self $review) => app(ReviewCounters::class)->changed($review));
+        // Back from the trash: counted again like a new one.
+        static::registerModelEvent('restored', static fn (self $review) => app(ReviewCounters::class)->changed($review));
     }
 
     public static function getAdminLabel(): string

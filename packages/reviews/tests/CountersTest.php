@@ -9,7 +9,10 @@ declare(strict_types=1);
 
 namespace Atrium\Reviews\Tests;
 
+use Atrium\Admin\History\Trash;
 use Atrium\Admin\Models\Site;
+use Atrium\Admin\Models\TrashedRecord;
+use Atrium\Admin\Support\RecordDeleter;
 use Atrium\Reviews\Models\Review;
 use Atrium\Reviews\ReviewCounters;
 use Atrium\Reviews\Reviews;
@@ -165,6 +168,36 @@ final class CountersTest extends TestCase
         $row = DB::table(ReviewCounters::TABLE)->where('site_id', 0)->where('reviewable_type', '')->sole();
         $this->assertSame([1, 2, 1], array_map('intval', [$row->count, $row->rating_sum, $row->rating_2]));
         $this->assertNotNull($row->created_at);
+    }
+
+    public function test_a_review_in_the_trash_is_not_counted_until_it_is_restored(): void
+    {
+        $phone = $this->product('phone');
+        $this->review(5, $phone);
+        $trashed = $this->review(1, $phone);
+        $reviews = app(Reviews::class);
+
+        app(RecordDeleter::class)->delete($trashed);
+        $this->assertSame(['count' => 1, 'average' => 5.0], array_slice($reviews->summary($phone), 0, 2));
+
+        $this->artisan('atrium:reviews:recount')->assertSuccessful();
+        $this->assertSame(['count' => 1, 'average' => 5.0], array_slice($reviews->summary($phone), 0, 2), 'the command leaves it out too');
+
+        app(Trash::class)->restore(TrashedRecord::query()->sole(), $trashed);
+        $this->assertSame(['count' => 2, 'average' => 3.0], array_slice($reviews->summary($phone), 0, 2));
+    }
+
+    public function test_the_command_counts_the_reviews_of_every_site(): void
+    {
+        $this->review(5);
+        $other = Site::query()->create(['code' => 'second', 'name' => 'Second', 'folder' => 'site2']);
+        (new Review(['author_name' => 'Ann', 'rating' => 1, 'text' => 'Bad', 'status' => ReviewStatus::Published]))->forceFill(['site_id' => $other->id])->save();
+        DB::table(ReviewCounters::TABLE)->delete();
+
+        $this->artisan('atrium:reviews:recount')->expectsOutputToContain('Counted the reviews of 2 records.')->assertSuccessful();
+
+        $sums = DB::table(ReviewCounters::TABLE)->pluck('rating_sum', 'site_id')->map('intval')->all();
+        $this->assertSame([5, 1], [$sums[Review::query()->withoutGlobalScopes()->min('site_id')], $sums[$other->id]]);
     }
 
     private function product(string $code): Product
