@@ -285,6 +285,32 @@ A column loads `perColumn()` cards (20) and a **Show more** button loads the nex
 
 Other modules add a view with the `atrium.module.views` filter. A view built on a field the form does not have, or of the wrong type, throws a clear error when the list opens. The drag library (SortableJS) is loaded in a separate file, only on a list that shows a board.
 
+### Calendar
+
+A module with a date field may offer its list as a calendar. Return a `CalendarView` from `getAdministrationViews()` (next to a `KanbanView` if you like, a module may have both):
+
+```php
+use Atrium\Admin\Views\CalendarView;
+
+public static function getAdministrationViews(): array
+{
+    return [
+        CalendarView::make('active_from')->title('name'),
+    ];
+}
+
+// A record that lasts from one date to another:
+CalendarView::make('starts_at')->until('ends_at')->title('title')
+```
+
+The field is a `DateField` or a `DateTimeField` of the form (`until()` too). A record stands on the day its field says. The days are plain dates with no time zone, so a clock change never moves a record. With `until()` a record is drawn on every day it lasts, the days after the first dashed and with an arrow (not by colour alone). A record with no date is not on the calendar. News use it by the date they go live.
+
+The calendar has three modes, chosen with `?mode=` and kept when the day changes: **Month** (six weeks from the Monday before the 1st), **Week** and **List** (the records of the month, day by day). `?date=2026-12-15` picks the day, today by default; the buttons turn the page and go back to today. A range shows at most 500 records, and the page says when there are more: narrow the list with the search or a filter, which narrow the calendar exactly as they narrow the table, and so does the site in the header.
+
+Dragging a record to another day saves **the way the form does**: `PATCH {module}/{id}/move` with `{"view": "calendar", "day": "2026-12-20"}` runs the module's own validation rules, `atrium.record.data` (a hook may refuse with `Refused`), `atrium.record.saved`, and the site and permission checks. The record keeps its time of day and its length: the start moves to the day and the end by the same number of days. Only the fields of the view are validated and written; the table, the form and `/api/v1` are unchanged. Without the `update` permission nothing is draggable and the server answers 403; a record with no date answers 422. In the list every record also has a date input (**Move to day**) for the keyboard and touch screens.
+
+A click on a day opens the create form of the module with the day already in the field (`?active_from=2026-12-20`; a field with a time gets 09:00). Only the field of a calendar view of the module is filled from the address, and only with a real day. Without the `create` permission the days are not links.
+
 ## Tabs
 
 Add `HasAdminTabs`, list the tabs and put each field on one with `tab()`:
@@ -795,7 +821,7 @@ The core fires these:
 | `atrium.module.fields` | filter | `array $fields`, `string $model` | A module's form fields are read: the form, validation, the API and its documentation, MCP |
 | `atrium.module.columns` | filter | `array $columns`, `string $model` | A module's list columns are read, in the panel and for the API's `search=`; a `Column` may carry `value()` and `permission()` (see "List columns") |
 | `atrium.module.filters` | filter | `array $filters`, `string $model` | A module's list filters are read: the list, its export, the API's `filter[]=` and MCP; `SelectFilter`, `BooleanFilter` or a bare name (see "Filters above the list") |
-| `atrium.module.views` | filter | `array $views`, `string $model` | A module's other looks of its list are read (`KanbanView`; see "Kanban board"); of two views of one type the first wins |
+| `atrium.module.views` | filter | `array $views`, `string $model` | A module's other looks of its list are read (`KanbanView`, `CalendarView`; see "Kanban board" and "Calendar"); of two views of one type the first wins |
 | `atrium.module.tabs` | filter | `array $tabs`, `string $model` | A module's form tabs are read; add a `Tab` for the fields you add with `tab()` (see "Tabs") |
 | `atrium.module.translatable` | filter | `array $names`, `string $model` | The names of a module's fields that hold a value per content language |
 | `atrium.module.links` | filter | `array $links`, `string $model` | Buttons above a module's list: `['name' => ..., 'label' => ..., 'href' => ...]` |

@@ -63,7 +63,7 @@ The base for everything after it: the shop, the importers and the integrations a
 - ~~Embeds in the editor~~ done: an editor puts a form into any text with the **+** button of the visual editor, and a module registers more types (`Hook::register(Embeds::REGISTRY, …)`); the site swaps each placeholder for the current item, so a cached text is never stale. Reusable blocks are in `alveby/atrium-blocks`. See [docs/embeds.md](docs/embeds.md);
 - Map fields that are maps: pick a point on Yandex Maps or Google Maps, find it by address, draw an area; keys are set in the admin. On the site, a `<x-atrium::map>` component shows one or many records (offices, shops, properties) on the chosen map.
 - Queues and a log: background jobs for modules, with retries and an error screen.
-- Other looks of a list besides the table: ~~kanban~~ done (`KanbanView` in `getAdministrationViews()`, cards dragged between columns are saved like the form saves them, [docs](docs/modules.md#kanban-board)); a calendar by a date field is next.
+- Other looks of a list besides the table: ~~kanban~~ done (`KanbanView` in `getAdministrationViews()`, cards dragged between columns are saved like the form saves them, [docs](docs/modules.md#kanban-board)); ~~calendar~~ done (`CalendarView`: month, week and list, a record dragged to another day is saved like the form saves it, [docs](docs/modules.md#calendar)).
 
 **Official modules**
 | Module | What it does |
