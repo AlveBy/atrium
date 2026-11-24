@@ -142,7 +142,7 @@ After WordPress the order follows requests in Issues.
 | Wishlist and compare | |
 | Product reviews | Ratings, photos, only buyers can review |
 | Abandoned carts | Reminder e-mails |
-| Feeds | Yandex Market (YML), Google Merchant |
+| Feeds | ~~Yandex Market (YML)~~ (done: `/catalog.xml`, see [docs/feeds.md](docs/feeds.md)), Google Merchant |
 
 **Running the shop**
 | Submodule | What it does |
