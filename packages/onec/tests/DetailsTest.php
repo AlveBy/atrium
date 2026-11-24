@@ -117,11 +117,13 @@ XML;
     {
         libxml_use_internal_errors(true);
         simplexml_load_string('<broken');
-        libxml_use_internal_errors(false);
         $this->assertNotFalse(libxml_get_last_error());
         $this->upload($this->token, 'import.xml', $this->fixture('import.xml'));
 
         $this->assertStringStartsWith('success', $this->importXml());
+        $this->assertTrue(libxml_use_internal_errors(), 'what was switched on stays on');
+        libxml_use_internal_errors(false);
+        libxml_clear_errors();
     }
 
     public function test_a_step_is_remembered_under_the_session_and_the_file_for_an_hour(): void
@@ -139,6 +141,19 @@ XML;
         Carbon::setTestNow('2026-11-24 11:00:01');
         $this->assertFalse(Cache::has($key));
         Carbon::setTestNow();
+    }
+
+    public function test_a_finished_file_leaves_no_step_behind(): void
+    {
+        config(['atrium-1c.step' => 1]);
+        $this->upload($this->token, 'import.xml', $this->fixture('import.xml'));
+
+        for ($i = 0; $i < 10 && str_starts_with($this->importXml(), 'progress'); $i++) {
+            $this->assertTrue(Cache::has('atrium-1c:step:'.$this->token.':import.xml'));
+        }
+
+        $this->assertFalse(Cache::has('atrium-1c:step:'.$this->token.':import.xml'));
+        $this->assertSame(1, Run::query()->count());
     }
 
     public function test_the_answer_to_a_question_about_orders_is_an_empty_document_of_the_right_kind(): void
@@ -171,6 +186,34 @@ XML;
         $this->assertFalse($inbox->has('a:b.xml'));
         $this->assertTrue($inbox->has('fine.xml'));
         $this->assertFalse($inbox->has('missing.xml'));
+    }
+
+    public function test_a_zip_is_found_among_other_files(): void
+    {
+        foreach (['a.xml', 'b.xml', 'd.xml'] as $name) {
+            Storage::disk('local')->put('atrium-1c/'.$name, 'x');
+        }
+        foreach (['c.zip' => 'from-c.txt', 'e.zip' => 'from-e.txt'] as $zip => $inside) {
+            $path = tempnam(sys_get_temp_dir(), 'onec');
+            $archive = new \ZipArchive;
+            $archive->open((string) $path, \ZipArchive::OVERWRITE);
+            $archive->addFromString($inside, 'x');
+            $archive->close();
+            Storage::disk('local')->put('atrium-1c/'.$zip, (string) file_get_contents((string) $path));
+            unlink((string) $path);
+        }
+
+        app(Inbox::class)->extract();
+
+        Storage::disk('local')->assertExists(['atrium-1c/from-c.txt', 'atrium-1c/from-e.txt', 'atrium-1c/a.xml', 'atrium-1c/d.xml']);
+    }
+
+    public function test_the_calls_the_importer_makes_are_public(): void
+    {
+        foreach (['find1c', 'remember'] as $method) {
+            $this->assertTrue((new ReflectionMethod(Link::class, $method))->isPublic());
+        }
+        $this->assertSame(500, config('atrium-1c.step'));
     }
 
     public function test_a_zip_with_a_folder_inside_keeps_its_folders(): void

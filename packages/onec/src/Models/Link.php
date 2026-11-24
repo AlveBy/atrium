@@ -30,11 +30,6 @@ final class Link extends Model
 
     protected $guarded = ['id'];
 
-    protected function casts(): array
-    {
-        return ['model_id' => 'integer'];
-    }
-
     public static function find1c(string $kind, string $guid): ?int
     {
         return self::query()->where('kind', $kind)->where('guid', $guid)->first()?->model_id;

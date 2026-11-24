@@ -148,7 +148,7 @@ final class ExchangeController
         $run ??= Run::query()->create(['file' => $file, 'status' => Run::RUNNING, 'started_at' => now()]);
 
         try {
-            $result = $this->importer->run($file, $run, $offset, max(1, (int) config('atrium-1c.step', 500)));
+            $result = $this->importer->run($file, $run, $offset, max(1, (int) config('atrium-1c.step')));
         } catch (Throwable $e) {
             Cache::forget($key);
 
