@@ -142,6 +142,7 @@ Baza danych Bitrixa jest tylko odczytywana. Karty, kolejność pól i kolumny li
 - [Menu: nagłówek i stopka, drzewo linków, pozycje rozwijające moduł](../menus.md)
 - [Formularze: kreator w kolumnach, wysyłanie bez przeładowania strony, w oknie, własny znacznik i fetch](../forms.md)
 - [Osadzenia: formularz lub blok w tekście i jak moduł rejestruje własny typ](../embeds.md)
+- [Bloki: telefon lub baner napisany raz i pokazywany w szablonach i tekstach](../blocks.md)
 - [Wyszukiwanie: strona wyników, pole w panelu, co i jak jest wyszukiwane](../search.md)
 - [Własny moduł: pola, kolumny, zakładki, uprawnienia, języki, testy, pakiet](../modules.md)
 - [Własne pola: dodawanie pól do dowolnego modułu z panelu, filtry i fasety na 100 000 rekordów](../custom-fields.md)
@@ -184,6 +185,7 @@ Baza danych Bitrixa jest tylko odczytywana. Karty, kolejność pól i kolumny li
 | [`alveby/atrium-team`](../../packages/team/README.md) | Osoby, działy i kontakty |
 | [`alveby/atrium-faq`](../../packages/faq/README.md) | Pytania i odpowiedzi |
 | [`alveby/atrium-forms`](../../packages/forms/README.md) | Kreator formularzy i zgłoszenia |
+| [`alveby/atrium-blocks`](../../packages/blocks/README.md) | Bloki wielokrotnego użytku: telefon lub baner napisany raz i pokazywany gdziekolwiek |
 | [`alveby/atrium-reviews`](../../packages/reviews/README.md) | Opinie i oceny z moderacją |
 | [`alveby/atrium-2fa`](../../packages/two-factor/README.md) | Logowanie dwuskładnikowe i bez hasła |
 | [`alveby/atrium-social-login`](../../packages/social-login/README.md) | Logowanie przez Google, Microsoft, Apple, GitHub, Telegram i inne |

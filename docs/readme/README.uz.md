@@ -142,6 +142,7 @@ Bitrix maʼlumotlar bazasi faqat oʻqiladi. Yorliqlar, maydonlar tartibi va roʻ
 - [Menyular: sarlavha va pastki qism, havolalar daraxti, modulni ochadigan bandlar](../menus.md)
 - [Formalar: ustunlardagi konstruktor, sahifani qayta yuklamasdan yuborish, oynada, o‘z belgilashingiz va fetch](../forms.md)
 - [Qo‘shimchalar: matn ichidagi forma yoki blok va modul o‘z turini qanday ro‘yxatdan o‘tkazadi](../embeds.md)
+- [Bloklar: bir marta yozilgan telefon yoki yozuv shablonlar va matnlarda ko‘rsatiladi](../blocks.md)
 - [Qidiruv: natijalar sahifasi, admin paneldagi qator, nima va qanday qidiriladi](../search.md)
 - [Oʻz modulingiz: maydonlar, ustunlar, yorliqlar, huquqlar, tillar, testlar, paket](../modules.md)
 - [Oʻz maydonlaringiz: istalgan modulga admin paneldan maydon qoʻshish, 100 000 yozuvda filtrlar va fasetlar](../custom-fields.md)
@@ -184,6 +185,7 @@ Bitrix maʼlumotlar bazasi faqat oʻqiladi. Yorliqlar, maydonlar tartibi va roʻ
 | [`alveby/atrium-team`](../../packages/team/README.md) | Odamlar, boʻlimlar va kontaktlar |
 | [`alveby/atrium-faq`](../../packages/faq/README.md) | Savollar va javoblar |
 | [`alveby/atrium-forms`](../../packages/forms/README.md) | Shakl konstruktori va arizalar |
+| [`alveby/atrium-blocks`](../../packages/blocks/README.md) | Bloklar: bir marta yozilgan telefon yoki yozuv, istalgan joyda ko‘rsatiladi |
 | [`alveby/atrium-reviews`](../../packages/reviews/README.md) | Moderatsiyali sharhlar va baholar |
 | [`alveby/atrium-2fa`](../../packages/two-factor/README.md) | Ikki bosqichli va parolsiz kirish |
 | [`alveby/atrium-social-login`](../../packages/social-login/README.md) | Google, Microsoft, Apple, GitHub, Telegram va boshqalar orqali kirish |

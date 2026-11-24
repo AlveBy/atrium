@@ -142,6 +142,7 @@ php artisan atrium:bitrix:parity
 - [Меню: шапка і падвал, дрэва спасылак, пункты, якія разгортваюць модуль](../menus.md)
 - [Формы: канструктар у калонках, адпраўка без перазагрузкі, у акне, свая разметка і fetch](../forms.md)
 - [Устаўкі: форма або блок унутры тэксту і як модуль рэгіструе свой тып](../embeds.md)
+- [Блокі: тэлефон ці плашка, напісаныя адзін раз і паказаныя ў шаблонах і тэкстах](../blocks.md)
 - [Пошук: старонка вынікаў, радок у адмінцы, што і як шукаецца](../search.md)
 - [Свой модуль: палі, калонкі, укладкі, правы, мовы, тэсты, пакет](../modules.md)
 - [Свае палі: дадаць поле ў любы модуль з адмінкі, фільтры і фасеты на 100 000 запісаў](../custom-fields.md)
@@ -184,6 +185,7 @@ php artisan atrium:bitrix:parity
 | [`alveby/atrium-team`](../../packages/team/README.md) | Людзі, аддзелы і кантакты |
 | [`alveby/atrium-faq`](../../packages/faq/README.md) | Пытанні і адказы |
 | [`alveby/atrium-forms`](../../packages/forms/README.md) | Канструктар формаў і заяўкі |
+| [`alveby/atrium-blocks`](../../packages/blocks/README.md) | Блокі: тэлефон ці плашка, напісаныя адзін раз і паказаныя дзе заўгодна |
 | [`alveby/atrium-reviews`](../../packages/reviews/README.md) | Водгукі і ацэнкі з мадэрацыяй |
 | [`alveby/atrium-2fa`](../../packages/two-factor/README.md) | Двухфактарны і беспарольны ўваход |
 | [`alveby/atrium-social-login`](../../packages/social-login/README.md) | Уваход праз Google, Microsoft, Apple, GitHub, Telegram і іншых |

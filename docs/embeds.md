@@ -2,14 +2,14 @@
 
 [Русский](embeds.ru.md)
 
-An embed is something an editor puts into the text of a page and the site draws in its place: a contact form today, a block with the phone number or a list of products when those modules are installed. The text keeps only a placeholder, so what the visitor sees is always the current form or block, even when the page itself is cached.
+An embed is something an editor puts into the text of a page and the site draws in its place: a contact form, a block with the phone number, later a list of products. The text keeps only a placeholder, so what the visitor sees is always the current form or block, even when the page itself is cached.
 
 ## What an editor does
 
 In every visual editor (the content of a page, the text of a news item, a product description, a repeatable text) the toolbar has a **+** button, "Insert form or block".
 
 1. Put the caret where the embed should go.
-2. Click the button and choose a type: **Form**, later **Block** and so on. Only the types of installed modules, and only those the editor may see, are offered.
+2. Click the button and choose a type: **Form**, **Block** (with [the blocks module](blocks.md)) and so on. Only the types of installed modules, and only those the editor may see, are offered.
 3. Type a part of the name to narrow the list and click the item.
 
 The editor shows a labelled chip, `Form: Contact us`, in the text. It moves, copies and deletes like a picture; the Delete key removes it. Save the form as usual. If the form or block is later switched off or deleted, the page simply shows nothing in its place: no error, no empty box.

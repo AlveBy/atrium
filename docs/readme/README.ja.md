@@ -142,6 +142,7 @@ Bitrix のデータベースは読み取るだけです。タブ、フィール�
 - [メニュー：ヘッダーとフッター、リンクのツリー、モジュールを展開する項目](../menus.md)
 - [フォーム：列で組み立てるビルダー、ページを再読み込みせずに送信、ウィンドウで表示、独自のマークアップと fetch](../forms.md)
 - [埋め込み：テキスト内のフォームやブロック、モジュールが独自の種類を登録する方法](../embeds.md)
+- [ブロック：電話番号やバナーを一度書けば、テンプレートとテキストに表示](../blocks.md)
 - [検索：結果ページ、管理画面の検索ボックス、検索対象と仕組み](../search.md)
 - [独自モジュール：フィールド、列、タブ、権限、言語、テスト、パッケージ化](../modules.md)
 - [カスタムフィールド：管理画面から任意のモジュールにフィールドを追加、10 万件でのフィルターとファセット](../custom-fields.md)
@@ -184,6 +185,7 @@ Bitrix のデータベースは読み取るだけです。タブ、フィール�
 | [`alveby/atrium-team`](../../packages/team/README.md) | 人、部署、連絡先 |
 | [`alveby/atrium-faq`](../../packages/faq/README.md) | 質問と回答 |
 | [`alveby/atrium-forms`](../../packages/forms/README.md) | フォームビルダーと送信データ |
+| [`alveby/atrium-blocks`](../../packages/blocks/README.md) | 再利用ブロック：電話番号やバナーを一度書けば、どこにでも表示 |
 | [`alveby/atrium-reviews`](../../packages/reviews/README.md) | 承認制のレビューと評価 |
 | [`alveby/atrium-2fa`](../../packages/two-factor/README.md) | 二要素認証とパスワードレスのサインイン |
 | [`alveby/atrium-social-login`](../../packages/social-login/README.md) | Google、Microsoft、Apple、GitHub、Telegram などでのサインイン |

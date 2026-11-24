@@ -1,0 +1,64 @@
+{
+    "name": "alveby/atrium-blocks",
+    "description": "Reusable blocks for Atrium: a phone number, an address, a banner text written once and shown wherever it is put, in a template or inside any text",
+    "type": "atrium-module",
+    "license": "MIT",
+    "homepage": "https://github.com/AlveBy/atrium",
+    "support": {
+        "issues": "https://github.com/AlveBy/atrium/issues",
+        "source": "https://github.com/AlveBy/atrium"
+    },
+    "keywords": [
+        "laravel",
+        "admin",
+        "cms",
+        "blocks",
+        "widgets",
+        "multisite",
+        "i18n"
+    ],
+    "require": {
+        "php": "^8.3",
+        "illuminate/support": "^13.0",
+        "alveby/atrium": "^0.2"
+    },
+    "require-dev": {
+        "alveby/atrium-forms": "^0.2",
+        "orchestra/testbench": "^11.0",
+        "phpunit/phpunit": "^12.5"
+    },
+    "suggest": {
+        "alveby/atrium-forms": "A form can be put inside a block"
+    },
+    "autoload": {
+        "psr-4": {
+            "Atrium\\Blocks\\": "src/"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Atrium\\Blocks\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "atrium": {
+            "resources": [
+                "Atrium\\Blocks\\Models\\Block"
+            ],
+            "migrations": "database/migrations"
+        },
+        "laravel": {
+            "providers": [
+                "Atrium\\Blocks\\BlocksServiceProvider"
+            ]
+        },
+        "branch-alias": {
+            "dev-main": "0.2.x-dev"
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
