@@ -148,6 +148,7 @@ La base de datos de Bitrix solo se lee. Las pestañas, el orden de los campos y 
 - [Extensiones: el diseño de la plataforma — constructor sin código, fórmulas, plugins, apps externas, el plan](../extensions.md)
 - [Campos propios: añadir campos a cualquier módulo desde el panel, filtros y facetas con 100 000 registros](../custom-fields.md)
 - [Importar y exportar: CSV y Excel para cualquier módulo, columnas, una comprobación antes de escribir, la consola y una programación](../import-export.md)
+- [Historial de registros: el registro de cambios de todos los módulos, quién cambió qué y cuándo, sin contraseñas](../history.md)
 - [Caché: páginas rápidas con decenas de propiedades, Redis, caché de páginas, cabeceras para CDN](../cache.md)
 - [Migrar desde 1C-Bitrix, paso a paso](../bitrix.md)
 - [Migrar desde WordPress: conectar la base de datos, migrar, comprobar, el mapa de 301](../wordpress.md)

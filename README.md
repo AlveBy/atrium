@@ -144,6 +144,7 @@ The Bitrix database is only read. The tabs, field order and list columns come ou
 - [Extensions: the platform design — the no-code builder, formulas, plugins, outside apps, the plan](docs/extensions.md)
 - [Custom fields: add fields to any module from the admin, filters and facets on 100 000 records](docs/custom-fields.md)
 - [Import and export: CSV and Excel for any module, columns, a check before writing, the console and a schedule](docs/import-export.md)
+- [Record history: the activity log of every module, who changed what and when, without passwords](docs/history.md)
 - [Cache: fast pages with dozens of properties, Redis, the page cache, CDN headers](docs/cache.md)
 - [Moving from 1C-Bitrix, step by step](docs/bitrix.md)
 - [Moving from WordPress: connect the database, move, check, the 301 map](docs/wordpress.md)
