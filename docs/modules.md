@@ -422,6 +422,49 @@ The pages under `Pages/Admin/Auth/` (signing in) have no frame. Any other page c
 
 **Upgrading.** A page that still wraps itself in `<AdminLayout :title="…">…</AdminLayout>` needs no change: inside the frame `AdminLayout` only sets the title, so there is one frame, not two. Nothing is rebuilt around it; only the thin wrapper itself is. Move the title into `<Head>` and drop the wrapper when you next touch the page. `AdminLayout` stays for compatibility; a page that opted out of the default layout and wraps itself still gets a whole frame from it.
 
+## Dashboard tiles
+
+The start page of the panel is a set of tiles. Each one is a class extending `Atrium\Admin\Dashboard\Gadget`, registered by key in `atrium.ui.gadgets`: the panel registers its own there (`site-speed`, `performance`, `recent`), and so do the errors and monitoring modules (`errors`, `monitoring`). A module adds its tile the same way, in `boot()`:
+
+```php
+Hook::register('atrium.ui.gadgets', 'time.week', WeekGadget::class);
+```
+
+A tile a package draws itself extends `Atrium\Admin\Dashboard\HtmlGadget`: a Blade view on the server, no Vue to build. The panel gives it the frame and the title and shows the HTML as it is, so print values with `{{ }}`, which escapes them. The view gets what `viewData()` returns and the tile's options as `$options`:
+
+```php
+final class WeekGadget extends HtmlGadget
+{
+    public function title(): string
+    {
+        return __('acme-time::gadget.week');
+    }
+
+    protected function view(): string
+    {
+        return 'acme-time::gadget';
+    }
+
+    protected function viewData(): array
+    {
+        return ['hours' => Hours::thisWeek()];
+    }
+}
+```
+
+`atrium.dashboard.gadgets` in `config/atrium.php` is the layout: the order, the options, and the tiles switched off. An entry is a key, a class name or an array with `gadget` and the options (`title`, `width` — `half` or `full`, `enabled`, and whatever the tile reads itself). A registered tile the layout does not name comes after the ones it does, so a new module's tile shows up without editing the config; to hide it, name it switched off:
+
+```php
+'gadgets' => [
+    'site-speed',
+    ['gadget' => 'recent', 'model' => App\Models\Article::class, 'count' => 5],
+    ['gadget' => 'performance', 'width' => 'half'],
+    ['gadget' => 'errors', 'enabled' => false],
+],
+```
+
+A tile decides itself whether it is shown (`isVisible()`: the errors tile only to those who may see errors), and one that fails while building its data is reported and left out instead of taking the page down.
+
 ## Tests
 
 The admin's routes are named after the module key (`admin.articles.index`, `admin.articles.store`, …), so a feature test signs an administrator in and posts the form:

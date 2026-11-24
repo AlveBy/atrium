@@ -10,7 +10,6 @@ declare(strict_types=1);
 namespace Atrium\Errors\Tests\Feature;
 
 use Atrium\Admin\Facades\Hook;
-use Atrium\Errors\Dashboard\ErrorsGadget;
 use Atrium\Errors\Tests\TestCase;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Support\Facades\RateLimiter;
@@ -34,7 +33,7 @@ final class NotInstalledTest extends TestCase
         $this->assertNull(Route::getRoutes()->getByName('admin.errors.index'));
         $this->assertNull(Route::getRoutes()->getByName('atrium.errors.browser'));
         $this->assertNull(RateLimiter::limiter('atrium-errors-browser'));
-        $this->assertNotContains(ErrorsGadget::class, (array) config('atrium.dashboard.gadgets', []));
+        $this->assertNull(Hook::resolve('atrium.ui.gadgets', 'errors'));
         $this->assertNull(config('atrium-mail.purposes.errors'));
         $this->assertSame([['label' => 'Home']], Hook::apply('atrium.admin.menu', [['label' => 'Home']]));
         $this->assertSame([], array_filter($this->app->make(Schedule::class)->events(), static fn ($event): bool => str_contains((string) $event->command, 'atrium:errors:prune')));

@@ -8,8 +8,6 @@
 declare(strict_types=1);
 
 use App\Models\Article;
-use Atrium\Admin\Dashboard\Gadgets\PerformanceGadget;
-use Atrium\Admin\Dashboard\Gadgets\SiteSpeedGadget;
 use Atrium\Admin\Models\AdminUser;
 use Atrium\Admin\Models\PageTiming;
 
@@ -397,12 +395,15 @@ return [
     | Dashboard
     |--------------------------------------------------------------------------
     |
-    | Dashboard gadgets (tiles). Each `gadgets` entry is either a class name
-    | or an array with a `gadget` key plus instance options ('title',
-    | 'width', 'model', 'count', 'enabled').
+    | Dashboard gadgets (tiles). The panel and its modules register theirs by
+    | key in `atrium.ui.gadgets` ('site-speed', 'performance', 'recent',
+    | 'errors', 'monitoring'); `gadgets` is the layout. Each entry is a key,
+    | a class name or an array with a `gadget` key plus instance options
+    | ('title', 'width', 'model', 'count', 'enabled'). A registered tile the
+    | layout does not name comes after the rest; switch one off with
+    | ['gadget' => 'errors', 'enabled' => false].
     |
-    | Only gadgets that need no knowledge of the project's models are listed
-    | here. The "recent items" gadget (RecentElementsGadget) is added in the
+    | "Recent items" ('recent') needs a model, so it is named in the
     | application config, where those models exist.
     |
     | `timings` — recording of public page generation time; both speed
@@ -417,8 +418,8 @@ return [
         ],
 
         'gadgets' => [
-            SiteSpeedGadget::class,
-            PerformanceGadget::class,
+            'site-speed',
+            'performance',
         ],
     ],
 

@@ -11,7 +11,6 @@ namespace Atrium\Errors;
 
 use Atrium\Admin\Facades\Hook;
 use Atrium\Admin\Modules\Modules;
-use Atrium\Admin\Support\ConfigList;
 use Atrium\Errors\Capture\Breadcrumbs;
 use Atrium\Errors\Capture\Frames;
 use Atrium\Errors\Capture\Release;
@@ -170,7 +169,7 @@ final class ErrorsServiceProvider extends ServiceProvider
     {
         Hook::filter('atrium.admin.menu', static fn (array $menu, mixed $user = null): array => Menu::add($menu, $user));
 
-        ConfigList::add('atrium.dashboard.gadgets', ErrorsGadget::class);
+        Hook::register('atrium.ui.gadgets', 'errors', ErrorsGadget::class);
 
         // The mail module lists it among the purposes an account can serve.
         config(['atrium-mail.purposes.errors' => 'atrium-errors::errors.alerts.purpose']);
