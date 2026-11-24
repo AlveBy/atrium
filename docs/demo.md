@@ -24,6 +24,7 @@ docker run --rm -p 8000:8000 atrium-demo
 The `demo` administrator is not a superadmin. Its role, "Demo", is made by the reset:
 
 - **Edits** the content of every module: products, news, pages, menus, FAQ, forms, team, SEO and the rest, with uploads (2 MB at most, five files in one request).
+- **Imports and exports** the same sections from a CSV or Excel file. A row whose image is an address (`https://…`) is not imported, and the check before the import already says so: the demo never makes the server download a file from an address someone typed in.
 - **Looks at** administrators, sites, languages, uptime checks and incidents, and changes none of them. These are the sections in `atrium.demo.read_only`.
 - **Has no** roles, API tokens, cache screen, module settings, Modules screen or backups.
 - **Cannot change** their own name, e-mail or password. The panel answers 403, and so does the users list for the demo account itself (a second line of defence: the role has no right to edit administrators anyway).
