@@ -45,8 +45,8 @@ final class ExchangeController
 
     public function __invoke(Request $request): Response
     {
-        $mode = (string) $request->query('mode');
-        $type = (string) $request->query('type');
+        $mode = $request->string('mode')->toString();
+        $type = $request->string('type')->toString();
 
         if ($mode === 'checkauth') {
             return $this->checkauth($request);
@@ -120,7 +120,7 @@ final class ExchangeController
         $document = '<?xml version="1.0" encoding="UTF-8"?>'."\n"
             .'<КоммерческаяИнформация ВерсияСхемы="2.08" ДатаФормирования="'.now()->format('Y-m-d\TH:i:s').'"></КоммерческаяИнформация>';
 
-        return response($document, 200, ['Content-Type' => 'text/xml; charset=UTF-8']);
+        return response($document)->header('Content-Type', 'text/xml; charset=UTF-8');
     }
 
     private function import(Request $request, string $type): Response
@@ -137,15 +137,14 @@ final class ExchangeController
             return $this->failed(null, $file, $e);
         }
 
-        if (! $this->inbox->valid($file) || ! $this->inbox->has($file)) {
+        if (! $this->inbox->has($file)) {
             return $this->reply('failure', __('atrium-1c::onec.reply.no_file', ['file' => $file]));
         }
 
-        $key = 'atrium-1c:step:'.$this->access->token($request).':'.$file;
+        $key = sprintf('atrium-1c:step:%s:%s', $this->access->token($request), $file);
         $state = Cache::get($key);
-        $state = is_array($state) ? $state : ['run' => 0, 'next' => 0];
-        $run = Run::query()->find((int) $state['run']);
-        $offset = $run === null ? 0 : (int) $state['next'];
+        $run = is_array($state) ? Run::query()->find($state['run']) : null;
+        $offset = $run === null ? 0 : $state['next'];
         $run ??= Run::query()->create(['file' => $file, 'status' => Run::RUNNING, 'started_at' => now()]);
 
         try {
@@ -158,7 +157,7 @@ final class ExchangeController
 
         if (! $result['done']) {
             $run->save();
-            Cache::put($key, ['run' => $run->id, 'next' => $result['next']], 3600);
+            Cache::put($key, ['run' => $run->id, 'next' => $result['next']], Access::HOUR);
 
             return $this->reply('progress', __('atrium-1c::onec.reply.progress', ['count' => $result['next']]));
         }

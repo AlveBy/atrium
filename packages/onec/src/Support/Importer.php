@@ -90,7 +90,7 @@ final class Importer
                 $this->classifier($this->element($reader), $offset === 0);
                 $more = $reader->next();
             } elseif ($name === 'Товар' || $name === 'Предложение') {
-                if ($index >= $offset && $index - $offset >= $limit) {
+                if ($index - $offset >= $limit) {
                     $done = false;
                     break;
                 }
@@ -105,8 +105,6 @@ final class Importer
                 $more = $reader->read();
             }
         }
-
-        $reader->close();
 
         if (libxml_get_last_error() !== false) {
             throw new RuntimeException('The file '.$file.' is not well-formed XML.');
@@ -130,10 +128,10 @@ final class Importer
             $values = [];
 
             foreach ($property->ВариантыЗначений->Справочник ?? [] as $option) {
-                $values[trim((string) $option->ИдЗначения)] = trim((string) $option->Значение);
+                $values[$this->text($option->ИдЗначения)] = $this->text($option->Значение);
             }
 
-            $this->properties[trim((string) $property->Ид)] = ['name' => trim((string) $property->Наименование), 'values' => $values];
+            $this->properties[$this->text($property->Ид)] = ['name' => $this->text($property->Наименование), 'values' => $values];
         }
 
         if ($first) {
@@ -143,9 +141,9 @@ final class Importer
 
     private function sections(?SimpleXMLElement $groups, ?int $parent): void
     {
-        foreach ($groups?->Группа ?? [] as $group) {
+        foreach ($groups->Группа ?? [] as $group) {
             $guid = $this->guid($group->Ид);
-            $name = trim((string) $group->Наименование);
+            $name = $this->text($group->Наименование);
 
             if ($guid === '' || $name === '') {
                 $this->fail('A group has no id or no name.');
@@ -183,7 +181,7 @@ final class Importer
     private function product(SimpleXMLElement $item): void
     {
         $guid = $this->guid($item->Ид);
-        $name = trim((string) $item->Наименование);
+        $name = $this->text($item->Наименование);
 
         if ($guid === '' || $name === '') {
             $this->fail('A product has no id or no name.');
@@ -193,10 +191,10 @@ final class Importer
 
         $values = [
             'name' => $name,
-            'article' => $this->text($item->Артикул),
-            'detail_text' => $this->text($item->Описание),
+            'article' => $this->text($item->Артикул) ?: null,
+            'detail_text' => $this->text($item->Описание) ?: null,
             'detail_text_type' => 'text',
-            'active' => trim((string) $item->Статус) !== 'Удален',
+            'active' => $this->text($item->Статус) !== 'Удален',
             'features' => $this->features($item),
         ];
 
@@ -234,14 +232,14 @@ final class Importer
 
         $values = [];
 
-        if (($price = $this->number($offer->Цены?->Цена?->ЦенаЗаЕдиницу)) !== null) {
+        if (($price = $this->number($offer->Цены->Цена->ЦенаЗаЕдиницу ?? null)) !== null) {
             $values['price'] = $price;
         }
 
         // One of several offers of a product (colours, sizes) never takes it off the shelf.
         if ($this->number($offer->Количество) > 0) {
             $values['in_stock'] = 'Y';
-        } elseif (! str_contains(trim((string) $offer->Ид), '#')) {
+        } elseif (! str_contains($this->text($offer->Ид), '#')) {
             $values['in_stock'] = null;
         }
 
@@ -257,8 +255,8 @@ final class Importer
         $lines = [];
 
         foreach ($item->ЗначенияСвойств->ЗначенияСвойства ?? [] as $property) {
-            $known = $this->properties[trim((string) $property->Ид)] ?? null;
-            $value = trim((string) $property->Значение);
+            $known = $this->properties[$this->text($property->Ид)] ?? null;
+            $value = $this->text($property->Значение);
             $value = $known['values'][$value] ?? $value;
 
             if ($known !== null && $value !== '') {
@@ -279,10 +277,10 @@ final class Importer
         $paths = [];
 
         foreach ($item->Картинка as $picture) {
-            $source = trim((string) $picture);
+            $source = $this->text($picture);
             $extension = strtolower(pathinfo($source, PATHINFO_EXTENSION));
 
-            if (! $this->inbox->valid($source) || ! in_array($extension, self::IMAGES, true) || ! $this->inbox->has($this->folder.$source)) {
+            if (! in_array($extension, self::IMAGES, true) || ! $this->inbox->has($this->folder.$source)) {
                 $this->fail('The picture '.$source.' of the product '.$guid.' did not come.');
 
                 continue;
@@ -308,14 +306,12 @@ final class Importer
     /** 1C may write "guid#characteristic": the product is the part before the #. */
     private function guid(?SimpleXMLElement $id): string
     {
-        return trim(Str::before((string) $id, '#'));
+        return Str::before($this->text($id), '#');
     }
 
-    private function text(?SimpleXMLElement $node): ?string
+    private function text(?SimpleXMLElement $node): string
     {
-        $text = trim((string) $node);
-
-        return $text === '' ? null : $text;
+        return trim((string) $node);
     }
 
     private function number(?SimpleXMLElement $node): ?float
