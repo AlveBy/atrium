@@ -8,7 +8,7 @@ Atrium — приложение на Laravel 13, админка лежит в п
 - Composer 2;
 - SQLite, MySQL 8 или PostgreSQL.
 
-Node не нужен: админка приходит собранной. Обработчик очередей и cron тоже не нужны: письма уходят сразу, задач по расписанию нет.
+Node не нужен: в ветке `stable` админка собрана (в `main` её нет, см. [CONTRIBUTING.md](../CONTRIBUTING.md)). Обработчик очередей и cron тоже не нужны: письма уходят сразу, задач по расписанию нет.
 
 Попробовать Atrium у себя на компьютере — раздел [Попробовать](readme/README.ru.md#попробовать) в README. Эта страница — про сайт, которым будут пользоваться.
 
@@ -21,7 +21,7 @@ Node не нужен: админка приходит собранной. Обр
 ## Свой сервер
 
 ```bash
-git clone https://github.com/AlveBy/atrium.git /var/www/site
+git clone -b stable https://github.com/AlveBy/atrium.git /var/www/site
 cd /var/www/site
 composer install --no-dev --optimize-autoloader
 cp .env.example .env
@@ -116,7 +116,7 @@ server {
 
 1. **Версия PHP.** Выберите для сайта в панели PHP 8.3 или новее. У консоли бывает свой PHP: в ISPmanager обычно `/opt/php83/bin/php` (или `php8.3`), в cPanel — `/opt/cpanel/ea-php83/root/usr/bin/php`. Подставляйте этот путь вместо `php` в командах ниже; `php -v` покажет, какой попался.
 2. **База.** Создайте в панели базу MySQL и пользователя.
-3. **Файлы.** Откройте терминал панели (в ISPmanager — «Shell-клиент», в cPanel — «Terminal») или зайдите по SSH, перейдите в папку сайта и выполните команды из раздела [Свой сервер](#свой-сервер): `git clone` (или загрузите и распакуйте архив репозитория), `composer install --no-dev --optimize-autoloader`, `.env`, `atrium:install`. Если команды `composer` нет, скачайте `composer.phar` с getcomposer.org и запускайте его тем же PHP.
+3. **Файлы.** Откройте терминал панели (в ISPmanager — «Shell-клиент», в cPanel — «Terminal») или зайдите по SSH, перейдите в папку сайта и выполните команды из раздела [Свой сервер](#свой-сервер): `git clone` (или загрузите и распакуйте архив ветки `stable`, https://github.com/AlveBy/atrium/archive/refs/heads/stable.zip), `composer install --no-dev --optimize-autoloader`, `.env`, `atrium:install`. Если команды `composer` нет, скачайте `composer.phar` с getcomposer.org и запускайте его тем же PHP.
 4. **Корень сайта.** Направьте сайт в папку `public`: в ISPmanager — настройки сайта → «Корневая директория», в cPanel — Domains → домен → «Document Root». На хостинге работает Apache (часто за nginx), так что `public/.htaccess` подхватится сам. Если панель не даёт выбрать папку, см. [Если корень сайта не меняется](#если-корень-сайта-не-меняется-public_html-www).
 5. **Почта.** Заведите в панели ящик для сайта и пропишите его SMTP в `.env`.
 
@@ -158,7 +158,7 @@ php artisan route:cache
 php artisan view:cache
 ```
 
-`atrium:install` на установленном сайте применяет новые миграции и заново публикует сборку админки; контент и администраторов не трогает. Что поменялось — в [CHANGELOG.md](../CHANGELOG.md).
+`atrium:install` на установленном сайте применяет новые миграции и заново публикует сборку админки; контент и администраторов не трогает. Сайт, склонированный из `main` до версии 0.3, один раз переходит на собранную ветку: `git fetch origin stable && git checkout stable`. Что поменялось — в [CHANGELOG.md](../CHANGELOG.md).
 
 ## В готовое приложение на Laravel
 

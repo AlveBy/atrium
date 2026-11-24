@@ -55,7 +55,7 @@ Describes un módulo una sola vez, como un modelo con sus campos y las columnas 
 Con Docker no necesitas nada más:
 
 ```bash
-git clone https://github.com/AlveBy/atrium.git
+git clone -b stable https://github.com/AlveBy/atrium.git
 cd atrium
 docker compose up
 ```
@@ -65,7 +65,7 @@ El primer arranque tarda unos minutos. Después abre http://localhost:8000/admin
 Sin Docker necesitas PHP 8.3 o superior y Composer. La base de datos es SQLite por defecto y el panel viene ya compilado, así que no hacen falta ni MySQL ni Node:
 
 ```bash
-git clone https://github.com/AlveBy/atrium.git
+git clone -b stable https://github.com/AlveBy/atrium.git
 cd atrium
 composer install
 cp .env.example .env

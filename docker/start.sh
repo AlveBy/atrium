@@ -9,6 +9,12 @@ set -e
 
 composer install --no-interaction --no-progress
 
+# The stable branch keeps the admin bundle built; a checkout of main builds it.
+if ! git ls-files --error-unmatch packages/admin/dist/manifest.json >/dev/null 2>&1; then
+    npm ci --prefix packages/admin --no-audit --no-fund
+    npm run build --prefix packages/admin
+fi
+
 if [ ! -f .env ]; then
     cp .env.example .env
     php artisan key:generate --no-interaction

@@ -55,7 +55,7 @@ _Цю сторінку перекладено з англійської маши
 З Docker більше нічого не потрібно:
 
 ```bash
-git clone https://github.com/AlveBy/atrium.git
+git clone -b stable https://github.com/AlveBy/atrium.git
 cd atrium
 docker compose up
 ```
@@ -65,7 +65,7 @@ docker compose up
 Без Docker потрібні PHP 8.3 або новіший і Composer. База за замовчуванням — SQLite, а адмінка вже зібрана, тож ні MySQL, ні Node не потрібні:
 
 ```bash
-git clone https://github.com/AlveBy/atrium.git
+git clone -b stable https://github.com/AlveBy/atrium.git
 cd atrium
 composer install
 cp .env.example .env

@@ -10,6 +10,12 @@ name: split
 # composer.json, so a new package needs no change here, only its repository.
 # A push to main updates their main branch, a tag v1.2.3 tags them too.
 #
+# A package with a package.json (the admin) ships built assets that the
+# monorepo does not keep: they are built here and added in one more commit on
+# top of the split, so `composer require` needs no Node. On main that commit
+# also has the package repository's previous head as a parent, so the push
+# stays a fast-forward.
+#
 # Needs the SPLIT_TOKEN secret: a fine-grained token of AlveBy with
 # "Contents: read and write" on the package repositories (best "All
 # repositories", so new packages work at once). Without it the job only says
@@ -69,6 +75,20 @@ jobs:
           fetch-depth: 0
           persist-credentials: false
 
+      - uses: actions/setup-node@v7
+        if: env.SPLIT_TOKEN != '' && hashFiles(format('packages/{0}/package.json', matrix.folder)) != ''
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: packages/${{ matrix.folder }}/package-lock.json
+
+      - name: Build assets
+        if: env.SPLIT_TOKEN != '' && hashFiles(format('packages/{0}/package.json', matrix.folder)) != ''
+        run: |
+          npm ci --prefix "packages/${{ matrix.folder }}"
+          npm run build --prefix "packages/${{ matrix.folder }}"
+          echo "built=1" >> "$GITHUB_ENV"
+
       - name: Split and push
         if: env.SPLIT_TOKEN != ''
         run: |
@@ -79,6 +99,18 @@ jobs:
             ref="refs/tags/$GITHUB_REF_NAME"
           else
             ref="refs/heads/main"
+          fi
+          if [ "${built:-}" = 1 ]; then
+            parents="-p $sha"
+            if [ "$GITHUB_REF_TYPE" != tag ] && git fetch --quiet "$remote" main 2>/dev/null; then
+              parents="$parents -p $(git rev-parse FETCH_HEAD)"
+            fi
+            index="$RUNNER_TEMP/split-index"
+            GIT_INDEX_FILE="$index" git read-tree "$sha"
+            (cd "packages/${{ matrix.folder }}" && GIT_INDEX_FILE="$index" git --git-dir="$GITHUB_WORKSPACE/.git" --work-tree=. add -f dist)
+            tree=$(GIT_INDEX_FILE="$index" git write-tree)
+            sha=$(git -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" \
+              commit-tree "$tree" $parents -m "Build the assets of $(git rev-parse --short HEAD)")
           fi
           if ! git push "$remote" "$sha:$ref"; then
             echo "::warning::packages/${{ matrix.folder }} is not copied: AlveBy/${REPOSITORY} does not exist, or SPLIT_TOKEN has no write access to it."
