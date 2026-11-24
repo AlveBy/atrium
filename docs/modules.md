@@ -371,6 +371,47 @@ To put the module's pages into `sitemap.xml`, implement `Atrium\Admin\Contracts\
 
 With the SEO module installed, the module's pages also get titles from templates, hreflang and schema.org markup. A module adds its own markup (an `Event`, a `JobPosting`) with a `SchemaProvider`; see [SEO: markup for your own module](seo.md#markup-for-your-own-module).
 
+## Page templates
+
+A module that has a page on the site can offer its editors a choice of how a record looks, as WordPress does with page templates. Put a Blade file in the site's views:
+
+```
+resources/views/templates/articles/wide-photo.blade.php   only for the module with the key `articles`
+resources/views/templates/all/full-width.blade.php        for every module
+```
+
+Its first line is its name in the form:
+
+```blade
+{{-- Template: Wide photo --}}
+@extends($defaultView)
+
+@section('main-class', 'wrap-full')
+```
+
+That is all: the record form of the module now has a **Template** list, **Default** first and then the files found, and the record is drawn with the one picked. The list is not there while the module has no template besides the default one, and only for modules in `public_urls`.
+
+- **The name** is the comment `{{-- Template: … --}}` at the top of the file. A comment before it (a copyright header, say) is fine. The name may be a translation key (`{{-- Template: shop::templates.wide --}}`) or a text of the site's JSON translations. Without the comment the name is the file's, as a heading (`wide-photo` → "Wide Photo").
+- **The folder** is `templates/{module}/` by the key of the module (the folder of a module package, `labels` for `acme/atrium-labels`; the table of a model of the application itself, `articles`) and `templates/all/` for all. A file of the module's folder wins over one of the same name in `all`. File names have letters, digits, `-` and `_` only; `default` is taken, it is the page's own view.
+- **Where else:** a theme or a skin has the same folder in its own views. The public theme looks in the site's views first, then in the skin's (`skins/{skin}/templates/…`), then its own: **Full width** (`templates/all/full-width`), which draws any record or section with no side margins, comes from there. The `atrium.templates` config adds, replaces or hides:
+
+```php
+// config/atrium.php
+'templates' => [
+    'articles' => [
+        'wide-photo' => 'shop::articles.wide',   // key => Blade view
+        'full-width' => null,                    // this one is not offered for articles
+    ],
+],
+```
+
+- **What it gets:** the template is drawn instead of the default view with the same variables (`$page`, `$title`, `$canonical`, `$breadcrumbs` …), and `$defaultView` is the name of the view the record would be drawn with. `@extends($defaultView)` keeps all of its markup and only changes the places you name; `@include($defaultView)` is another way. A template may also be a page of its own, with `@extends('atrium-theme::layout')`.
+- **Gone files:** a record whose template is deleted or turned off is drawn with the default view, no error. The choice is kept, and works again when the file is back.
+- **Where it is kept:** in `admin_record_templates` (a model and an id, the same way SEO data is kept), so a module needs no column and no migration. A model that has a column of its own for it (the pages module has `template`) says so by implementing `Atrium\Admin\Templates\OwnsTemplateColumn` (`public static function templateColumn(): string`) and gets the same list and the same drawing, with no second field.
+- **Packages:** `app(Atrium\Admin\Templates\Templates::class)->source(Article::class, fn () => ['wide' => 'shop::articles.wide'])` adds templates in code, and `->roots(fn () => ['shop::'])` names another place with a `templates/` folder.
+
+New files are found on the next request; with a cached `config` or view cache run `php artisan view:clear`. The record's page costs no extra query once the module's cache is warm.
+
 ## Captcha in a public form
 
 A form on the site asks the site's captcha (`ATRIUM_CAPTCHA`, see [Configuring Atrium](configuration.md#captcha)) with a component and a rule; while the captcha is off both are empty:
