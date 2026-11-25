@@ -767,7 +767,11 @@ No code from the archive runs during install. If anything fails, the definitions
 
 A plugin that needs other libraries is installed from the console (`composer require`, then `php artisan atrium:module:install`), and the catalogue says so on its page.
 
-**Open question: Composer from the admin.** One option is to let the admin run Composer in a **queued job**. It would need the second factor, a backup first (`alveby/atrium-backup`), and the previous `composer.lock` kept for a rollback. That goes against the rule agreed so far, that there is no Composer from the web, so it is not decided and is not built until it is.
+**Decided: only archives from the admin.**
+
+- **What.** The admin installs PHP plugins only as signed archives. It runs Composer in no form: not in a request, not in a queued job, and not with the second factor either.
+- **Why.** The admin never runs someone else's install code, so a package's install scripts never run there. The signature check and the review on publishing stay the only way in.
+- **Composer** stays the developers' path, from the console on the server.
 
 **Removal** takes away what the plugin declared it owns: tables by its prefix, permissions, menu items, schedules and settings. It offers to export the plugin's data first. Records of other modules that linked to it keep their own values.
 
@@ -839,7 +843,7 @@ Inside a stage the order follows who is waiting. The tracker needs panels, then 
 | 16 | **Templates**: export and install of a project with its plugins and settings, update with a preview, sample data | A project in one click |
 | 17 | **The extension catalogue**: one screen for plugins, templates, solutions, themes and apps; the manifest of permissions; signed archives; install in one click with rollback; trust levels | Extensions reach a site without the console, safely |
 | 28 | **Checks on publishing**: manifest against code, static analysis, vulnerable dependencies, compatibility, languages, contrast; revocation | A stranger's plugin is checked before anyone installs it |
-| 29 | **PHP plugins from the admin**: signed archives with the second factor, rollback; Composer from the admin stays an [open question](#install-in-one-click-roll-back-by-itself) | Verified plugins install on any hosting |
+| 29 | **PHP plugins from the admin**: signed archives only, the dependency check on publishing, the second factor on install, `plugins/{vendor}/{name}` with its own autoloader, a folder swap with rollback and `down()` on a failed migration; no Composer from the admin ([decided](#install-in-one-click-roll-back-by-itself)) | Verified plugins install on any hosting |
 | 18 | **Apps**: registration by manifest, OAuth with scopes | Outside apps in any language |
 | 19 | **Frames**: signed context, the bridge script | Apps put their panels into the admin |
 | 30 | **Plugins and apps in the audit log** as actors | You can see what an extension did |
