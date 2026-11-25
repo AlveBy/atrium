@@ -45,6 +45,7 @@ return [
             'description' => 'Beschreibung',
             'status' => 'Status',
             'priority' => 'Priorität',
+            'resolution' => 'Lösung',
             'assignee' => 'Bearbeiter',
             'parent' => 'Übergeordnete Aufgabe',
             'parent_hint' => 'Eine Unteraufgabe einer Aufgabe oder eine Aufgabe eines Epics, im selben Projekt.',
@@ -74,11 +75,47 @@ return [
         ],
     ],
 
+    'terms' => [
+        'types' => 'Aufgabentypen',
+        'priorities' => 'Prioritäten',
+        'statuses' => 'Status',
+        'resolutions' => 'Lösungen',
+        'fields' => [
+            'code' => 'Code',
+            'code_hint' => 'Kleinbuchstaben, Ziffern und _. Aufgaben behalten den Code, deshalb lässt er sich später nicht mehr ändern.',
+            'name' => 'Name',
+            'name_hint' => 'Leer: der eingebaute Name, in der Sprache des jeweiligen Administrators.',
+            'sort' => 'Reihenfolge',
+            'default' => 'Standard',
+            'default_hint' => 'Eine neue Aufgabe bekommt diesen. Ohne Markierung der erste.',
+            'category' => 'Kategorie',
+            'symbol' => 'Symbol',
+            'symbol_hint' => 'Wird vor dem Namen angezeigt, damit die Priorität nicht nur an der Farbe erkennbar ist.',
+            'top_level' => 'Ohne übergeordnete Aufgabe',
+            'top_level_hint' => 'Aufgaben dieses Typs stehen ganz oben, wie ein Epic.',
+            'needs_parent' => 'Übergeordnete Aufgabe nötig',
+            'needs_parent_hint' => 'Aufgaben dieses Typs gehören immer zu einer anderen Aufgabe, wie eine Unteraufgabe.',
+        ],
+        'categories' => [
+            'todo' => 'Zu erledigen',
+            'active' => 'In Arbeit',
+            'done' => 'Erledigt',
+        ],
+    ],
+
     'types' => [
         'task' => 'Aufgabe',
         'bug' => 'Fehler',
         'story' => 'Story',
         'epic' => 'Epic',
+        'subtask' => 'Unteraufgabe',
+    ],
+
+    'resolutions' => [
+        'done' => 'Erledigt',
+        'wont_do' => 'Wird nicht umgesetzt',
+        'duplicate' => 'Duplikat',
+        'cannot_reproduce' => 'Nicht reproduzierbar',
     ],
 
     'priorities' => [
@@ -114,20 +151,21 @@ return [
     'errors' => [
         'archived' => 'Das Projekt ist archiviert: Aufgaben können nicht hineinverschoben werden.',
         'not_in_project' => 'Dieser Administrator arbeitet nicht im Projekt.',
-        'epic_has_parent' => 'Ein Epic hat keine übergeordnete Aufgabe.',
+        'type_has_no_parent' => 'Eine Aufgabe dieses Typs hat keine übergeordnete Aufgabe.',
+        'needs_parent' => 'Eine Aufgabe dieses Typs braucht eine übergeordnete Aufgabe.',
+        'in_use' => 'Aufgaben verwenden dies noch: Ändern Sie sie zuerst.',
         'parent_other_project' => 'Die übergeordnete Aufgabe muss im selben Projekt liegen.',
         'parent_loop' => 'Eine Aufgabe kann nicht ihr eigenes Kind oder das ihrer Unteraufgaben sein.',
     ],
 
     'settings' => [
-        'description' => 'Die Status der Aufgaben und die E-Mails dazu.',
-        'statuses' => 'Status',
-        'statuses_hint' => 'In Reihenfolge: Eine neue Aufgabe bekommt den ersten, der letzte bedeutet „erledigt“. Leer: :default. Wird ein Status hier umbenannt, behalten die Aufgaben den alten Namen – ändern Sie ihn auch in den Aufgaben.',
-        'add_status' => 'Status hinzufügen',
+        'description' => 'Die E-Mails zu Aufgaben.',
         'notify_assigned' => 'Dem Bearbeiter schreiben',
         'notify_assigned_hint' => 'Eine E-Mail, wenn einem Administrator eine Aufgabe zugewiesen wird.',
         'notify_status' => 'Über neue Status schreiben',
         'notify_status_hint' => 'Eine E-Mail an den Bearbeiter, wenn sich der Status seiner Aufgabe ändert.',
+        'disabled_plugins' => 'Abgeschaltete Plugins',
+        'disabled_plugins_hint' => 'Angehakte Plugins werden ignoriert; ein neues Plugin ist an, bis Sie es ankreuzen.',
     ],
 
     'mail' => [

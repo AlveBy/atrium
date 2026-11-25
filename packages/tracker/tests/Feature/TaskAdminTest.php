@@ -11,6 +11,7 @@ namespace Atrium\Tracker\Tests\Feature;
 
 use Atrium\Admin\Facades\Hook;
 use Atrium\Tracker\Models\Comment;
+use Atrium\Tracker\Models\Status;
 use Atrium\Tracker\Models\Task;
 use Atrium\Tracker\Tests\TestCase;
 use Illuminate\Support\Carbon;
@@ -75,16 +76,19 @@ final class TaskAdminTest extends TestCase
             });
     }
 
-    public function test_the_statuses_of_the_form_are_the_ones_of_the_settings(): void
+    public function test_the_statuses_of_the_form_are_the_ones_of_the_table(): void
     {
-        $this->settings(['statuses' => ['Backlog', 'Doing']]);
+        Status::query()->get()->each->delete();
+        Status::query()->create(['code' => 'backlog', 'sort' => 1, 'category' => Status::TODO]);
+        Status::query()->create(['code' => 'doing', 'name' => 'Doing', 'sort' => 2, 'category' => Status::ACTIVE, 'is_default' => true]);
 
         $this->actingAs($this->admin(), 'admin')->get('/admin/tracker_tasks/create')
             ->assertInertia(function (AssertableInertia $page): void {
                 $status = collect($page->toArray()['props']['fields'])->firstWhere('name', 'status');
 
-                $this->assertSame('Backlog', $status['default']);
-                $this->assertSame(['Backlog', 'Doing'], array_column($status['options'], 'value'));
+                $this->assertSame('doing', $status['default']);
+                $this->assertSame(['backlog', 'doing'], array_column($status['options'], 'value'));
+                $this->assertSame(['backlog', 'Doing'], array_column($status['options'], 'label'));
             });
     }
 
@@ -205,7 +209,21 @@ final class TaskAdminTest extends TestCase
 
         $this->actingAs($this->admin(), 'admin')
             ->post('/admin/tracker_tasks', $this->form($parent->project_id, ['type' => 'epic', 'parent_id' => $parent->id]))
-            ->assertSessionHasErrors(['parent_id' => 'An epic has no parent task.']);
+            ->assertSessionHasErrors(['parent_id' => 'A task of this type has no parent task.']);
+    }
+
+    public function test_a_subtask_needs_a_parent(): void
+    {
+        $parent = $this->task();
+        $this->actingAs($this->admin(), 'admin');
+
+        $this->post('/admin/tracker_tasks', $this->form($parent->project_id, ['type' => 'subtask']))
+            ->assertSessionHasErrors(['parent_id' => 'A task of this type needs a parent task.']);
+        $this->assertSame(1, Task::query()->count());
+
+        $this->post('/admin/tracker_tasks', $this->form($parent->project_id, ['type' => 'subtask', 'parent_id' => $parent->id]))
+            ->assertSessionDoesntHaveErrors();
+        $this->assertSame(2, Task::query()->count());
     }
 
     public function test_a_task_cannot_become_its_own_ancestor(): void

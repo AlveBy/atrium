@@ -44,6 +44,10 @@
             "resources": [
                 "Atrium\\Tracker\\Models\\Project",
                 "Atrium\\Tracker\\Models\\Task",
+                "Atrium\\Tracker\\Models\\Status",
+                "Atrium\\Tracker\\Models\\IssueType",
+                "Atrium\\Tracker\\Models\\Priority",
+                "Atrium\\Tracker\\Models\\Resolution",
                 "Atrium\\Tracker\\Models\\Comment"
             ],
             "migrations": "database/migrations",

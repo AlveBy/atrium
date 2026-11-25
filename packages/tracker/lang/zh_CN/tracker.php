@@ -45,6 +45,7 @@ return [
             'description' => '描述',
             'status' => '状态',
             'priority' => '优先级',
+            'resolution' => '解决结果',
             'assignee' => '经办人',
             'parent' => '父任务',
             'parent_hint' => '同一项目中某个任务的子任务，或史诗的任务。',
@@ -74,11 +75,47 @@ return [
         ],
     ],
 
+    'terms' => [
+        'types' => '任务类型',
+        'priorities' => '优先级',
+        'statuses' => '状态',
+        'resolutions' => '解决结果',
+        'fields' => [
+            'code' => '代码',
+            'code_hint' => '小写字母、数字和 _。任务会保存该代码，因此之后无法更改。',
+            'name' => '名称',
+            'name_hint' => '留空：使用内置名称，按每位管理员的语言显示。',
+            'sort' => '排序',
+            'default' => '默认',
+            'default_hint' => '新任务取这一项。未标记时取第一项。',
+            'category' => '类别',
+            'symbol' => '符号',
+            'symbol_hint' => '显示在名称之前，这样优先级不只靠颜色区分。',
+            'top_level' => '无父级',
+            'top_level_hint' => '这种类型的任务位于最顶层，如史诗。',
+            'needs_parent' => '需要父级',
+            'needs_parent_hint' => '这种类型的任务总是属于另一个任务，如子任务。',
+        ],
+        'categories' => [
+            'todo' => '待办',
+            'active' => '进行中',
+            'done' => '已完成',
+        ],
+    ],
+
     'types' => [
         'task' => '任务',
         'bug' => '缺陷',
         'story' => '故事',
         'epic' => '史诗',
+        'subtask' => '子任务',
+    ],
+
+    'resolutions' => [
+        'done' => '已完成',
+        'wont_do' => '不处理',
+        'duplicate' => '重复',
+        'cannot_reproduce' => '无法重现',
     ],
 
     'priorities' => [
@@ -114,20 +151,21 @@ return [
     'errors' => [
         'archived' => '项目已归档：不能再把任务移入。',
         'not_in_project' => '该管理员不在此项目中工作。',
-        'epic_has_parent' => '史诗没有父任务。',
+        'type_has_no_parent' => '这种类型的任务没有父任务。',
+        'needs_parent' => '这种类型的任务需要父任务。',
+        'in_use' => '仍有任务在使用它：请先修改这些任务。',
         'parent_other_project' => '父任务必须属于同一项目。',
         'parent_loop' => '任务不能成为自己或自己子任务的子任务。',
     ],
 
     'settings' => [
-        'description' => '任务的状态以及相关邮件。',
-        'statuses' => '状态',
-        'statuses_hint' => '按顺序：新任务取第一个，最后一个表示“已完成”。留空时：:default。在此重命名状态后，任务仍保留旧名称——请同时在任务中修改。',
-        'add_status' => '添加状态',
+        'description' => '与任务相关的邮件。',
         'notify_assigned' => '给经办人发邮件',
         'notify_assigned_hint' => '任务分配给管理员时发送邮件。',
         'notify_status' => '新状态时发邮件',
         'notify_status_hint' => '经办人的任务状态变化时给其发送邮件。',
+        'disabled_plugins' => '已关闭的插件',
+        'disabled_plugins_hint' => '勾选的插件将被忽略；新插件在你勾选之前保持开启。',
     ],
 
     'mail' => [
