@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace Atrium\CustomFields\Tests\Feature;
 
 use Atrium\Admin\Facades\Hook;
+use Atrium\Admin\Fields\TextField;
 use Atrium\Admin\Models\AdminRole;
 use Atrium\Admin\Models\AdminUser;
 use Atrium\Admin\Models\Site;
@@ -112,8 +113,9 @@ final class ExtensionTest extends TestCase
         $this->field('motto', 'string', ['translatable' => true, 'show_in_list' => true]);
         $this->fields()->flush();
 
-        $fields = Hook::apply('atrium.module.fields', ['first', 'second'], Product::class);
-        $this->assertSame(['first', 'second'], array_slice($fields, 0, 2));
+        $own = [TextField::make('first'), TextField::make('second')];
+        $fields = Hook::apply('atrium.module.fields', $own, Product::class);
+        $this->assertSame($own, array_slice($fields, 0, 2));
         // The custom field, and the Template that the theme offers every module with a page.
         $this->assertCount(4, $fields);
         $this->assertEqualsCanonicalizing(['motto', 'template'], [$fields[2]->getName(), $fields[3]->getName()]);

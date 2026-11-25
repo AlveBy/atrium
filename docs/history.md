@@ -2,12 +2,13 @@
 
 [English](history.md) · [Русский](history.ru.md)
 
-Every module of the panel keeps a history of its records with no code of its own: who created, changed or deleted a record, when, from where, and which fields went from what to what; the versions of each record, to compare two of them and put an older one back; and a trash, from which a deleted record is restored.
+Every module of the panel keeps a history of its records with no code of its own: who created, changed or deleted a record, when, from where, and which fields went from what to what; the versions of each record, to compare two of them and put an older one back; a trash, from which a deleted record is restored; and a plan of when a record switches itself on and off.
 
 - [The activity log](#the-activity-log)
 - [What is written, and from where](#what-is-written-and-from-where)
 - [Versions](#versions)
 - [Trash](#trash)
+- [Scheduled publishing](#scheduled-publishing)
 - [Passwords and other secrets](#passwords-and-other-secrets)
 - [Who sees what](#who-sees-what)
 - [Turning it off](#turning-it-off)
@@ -32,6 +33,7 @@ Every save goes through one place, so an entry is written whatever made the chan
 | An import of a CSV or Excel file | by import | whoever started the import |
 | A module's button on a record, a bulk action | in the panel / via API | whoever pressed it, also when it runs on the queue |
 | A console command, a queue job of its own | by a command | nobody ("System") |
+| **Publish at** or **Unpublish at** coming | by the scheduler | whoever planned it |
 
 A new record lists every value it was given, the defaults of its model included. A changed one lists only the fields that differ: a save that changes nothing leaves no entry, and an empty text and no value count as the same. Translations are compared language by language, relation fields by the ids chosen, custom fields and SEO fields as the form shows them. Read-only fields of a form are not compared. A deleted record is written with its title, so the entry still says what it was.
 
@@ -62,6 +64,16 @@ What has been in the trash for 30 days is deleted for good by the scheduler ever
 Restoring needs `{module}.restore` and deleting for good `{module}.force_delete`, two permissions every module with the trash gets in the role editor; the trash shows the modules the administrator may view and, with several sites, the records of the site the panel works with and of the modules all sites share. The API has the same: `GET /api/v1/{module}/trash` lists the records with `id`, `title`, `deleted_at` and `deleted_by`, `POST /api/v1/{module}/trash/{id}/restore` brings one back and answers with the record, `DELETE /api/v1/{module}/trash/{id}` deletes it for good; MCP has `list_trash`, `restore_from_trash` and `delete_forever`.
 
 A record in the trash keeps its code and its address: a new record cannot take them until the old one is restored or deleted for good.
+
+## Scheduled publishing
+
+Every content module whose form has an **Active** field gets two more next to it, on the same tab: **Publish at** and **Unpublish at**. At the first time the record switches itself on, at the second it switches itself off; either may be left empty, and emptying both cancels the plan. The end must come after the start, the one already planned included. The times are kept in `admin_schedules`, not in the module's table, so a module needs no column and no migration for them. The form, `/api/v1` (`publish_at` and `unpublish_at`, ISO 8601 times or null), the MCP tools and an import plan them the same way, and an export writes them in the columns of the same names.
+
+A planned record is marked **Scheduled** with a clock in its list, next to its **Active** column (or its name, when the list has none); the mark's tooltip, also read out by screen readers, says when it switches on and off.
+
+The scheduler checks every minute (`atrium:publish`; the site's cron runs `php artisan schedule:run`) and switches what is due through the record's form, so everything that follows a save follows: the activity log writes it **by the scheduler** on behalf of whoever planned it, a version is kept, caches, the search and the sitemap hear of it. A time that has already passed when it is planned is applied at the next minute; when both times have come, the record ends switched off, as the end is the later one. A switch the module refuses (a filter of `atrium.record.data` throws `Refused`) is reported by the command and not tried again. A record in the trash waits until it is restored; one deleted for good takes its plan along.
+
+**Active from** and **Active until** of a module, where it has them, are left alone: they are dates the site shows, and the record stays switched on with them.
 
 ## Passwords and other secrets
 
@@ -111,6 +123,15 @@ To delete the module's records at once, with no trash:
 
 ```php
 public static function usesAdminTrash(): bool
+{
+    return false;
+}
+```
+
+To switch the module's records by hand only, with no **Publish at** and **Unpublish at** (service modules have none already):
+
+```php
+public static function usesAdminSchedule(): bool
 {
     return false;
 }
