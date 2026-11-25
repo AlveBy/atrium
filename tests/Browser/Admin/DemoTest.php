@@ -78,20 +78,21 @@ final class DemoTest extends AdminTestCase
                 $browser->visit('/admin/login')
                     ->waitFor(self::NOTE);
 
-                // The field comes filled in. Dusk's type() would clear() it
-                // first, which blurs the field and sends no input event (the
-                // page still holds "demo"), and on a slow runner the keys
-                // that follow sometimes never arrive. The field stays empty
-                // and the browser itself refuses to send the form (required):
-                // no request, no error. A visitor selects the text and types
-                // over it, so the test does too, and tries again only when the
-                // text is not in the field after all.
-                $browser->waitUsing(5, 100, function () use ($browser): bool {
-                    $browser->script('const field = document.querySelector("#password"); field.focus(); field.select();');
-                    $browser->keys('#password', 'not-the-password');
-
-                    return $browser->inputValue('#password') === 'not-the-password';
-                }, 'The wrong password did not land in the field.');
+                // The field comes filled in. Typing over it with the driver's
+                // key events (type(), keys()) failed in some runs of the merge
+                // queue for good: the field kept "demo", selected, with every
+                // key of 5 seconds of retries lost, while the page itself
+                // answered scripts. The test is about the answer to a wrong
+                // password, not about the driver's keyboard, so the text goes
+                // in the way the page hears of any text: the field's value
+                // changes and it fires "input". Were the page deaf to that,
+                // it would send "demo" and the visitor would be let in.
+                $browser->script(<<<'JS'
+                    const field = document.querySelector('#password');
+                    Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value').set.call(field, 'not-the-password');
+                    field.dispatchEvent(new Event('input', { bubbles: true }));
+                    JS);
+                $browser->assertInputValue('#password', 'not-the-password');
 
                 $browser->press('button[type="submit"]')
                     ->waitFor('[data-error]')
