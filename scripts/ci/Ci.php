@@ -605,8 +605,18 @@ final class Ci
 
         // PHP's own server, as `artisan serve` starts it, but with APP_URL: the
         // admin builds its links from it, and serve would not pass it on.
+        // Its log (every request, with the time it came and went) is kept with
+        // the other logs of the step: it tells a request that never reached
+        // the server from one that it answered late.
+        if (! is_dir("{$this->build}/logs")) {
+            mkdir("{$this->build}/logs", 0777, true);
+        }
+
+        $log = "{$this->build}/logs/dusk-server.log";
+        file_put_contents($log, '');
+
         $server = proc_open([PHP_BINARY, '-S', "127.0.0.1:{$app}", $this->root.'/vendor/laravel/framework/src/Illuminate/Foundation/resources/server.php'],
-            [1 => ['file', '/dev/null', 'w'], 2 => ['file', '/dev/null', 'w']], $pipes, $this->root.'/public', [...getenv(), ...self::ENV, ...$env]);
+            [1 => ['file', $log, 'a'], 2 => ['file', $log, 'a']], $pipes, $this->root.'/public', [...getenv(), ...self::ENV, ...$env]);
 
         try {
             $this->pool([['dusk', 'php artisan dusk', [PHP_BINARY, 'artisan', 'dusk', '--env=ci'], $env]], 1);
