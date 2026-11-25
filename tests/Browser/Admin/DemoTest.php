@@ -11,8 +11,10 @@ namespace Tests\Browser\Admin;
 
 use Atrium\Admin\Models\AdminUser;
 use Atrium\TwoFactor\Models\Factor;
+use Facebook\WebDriver\Exception\TimeoutException;
 use Laravel\Dusk\Browser;
 use PHPUnit\Framework\Attributes\DataProvider;
+use RuntimeException;
 
 /**
  * A public demo (docs/demo.md): the sign-in page says how to get in, and
@@ -78,26 +80,34 @@ final class DemoTest extends AdminTestCase
                 $browser->visit('/admin/login')
                     ->waitFor(self::NOTE);
 
-                // The field comes filled in. Typing over it with the driver's
-                // key events (type(), keys()) failed in some runs of the merge
-                // queue for good: the field kept "demo", selected, with every
-                // key of 5 seconds of retries lost, while the page itself
-                // answered scripts. The test is about the answer to a wrong
-                // password, not about the driver's keyboard, so the text goes
-                // in the way the page hears of any text: the field's value
-                // changes and it fires "input". Were the page deaf to that,
-                // it would send "demo" and the visitor would be let in.
+                // The field comes filled in. The test is about the answer to a
+                // wrong password, so the text goes in and the form is sent the
+                // way the page itself hears of them: the field's value changes,
+                // it fires "input", the form is submitted. The driver's keys
+                // and its mouse are not used: in some runs of CI they came to
+                // nothing (the field kept "demo", selected; the button was
+                // pressed and the page never began to send: no spinner, the
+                // button enabled) while the page answered scripts. The first
+                // test above presses the real button. Were the page deaf to
+                // "input", it would send "demo" and let the visitor in.
                 $browser->script(<<<'JS'
                     const field = document.querySelector('#password');
                     Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, 'value').set.call(field, 'not-the-password');
                     field.dispatchEvent(new Event('input', { bubbles: true }));
+                    field.form.requestSubmit();
                     JS);
-                $browser->assertInputValue('#password', 'not-the-password');
 
-                $browser->press('button[type="submit"]')
-                    ->waitFor('[data-error]')
-                    ->assertPathIs('/admin/login')
-                    ->assertInputValue('#password', 'demo');
+                try {
+                    $browser->waitFor('[data-error]');
+                } catch (TimeoutException $e) {
+                    // The next failure must say what the page was doing.
+                    throw new RuntimeException('No refusal after the submit: '.json_encode($browser->script(<<<'JS'
+                        const button = document.querySelector('button[type="submit"]');
+                        return { path: location.pathname, sending: button?.disabled, password: document.querySelector('#password')?.value.length };
+                        JS)[0]), 0, $e);
+                }
+
+                $browser->assertPathIs('/admin/login')->assertInputValue('#password', 'demo');
             });
         });
     }
