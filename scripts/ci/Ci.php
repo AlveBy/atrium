@@ -301,6 +301,10 @@ final class Ci
             }
 
             $this->packageCycles();
+
+            foreach (Changelog::problems($this->root) as $problem) {
+                $this->results[] = ['lint', $problem, false, 0.0];
+            }
         }
 
         if (in_array('static', $this->steps, true)) {

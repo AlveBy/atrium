@@ -1,0 +1,1 @@
+- The demo visitor may import and export the sections they edit. A demo downloads no image by address: a row with one is not imported, and the check before the import says so in the visitor's language.
