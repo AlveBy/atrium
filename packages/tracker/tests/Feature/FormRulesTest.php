@@ -14,7 +14,6 @@ use Atrium\Tracker\Models\Comment;
 use Atrium\Tracker\Models\Project;
 use Atrium\Tracker\Models\Task;
 use Atrium\Tracker\Tests\TestCase;
-use Atrium\Tracker\TrackerSettings;
 use Illuminate\Support\Facades\Validator;
 use ReflectionMethod;
 
@@ -104,17 +103,6 @@ final class FormRulesTest extends TestCase
                 $this->assertSame([], $this->refused($fields, [$name => $value]), $name.' = '.json_encode($value));
             }
         }
-    }
-
-    public function test_the_settings_refuse_a_list_of_statuses_of_the_wrong_kind(): void
-    {
-        $fields = (new TrackerSettings)->fields();
-
-        $this->assertSame(['statuses'], $this->refused($fields, ['statuses' => 'Open']));
-        $this->assertSame(['statuses'], $this->refused($fields, ['statuses' => range(1, 16)]));
-        $this->assertSame([], $this->refused($fields, ['statuses' => null]));
-        $this->assertSame([], $this->refused($fields, ['statuses' => range(1, 15)]));
-        $this->assertSame([], $this->refused($fields, ['statuses' => []]));
     }
 
     public function test_the_ids_of_the_forms_must_be_whole_numbers_of_something_that_exists(): void

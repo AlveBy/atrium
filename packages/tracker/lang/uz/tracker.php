@@ -45,6 +45,7 @@ return [
             'description' => 'Tavsif',
             'status' => 'Holati',
             'priority' => 'Ustuvorlik',
+            'resolution' => 'Yechim',
             'assignee' => 'Ijrochi',
             'parent' => 'Asosiy vazifa',
             'parent_hint' => 'Boshqa vazifaning kichik vazifasi yoki epikning vazifasi, shu loyihada.',
@@ -74,11 +75,47 @@ return [
         ],
     ],
 
+    'terms' => [
+        'types' => 'Vazifa turlari',
+        'priorities' => 'Ustuvorliklar',
+        'statuses' => 'Holatlar',
+        'resolutions' => 'Yechimlar',
+        'fields' => [
+            'code' => 'Kod',
+            'code_hint' => 'Kichik harflar, raqamlar va _. Vazifalar kodni saqlaydi, shuning uchun uni keyin oʻzgartirib boʻlmaydi.',
+            'name' => 'Nomi',
+            'name_hint' => 'Boʻsh boʻlsa: har bir administrator tilidagi ichki nom.',
+            'sort' => 'Tartib',
+            'default' => 'Standart',
+            'default_hint' => 'Yangi vazifa shuni oladi. Belgi boʻlmasa — birinchisini.',
+            'category' => 'Turkum',
+            'symbol' => 'Belgi',
+            'symbol_hint' => 'Nomdan oldin koʻrsatiladi, shunda ustuvorlik faqat rang bilan ajralmaydi.',
+            'top_level' => 'Asosiy vazifasiz',
+            'top_level_hint' => 'Bu turdagi vazifalar epik kabi eng yuqorida turadi.',
+            'needs_parent' => 'Asosiy vazifa kerak',
+            'needs_parent_hint' => 'Bu turdagi vazifalar kichik vazifa kabi har doim boshqa vazifaning ichida boʻladi.',
+        ],
+        'categories' => [
+            'todo' => 'Bajarilishi kerak',
+            'active' => 'Jarayonda',
+            'done' => 'Tayyor',
+        ],
+    ],
+
     'types' => [
         'task' => 'Vazifa',
         'bug' => 'Xato',
         'story' => 'Hikoya',
         'epic' => 'Epik',
+        'subtask' => 'Kichik vazifa',
+    ],
+
+    'resolutions' => [
+        'done' => 'Bajarildi',
+        'wont_do' => 'Bajarilmaydi',
+        'duplicate' => 'Dublikat',
+        'cannot_reproduce' => 'Takrorlanmaydi',
     ],
 
     'priorities' => [
@@ -114,20 +151,21 @@ return [
     'errors' => [
         'archived' => 'Loyiha arxivda: unga vazifalarni koʻchirib boʻlmaydi.',
         'not_in_project' => 'Bu administrator loyihada ishlamaydi.',
-        'epic_has_parent' => 'Epikning asosiy vazifasi boʻlmaydi.',
+        'type_has_no_parent' => 'Bu turdagi vazifaning asosiy vazifasi boʻlmaydi.',
+        'needs_parent' => 'Bu turdagi vazifaga asosiy vazifa kerak.',
+        'in_use' => 'Buni hali vazifalar ishlatmoqda: avval ularni oʻzgartiring.',
         'parent_other_project' => 'Asosiy vazifa shu loyihadan boʻlishi kerak.',
         'parent_loop' => 'Vazifa oʻziga yoki oʻzining kichik vazifasiga bola boʻla olmaydi.',
     ],
 
     'settings' => [
-        'description' => 'Vazifa holatlari va ular haqidagi xatlar.',
-        'statuses' => 'Holatlar',
-        'statuses_hint' => 'Tartib boʻyicha: yangi vazifa birinchisini oladi, oxirgisi «tayyor» degani. Boʻsh boʻlsa: :default. Holatni bu yerda qayta nomlasangiz, vazifalarda eski nom qoladi — vazifalarda ham oʻzgartiring.',
-        'add_status' => 'Holat qoʻshish',
+        'description' => 'Vazifalar haqidagi xatlar.',
         'notify_assigned' => 'Ijrochiga yozish',
         'notify_assigned_hint' => 'Vazifa administratorga berilganda xat.',
         'notify_status' => 'Yangi holat haqida yozish',
         'notify_status_hint' => 'Ijrochining vazifasi holati oʻzgarganda unga xat.',
+        'disabled_plugins' => 'O‘chirilgan plaginlar',
+        'disabled_plugins_hint' => 'Belgilangan plaginlar ishlamaydi; yangi plagin siz belgilamaguncha yoqilgan bo‘ladi.',
     ],
 
     'mail' => [

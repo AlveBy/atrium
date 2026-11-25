@@ -45,6 +45,7 @@ return [
             'description' => 'Opis',
             'status' => 'Status',
             'priority' => 'Priorytet',
+            'resolution' => 'Rozwiązanie',
             'assignee' => 'Wykonawca',
             'parent' => 'Zadanie nadrzędne',
             'parent_hint' => 'Podzadanie innego zadania albo zadanie epiku, w tym samym projekcie.',
@@ -74,11 +75,47 @@ return [
         ],
     ],
 
+    'terms' => [
+        'types' => 'Typy zadań',
+        'priorities' => 'Priorytety',
+        'statuses' => 'Statusy',
+        'resolutions' => 'Rozwiązania',
+        'fields' => [
+            'code' => 'Kod',
+            'code_hint' => 'Małe litery, cyfry i _. Zadania zachowują kod, więc nie można go później zmienić.',
+            'name' => 'Nazwa',
+            'name_hint' => 'Puste: wbudowana nazwa, w języku każdego administratora.',
+            'sort' => 'Kolejność',
+            'default' => 'Domyślny',
+            'default_hint' => 'Nowe zadanie dostaje ten. Bez oznaczenia — pierwszy.',
+            'category' => 'Kategoria',
+            'symbol' => 'Symbol',
+            'symbol_hint' => 'Wyświetlany przed nazwą, aby priorytet nie różnił się tylko kolorem.',
+            'top_level' => 'Bez zadania nadrzędnego',
+            'top_level_hint' => 'Zadania tego typu stoją na samej górze, jak epik.',
+            'needs_parent' => 'Wymaga zadania nadrzędnego',
+            'needs_parent_hint' => 'Zadania tego typu zawsze należą do innego zadania, jak podzadanie.',
+        ],
+        'categories' => [
+            'todo' => 'Do zrobienia',
+            'active' => 'W toku',
+            'done' => 'Gotowe',
+        ],
+    ],
+
     'types' => [
         'task' => 'Zadanie',
         'bug' => 'Błąd',
         'story' => 'Historia',
         'epic' => 'Epik',
+        'subtask' => 'Podzadanie',
+    ],
+
+    'resolutions' => [
+        'done' => 'Wykonane',
+        'wont_do' => 'Nie będzie zrobione',
+        'duplicate' => 'Duplikat',
+        'cannot_reproduce' => 'Nie do odtworzenia',
     ],
 
     'priorities' => [
@@ -114,20 +151,21 @@ return [
     'errors' => [
         'archived' => 'Projekt jest zarchiwizowany: nie można do niego przenosić zadań.',
         'not_in_project' => 'Ten administrator nie pracuje w projekcie.',
-        'epic_has_parent' => 'Epik nie ma zadania nadrzędnego.',
+        'type_has_no_parent' => 'Zadanie tego typu nie ma zadania nadrzędnego.',
+        'needs_parent' => 'Zadanie tego typu wymaga zadania nadrzędnego.',
+        'in_use' => 'Zadania nadal tego używają: najpierw je zmień.',
         'parent_other_project' => 'Zadanie nadrzędne musi być z tego samego projektu.',
         'parent_loop' => 'Zadanie nie może być dzieckiem samego siebie ani swojego podzadania.',
     ],
 
     'settings' => [
-        'description' => 'Statusy zadań i wiadomości o nich.',
-        'statuses' => 'Statusy',
-        'statuses_hint' => 'Po kolei: nowe zadanie dostaje pierwszy, ostatni oznacza „gotowe”. Puste: :default. Jeśli zmienisz tu nazwę statusu, zadania zachowają starą — zmień ją także w zadaniach.',
-        'add_status' => 'Dodaj status',
+        'description' => 'Wiadomości o zadaniach.',
         'notify_assigned' => 'Pisz do wykonawcy',
         'notify_assigned_hint' => 'Wiadomość, gdy zadanie zostaje przydzielone administratorowi.',
         'notify_status' => 'Pisz o nowym statusie',
         'notify_status_hint' => 'Wiadomość do wykonawcy, gdy zmienia się status jego zadania.',
+        'disabled_plugins' => 'Wyłączone wtyczki',
+        'disabled_plugins_hint' => 'Zaznaczone wtyczki są ignorowane; nowa wtyczka działa, dopóki jej nie zaznaczysz.',
     ],
 
     'mail' => [

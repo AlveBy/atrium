@@ -13,6 +13,7 @@ use Atrium\Admin\Modules\Modules;
 use Atrium\Tracker\Mail\TaskMail;
 use Atrium\Tracker\Models\Comment;
 use Atrium\Tracker\Models\Project;
+use Atrium\Tracker\Models\Status;
 use Atrium\Tracker\Models\Task;
 use Atrium\Tracker\Support\Notifier;
 use Atrium\Tracker\Tests\TestCase;
@@ -76,13 +77,15 @@ final class DemoTest extends TestCase
         $this->assertNull(Project::query()->first()?->lead_id);
     }
 
-    public function test_the_demo_goes_by_the_statuses_of_the_settings(): void
+    public function test_the_demo_goes_by_the_statuses_of_the_table(): void
     {
         $this->admin();
-        $this->settings(['statuses' => ['Open', 'Closed']]);
+        Status::query()->get()->each->delete();
+        Status::query()->create(['code' => 'open', 'name' => 'Open', 'sort' => 1, 'category' => Status::TODO]);
+        Status::query()->create(['code' => 'closed', 'name' => 'Closed', 'sort' => 2, 'category' => Status::DONE]);
         $this->seed_();
 
-        $this->assertSame(['Closed', 'Open'], Task::query()->distinct()->orderBy('status')->pluck('status')->all());
+        $this->assertSame(['closed', 'open'], Task::query()->distinct()->orderBy('status')->pluck('status')->all());
     }
 
     public function test_the_demo_does_not_touch_a_tracker_that_has_content(): void

@@ -28,11 +28,8 @@ use Atrium\Admin\Filters\SelectFilter;
 use Atrium\Admin\Models\AdminUser;
 use Atrium\Admin\Traits\HasAdminTabs;
 use Atrium\Admin\Traits\InteractsWithAdmin;
-use Atrium\Tracker\Enums\Priority;
-use Atrium\Tracker\Enums\TaskType;
 use Atrium\Tracker\Support\Admins;
 use Atrium\Tracker\Support\Notifier;
-use Atrium\Tracker\Support\Statuses;
 use Closure;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -77,7 +74,7 @@ class Task extends Model implements Administrable
 
     /** The number, the author and the closing time are set by the tracker itself. */
     protected $fillable = [
-        'project_id', 'type', 'parent_id', 'title', 'description', 'status', 'priority',
+        'project_id', 'type', 'parent_id', 'title', 'description', 'status', 'priority', 'resolution',
         'assignee_id', 'labels', 'due_date', 'estimate_hours', 'attachments', 'sort',
     ];
 
@@ -106,15 +103,15 @@ class Task extends Model implements Administrable
         static::creating(static function (self $task): void {
             $task->number = Project::nextNumber($task->project_id);
             $task->author_id ??= Admins::currentId();
-            $task->status ??= Statuses::first();
-            $task->type ??= TaskType::Task->value;
-            $task->priority ??= Priority::Medium->value;
-            $task->completed_at = $task->status === Statuses::done() ? now() : null;
+            $task->status ??= Status::default();
+            $task->type ??= IssueType::default();
+            $task->priority ??= Priority::default();
+            $task->completed_at = Status::isDone($task->status) ? now() : null;
         });
 
         static::updating(static function (self $task): void {
             if ($task->isDirty('status')) {
-                $task->completed_at = $task->status === Statuses::done() ? now() : null;
+                $task->completed_at = Status::isDone($task->status) ? now() : null;
             }
         });
 
@@ -212,7 +209,7 @@ class Task extends Model implements Administrable
     {
         return $this->due_date !== null
             && $this->due_date->lt(today())
-            && $this->status !== Statuses::done();
+            && ! Status::isDone($this->status);
     }
 
     private function record(string $kind, ?string $old = null, ?string $new = null): void
@@ -277,13 +274,15 @@ class Task extends Model implements Administrable
                 ->query(static fn (Builder $query): Builder => $query->where('is_archived', false))
                 ->required()->rules('integer')->tab('params'),
             SelectField::make('type')->label(__('atrium-tracker::tracker.tasks.fields.type'))
-                ->options(TaskType::options())->default(TaskType::Task->value)->required()->tab('params'),
+                ->options(IssueType::options())->default(IssueType::default())->required()->tab('params'),
             TextField::make('title')->label(__('atrium-tracker::tracker.tasks.fields.title'))->required()->maxLength(255)->tab('params'),
             ContentField::make('description')->label(__('atrium-tracker::tracker.tasks.fields.description'))->tab('params'),
             SelectField::make('status')->label(__('atrium-tracker::tracker.tasks.fields.status'))
-                ->options(Statuses::options())->default(Statuses::first())->required()->tab('params'),
+                ->options(Status::options())->default(Status::default())->required()->tab('params'),
+            SelectField::make('resolution')->label(__('atrium-tracker::tracker.tasks.fields.resolution'))
+                ->options(Resolution::options())->tab('params'),
             SelectField::make('priority')->label(__('atrium-tracker::tracker.tasks.fields.priority'))
-                ->options(Priority::options())->default(Priority::Medium->value)->required()->tab('params'),
+                ->options(Priority::options())->default(Priority::default())->required()->tab('params'),
             BelongsToField::make('assignee_id')->label(__('atrium-tracker::tracker.tasks.fields.assignee'))->model(AdminUser::class)
                 ->rules('integer')->tab('params'),
             BelongsToField::make('parent_id')->label(__('atrium-tracker::tracker.tasks.fields.parent'))->model(self::class)->displayColumn('title')
@@ -349,8 +348,14 @@ class Task extends Model implements Administrable
         $type = $data['type'] ?? $this->type;
         $parentId = array_key_exists('parent_id', $data) ? $data['parent_id'] : $this->parent_id;
 
+        $kind = IssueType::terms()[$type] ?? null;
+
+        if ($parentId === null && $kind?->needs_parent) {
+            throw ValidationException::withMessages(['parent_id' => __('atrium-tracker::tracker.errors.needs_parent')]);
+        }
+
         if ($parentId !== null) {
-            $this->guardParent((int) $parentId, $projectId, $type);
+            $this->guardParent((int) $parentId, $projectId, $kind);
         }
 
         $assigneeId = array_key_exists('assignee_id', $data) ? $data['assignee_id'] : $this->assignee_id;
@@ -364,14 +369,14 @@ class Task extends Model implements Administrable
 
     /**
      * The parent is a task of the same project that is not the task itself
-     * or one below it, and an epic has none.
+     * or one below it, and a type that stands at the top has none.
      */
-    private function guardParent(int $parentId, int $projectId, string $type): void
+    private function guardParent(int $parentId, int $projectId, ?IssueType $kind): void
     {
         $parent = self::query()->find($parentId);
 
         $error = match (true) {
-            $type === TaskType::Epic->value => 'epic_has_parent',
+            $kind?->top_level => 'type_has_no_parent',
             $parent === null || $parent->project_id !== $projectId => 'parent_other_project',
             $this->exists && $this->isAncestorOrSelf($parent) => 'parent_loop',
             default => null,
@@ -416,9 +421,9 @@ class Task extends Model implements Administrable
         return [
             TextColumn::make('code')->label(__('atrium-tracker::tracker.tasks.fields.code'))->value(self::describe(static fn (self $task): string => $task->code))->width('7rem'),
             TextColumn::make('title')->label(__('atrium-tracker::tracker.tasks.fields.title'))->sortable()->searchable(),
-            TextColumn::make('type')->label(__('atrium-tracker::tracker.tasks.fields.type'))->value(self::describe(static fn (self $task): string => TaskType::tryFrom($task->type)?->label() ?? $task->type)),
-            TextColumn::make('status')->label(__('atrium-tracker::tracker.tasks.fields.status'))->sortable()->value(self::describe(static fn (self $task): string => Statuses::label($task->status))),
-            TextColumn::make('priority')->label(__('atrium-tracker::tracker.tasks.fields.priority'))->value(self::describe(static fn (self $task): string => Priority::tryFrom($task->priority)?->label() ?? $task->priority)),
+            TextColumn::make('type')->label(__('atrium-tracker::tracker.tasks.fields.type'))->value(self::describe(static fn (self $task): string => IssueType::labelOf($task->type))),
+            TextColumn::make('status')->label(__('atrium-tracker::tracker.tasks.fields.status'))->sortable()->value(self::describe(static fn (self $task): string => Status::labelOf($task->status))),
+            TextColumn::make('priority')->label(__('atrium-tracker::tracker.tasks.fields.priority'))->value(self::describe(static fn (self $task): string => Priority::labelOf($task->priority))),
             TextColumn::make('assignee.name')->label(__('atrium-tracker::tracker.tasks.fields.assignee')),
             DateColumn::make('due_date')->label(__('atrium-tracker::tracker.tasks.fields.due_date'))->sortable(),
         ];
@@ -430,18 +435,18 @@ class Task extends Model implements Administrable
             SelectFilter::make('project_id')->label(__('atrium-tracker::tracker.tasks.fields.project'))
                 ->options(fn (): array => Project::query()->orderBy('name')->orderBy('id')->pluck('name', 'id')->all()),
             SelectFilter::make('status')->label(__('atrium-tracker::tracker.tasks.fields.status'))
-                ->options(fn (): array => Statuses::options()),
+                ->options(fn (): array => Status::options()),
             SelectFilter::make('assignee_id')->label(__('atrium-tracker::tracker.tasks.fields.assignee'))
                 ->options(fn (): array => Admins::names()),
             SelectFilter::make('type')->label(__('atrium-tracker::tracker.tasks.fields.type'))
-                ->options(fn (): array => TaskType::options()),
+                ->options(fn (): array => IssueType::options()),
             SelectFilter::make('label')->label(__('atrium-tracker::tracker.tasks.filters.label'))
                 ->options(fn (): array => self::allLabels())
                 ->query(static fn (Builder $query, string $value): Builder => $query->whereJsonContains('labels', $value)),
             BooleanFilter::make('overdue')->label(__('atrium-tracker::tracker.tasks.filters.overdue'))
                 ->query(static fn (Builder $query, string $value): Builder => $value === '1'
-                    ? $query->whereDate('due_date', '<', today())->where('status', '!=', Statuses::done())
-                    : $query->where(static fn (Builder $inner): Builder => $inner->whereNull('due_date')->orWhereDate('due_date', '>=', today())->orWhere('status', Statuses::done()))),
+                    ? $query->whereDate('due_date', '<', today())->whereNotIn('status', Status::doneCodes())
+                    : $query->where(static fn (Builder $inner): Builder => $inner->whereNull('due_date')->orWhereDate('due_date', '>=', today())->orWhereIn('status', Status::doneCodes()))),
             BooleanFilter::make('mine')->label(__('atrium-tracker::tracker.tasks.filters.mine'))
                 ->query(static fn (Builder $query, string $value): Builder => $value === '1'
                     ? $query->where('assignee_id', Admins::currentId())

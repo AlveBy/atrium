@@ -12,16 +12,23 @@ namespace Atrium\Tracker;
 use Atrium\Admin\Facades\Hook;
 use Atrium\Admin\Modules\Modules;
 use Atrium\Tracker\Models\Task;
+use Atrium\Tracker\Plugins\Plugins;
 use Illuminate\Support\ServiceProvider;
 
 /**
  * The models, the migration, the settings and the demo come from the manifest
  * in composer.json once `atrium:module:install alveby/atrium-tracker` has run;
- * this loads the texts and the views and adds the "My tasks" button.
+ * this loads the texts and the views, adds the "My tasks" button and holds
+ * the registry of the plugins.
  */
 final class TrackerServiceProvider extends ServiceProvider
 {
     public const MODULE = 'alveby/atrium-tracker';
+
+    public function register(): void
+    {
+        $this->app->singleton(Plugins::class);
+    }
 
     public function boot(): void
     {

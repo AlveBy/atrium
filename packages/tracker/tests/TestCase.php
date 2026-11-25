@@ -15,6 +15,7 @@ use Atrium\Admin\Models\AdminUser;
 use Atrium\Admin\Modules\Settings;
 use Atrium\Tracker\Models\Project;
 use Atrium\Tracker\Models\Task;
+use Atrium\Tracker\Models\Term;
 use Atrium\Tracker\TrackerServiceProvider;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Http;
@@ -57,6 +58,8 @@ abstract class TestCase extends Orchestra
     protected function setUp(): void
     {
         parent::setUp();
+
+        Term::flush();
 
         $this->withoutVite();
         Http::preventStrayRequests();

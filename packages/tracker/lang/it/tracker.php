@@ -45,6 +45,7 @@ return [
             'description' => 'Descrizione',
             'status' => 'Stato',
             'priority' => 'Priorità',
+            'resolution' => 'Risoluzione',
             'assignee' => 'Assegnatario',
             'parent' => 'Attività padre',
             'parent_hint' => 'Una sottoattività di un’attività, o un’attività di un’epic, nello stesso progetto.',
@@ -74,11 +75,47 @@ return [
         ],
     ],
 
+    'terms' => [
+        'types' => 'Tipi di attività',
+        'priorities' => 'Priorità',
+        'statuses' => 'Stati',
+        'resolutions' => 'Risoluzioni',
+        'fields' => [
+            'code' => 'Codice',
+            'code_hint' => 'Lettere minuscole, cifre e _. Le attività conservano il codice, quindi poi non si può cambiare.',
+            'name' => 'Nome',
+            'name_hint' => 'Vuoto: il nome predefinito, nella lingua di ciascun amministratore.',
+            'sort' => 'Ordine',
+            'default' => 'Predefinito',
+            'default_hint' => 'Una nuova attività riceve questo. Senza segno, il primo.',
+            'category' => 'Categoria',
+            'symbol' => 'Simbolo',
+            'symbol_hint' => 'Mostrato prima del nome, così la priorità non si distingue solo dal colore.',
+            'top_level' => 'Senza padre',
+            'top_level_hint' => 'Le attività di questo tipo stanno in cima, come un’epic.',
+            'needs_parent' => 'Serve un padre',
+            'needs_parent_hint' => 'Le attività di questo tipo appartengono sempre a un’altra attività, come una sottoattività.',
+        ],
+        'categories' => [
+            'todo' => 'Da fare',
+            'active' => 'In corso',
+            'done' => 'Fatto',
+        ],
+    ],
+
     'types' => [
         'task' => 'Attività',
         'bug' => 'Bug',
         'story' => 'Storia',
         'epic' => 'Epic',
+        'subtask' => 'Sottoattività',
+    ],
+
+    'resolutions' => [
+        'done' => 'Fatta',
+        'wont_do' => 'Non verrà fatta',
+        'duplicate' => 'Duplicata',
+        'cannot_reproduce' => 'Non riproducibile',
     ],
 
     'priorities' => [
@@ -114,20 +151,21 @@ return [
     'errors' => [
         'archived' => 'Il progetto è archiviato: non si possono spostare attività al suo interno.',
         'not_in_project' => 'Questo amministratore non lavora al progetto.',
-        'epic_has_parent' => 'Un’epic non ha un’attività padre.',
+        'type_has_no_parent' => 'Un’attività di questo tipo non ha un’attività padre.',
+        'needs_parent' => 'Un’attività di questo tipo ha bisogno di un’attività padre.',
+        'in_use' => 'Ci sono ancora attività che lo usano: modificale prima.',
         'parent_other_project' => 'L’attività padre deve essere dello stesso progetto.',
         'parent_loop' => 'Un’attività non può essere figlia di se stessa o di una sua sottoattività.',
     ],
 
     'settings' => [
-        'description' => 'Gli stati delle attività e le email che li riguardano.',
-        'statuses' => 'Stati',
-        'statuses_hint' => 'In ordine: una nuova attività riceve il primo, l’ultimo significa «fatto». Vuoto: :default. Se rinomini uno stato qui, le attività mantengono il vecchio nome: cambialo anche nelle attività.',
-        'add_status' => 'Aggiungi stato',
+        'description' => 'Le email sulle attività.',
         'notify_assigned' => 'Scrivi all’assegnatario',
         'notify_assigned_hint' => 'Un’email quando un’attività viene assegnata a un amministratore.',
         'notify_status' => 'Scrivi di un nuovo stato',
         'notify_status_hint' => 'Un’email all’assegnatario quando cambia lo stato della sua attività.',
+        'disabled_plugins' => 'Plugin disattivati',
+        'disabled_plugins_hint' => 'I plugin selezionati vengono ignorati; un nuovo plugin è attivo finché non lo selezioni.',
     ],
 
     'mail' => [

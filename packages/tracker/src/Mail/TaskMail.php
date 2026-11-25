@@ -9,8 +9,8 @@ declare(strict_types=1);
 
 namespace Atrium\Tracker\Mail;
 
+use Atrium\Tracker\Models\Status;
 use Atrium\Tracker\Models\Task;
-use Atrium\Tracker\Support\Statuses;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
@@ -35,7 +35,7 @@ final class TaskMail extends Mailable
         return new Envelope(subject: __('atrium-tracker::tracker.mail.'.$this->kind.'_subject', [
             'code' => $this->task->code,
             'title' => $this->task->title,
-            'status' => Statuses::label($this->task->status),
+            'status' => Status::labelOf($this->task->status),
         ]));
     }
 
@@ -45,8 +45,8 @@ final class TaskMail extends Mailable
             __('atrium-tracker::tracker.mail.'.$this->kind.'_line', [
                 'code' => $this->task->code,
                 'title' => $this->task->title,
-                'old' => Statuses::label((string) $this->previous),
-                'new' => Statuses::label($this->task->status),
+                'old' => Status::labelOf($this->previous),
+                'new' => Status::labelOf($this->task->status),
             ]),
         ];
 

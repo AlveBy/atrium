@@ -149,6 +149,32 @@ final class ScreensTest extends TestCase
             'tab' => 'params',
             'type' => 'belongsTo',
         ],
+        'resolution' => [
+            'default' => null,
+            'name' => 'resolution',
+            'options' => [
+                [
+                    'label' => 'Done',
+                    'value' => 'done',
+                ],
+                [
+                    'label' => 'Won’t do',
+                    'value' => 'wont_do',
+                ],
+                [
+                    'label' => 'Duplicate',
+                    'value' => 'duplicate',
+                ],
+                [
+                    'label' => 'Cannot reproduce',
+                    'value' => 'cannot_reproduce',
+                ],
+            ],
+            'readonly' => false,
+            'required' => false,
+            'tab' => 'params',
+            'type' => 'select',
+        ],
         'status' => [
             'default' => 'todo',
             'name' => 'status',
@@ -212,6 +238,10 @@ final class ScreensTest extends TestCase
                 [
                     'label' => 'Epic',
                     'value' => 'epic',
+                ],
+                [
+                    'label' => 'Sub-task',
+                    'value' => 'subtask',
                 ],
             ],
             'readonly' => false,
@@ -300,17 +330,6 @@ final class ScreensTest extends TestCase
             'required' => false,
             'tab' => 'params',
             'type' => 'checkbox',
-        ],
-        'statuses' => [
-            'addLabel' => 'Add a status',
-            'default' => null,
-            'itemType' => 'text',
-            'maxItems' => 15,
-            'name' => 'statuses',
-            'readonly' => false,
-            'required' => false,
-            'tab' => 'params',
-            'type' => 'repeatable',
         ],
     ];
 

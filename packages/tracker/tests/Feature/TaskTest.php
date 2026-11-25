@@ -13,6 +13,7 @@ use Atrium\Admin\Facades\Hook;
 use Atrium\Tracker\Models\Comment;
 use Atrium\Tracker\Models\Event;
 use Atrium\Tracker\Models\Project;
+use Atrium\Tracker\Models\Status;
 use Atrium\Tracker\Models\Task;
 use Atrium\Tracker\Tests\TestCase;
 use Illuminate\Support\Carbon;
@@ -84,8 +85,10 @@ final class TaskTest extends TestCase
 
         $this->assertSame('todo', $task->fresh()->status);
 
-        $this->settings(['statuses' => ['Backlog', 'Doing', 'Shipped']]);
-        $this->assertSame('Backlog', Task::query()->create(['project_id' => $task->project_id, 'title' => 'B'])->fresh()->status);
+        Status::query()->update(['is_default' => false]);
+        Status::query()->where('code', 'in_progress')->update(['is_default' => true]);
+        Status::flush();
+        $this->assertSame('in_progress', Task::query()->create(['project_id' => $task->project_id, 'title' => 'B'])->fresh()->status);
     }
 
     public function test_the_closing_time_follows_the_last_status(): void
@@ -111,15 +114,17 @@ final class TaskTest extends TestCase
         Carbon::setTestNow();
     }
 
-    public function test_the_last_of_the_own_statuses_is_the_closing_one(): void
+    public function test_a_status_of_the_done_category_closes_whatever_it_is_called(): void
     {
-        $this->settings(['statuses' => ['Open', 'Shipped']]);
-        $task = $this->task(null, ['status' => 'Open']);
+        Status::query()->create(['code' => 'shipped', 'name' => 'Shipped', 'sort' => 900, 'category' => Status::DONE]);
+        Status::query()->where('code', 'done')->update(['category' => Status::ACTIVE]);
+        Status::flush();
+        $task = $this->task(null, ['status' => 'todo']);
 
         $task->update(['status' => 'done']);
-        $this->assertNull($task->fresh()->completed_at, '"done" is no longer a status.');
+        $this->assertNull($task->fresh()->completed_at, '"done" no longer closes.');
 
-        $task->update(['status' => 'Shipped']);
+        $task->update(['status' => 'shipped']);
         $this->assertNotNull($task->fresh()->completed_at);
     }
 

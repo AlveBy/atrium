@@ -45,6 +45,7 @@ return [
             'description' => 'Descrição',
             'status' => 'Status',
             'priority' => 'Prioridade',
+            'resolution' => 'Resolução',
             'assignee' => 'Responsável pela tarefa',
             'parent' => 'Tarefa pai',
             'parent_hint' => 'Uma subtarefa de uma tarefa, ou uma tarefa de um épico, no mesmo projeto.',
@@ -74,11 +75,47 @@ return [
         ],
     ],
 
+    'terms' => [
+        'types' => 'Tipos de tarefa',
+        'priorities' => 'Prioridades',
+        'statuses' => 'Status',
+        'resolutions' => 'Resoluções',
+        'fields' => [
+            'code' => 'Código',
+            'code_hint' => 'Letras minúsculas, dígitos e _. As tarefas guardam o código, por isso ele não pode ser alterado depois.',
+            'name' => 'Nome',
+            'name_hint' => 'Vazio: o nome embutido, no idioma de cada administrador.',
+            'sort' => 'Ordem',
+            'default' => 'Padrão',
+            'default_hint' => 'Uma tarefa nova recebe este. Sem marca, o primeiro.',
+            'category' => 'Categoria',
+            'symbol' => 'Símbolo',
+            'symbol_hint' => 'Exibido antes do nome, para que a prioridade não se distinga só pela cor.',
+            'top_level' => 'Sem pai',
+            'top_level_hint' => 'As tarefas deste tipo ficam no topo, como um épico.',
+            'needs_parent' => 'Precisa de um pai',
+            'needs_parent_hint' => 'As tarefas deste tipo sempre pertencem a outra tarefa, como uma subtarefa.',
+        ],
+        'categories' => [
+            'todo' => 'A fazer',
+            'active' => 'Em andamento',
+            'done' => 'Concluída',
+        ],
+    ],
+
     'types' => [
         'task' => 'Tarefa',
         'bug' => 'Bug',
         'story' => 'História',
         'epic' => 'Épico',
+        'subtask' => 'Subtarefa',
+    ],
+
+    'resolutions' => [
+        'done' => 'Concluída',
+        'wont_do' => 'Não será feita',
+        'duplicate' => 'Duplicada',
+        'cannot_reproduce' => 'Não reproduzível',
     ],
 
     'priorities' => [
@@ -114,20 +151,21 @@ return [
     'errors' => [
         'archived' => 'O projeto está arquivado: não é possível mover tarefas para ele.',
         'not_in_project' => 'Este administrador não trabalha no projeto.',
-        'epic_has_parent' => 'Um épico não tem tarefa pai.',
+        'type_has_no_parent' => 'Uma tarefa deste tipo não tem tarefa pai.',
+        'needs_parent' => 'Uma tarefa deste tipo precisa de uma tarefa pai.',
+        'in_use' => 'Ainda há tarefas que usam isto: altere-as primeiro.',
         'parent_other_project' => 'A tarefa pai deve ser do mesmo projeto.',
         'parent_loop' => 'Uma tarefa não pode ser filha de si mesma nem de uma de suas subtarefas.',
     ],
 
     'settings' => [
-        'description' => 'Os status das tarefas e os e-mails sobre eles.',
-        'statuses' => 'Status',
-        'statuses_hint' => 'Em ordem: uma tarefa nova recebe o primeiro, o último significa «concluída». Vazio: :default. Se você renomear um status aqui, as tarefas mantêm o nome antigo: altere também nas tarefas.',
-        'add_status' => 'Adicionar status',
+        'description' => 'Os e-mails sobre as tarefas.',
         'notify_assigned' => 'Escrever ao responsável',
         'notify_assigned_hint' => 'Um e-mail quando uma tarefa é atribuída a um administrador.',
         'notify_status' => 'Escrever sobre um novo status',
         'notify_status_hint' => 'Um e-mail ao responsável quando o status da tarefa dele muda.',
+        'disabled_plugins' => 'Plugins desativados',
+        'disabled_plugins_hint' => 'Os plugins marcados são ignorados; um plugin novo fica ativo até você marcá-lo.',
     ],
 
     'mail' => [

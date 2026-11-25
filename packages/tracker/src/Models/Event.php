@@ -9,8 +9,6 @@ declare(strict_types=1);
 
 namespace Atrium\Tracker\Models;
 
-use Atrium\Tracker\Enums\Priority;
-use Atrium\Tracker\Support\Statuses;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Carbon;
 
@@ -46,8 +44,8 @@ class Event extends Model
         $dash = '—';
 
         return match ($this->kind) {
-            'status' => __('atrium-tracker::tracker.events.status', ['old' => Statuses::label((string) $this->old_value), 'new' => Statuses::label((string) $this->new_value)]),
-            'priority' => __('atrium-tracker::tracker.events.priority', ['old' => Priority::tryFrom((string) $this->old_value)?->label() ?? $dash, 'new' => Priority::tryFrom((string) $this->new_value)?->label() ?? $dash]),
+            'status' => __('atrium-tracker::tracker.events.status', ['old' => Status::labelOf($this->old_value), 'new' => Status::labelOf($this->new_value)]),
+            'priority' => __('atrium-tracker::tracker.events.priority', ['old' => $this->old_value === null ? $dash : Priority::labelOf($this->old_value), 'new' => $this->new_value === null ? $dash : Priority::labelOf($this->new_value)]),
             'assignee' => __('atrium-tracker::tracker.events.assignee', ['old' => $this->old_value ?? $dash, 'new' => $this->new_value ?? $dash]),
             default => __('atrium-tracker::tracker.events.created'),
         };

@@ -13,9 +13,9 @@ use Atrium\Admin\Models\AdminUser;
 use Atrium\Admin\Modules\DemoSeeder;
 use Atrium\Tracker\Models\Comment;
 use Atrium\Tracker\Models\Project;
+use Atrium\Tracker\Models\Status;
 use Atrium\Tracker\Models\Task;
 use Atrium\Tracker\Support\Notifier;
-use Atrium\Tracker\Support\Statuses;
 
 /**
  * Two projects of a small team and the tasks in them, at every status, with
@@ -79,7 +79,7 @@ final class TrackerDemoSeeder extends DemoSeeder
      */
     private function task(Project $project, string $title, string $type, ?int $steps, string $priority, ?AdminUser $assignee, array $labels, ?int $dueInDays, int|float|null $estimate, ?Task $parent = null): Task
     {
-        $statuses = array_keys(Statuses::options());
+        $statuses = array_keys(Status::options());
 
         $task = Task::query()->create([
             'project_id' => $project->id, 'type' => $type, 'title' => $title, 'priority' => $priority,

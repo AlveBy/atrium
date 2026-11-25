@@ -45,6 +45,7 @@ return [
             'description' => 'Açıklama',
             'status' => 'Durum',
             'priority' => 'Öncelik',
+            'resolution' => 'Çözüm',
             'assignee' => 'Atanan',
             'parent' => 'Üst görev',
             'parent_hint' => 'Aynı projedeki bir görevin alt görevi ya da bir epiğin görevi.',
@@ -74,11 +75,47 @@ return [
         ],
     ],
 
+    'terms' => [
+        'types' => 'Görev türleri',
+        'priorities' => 'Öncelikler',
+        'statuses' => 'Durumlar',
+        'resolutions' => 'Çözümler',
+        'fields' => [
+            'code' => 'Kod',
+            'code_hint' => 'Küçük harfler, rakamlar ve _. Görevler kodu saklar, bu yüzden sonradan değiştirilemez.',
+            'name' => 'Ad',
+            'name_hint' => 'Boşsa: yerleşik ad, her yöneticinin kendi dilinde.',
+            'sort' => 'Sıra',
+            'default' => 'Varsayılan',
+            'default_hint' => 'Yeni görev bunu alır. İşaret yoksa ilkini.',
+            'category' => 'Kategori',
+            'symbol' => 'Simge',
+            'symbol_hint' => 'Adın önünde gösterilir, böylece öncelik yalnızca renkle ayırt edilmez.',
+            'top_level' => 'Üst görevsiz',
+            'top_level_hint' => 'Bu türdeki görevler epik gibi en üstte durur.',
+            'needs_parent' => 'Üst görev gerekir',
+            'needs_parent_hint' => 'Bu türdeki görevler alt görev gibi her zaman başka bir görevin içindedir.',
+        ],
+        'categories' => [
+            'todo' => 'Yapılacak',
+            'active' => 'Sürüyor',
+            'done' => 'Bitti',
+        ],
+    ],
+
     'types' => [
         'task' => 'Görev',
         'bug' => 'Hata',
         'story' => 'Hikâye',
         'epic' => 'Epik',
+        'subtask' => 'Alt görev',
+    ],
+
+    'resolutions' => [
+        'done' => 'Tamamlandı',
+        'wont_do' => 'Yapılmayacak',
+        'duplicate' => 'Yinelenen',
+        'cannot_reproduce' => 'Yeniden üretilemiyor',
     ],
 
     'priorities' => [
@@ -114,20 +151,21 @@ return [
     'errors' => [
         'archived' => 'Proje arşivlendi: içine görev taşınamaz.',
         'not_in_project' => 'Bu yönetici projede çalışmıyor.',
-        'epic_has_parent' => 'Bir epiğin üst görevi olmaz.',
+        'type_has_no_parent' => 'Bu türdeki bir görevin üst görevi olmaz.',
+        'needs_parent' => 'Bu türdeki bir görevin üst görevi gerekir.',
+        'in_use' => 'Görevler bunu hâlâ kullanıyor: önce onları değiştirin.',
         'parent_other_project' => 'Üst görev aynı projeden olmalıdır.',
         'parent_loop' => 'Bir görev kendisinin ya da alt görevlerinden birinin çocuğu olamaz.',
     ],
 
     'settings' => [
-        'description' => 'Görev durumları ve bunlarla ilgili e-postalar.',
-        'statuses' => 'Durumlar',
-        'statuses_hint' => 'Sırayla: yeni görev ilkini alır, sonuncusu «bitti» demektir. Boşsa: :default. Burada bir durumu yeniden adlandırırsanız görevlerde eski ad kalır — görevlerde de değiştirin.',
-        'add_status' => 'Durum ekle',
+        'description' => 'Görevlerle ilgili e-postalar.',
         'notify_assigned' => 'Atanana yaz',
         'notify_assigned_hint' => 'Bir görev bir yöneticiye verildiğinde e-posta.',
         'notify_status' => 'Yeni durum hakkında yaz',
         'notify_status_hint' => 'Atananın görevinin durumu değiştiğinde ona e-posta.',
+        'disabled_plugins' => 'Kapatılan eklentiler',
+        'disabled_plugins_hint' => 'İşaretlediğiniz eklentiler yok sayılır; yeni bir eklenti siz işaretleyene kadar açıktır.',
     ],
 
     'mail' => [

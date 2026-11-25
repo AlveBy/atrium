@@ -10,13 +10,13 @@ declare(strict_types=1);
 namespace Atrium\Tracker;
 
 use Atrium\Admin\Fields\CheckboxField;
-use Atrium\Admin\Fields\RepeatableField;
+use Atrium\Admin\Fields\MultiSelectField;
 use Atrium\Admin\Modules\ModuleSettings;
-use Atrium\Tracker\Support\Statuses;
+use Atrium\Tracker\Plugins\Plugins;
 
 /**
- * What the site's owner sets for the tracker: the statuses of a task and
- * which letters are sent. One set for all sites: a team works in one tracker.
+ * What the site's owner sets for the tracker: which letters
+ * are sent. One set for all sites: a team works in one tracker.
  */
 final class TrackerSettings extends ModuleSettings
 {
@@ -27,12 +27,7 @@ final class TrackerSettings extends ModuleSettings
 
     public function fields(): array
     {
-        return [
-            RepeatableField::make('statuses')->label(__('atrium-tracker::tracker.settings.statuses'))
-                ->hint(__('atrium-tracker::tracker.settings.statuses_hint', ['default' => implode(' / ', array_map(Statuses::label(...), Statuses::BUILT_IN))]))
-                ->itemType('text')
-                ->maxItems(15)
-                ->addLabel(__('atrium-tracker::tracker.settings.add_status')),
+        $fields = [
             CheckboxField::make('notify_assigned')->label(__('atrium-tracker::tracker.settings.notify_assigned'))
                 ->hint(__('atrium-tracker::tracker.settings.notify_assigned_hint'))
                 ->default(true),
@@ -40,5 +35,15 @@ final class TrackerSettings extends ModuleSettings
                 ->hint(__('atrium-tracker::tracker.settings.notify_status_hint'))
                 ->default(true),
         ];
+
+        $plugins = app(Plugins::class)->all();
+
+        if ($plugins !== []) {
+            $fields[] = MultiSelectField::make('disabled_plugins')->label(__('atrium-tracker::tracker.settings.disabled_plugins'))
+                ->hint(__('atrium-tracker::tracker.settings.disabled_plugins_hint'))
+                ->options(array_map(static fn ($plugin): string => $plugin->title(), $plugins));
+        }
+
+        return $fields;
     }
 }

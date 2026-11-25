@@ -25,35 +25,26 @@ use Inertia\Testing\AssertableInertia;
  */
 final class SettingsTest extends TestCase
 {
-    public function test_the_settings_page_shows_the_three_settings(): void
+    public function test_the_settings_page_shows_the_two_settings(): void
     {
         $this->actingAs($this->admin(), 'admin')->get('/admin/modules/tracker/settings')
             ->assertOk()
             ->assertInertia(function (AssertableInertia $page): void {
                 $fields = collect($page->toArray()['props']['fields'])->keyBy('name');
 
-                $this->assertSame(['statuses', 'notify_assigned', 'notify_status'], $fields->keys()->all());
-                $this->assertStringContainsString('To do / In progress / In review / Done', $fields['statuses']['hint']);
+                $this->assertSame(['notify_assigned', 'notify_status'], $fields->keys()->all());
             });
     }
 
     public function test_the_settings_are_saved_and_read_back(): void
     {
         $this->actingAs($this->admin(), 'admin')
-            ->put('/admin/modules/tracker/settings', ['statuses' => ['Open', 'Closed'], 'notify_assigned' => false, 'notify_status' => true])
+            ->put('/admin/modules/tracker/settings', ['notify_assigned' => false, 'notify_status' => true])
             ->assertSessionDoesntHaveErrors();
         $this->app->make(Settings::class)->flush();
 
-        $this->assertSame(['Open', 'Closed'], Setting::get('tracker.statuses'));
         $this->assertFalse(Setting::get('tracker.notify_assigned'));
         $this->assertTrue(Setting::get('tracker.notify_status'));
-    }
-
-    public function test_more_than_fifteen_statuses_are_refused(): void
-    {
-        $this->actingAs($this->admin(), 'admin')
-            ->put('/admin/modules/tracker/settings', ['statuses' => array_map(static fn (int $i): string => "S$i", range(1, 16))])
-            ->assertSessionHasErrors(['statuses']);
     }
 
     public function test_the_letters_are_on_until_someone_switches_them_off(): void

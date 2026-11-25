@@ -45,6 +45,7 @@ return [
             'description' => 'Description',
             'status' => 'Status',
             'priority' => 'Priority',
+            'resolution' => 'Resolution',
             'assignee' => 'Assignee',
             'parent' => 'Parent task',
             'parent_hint' => 'A subtask of a task, or a task of an epic, in the same project.',
@@ -74,11 +75,47 @@ return [
         ],
     ],
 
+    'terms' => [
+        'types' => 'Task types',
+        'priorities' => 'Priorities',
+        'statuses' => 'Statuses',
+        'resolutions' => 'Resolutions',
+        'fields' => [
+            'code' => 'Code',
+            'code_hint' => 'Small letters, digits and _. Tasks keep the code, so it cannot be changed later.',
+            'name' => 'Name',
+            'name_hint' => 'Empty: the built-in name, in the language of each administrator.',
+            'sort' => 'Sort',
+            'default' => 'Default',
+            'default_hint' => 'A new task gets this one. Without a mark, the first.',
+            'category' => 'Category',
+            'symbol' => 'Symbol',
+            'symbol_hint' => 'Shown before the name, so the priority is not told by colour alone.',
+            'top_level' => 'No parent',
+            'top_level_hint' => 'Tasks of this type stand at the top, like an epic.',
+            'needs_parent' => 'Needs a parent',
+            'needs_parent_hint' => 'Tasks of this type always belong to another task, like a sub-task.',
+        ],
+        'categories' => [
+            'todo' => 'To do',
+            'active' => 'In progress',
+            'done' => 'Done',
+        ],
+    ],
+
     'types' => [
         'task' => 'Task',
         'bug' => 'Bug',
         'story' => 'Story',
         'epic' => 'Epic',
+        'subtask' => 'Sub-task',
+    ],
+
+    'resolutions' => [
+        'done' => 'Done',
+        'wont_do' => 'Won’t do',
+        'duplicate' => 'Duplicate',
+        'cannot_reproduce' => 'Cannot reproduce',
     ],
 
     'priorities' => [
@@ -114,20 +151,21 @@ return [
     'errors' => [
         'archived' => 'The project is archived: no tasks can be moved into it.',
         'not_in_project' => 'This administrator does not work in the project.',
-        'epic_has_parent' => 'An epic has no parent task.',
+        'type_has_no_parent' => 'A task of this type has no parent task.',
+        'needs_parent' => 'A task of this type needs a parent task.',
+        'in_use' => 'Tasks still use this: change them first.',
         'parent_other_project' => 'The parent task must be in the same project.',
         'parent_loop' => 'A task cannot be a child of itself or of one of its subtasks.',
     ],
 
     'settings' => [
-        'description' => 'The statuses of a task and the letters about them.',
-        'statuses' => 'Statuses',
-        'statuses_hint' => 'In order: a new task gets the first, the last one means done. Empty: :default. A task keeps the old name when you rename its status here, so change it in the tasks too.',
-        'add_status' => 'Add a status',
+        'description' => 'The letters about tasks.',
         'notify_assigned' => 'Write to the assignee',
         'notify_assigned_hint' => 'A letter when a task is given to an administrator.',
         'notify_status' => 'Write about a new status',
         'notify_status_hint' => 'A letter to the assignee when the status of their task changes.',
+        'disabled_plugins' => 'Switched-off plugins',
+        'disabled_plugins_hint' => 'Plugins you tick are ignored; a new plugin is on until you tick it.',
     ],
 
     'mail' => [

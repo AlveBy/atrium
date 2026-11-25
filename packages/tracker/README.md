@@ -1,6 +1,6 @@
 # Atrium Tracker
 
-Tasks for [Atrium](https://github.com/AlveBy/atrium): projects, tasks with comments, attachments and a history, mail on assignment and on a change of status. It is for the people who work in the admin panel: administrators with Atrium roles and permissions. Visitors of the site have no part in it.
+Tasks for [Atrium](https://github.com/AlveBy/atrium): projects, tasks with comments, attachments and a history, types, statuses, priorities and resolutions you edit yourself, mail on assignment and on a change of status, plugins. It is for the people who work in the admin panel: administrators with Atrium roles and permissions. Visitors of the site have no part in it.
 
 ## Install
 
@@ -13,7 +13,7 @@ Add `--demo` to fill it with two projects and ten tasks.
 
 `atrium:module:install` creates the tables, the permissions and the menu entry; `atrium:module:remove alveby/atrium-tracker` turns it off and asks whether to keep the data.
 
-The full guide, in [English](../../docs/tracker.md) and [Russian](../../docs/tracker.ru.md): projects, tasks, statuses, mail, settings and hooks.
+The full guide, in [English](../../docs/tracker.md) and [Russian](../../docs/tracker.ru.md): projects, tasks, types and statuses, mail, settings and hooks; and the [plugins](../../docs/tracker-plugins.md).
 
 ## Tests
 
