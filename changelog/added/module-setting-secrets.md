@@ -1,0 +1,1 @@
+- Settings of a module may name **secrets** (`ModuleSettings::secrets()`): they are stored encrypted, never sent to the screen (it shows a mask from `mask()`) and kept when the field is left empty; and **buttons** (`HasActions`) that run a check from the settings screen and show what it did or why it could not.

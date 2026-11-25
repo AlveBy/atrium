@@ -1,0 +1,1 @@
+- **Panels on a record** (`Atrium\Admin\Extensions\Panel`, the `atrium.ui.panels` registry): a module shows a block drawn by a Blade view on another module's record page, under the form, beside it or on a tab of its own, for one module or for all, with a permission and a condition ([docs/modules.md](docs/modules.md#panels-on-a-record)).

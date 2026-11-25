@@ -8,4 +8,4 @@
 - [ ] Dusk, if anything changes on screen (`php artisan dusk`)
 - [ ] `vendor/bin/pint` and `vendor/bin/phpstan analyse` are clean
 - [ ] New interface text is in `lang/en` and `lang/ru`; the other languages are filled in (machine translation is fine)
-- [ ] `CHANGELOG.md` → `[Unreleased]` has a line about it
+- [ ] A note for the release is in `changelog/{section}/{name}.md`, not in `CHANGELOG.md` (see `changelog/README.md`)

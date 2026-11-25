@@ -8,4 +8,5 @@
 
 /.github export-ignore
 CHANGELOG.md export-ignore
+/changelog export-ignore
 .styleci.yml export-ignore

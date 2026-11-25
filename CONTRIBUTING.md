@@ -53,6 +53,7 @@ The queue sets the merge method itself, tests the pull request on top of the lat
 - `declare(strict_types=1);` in every PHP file.
 - Every source file starts with the Atrium copyright header (`This file is part of Atrium …`). Pint writes it into PHP files, `php scripts/copyright-header.php --fix` into the rest, and `tests/Unit/CopyrightHeaderTest.php` fails without it. Translations get it too; built bundles (`dist`), JSON, XML, Markdown, SVG and the stubs that `atrium:make-module` copies into your application do not.
 - Never commit data from a real site. Bitrix and WordPress fixtures are synthetic.
+- A change a user of Atrium notices gets a note for the next release: a file of its own, `changelog/{section}/{name}.md` (`added`, `changed`, `deprecated`, `removed`, `fixed` or `security`), holding the list item that will go into `CHANGELOG.md`. Do not write into `CHANGELOG.md` itself: when every pull request adds lines to the same place, each merge leaves the others in conflict, so the lint step refuses entries under `[Unreleased]`. [changelog/README.md](changelog/README.md) has the details.
 
 ## Writing to the database
 
@@ -92,6 +93,6 @@ Atrium follows [Semantic Versioning](https://semver.org/). Until 1.0 a minor ver
 
 All packages are released together under one version. To release:
 
-1. Move the `[Unreleased]` notes in `CHANGELOG.md` under `## [x.y.z] - YYYY-MM-DD` and add the compare link at the bottom.
+1. Run `php scripts/changelog.php x.y.z`: it writes the notes in `changelog/` into `CHANGELOG.md` as `## [x.y.z] - YYYY-MM-DD` (today, or the date given after the version), moves the compare links on and deletes the note files.
 2. Commit (`chore: release x.y.z`), tag `vx.y.z`, push the tag.
 3. The `release` workflow publishes the GitHub release with those notes; Packagist picks up the tag.
