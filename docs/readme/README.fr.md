@@ -146,6 +146,7 @@ La base de données Bitrix est uniquement lue. Les onglets, l'ordre des champs e
 - [Recherche : la page de résultats, le champ de l'administration, ce qui est cherché et comment](../search.md)
 - [Votre module : champs, colonnes, onglets, droits, langues, tests, paquet](../modules.md)
 - [Extensions : la conception de la plateforme — constructeur sans code, formules, plugins, applications externes, le plan](../extensions.md)
+- [Formules : écrites comme dans un tableur, noms en anglais et en russe, limites, erreurs avec ligne et colonne](../language.md)
 - [Champs personnalisés : ajouter des champs à tout module depuis l'administration, filtres et facettes sur 100 000 fiches](../custom-fields.md)
 - [Import et export : CSV et Excel pour tout module, colonnes, une vérification avant l’écriture, la console et une planification](../import-export.md)
 - [Historique des enregistrements : le journal des modifications de tous les modules, qui a changé quoi et quand, sans mots de passe](../history.md)
@@ -171,6 +172,7 @@ La base de données Bitrix est uniquement lue. Les onglets, l'ordre des champs e
 | [`alveby/atrium-bitrix`](../../packages/bitrix/README.md) | Le migrateur 1C-Bitrix |
 | [`alveby/atrium-ai`](../../packages/ai/README.md) | Aide à la rédaction par IA dans l'administration |
 | [`alveby/atrium-custom-fields`](../../packages/custom-fields/README.md) | Champs ajoutés à tout module depuis l'administration, avec filtres et facettes |
+| [`alveby/atrium-language`](../../packages/language/README.md) | Des formules dans le code : analysées, vérifiées et exécutées avec des limites, jamais transformées en PHP |
 | [`alveby/atrium-seo`](../../packages/seo/README.md) | Modèles de balises meta, hreflang, sitemaps, schema.org, redirections et un contrôle SEO |
 | [`alveby/atrium-docs`](../../packages/docs/README.md) | Documentation à partir de Markdown, avec versions et recherche |
 | [`alveby/atrium-backup`](../../packages/backup/README.md) | Sauvegardes des bases de données et des fichiers, restauration depuis l'administration |

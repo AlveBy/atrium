@@ -146,6 +146,7 @@ Baza danych Bitrixa jest tylko odczytywana. Karty, kolejność pól i kolumny li
 - [Wyszukiwanie: strona wyników, pole w panelu, co i jak jest wyszukiwane](../search.md)
 - [Własny moduł: pola, kolumny, zakładki, uprawnienia, języki, testy, pakiet](../modules.md)
 - [Rozszerzenia: projekt platformy — kreator bez kodu, formuły, wtyczki, zewnętrzne aplikacje, plan](../extensions.md)
+- [Formuły: pisane jak w arkuszu, nazwy po angielsku i rosyjsku, limity, błędy z wierszem i kolumną](../language.md)
 - [Własne pola: dodawanie pól do dowolnego modułu z panelu, filtry i fasety na 100 000 rekordów](../custom-fields.md)
 - [Import i eksport: CSV i Excel dla każdego modułu, kolumny, sprawdzenie przed zapisem, konsola i harmonogram](../import-export.md)
 - [Historia rekordów: dziennik zmian wszystkich modułów, kto, co i kiedy zmienił, bez haseł](../history.md)
@@ -171,6 +172,7 @@ Baza danych Bitrixa jest tylko odczytywana. Karty, kolejność pól i kolumny li
 | [`alveby/atrium-bitrix`](../../packages/bitrix/README.md) | Migrator z 1C-Bitrix |
 | [`alveby/atrium-ai`](../../packages/ai/README.md) | Pomoc AI w pisaniu tekstów w panelu |
 | [`alveby/atrium-custom-fields`](../../packages/custom-fields/README.md) | Pola dodawane do dowolnego modułu z panelu, z filtrami i fasetami |
+| [`alveby/atrium-language`](../../packages/language/README.md) | Formuły w kodzie: analizowane, sprawdzane i wykonywane z limitami, nigdy nie zamieniane w PHP |
 | [`alveby/atrium-seo`](../../packages/seo/README.md) | Szablony meta, hreflang, mapy witryny, schema.org, przekierowania i kontrola SEO |
 | [`alveby/atrium-docs`](../../packages/docs/README.md) | Dokumentacja z Markdown, z wersjami i wyszukiwaniem |
 | [`alveby/atrium-backup`](../../packages/backup/README.md) | Kopie zapasowe baz danych i plików, przywracanie z panelu |

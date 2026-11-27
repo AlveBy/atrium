@@ -146,6 +146,7 @@ php artisan atrium:bitrix:parity
 - [Пошук: старонка вынікаў, радок у адмінцы, што і як шукаецца](../search.md)
 - [Свой модуль: палі, калонкі, укладкі, правы, мовы, тэсты, пакет](../modules.md)
 - [Пашырэнні: праект платформы — канструктар без кода, формулы, плагіны, знешнія праграмы, план](../extensions.md)
+- [Формулы: пішуцца як у табліцы, назвы на англійскай і рускай, ліміты, памылкі з радком і пазіцыяй](../language.md)
 - [Свае палі: дадаць поле ў любы модуль з адмінкі, фільтры і фасеты на 100 000 запісаў](../custom-fields.md)
 - [Імпарт і выгрузка: CSV і Excel для любога модуля, слупкі, праверка перад запісам, кансоль і расклад](../import-export.md)
 - [Гісторыя запісаў: журнал змен усіх модуляў, хто, што і калі змяніў, без пароляў](../history.md)
@@ -171,6 +172,7 @@ php artisan atrium:bitrix:parity
 | [`alveby/atrium-bitrix`](../../packages/bitrix/README.md) | Мігратар з 1С-Бітрыкс |
 | [`alveby/atrium-ai`](../../packages/ai/README.md) | ШІ-памочнік для тэкстаў у адмінцы |
 | [`alveby/atrium-custom-fields`](../../packages/custom-fields/README.md) | Палі, якія дадаюць у любы модуль з адмінкі, з фільтрамі і фасетамі |
+| [`alveby/atrium-language`](../../packages/language/README.md) | Формулы ў кодзе: разбор, праверка і выкананне з лімітамі, без ператварэння ў PHP |
 | [`alveby/atrium-seo`](../../packages/seo/README.md) | Шаблоны мета-тэгаў, hreflang, карты сайта, schema.org, рэдырэкты і SEO-праверка |
 | [`alveby/atrium-docs`](../../packages/docs/README.md) | Дакументацыя з Markdown: версіі і пошук |
 | [`alveby/atrium-backup`](../../packages/backup/README.md) | Рэзервовыя копіі баз і файлаў, аднаўленне з адмінкі |

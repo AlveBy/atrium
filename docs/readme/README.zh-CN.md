@@ -146,6 +146,7 @@ Bitrix 数据库只读不写。标签页、字段顺序和列表列会保持编�
 - [搜索：结果页、后台搜索框、搜索内容与方式](../search.md)
 - [自定义模块：字段、列、标签页、权限、语言、测试、打包](../modules.md)
 - [扩展：平台设计 — 无代码构建器、公式、插件、外部应用、计划](../extensions.md)
+- [公式：像电子表格一样书写，支持英文和俄文名称，有运行限制，错误标明行和列](../language.md)
 - [自定义字段：在后台为任意模块添加字段，10 万条记录上的筛选与分面](../custom-fields.md)
 - [导入与导出：任意模块的 CSV 和 Excel、列映射、写入前检查、命令行与定时任务](../import-export.md)
 - [记录历史：所有模块的变更日志，谁在何时更改了什么，不含密码](../history.md)
@@ -171,6 +172,7 @@ Bitrix 数据库只读不写。标签页、字段顺序和列表列会保持编�
 | [`alveby/atrium-bitrix`](../../packages/bitrix/README.md) | 1C-Bitrix 迁移工具 |
 | [`alveby/atrium-ai`](../../packages/ai/README.md) | 后台的 AI 写作助手 |
 | [`alveby/atrium-custom-fields`](../../packages/custom-fields/README.md) | 在后台为任意模块添加的字段，支持筛选与分面 |
+| [`alveby/atrium-language`](../../packages/language/README.md) | 代码中的公式：解析、检查并在限制下运行，绝不转换成 PHP |
 | [`alveby/atrium-seo`](../../packages/seo/README.md) | 元信息模板、hreflang、站点地图、schema.org、重定向和 SEO 检查 |
 | [`alveby/atrium-docs`](../../packages/docs/README.md) | 由 Markdown 生成的文档，支持版本和搜索 |
 | [`alveby/atrium-backup`](../../packages/backup/README.md) | 数据库和文件的备份，可在后台恢复 |

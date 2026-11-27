@@ -142,6 +142,7 @@ The Bitrix database is only read. The tabs, field order and list columns come ou
 - [Search: the results page, the admin box, what is searched and how](docs/search.md)
 - [Your own module: fields, columns, tabs, permissions, languages, tests, a package](docs/modules.md)
 - [Extensions: the platform design — the no-code builder, formulas, plugins, outside apps, the plan](docs/extensions.md)
+- [Formulas: written as in a spreadsheet, names in English and Russian, limits, errors with line and column](docs/language.md)
 - [Custom fields: add fields to any module from the admin, filters and facets on 100 000 records](docs/custom-fields.md)
 - [Import and export: CSV and Excel for any module, columns, a check before writing, the console and a schedule](docs/import-export.md)
 - [Record history: the activity log of every module, who changed what and when, without passwords](docs/history.md)
@@ -167,6 +168,7 @@ The Bitrix database is only read. The tabs, field order and list columns come ou
 | [`alveby/atrium-bitrix`](packages/bitrix/README.md) | The 1C-Bitrix migrator |
 | [`alveby/atrium-ai`](packages/ai/README.md) | AI writing help in the admin |
 | [`alveby/atrium-custom-fields`](packages/custom-fields/README.md) | Fields added to any module from the admin, with filters and facets |
+| [`alveby/atrium-language`](packages/language/README.md) | Formulas in the code: parsed, checked and run with limits, never turned into PHP |
 | [`alveby/atrium-seo`](packages/seo/README.md) | Meta templates, hreflang, sitemaps, schema.org, redirects and an SEO check |
 | [`alveby/atrium-docs`](packages/docs/README.md) | Documentation pages from Markdown, with versions and search |
 | [`alveby/atrium-backup`](packages/backup/README.md) | Backups of the databases and files, restore from the admin |
