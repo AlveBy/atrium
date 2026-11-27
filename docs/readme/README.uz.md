@@ -141,6 +141,7 @@ Bitrix maʼlumotlar bazasi faqat oʻqiladi. Yorliqlar, maydonlar tartibi va roʻ
 - [SEO: sarlavhalar, hreflang, sayt xaritalari, schema.org, yoʻnaltirishlar, SEO tekshiruvi](../seo.md)
 - [Menyular: sarlavha va pastki qism, havolalar daraxti, modulni ochadigan bandlar](../menus.md)
 - [Formalar: ustunlardagi konstruktor, sahifani qayta yuklamasdan yuborish, oynada, o‘z belgilashingiz va fetch](../forms.md)
+- [Sayt konstruktori: bloklardan tuzilgan sahifalar, ma’lumotlar formati va o‘z blok turingiz](../site-builder.md)
 - [Qo‘shimchalar: matn ichidagi forma yoki blok va modul o‘z turini qanday ro‘yxatdan o‘tkazadi](../embeds.md)
 - [Bloklar: bir marta yozilgan telefon yoki yozuv shablonlar va matnlarda ko‘rsatiladi](../blocks.md)
 - [Qidiruv: natijalar sahifasi, admin paneldagi qator, nima va qanday qidiriladi](../search.md)

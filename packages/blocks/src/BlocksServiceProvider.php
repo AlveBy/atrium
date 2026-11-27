@@ -9,9 +9,11 @@ declare(strict_types=1);
 
 namespace Atrium\Blocks;
 
+use Atrium\Admin\Builder\BlockTypes;
 use Atrium\Admin\Embeds\Embeds;
 use Atrium\Admin\Hooks\Hooks;
 use Atrium\Admin\Modules\Modules;
+use Atrium\Blocks\Builder\ReusableBlock;
 use Atrium\Blocks\Embeds\BlockEmbed;
 use Atrium\Blocks\Models\Block;
 use Illuminate\Support\Facades\Blade;
@@ -33,6 +35,7 @@ final class BlocksServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->loadTranslationsFrom(__DIR__.'/../lang', 'atrium-blocks');
+        $this->loadViewsFrom(__DIR__.'/../resources/views', 'atrium-blocks');
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
@@ -45,6 +48,7 @@ final class BlocksServiceProvider extends ServiceProvider
         Blade::directive('block', static fn (string $expression): string => "<?php echo app(\\Atrium\\Blocks\\Blocks::class)->html({$expression}); ?>");
 
         $this->app->make(Hooks::class)->register(Embeds::REGISTRY, 'block', new BlockEmbed);
+        $this->app->make(Hooks::class)->register(BlockTypes::REGISTRY, 'block', new ReusableBlock, 60);
 
         // Required but not installed: no table, so nothing to forget.
         if (! $this->app->make(Modules::class)->isInstalled(self::MODULE)) {

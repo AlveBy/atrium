@@ -589,7 +589,7 @@ How it works:
 | # | Pull request | Useful at once because |
 |---|---|---|
 | S1 | The site moves out of the core: SEO, slugs, theme, slots and embeds go into `alveby/atrium-site`, with their names kept. An upgrade test takes a site with existing pages, slugs, slug history and SEO data across the move. It checks that every address, redirect, title and description stays the same and that no table changes | The core gets smaller; the site is a plugin like the rest (step 3 of the [move-out](#the-core-and-the-plugins)) |
-| S2 | A page as a tree of blocks, the block registry, rendering, the built-in static blocks | Pages are assembled, not written in HTML |
+| S2 | A page as a tree of blocks, the block registry, rendering, the built-in static blocks. **Built**: [the guide](site-builder.md) | Pages are assembled, not written in HTML |
 | S3 | The editor: drag and drop, settings, preview, draft, versions | People build pages themselves |
 | S4 | Layout per width: phone, tablet, desktop | Pages look right on a phone |
 | S5 | Data blocks: list, card and filter from entities | The builder's entities appear on the site without code |

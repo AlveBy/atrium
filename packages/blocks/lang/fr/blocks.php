@@ -21,4 +21,7 @@ return [
         'code_hint' => 'Court, en lettres latines. Un modèle affiche le bloc avec @block(\'code\'), un texte avec le bouton + de l’éditeur.',
     ],
     'embed' => 'Bloc',
+    'builder' => [
+        'label' => 'Bloc réutilisable',
+    ],
 ];

@@ -21,4 +21,7 @@ return [
         'code_hint' => 'Kısa, Latin harfleriyle. Şablon bloğu @block(\'kod\') ile, metin ise düzenleyicideki + düğmesiyle gösterir.',
     ],
     'embed' => 'Blok',
+    'builder' => [
+        'label' => 'Yeniden kullanılabilir blok',
+    ],
 ];

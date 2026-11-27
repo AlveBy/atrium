@@ -21,4 +21,7 @@ return [
         'code_hint' => 'Krótko, łacińskimi literami. Szablon pokazuje blok przez @block(\'kod\'), tekst — przyciskiem + w edytorze.',
     ],
     'embed' => 'Blok',
+    'builder' => [
+        'label' => 'Blok wielokrotnego użytku',
+    ],
 ];
