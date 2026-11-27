@@ -147,6 +147,7 @@ Bitrix のデータベースは読み取るだけです。タブ、フィール�
 - [検索：結果ページ、管理画面の検索ボックス、検索対象と仕組み](../search.md)
 - [独自モジュール：フィールド、列、タブ、権限、言語、テスト、パッケージ化](../modules.md)
 - [拡張：プラットフォーム設計 — ノーコードビルダー、数式、プラグイン、外部アプリ、計画](../extensions.md)
+- [数式：表計算と同じ書き方、英語とロシア語の関数名、実行の制限、行と列を示すエラー](../language.md)
 - [カスタムフィールド：管理画面から任意のモジュールにフィールドを追加、10 万件でのフィルターとファセット](../custom-fields.md)
 - [インポートとエクスポート: どのモジュールでも CSV と Excel、列の対応、書き込み前のチェック、コンソールとスケジュール](../import-export.md)
 - [レコードの履歴: すべてのモジュールの変更履歴、誰がいつ何を変更したか、パスワードは記録しない](../history.md)
@@ -172,6 +173,7 @@ Bitrix のデータベースは読み取るだけです。タブ、フィール�
 | [`alveby/atrium-bitrix`](../../packages/bitrix/README.md) | 1C-Bitrix マイグレーター |
 | [`alveby/atrium-ai`](../../packages/ai/README.md) | 管理画面の AI 文章アシスタント |
 | [`alveby/atrium-custom-fields`](../../packages/custom-fields/README.md) | 管理画面から任意のモジュールに追加するフィールド（フィルターとファセット付き） |
+| [`alveby/atrium-language`](../../packages/language/README.md) | コード内の数式：解析、検査し、制限付きで実行。PHP に変換されることはありません |
 | [`alveby/atrium-seo`](../../packages/seo/README.md) | メタテンプレート、hreflang、サイトマップ、schema.org、リダイレクト、SEOチェック |
 | [`alveby/atrium-docs`](../../packages/docs/README.md) | Markdownから作るドキュメント（バージョンと検索つき） |
 | [`alveby/atrium-backup`](../../packages/backup/README.md) | データベースとファイルのバックアップ、管理画面からの復元 |

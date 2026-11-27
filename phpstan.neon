@@ -27,6 +27,7 @@ parameters:
         - packages/faq/src
         - packages/forms/src
         - packages/integrations/src
+        - packages/language/src
         - packages/bitrix24/src
         - packages/tracker/src
         - packages/onec/src

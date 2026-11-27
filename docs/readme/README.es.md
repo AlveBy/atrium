@@ -147,6 +147,7 @@ La base de datos de Bitrix solo se lee. Las pestañas, el orden de los campos y 
 - [Búsqueda: la página de resultados, el buscador del panel, qué se busca y cómo](../search.md)
 - [Tu propio módulo: campos, columnas, pestañas, permisos, idiomas, pruebas, paquete](../modules.md)
 - [Extensiones: el diseño de la plataforma — constructor sin código, fórmulas, plugins, apps externas, el plan](../extensions.md)
+- [Fórmulas: se escriben como en una hoja de cálculo, nombres en inglés y ruso, límites, errores con línea y columna](../language.md)
 - [Campos propios: añadir campos a cualquier módulo desde el panel, filtros y facetas con 100 000 registros](../custom-fields.md)
 - [Importar y exportar: CSV y Excel para cualquier módulo, columnas, una comprobación antes de escribir, la consola y una programación](../import-export.md)
 - [Historial de registros: el registro de cambios de todos los módulos, quién cambió qué y cuándo, sin contraseñas](../history.md)
@@ -172,6 +173,7 @@ La base de datos de Bitrix solo se lee. Las pestañas, el orden de los campos y 
 | [`alveby/atrium-bitrix`](../../packages/bitrix/README.md) | El migrador de 1C-Bitrix |
 | [`alveby/atrium-ai`](../../packages/ai/README.md) | Ayuda de redacción con IA en el panel |
 | [`alveby/atrium-custom-fields`](../../packages/custom-fields/README.md) | Campos que se añaden a cualquier módulo desde el panel, con filtros y facetas |
+| [`alveby/atrium-language`](../../packages/language/README.md) | Fórmulas en el código: analizadas, comprobadas y ejecutadas con límites, nunca convertidas en PHP |
 | [`alveby/atrium-seo`](../../packages/seo/README.md) | Plantillas meta, hreflang, sitemaps, schema.org, redirecciones y una revisión SEO |
 | [`alveby/atrium-docs`](../../packages/docs/README.md) | Documentación desde Markdown, con versiones y búsqueda |
 | [`alveby/atrium-backup`](../../packages/backup/README.md) | Copias de seguridad de bases de datos y archivos, restauración desde el panel |

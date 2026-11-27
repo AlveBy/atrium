@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "cb63faa2b00f31e12365e1619f18e312",
+    "content-hash": "821b1df98eb7b742b7d9bafa90d682b7",
     "packages": [
         {
             "name": "alveby/atrium",
@@ -12,7 +12,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/admin",
-                "reference": "a914998306151d9df43869d7c2a19d3a71a907f1"
+                "reference": "ed45fc0f94c55c769feac6e3a3d297211a8d74fe"
             },
             "require": {
                 "illuminate/database": "^13.0",
@@ -80,7 +80,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/onec",
-                "reference": "ed918d8ec3a5d0842c2a5d8b0471cc0eaecca034"
+                "reference": "f741cfec802c77337c66b19802b1aafa91b2eeaa"
             },
             "require": {
                 "alveby/atrium": "^0.2",
@@ -155,7 +155,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/two-factor",
-                "reference": "b7fa5d5f4d6347bd6d18ebbda926502e44b6f66b"
+                "reference": "dc78564ee4b57ff165164db73e43f8750ca1c433"
             },
             "require": {
                 "alveby/atrium": "^0.2",
@@ -228,7 +228,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/ai",
-                "reference": "43bc59ef88e99f6e8f94541e29f11b2da046bb2e"
+                "reference": "8ddb53bd039298ad72dfa802411dbbfef43b486d"
             },
             "require": {
                 "alveby/atrium": "^0.2",
@@ -297,7 +297,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/backup",
-                "reference": "b435992ab6e0b81416d013e0592fd430f996c98e"
+                "reference": "ffa5ed97d87de3e0bab97a5debdef253b6a2bc66"
             },
             "require": {
                 "alveby/atrium": "^0.2",
@@ -371,7 +371,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/bitrix24",
-                "reference": "e888e95625a09fbfbe8691f2b2425417df97405d"
+                "reference": "e9a06fcdf1f89cfa8dae58e2df7c5f4d2b4d2ea5"
             },
             "require": {
                 "alveby/atrium": "^0.2",
@@ -443,7 +443,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/blocks",
-                "reference": "f054829552d1e793bf2c8e1fbb386e4edd0fb3d2"
+                "reference": "45cfbfe08d76d942c155c6e47b698de663208975"
             },
             "require": {
                 "alveby/atrium": "^0.2",
@@ -517,7 +517,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/brands",
-                "reference": "222693a17709671f8dd903b2fb1a808453e915aa"
+                "reference": "d3e947d29d3282799f838bd0e5113bf180d01f10"
             },
             "require": {
                 "alveby/atrium": "^0.2",
@@ -583,7 +583,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/catalog",
-                "reference": "d2df16b1ec2c68ee3d8d71b93682b24ae1aa0d47"
+                "reference": "27f6a48e7ebd8dd8001c81f0c9e03d7bc0ab8a92"
             },
             "require": {
                 "alveby/atrium": "^0.2",
@@ -672,7 +672,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/custom-fields",
-                "reference": "cadc23bccd4c10fa970ca4c94cde40c58de87bab"
+                "reference": "6a90163031c26514e0786a07f31bb6fa4384b484"
             },
             "require": {
                 "alveby/atrium": "^0.2",
@@ -746,7 +746,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/docs",
-                "reference": "c8070fb809938a4f96b34b4b4d4dbab4448e9ad7"
+                "reference": "11de9bc48afc30b8579ff6cf239b9d7788d4c38f"
             },
             "require": {
                 "alveby/atrium": "^0.2",
@@ -810,7 +810,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/errors",
-                "reference": "4202610ddd20bfefd1c1f317c5f852dc4803c82e"
+                "reference": "b105807c66210c3eae1044ed40317a3c85f79608"
             },
             "require": {
                 "alveby/atrium": "^0.2",
@@ -887,7 +887,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/faq",
-                "reference": "86a68feea3c80b53b16428e0f439824404760806"
+                "reference": "af36e82431e3d02ecd4d5d769369b253bb08d34b"
             },
             "require": {
                 "alveby/atrium": "^0.2",
@@ -965,7 +965,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/forms",
-                "reference": "6b5e814261561e6ebe7cc80d933ca6e3282d6441"
+                "reference": "05d6ae8da3fe6f01db4563c63f96792d3a0383f8"
             },
             "require": {
                 "alveby/atrium": "^0.2",
@@ -1032,7 +1032,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/integrations",
-                "reference": "d4e584fa5db11b0eeb792b24707a6918b962b608"
+                "reference": "3ce4d5fe3c3829334bf527451ef8ba85d58e9b19"
             },
             "require": {
                 "alveby/atrium": "^0.2",
@@ -1096,12 +1096,77 @@
             }
         },
         {
+            "name": "alveby/atrium-language",
+            "version": "0.2.x-dev",
+            "dist": {
+                "type": "path",
+                "url": "packages/language",
+                "reference": "d13699c42e301d80aef7462ca3a89c448d0b81ab"
+            },
+            "require": {
+                "brick/math": "^1.0",
+                "ext-mbstring": "*",
+                "illuminate/support": "^13.0",
+                "php": "^8.3"
+            },
+            "require-dev": {
+                "alveby/atrium": "^0.2",
+                "orchestra/testbench": "^11.0",
+                "phpunit/phpunit": "^12.5"
+            },
+            "suggest": {
+                "alveby/atrium": "Lets modules add formula functions through the hook registry atrium.language.functions"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Atrium\\Language\\LanguageServiceProvider"
+                    ]
+                },
+                "branch-alias": {
+                    "dev-main": "0.2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Atrium\\Language\\": "src/"
+                }
+            },
+            "autoload-dev": {
+                "psr-4": {
+                    "Atrium\\Language\\Tests\\": "tests/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "Atrium's own language: a typed tree shared by formulas, rules and plugins, an Excel-like formula parser in Russian and English, and an interpreter with limits",
+            "homepage": "https://github.com/AlveBy/atrium",
+            "keywords": [
+                "atrium",
+                "excel",
+                "expression-language",
+                "formulas",
+                "interpreter",
+                "laravel"
+            ],
+            "support": {
+                "issues": "https://github.com/AlveBy/atrium/issues",
+                "source": "https://github.com/AlveBy/atrium"
+            },
+            "transport-options": {
+                "symlink": true,
+                "relative": true
+            }
+        },
+        {
             "name": "alveby/atrium-menus",
             "version": "0.2.x-dev",
             "dist": {
                 "type": "path",
                 "url": "packages/menus",
-                "reference": "39ac1fba2288e1e48b58fbff89960a42f74f8d7e"
+                "reference": "16443696a1991060333685e460c3d234bf4d777f"
             },
             "require": {
                 "alveby/atrium": "^0.2",
@@ -1178,7 +1243,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/monitoring",
-                "reference": "95a22325950da24151959d22b68c1e35c70647cb"
+                "reference": "fa50e9c71b6699fa9b2627aa6c17b668f6ec3c76"
             },
             "require": {
                 "alveby/atrium": "^0.2",
@@ -1260,7 +1325,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/news",
-                "reference": "59dcce554b62b8f5cbd4caa144a2016ea9f10d0a"
+                "reference": "9e1b661b0d4dffda07c069472ed6f717f9beb256"
             },
             "require": {
                 "alveby/atrium": "^0.2",
@@ -1334,7 +1399,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/pages",
-                "reference": "291b88d7655354ad396a100dc27b305206f1d7ef"
+                "reference": "2cd32a4d92c0480de1bdbc646e21cf15dc91df51"
             },
             "require": {
                 "alveby/atrium": "^0.2",
@@ -1410,7 +1475,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/reviews",
-                "reference": "2e06886c7b9e7a2c65a0660fa015dd31386d674c"
+                "reference": "8044ca42fca9c17e1d4bc531b402294caa805cc1"
             },
             "require": {
                 "alveby/atrium": "^0.2",
@@ -1480,7 +1545,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/search",
-                "reference": "76427b2f903a80db39d2637e3f9c85c6edb8db94"
+                "reference": "36c785ef66066c43e3f6772f3715b1db132b6f5e"
             },
             "require": {
                 "alveby/atrium": "^0.2",
@@ -1548,7 +1613,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/seo",
-                "reference": "e550a27ee3715e7cb8c342feca2764c33f02db23"
+                "reference": "ff441df9ae6d5b1c9dd917d030218fa9959897e0"
             },
             "require": {
                 "alveby/atrium": "^0.2",
@@ -1641,7 +1706,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/social-login",
-                "reference": "911cba415d17f20441145d36254c4af34ebcd25a"
+                "reference": "4c71c2557d4b649cee0b12460695c6fb8346379b"
             },
             "require": {
                 "alveby/atrium": "^0.2",
@@ -1719,7 +1784,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/solutions",
-                "reference": "122760dab579646c2f2c71782210ebae61e03791"
+                "reference": "c5381d1d7350fcd0e1ede3424ea4aa06d02f2f3a"
             },
             "require": {
                 "alveby/atrium": "^0.2",
@@ -1796,7 +1861,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/stores",
-                "reference": "e924d6a0df531ddb5a412678ca51dfca656c7b6a"
+                "reference": "af8cc2278311c19c12e4fa6ea770c3e7bc60342a"
             },
             "require": {
                 "alveby/atrium": "^0.2",
@@ -1868,7 +1933,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/team",
-                "reference": "d41ce6956a9abdf457920ecae79f8247882a7621"
+                "reference": "a3b61541006a041a4f0f2e182b07611ab7c49aa5"
             },
             "require": {
                 "alveby/atrium": "^0.2",
@@ -1946,7 +2011,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/theme",
-                "reference": "d63a91b796aa433682c78eb79c740b1b4c3218d3"
+                "reference": "1045ac09e6fe65b2bccf531df5ca551ec46d4b0a"
             },
             "require": {
                 "alveby/atrium": "^0.2",
@@ -2008,7 +2073,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/tracker",
-                "reference": "bc784ee368ec70b0c77a2bc6c5ac6862679c9f75"
+                "reference": "aa2349b06bded8adc43d95cfe0e44c2017495877"
             },
             "require": {
                 "alveby/atrium": "^0.2",
@@ -10364,7 +10429,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/bitrix",
-                "reference": "d340462d5d9ee4499a9d74574d7c899dc08011c0"
+                "reference": "1f598bbd3eafa01156d2c99a86e906ed91cf1f76"
             },
             "require": {
                 "alveby/atrium": "^0.2",
@@ -10428,7 +10493,7 @@
             "dist": {
                 "type": "path",
                 "url": "packages/wordpress",
-                "reference": "4bd27dfb8815c8de4135da0734e38e5fd10e5a59"
+                "reference": "f9b10fbc374668a992b55683ae3e3e47aa49ae11"
             },
             "require": {
                 "alveby/atrium": "^0.2",
@@ -15529,6 +15594,7 @@
         "alveby/atrium-faq": 20,
         "alveby/atrium-forms": 20,
         "alveby/atrium-integrations": 20,
+        "alveby/atrium-language": 20,
         "alveby/atrium-menus": 20,
         "alveby/atrium-monitoring": 20,
         "alveby/atrium-news": 20,
