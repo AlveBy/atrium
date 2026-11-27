@@ -1,0 +1,1 @@
+- Symfony components updated to 7.4.24 (HttpKernel and HttpFoundation to 7.4.25). Generated links could point to another host (CVE-2026-133746, CVE-2026-133754, CVE-2026-133743), and a man in the middle could get past the mailer's TLS requirement or inject replies after STARTTLS (CVE-2026-133751, CVE-2026-133755).
