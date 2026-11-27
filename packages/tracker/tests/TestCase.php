@@ -103,7 +103,7 @@ abstract class TestCase extends Orchestra
      */
     protected function task(?Project $project = null, array $attributes = []): Task
     {
-        return Task::query()->create([...['project_id' => ($project ?? Project::query()->first() ?? $this->project())->getKey(), 'title' => 'Write the docs', 'status' => 'todo'], ...$attributes]);
+        return Task::query()->create([...['project_id' => ($project ?? Project::query()->orderBy('id')->first() ?? $this->project())->getKey(), 'title' => 'Write the docs', 'status' => 'todo'], ...$attributes]);
     }
 
     /**
