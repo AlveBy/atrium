@@ -2,11 +2,11 @@
 
 **English** · [Русский](ROADMAP.ru.md)
 
-Atrium is an admin panel for Laravel that installs with one command, runs any number of sites and speaks 15 languages from day one. This page is where the project goes after the first release. There are no dates, only an order: modules → importers from other CMSs → shop → 1C and Bitrix24. Each version builds on the one before it: importers, the shop and integrations are modules themselves.
+Atrium is an admin panel for Laravel that installs with one command, runs any number of sites and speaks 15 languages from day one. This page is where the project goes after the first release. There are no dates, only an order, and sites come first: what every site needs → a page builder → data and logic without code, with Atrium's own language → importers from other CMSs → shop → 1C and Bitrix24. The Tracker, CRM and ERP come after the site releases. Each version builds on the one before it: the builder, importers, the shop and integrations are modules themselves.
 
 ## Focus now
 
-Until 0.1 is out, work goes only into the core and what every site needs (pages, forms and submissions, news, catalog, menus and search, SEO, custom fields, access rights, two-factor sign-in, the AI assistant, the error log and monitoring, cache, backups, admin themes and site skins), the tests, and importers from other CMSs, and every importer is tried on real sites before it is called done. Other modules wait: a module someone asks for in Issues comes first.
+**Sites first.** Most people who come to Atrium need a site, so the next releases are for sites only: what every site needs, a page builder in which anyone can assemble a landing page without knowing a programming language, and Atrium's own language for formulas, conditions and, later, plugins. The Tracker, CRM, ERP and the other business modules wait until then; what is already done stays and is maintained. A module someone asks for in Issues still comes first.
 
 ## Principles
 
@@ -91,11 +91,33 @@ A ready-made site is a set of modules, theme settings and demo content installed
 | Site | What is in it |
 |---|---|
 | Real estate | Properties (sale, rent, new builds) with a filter by type, rooms, area, price and district, every property on a map, agents, viewing requests; export feeds for property portals |
-| Catalogue site | Products or services with sections and a filter, no cart: "request a price" and "order" buttons go to Forms. The shop's catalogue (0.4) without the rest of the shop |
+| Catalogue site | Products or services with sections and a filter, no cart: "request a price" and "order" buttons go to Forms. The shop's catalogue (0.7) without the rest of the shop |
 | Classifieds | The Classifieds module with a theme for it: rubrics, search, the author's account |
 | Company site | Pages, news, services, team, contacts with a map, forms |
 
-## 0.3 — moving from other CMSs
+## 0.3 — what every site needs, released
+
+What is already in the main branch, out as a release: page templates, reusable blocks and embeds, versions of every record, roles on one site, own tabs for custom fields, RSS and the Yandex Market feed, the kanban view. With it come the parts of record history still in progress: a trash with restore, and publishing and unpublishing on a schedule.
+
+## 0.4 — the page builder
+
+A landing page without knowing a programming language. The builder is the site plugin's own track (S2–S4, S7 in [Extensions: the site builder](docs/extensions.md#the-site-builder)):
+
+- **A page is made of blocks**: sections, columns and blocks (text, picture, gallery, button, form, map, menu, a reusable block), stored as data with versions and drawn by Blade on the server.
+- **The editor**: blocks dragged with the mouse, settings beside the page, a draft, a preview, publishing and going back to an earlier version.
+- **Phone, tablet and desktop**: settings per width, so a page looks right on a phone.
+- **Menus and SEO** from the same screen.
+- **Ready landing templates**: take one, change the texts and the pictures, publish.
+- **Fast by construction**: a page loads the styles and scripts of the blocks it has, pictures in webp at the size they are shown.
+
+## 0.5 — data and logic without code
+
+- **Your own data on the page**: a list, a card and a filter from any module or entity, set up in the builder (S5).
+- **Forms into your own tables**, with dependent lists, and a rule started by a submission (S6).
+- **Atrium's own language, first steps**: formulas as in Excel, with Russian and English names, for conditions ("show this block if…"), calculators on a landing page and computed fields. One small language whose compiler is the security boundary, so it runs on any hosting ([Extensions: one language](docs/extensions.md#level-2-one-language-formulas-rules-and-plugins)). The text plugin language comes after it.
+- **Themes and site templates** in the extension catalogue, installed in one click (S8).
+
+## 0.6 — moving from other CMSs
 
 One pipeline, many sources. Each importer starts as a package of its own (`alveby/atrium-bitrix`, `alveby/atrium-wordpress`); what they really share moves to `alveby/atrium-import` once a third one shows it.
 
@@ -119,7 +141,7 @@ One pipeline, many sources. Each importer starts as a package of its own (`alveb
 
 After WordPress the order follows requests in Issues.
 
-## 0.4 — online shop
+## 0.7 — online shop
 
 `alveby/atrium-shop` and its submodules. Each installs on its own: if you only need a catalogue with enquiries, install only the catalogue. Everything below except the core is a submodule of the shop, so a third party can add a payment method or a discount rule the same way.
 
@@ -163,7 +185,7 @@ After WordPress the order follows requests in Issues.
 
 **Moving a shop** from Bitrix (its e-commerce module), WooCommerce and OpenCart: products, variants, prices, stock, customers, orders.
 
-## 0.5 — 1C and Bitrix24
+## 0.8 — 1C and Bitrix24
 
 **1C**
 - ~~Exchange over the standard CommerceML 2 protocol, the same one Bitrix uses. Stock 1C configurations connect to Atrium without changes on the 1C side: only the site address in the exchange settings changes.~~ done (`alveby/atrium-1c`, [docs](docs/1c.md)): login and password in the module's settings, files in chunks and in zip, the old `/bitrix/admin/1c_exchange.php` address too.
@@ -177,6 +199,10 @@ After WordPress the order follows requests in Issues.
 - ~~Connected with an inbound webhook: paste the URL and it works.~~ done: stored encrypted, with a **Check connection** button.
 
 **Shared by all integrations:** ~~a queue with retries, an exchange log, an alert to the admin on failure~~ done (`alveby/atrium-integrations`, [docs](docs/integrations.md)): five attempts with growing pauses, a log screen with secrets hidden, one letter per integration per hour. Other connectors (amoCRM and the like) can be built on the same base on request.
+
+## Later: the Tracker, CRM and ERP
+
+After the site releases. What is done stays and is maintained: the Tracker's projects and tasks ([docs](docs/tracker.md)), the event catalogue, the integrations base, 1C and Bitrix24. The Tracker with Jira and Tempo parity, CRM, the steps towards an ERP and the other business modules ([Extensions](docs/extensions.md)) continue once the builder and the language are out.
 
 ## Project website and documentation
 
