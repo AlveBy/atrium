@@ -54,7 +54,7 @@ final class DemoTest extends TestCase
         $this->admin();
         $this->seed_();
 
-        $this->assertSame(['todo', 'in_progress', 'review', 'done'], Task::query()->distinct()->orderByRaw("case status when 'todo' then 0 when 'in_progress' then 1 when 'review' then 2 else 3 end")->pluck('status')->all());
+        $this->assertEqualsCanonicalizing(['todo', 'in_progress', 'review', 'done'], Task::query()->distinct()->pluck('status')->all());
 
         $epic = Task::query()->where('type', 'epic')->sole();
         $this->assertSame(3, $epic->children()->count());
@@ -62,7 +62,7 @@ final class DemoTest extends TestCase
 
         $this->assertSame(['SHOP-3', 'SHOP-5', 'WEB-2'], Task::query()->with('project')->where('due_date', '<', today())->where('status', '!=', 'done')->get()->map(fn (Task $task): string => $task->code)->sort()->values()->all());
 
-        $done = Task::query()->where('status', 'done')->first();
+        $done = Task::query()->where('status', 'done')->orderBy('id')->first();
         $this->assertNotNull($done?->completed_at);
         $this->assertSame(['created', 'status'], $done->events()->orderBy('id')->pluck('kind')->all());
     }
