@@ -21,4 +21,7 @@ return [
         'code_hint' => 'Curto, em letras latinas. Um modelo mostra o bloco com @block(\'código\'), um texto com o botão + do editor.',
     ],
     'embed' => 'Bloco',
+    'builder' => [
+        'label' => 'Bloco reutilizável',
+    ],
 ];

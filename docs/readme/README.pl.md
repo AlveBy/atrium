@@ -141,6 +141,7 @@ Baza danych Bitrixa jest tylko odczytywana. Karty, kolejność pól i kolumny li
 - [SEO: tytuły, hreflang, mapy witryny, schema.org, przekierowania, kontrola SEO](../seo.md)
 - [Menu: nagłówek i stopka, drzewo linków, pozycje rozwijające moduł](../menus.md)
 - [Formularze: kreator w kolumnach, wysyłanie bez przeładowania strony, w oknie, własny znacznik i fetch](../forms.md)
+- [Kreator witryny: strony z bloków, format danych i własny typ bloku](../site-builder.md)
 - [Osadzenia: formularz lub blok w tekście i jak moduł rejestruje własny typ](../embeds.md)
 - [Bloki: telefon lub baner napisany raz i pokazywany w szablonach i tekstach](../blocks.md)
 - [Wyszukiwanie: strona wyników, pole w panelu, co i jak jest wyszukiwane](../search.md)

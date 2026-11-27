@@ -21,4 +21,7 @@ return [
         'code_hint' => 'Kurz, in lateinischen Buchstaben. Eine Vorlage zeigt den Block mit @block(\'code\'), ein Text mit der +-Taste des Editors.',
     ],
     'embed' => 'Block',
+    'builder' => [
+        'label' => 'Wiederverwendbarer Block',
+    ],
 ];

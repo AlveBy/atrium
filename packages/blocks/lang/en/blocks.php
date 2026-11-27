@@ -21,4 +21,7 @@ return [
         'code_hint' => 'Short, in Latin letters. A template shows the block with @block(\'code\'), a text with the + button of the editor.',
     ],
     'embed' => 'Block',
+    'builder' => [
+        'label' => 'Reusable block',
+    ],
 ];

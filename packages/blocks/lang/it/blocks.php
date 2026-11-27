@@ -21,4 +21,7 @@ return [
         'code_hint' => 'Breve, in lettere latine. Un modello mostra il blocco con @block(\'codice\'), un testo con il pulsante + dell’editor.',
     ],
     'embed' => 'Blocco',
+    'builder' => [
+        'label' => 'Blocco riutilizzabile',
+    ],
 ];

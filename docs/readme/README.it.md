@@ -141,6 +141,7 @@ Il database di Bitrix viene solo letto. Le schede, l'ordine dei campi e le colon
 - [SEO: titoli, hreflang, sitemap, schema.org, reindirizzamenti, il controllo SEO](../seo.md)
 - [Menu: intestazione e piè di pagina, un albero di link, voci che espandono un modulo](../menus.md)
 - [Moduli: un costruttore a colonne, invio senza ricaricare la pagina, in una finestra, il tuo markup e fetch](../forms.md)
+- [Costruttore del sito: pagine fatte di blocchi, il formato dei dati, un tipo di blocco proprio](../site-builder.md)
 - [Incorporamenti: un modulo o un blocco dentro un testo e come un modulo registra un proprio tipo](../embeds.md)
 - [Blocchi: un telefono o un banner scritto una volta e mostrato in modelli e testi](../blocks.md)
 - [Ricerca: la pagina dei risultati, il campo nel pannello, cosa si cerca e come](../search.md)

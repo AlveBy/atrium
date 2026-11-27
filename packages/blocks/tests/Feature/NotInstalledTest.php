@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace Atrium\Blocks\Tests\Feature;
 
+use Atrium\Admin\Builder\BlockTypes;
 use Atrium\Admin\Embeds\Embeds;
 use Atrium\Blocks\Tests\TestCase;
 use Illuminate\Support\Facades\Blade;
@@ -54,5 +55,13 @@ final class NotInstalledTest extends TestCase
         $block->delete();
 
         $this->assertNull(Cache::get('atrium-blocks:version'));
+    }
+
+    public function test_the_site_builder_does_not_offer_its_block(): void
+    {
+        $types = $this->app->make(BlockTypes::class);
+
+        $this->assertNull($types->get('block'));
+        $this->assertArrayNotHasKey('block', $types->all());
     }
 }

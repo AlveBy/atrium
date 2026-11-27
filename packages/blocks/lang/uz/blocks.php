@@ -21,4 +21,7 @@ return [
         'code_hint' => 'Qisqa, lotin harflarida. Shablon blokni @block(\'kod\') orqali, matn muharrirdagi + tugmasi orqali ko‘rsatadi.',
     ],
     'embed' => 'Blok',
+    'builder' => [
+        'label' => 'Qayta ishlatiladigan blok',
+    ],
 ];

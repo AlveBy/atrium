@@ -137,6 +137,7 @@ The Bitrix database is only read. The tabs, field order and list columns come ou
 - [SEO: titles, hreflang, sitemaps, schema.org, redirects, the SEO check](docs/seo.md)
 - [Menus: header and footer, a tree of links, items that unfold a module](docs/menus.md)
 - [Forms: a builder in columns, without reloading the page, in a window, your own markup and fetch](docs/forms.md)
+- [Site builder: pages made of blocks, the data format, your own block type](docs/site-builder.md)
 - [Embeds: a form or a block inside a text, and how a module registers its own type](docs/embeds.md)
 - [Blocks: a phone number or a banner written once and shown in templates and texts](docs/blocks.md)
 - [Search: the results page, the admin box, what is searched and how](docs/search.md)
