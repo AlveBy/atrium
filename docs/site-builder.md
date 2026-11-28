@@ -289,4 +289,4 @@ It talks to the panel with these routes, all under `/admin/{module}/{id}/builder
 | `POST /publish` | Saves the field through the module's form |
 | `GET /versions/{version}` | The tree of an earlier version |
 
-A draft is a row of `admin_revisions` marked with the name of the field. It is not a version: the history, the API and the count of versions kept leave it out, and it goes with the record. It is kept for modules that keep no versions too.
+A draft is a row of `admin_revisions` marked with the name of the field. It is not a version: the history, the API and the count of versions kept leave it out. A record in the [trash](history.md#trash) keeps it, and it goes when the record is deleted for good. It is kept for modules that keep no versions too.
