@@ -301,10 +301,15 @@ final class RegistryTest extends TestCase
             return 1;
         });
 
+        // Time stands still: only the steps can stop it, on a machine of any speed.
+        $context = $this->context()
+            ->withFunctions(Functions::standard()->add($forever))
+            ->withClock(static fn (): int => 0);
+
         $this->assertStops(
             'limit.steps',
             'Line 1, column 1: The formula was stopped: it took more than 200000 steps.',
-            fn () => $this->calling($forever, 'FOREVER()'),
+            fn () => Formula::parse('FOREVER()')->evaluate($context),
         );
     }
 
