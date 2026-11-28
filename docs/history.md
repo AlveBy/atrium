@@ -51,6 +51,8 @@ The newest 50 versions of each record are kept, the older go; the number is set 
 
 **Restore** needs the right to change the record (`{module}.update`); looking at and comparing versions needs the right to view it. The API has the same: `GET /api/v1/{module}/{id}/versions` lists the versions with the values of their fields, `POST /api/v1/{module}/{id}/versions/{version}/restore` puts one back and answers with the record, or 422 with what failed; MCP has the tools `list_versions` and `restore_version`.
 
+The [page editor](site-builder.md#draft-publishing-and-earlier-versions) keeps the draft of a page beside its versions. A draft is not a version: it is not on the record yet, it is not listed here or in the API, it does not count towards the 50, and a module that keeps no versions has drafts all the same.
+
 Administrators keep no versions: putting an old one back would get around the checks of their form (the last superadministrator, the password).
 
 ## Trash
