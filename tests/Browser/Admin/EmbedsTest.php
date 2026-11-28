@@ -57,8 +57,7 @@ final class EmbedsTest extends AdminTestCase
                 ->assertSeeIn(self::MENU, 'Contact us')
                 ->click('[data-embed-item="'.$form->id.'"]')
                 ->waitUntilMissing(self::MENU)
-                ->waitFor(self::EDITOR.' .atrium-embed')
-                ->assertSeeIn(self::EDITOR.' .atrium-embed', 'Contact us');
+                ->waitForTextIn(self::EDITOR.' .atrium-embed', 'Contact us');
 
             // Between the paragraphs, not before them.
             $order = $browser->script("return Array.from(document.querySelector('".self::EDITOR."').children).map(e => e.classList.contains('atrium-embed') ? 'embed' : e.tagName.toLowerCase()).join(',')");
@@ -76,9 +75,9 @@ final class EmbedsTest extends AdminTestCase
 
         // Opened again, the placeholder is still a chip and survives another save.
         $this->browse(function (Browser $browser) use ($news, $form): void {
+            // A fresh page asks for the name of the chip: wait for the answer.
             $browser->visit("/admin/news/{$news->id}/edit")
-                ->waitFor(self::EDITOR.' .atrium-embed')
-                ->assertSeeIn(self::EDITOR.' .atrium-embed', 'Contact us')
+                ->waitForTextIn(self::EDITOR.' .atrium-embed', 'Contact us')
                 ->press('Save')
                 ->waitForLocation('/admin/news');
 
@@ -126,8 +125,7 @@ final class EmbedsTest extends AdminTestCase
                 ->waitFor('[data-embed-item="'.$block->id.'"]')
                 ->assertSeeIn(self::MENU, 'Phone number')
                 ->click('[data-embed-item="'.$block->id.'"]')
-                ->waitFor(self::EDITOR.' .atrium-embed')
-                ->assertSeeIn(self::EDITOR.' .atrium-embed', 'Phone number')
+                ->waitForTextIn(self::EDITOR.' .atrium-embed', 'Phone number')
                 ->press('Save')
                 ->waitForLocation('/admin/news');
 
