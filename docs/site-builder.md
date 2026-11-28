@@ -8,17 +8,41 @@ An existing site gets the new column with `php artisan migrate`. Pages without b
 
 ## What an editor does
 
-The form of a page has **Sections and blocks** under the text.
+A saved page has **Sections and blocks** under the text, with a line saying what the page holds and the button **Open the page editor**. The editor needs the right to change the page (`pages.update`). While a page is being created, the same blocks are put together right on the form, without a preview.
+
+The editor has three parts: the blocks there are and the **page structure** on the left, the **preview** in the middle, the **settings** of what is selected on the right (on a narrower screen, under the structure).
 
 1. **Add section**. It comes with one column over the whole width.
 2. **Add column** if you want two or three side by side: they share the row equally. The width of a column is a number of twelfths (6 is a half) and can be changed.
-3. Choose a block in a column and press **Add block**, then fill in its settings.
-4. The arrow buttons move a section, a column or a block; the cross deletes it. Deleting a column deletes its blocks.
-5. Save.
+3. Drag a block from the list into a column, or press it: it goes after the selected block, into the selected column, or to the end of the page, in a new section when the page has no column.
+4. Select a block, a column or a section, in the structure or by clicking it in the preview, and fill in its settings.
+5. Drag blocks between columns and sections. The arrow buttons move a section, a column or a block one step; **Move to column** under the settings of a block puts it at the end of any column; the cross deletes. Deleting a column deletes its blocks.
+6. **Publish**.
+
+Everything the mouse does has a button, so the editor works from the keyboard alone: **Tab** reaches every control, **Enter** or **Space** presses it. After a move the keyboard stays on what moved, after a deletion it goes to the neighbour, and screen readers are told what was added, moved or removed and where it is now. The selected node, the place a dragged block will land and a node with an error are marked with a frame, a sign or words, never with a colour alone. Dragging works on touch screens too.
+
+### Preview
+
+The preview is the page itself, drawn on the server by the theme and the template of the page, with what is in the editor now, saved or not. It is drawn again a moment after each change, in the language chosen in the language switch. A click in it selects the block, column or section under the pointer; links and forms do nothing there, and the scripts of the page do not run. A frame narrower than 800 pixels shows the page scaled down. A block that the page does not show yet (nothing to show in it, or its module is gone) is marked **Not shown on the page yet** in the structure.
+
+### Draft, publishing and earlier versions
+
+| Button | What it does |
+|---|---|
+| **Save draft** | Keeps what is in the editor without changing the site. The blocks may be unfinished. The editor opens with the draft next time, for anyone who may change the page |
+| **Publish** | Saves the blocks to the page: checked like the form, written to the [activity log](history.md), kept as a version. The draft is done with. The first problem is shown with its place and the node is selected |
+| **Discard changes** | Removes the draft and the unsaved changes: back to the published page |
+| **Versions** | The earlier versions of the page in which the blocks changed. **Open in the editor** puts one into the editor; the site changes when you publish it. The newest one is marked **published now** while the page still holds it. Needs [versions](history.md#versions) to be kept |
+
+The sign and words next to the title say where you are: unsaved changes, a draft that is not published, or published. Leaving with unsaved changes asks first.
+
+A page has one draft of its blocks, shared by those who edit it. When someone else saved or discarded it after you opened the page, or the published page changed since your editing started (a restored version, the [API](configuration.md)), the editor asks before it replaces anything: load the newer page, or continue anyway.
+
+The form of a page keeps saving every other field, the **Active** switch too, and leaves the blocks to the editor. Publishing from the editor does not switch a page on.
 
 A page with at least one section is shown from its blocks; the **Text** field is kept but not shown. Delete every section and the text is shown again. On a screen narrower than 40rem the columns stand one under another.
 
-With several content languages the language switch of the form also switches the texts of the blocks. A text that is not written in a language is shown in the default one.
+With several content languages the language switch also switches the texts of the blocks. A text that is not written in a language is shown in the default one.
 
 ## Built-in blocks
 
@@ -95,7 +119,9 @@ No other keys are allowed in a node.
 
 ### What is checked on save
 
-Saving the form, the API and restoring a version check the whole tree: its shape, and the settings of every block against the validation rules of the type's fields. A setting the type does not have is refused. For a translatable setting the default language must satisfy the rules; the others may be empty. The first problem is reported with its place: `Section 1, column 2, block 1 (Button): The Link field is required.`
+Publishing, saving the form, the API and restoring a version check the whole tree: its shape, and the settings of every block against the validation rules of the type's fields. A setting the type does not have is refused. For a translatable setting the default language must satisfy the rules; the others may be empty. The first problem is reported with its place: `Section 1, column 2, block 1 (Button): The Link field is required.`
+
+A draft is checked only for its shape and the settings of sections and columns: the settings of its blocks may be unfinished until it is published.
 
 A block that arrives exactly as it is stored (the same id, type and settings) is not checked again. So a page stays editable after a module was removed: its blocks can be moved, kept or deleted. Restoring an old version that holds such a block is refused if the page does not have it any more.
 
@@ -134,6 +160,26 @@ $content = app(LayoutRenderer::class)->render(Layout::sections($record->layout))
 ```
 
 and give a record that field with `LayoutField::make('layout')` and an `array` cast.
+
+Such a record gets the page editor with no more code: its edit form leads to `/admin/{module}/{id}/builder/{field}`. For a preview there, the model says how one of its records looks on the site by implementing `Atrium\Admin\Contracts\Previewable`:
+
+```php
+use Atrium\Admin\Builder\Layout;
+use Atrium\Admin\Contracts\Previewable;
+use Illuminate\Contracts\Support\Renderable;
+
+class Landing extends Model implements Administrable, Previewable
+{
+    public function adminPreview(string $language): Renderable
+    {
+        $content = app(LayoutRenderer::class)->render(Layout::sections($this->layout));
+
+        return view('landing', ['landing' => $this, 'content' => $content]);
+    }
+}
+```
+
+The application's locale is `$language` by then, and the record already holds the tree of the editor, which may be unsaved, so draw from its attributes and save nothing. The site's own page should be drawn by the same code. Without `Previewable` the editor shows the structure and the settings only.
 
 Two things the blocks do not take part in yet: the site search does not look into them, and the automatic meta description is made from the **Text** field, so write one on the **SEO** tab.
 
@@ -231,4 +277,16 @@ The admin field describes itself to the screen that edits it. `LayoutField` give
 | `sectionFields`, `columnFields` | The settings of sections and columns, as fields |
 | `maxSections`, `maxColumns`, `maxBlocks`, `version` | The limits and the format version |
 
-The screen takes a tree and sends back the whole tree. Everything it may rely on is the format above; the current screen (`LayoutField.vue`) can be replaced without touching the stored pages or the block types.
+The editor takes a tree and sends back the whole tree. Everything it may rely on is the format above; the screens (`Pages/Admin/Builder/Editor.vue` and `Components/Admin/Builder`) can be replaced without touching the stored pages or the block types.
+
+It talks to the panel with these routes, all under `/admin/{module}/{id}/builder/{field}` and all asking for `{module}.update`. A module whose records are only read (`isEditableInAdmin()` is false) answers 403; a field that is disabled, read-only or not on the edit form answers 404:
+
+| Route | What it does |
+|---|---|
+| `GET` | The editor |
+| `POST /preview` | The HTML of the record with the tree sent (`Previewable` only) |
+| `PUT /draft`, `DELETE /draft` | Saves or removes the draft |
+| `POST /publish` | Saves the field through the module's form |
+| `GET /versions/{version}` | The tree of an earlier version |
+
+A draft is a row of `admin_revisions` marked with the name of the field. It is not a version: the history, the API and the count of versions kept leave it out, and it goes with the record. It is kept for modules that keep no versions too.
