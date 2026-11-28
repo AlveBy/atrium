@@ -147,6 +147,7 @@ Bitrix veritabanından yalnızca okuma yapılır. Sekmeler, alan sırası ve lis
 - [Arama: sonuç sayfası, yönetim panelindeki kutu, neyin nasıl arandığı](../search.md)
 - [Kendi modülünüz: alanlar, sütunlar, sekmeler, yetkiler, diller, testler, paket](../modules.md)
 - [Eklentiler: platform tasarımı — kodsuz oluşturucu, formüller, eklentiler, dış uygulamalar, plan](../extensions.md)
+- [Formüller: hesap tablosundaki gibi yazılır, adlar İngilizce ve Rusça, sınırlar, satır ve sütunlu hatalar](../language.md)
 - [Özel alanlar: yönetim panelinden her modüle alan ekleme, 100 000 kayıtta filtreler ve faset sayıları](../custom-fields.md)
 - [İçe ve dışa aktarma: her modül için CSV ve Excel, sütunlar, yazmadan önce kontrol, konsol ve zamanlama](../import-export.md)
 - [Kayıt geçmişi: tüm modüllerin değişiklik günlüğü, kim neyi ne zaman değiştirdi, parolalar olmadan](../history.md)
@@ -172,6 +173,7 @@ Bitrix veritabanından yalnızca okuma yapılır. Sekmeler, alan sırası ve lis
 | [`alveby/atrium-bitrix`](../../packages/bitrix/README.md) | 1C-Bitrix geçiş aracı |
 | [`alveby/atrium-ai`](../../packages/ai/README.md) | Yönetim panelinde yapay zekâ yazım yardımı |
 | [`alveby/atrium-custom-fields`](../../packages/custom-fields/README.md) | Yönetim panelinden her modüle eklenen alanlar, filtreler ve faset sayılarıyla |
+| [`alveby/atrium-language`](../../packages/language/README.md) | Koddaki formüller: ayrıştırılır, denetlenir ve sınırlarla çalıştırılır, asla PHP’ye dönüştürülmez |
 | [`alveby/atrium-seo`](../../packages/seo/README.md) | Meta şablonları, hreflang, site haritaları, schema.org, yönlendirmeler ve SEO denetimi |
 | [`alveby/atrium-docs`](../../packages/docs/README.md) | Markdown’dan belgeler, sürümler ve arama ile |
 | [`alveby/atrium-backup`](../../packages/backup/README.md) | Veritabanı ve dosya yedekleri, yönetim panelinden geri yükleme |

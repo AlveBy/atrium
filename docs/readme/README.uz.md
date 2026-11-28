@@ -147,6 +147,7 @@ Bitrix maʼlumotlar bazasi faqat oʻqiladi. Yorliqlar, maydonlar tartibi va roʻ
 - [Qidiruv: natijalar sahifasi, admin paneldagi qator, nima va qanday qidiriladi](../search.md)
 - [Oʻz modulingiz: maydonlar, ustunlar, yorliqlar, huquqlar, tillar, testlar, paket](../modules.md)
 - [Kengaytmalar: platforma loyihasi — kodsiz konstruktor, formulalar, plaginlar, tashqi ilovalar, reja](../extensions.md)
+- [Formulalar: jadvaldagidek yoziladi, nomlar ingliz va rus tillarida, cheklovlar, qator va ustuni koʻrsatilgan xatolar](../language.md)
 - [Oʻz maydonlaringiz: istalgan modulga admin paneldan maydon qoʻshish, 100 000 yozuvda filtrlar va fasetlar](../custom-fields.md)
 - [Import va eksport: istalgan modul uchun CSV va Excel, ustunlar, yozishdan oldin tekshiruv, konsol va jadval](../import-export.md)
 - [Yozuvlar tarixi: barcha modullarning o'zgarishlar jurnali, kim, nimani va qachon o'zgartirgan, parollarsiz](../history.md)
@@ -172,6 +173,7 @@ Bitrix maʼlumotlar bazasi faqat oʻqiladi. Yorliqlar, maydonlar tartibi va roʻ
 | [`alveby/atrium-bitrix`](../../packages/bitrix/README.md) | 1C-Bitrix migratori |
 | [`alveby/atrium-ai`](../../packages/ai/README.md) | Admin panelda matnlar uchun SI-yordamchi |
 | [`alveby/atrium-custom-fields`](../../packages/custom-fields/README.md) | Istalgan modulga admin paneldan qoʻshiladigan maydonlar, filtrlar va fasetlar bilan |
+| [`alveby/atrium-language`](../../packages/language/README.md) | Koddagi formulalar: tahlil, tekshiruv va cheklovlar bilan bajarish, PHP ga aylantirilmaydi |
 | [`alveby/atrium-seo`](../../packages/seo/README.md) | Meta-teg andozalari, hreflang, sayt xaritalari, schema.org, yoʻnaltirishlar va SEO tekshiruvi |
 | [`alveby/atrium-docs`](../../packages/docs/README.md) | Markdown’dan hujjatlar: versiyalar va qidiruv |
 | [`alveby/atrium-backup`](../../packages/backup/README.md) | Bazalar va fayllarning zaxira nusxalari, admin paneldan tiklash |

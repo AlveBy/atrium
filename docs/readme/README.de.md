@@ -147,6 +147,7 @@ Die Bitrix-Datenbank wird nur gelesen. Tabs, Feldreihenfolge und Listenspalten k
 - [Suche: die Ergebnisseite, das Suchfeld im Admin-Bereich, was und wie gesucht wird](../search.md)
 - [Eigenes Modul: Felder, Spalten, Tabs, Rechte, Sprachen, Tests, als Paket](../modules.md)
 - [Erweiterungen: Entwurf der Plattform — Baukasten ohne Code, Formeln, Plugins, externe Apps, der Plan](../extensions.md)
+- [Formeln: geschrieben wie in einer Tabellenkalkulation, Namen auf Englisch und Russisch, Grenzen, Fehler mit Zeile und Spalte](../language.md)
 - [Eigene Felder: Felder für jedes Modul im Admin-Bereich anlegen, Filter und Facetten bei 100 000 Einträgen](../custom-fields.md)
 - [Import und Export: CSV und Excel für jedes Modul, Spalten, eine Prüfung vor dem Schreiben, Konsole und Zeitplan](../import-export.md)
 - [Verlauf der Datensätze: das Änderungsprotokoll aller Module, wer was wann geändert hat, ohne Passwörter](../history.md)
@@ -172,6 +173,7 @@ Die Bitrix-Datenbank wird nur gelesen. Tabs, Feldreihenfolge und Listenspalten k
 | [`alveby/atrium-bitrix`](../../packages/bitrix/README.md) | Der 1C-Bitrix-Migrator |
 | [`alveby/atrium-ai`](../../packages/ai/README.md) | KI-Schreibhilfe im Admin-Bereich |
 | [`alveby/atrium-custom-fields`](../../packages/custom-fields/README.md) | Felder für jedes Modul, im Admin-Bereich angelegt, mit Filtern und Facetten |
+| [`alveby/atrium-language`](../../packages/language/README.md) | Formeln im Code: gelesen, geprüft und mit Grenzen ausgeführt, nie in PHP verwandelt |
 | [`alveby/atrium-seo`](../../packages/seo/README.md) | Meta-Vorlagen, hreflang, Sitemaps, schema.org, Weiterleitungen und eine SEO-Prüfung |
 | [`alveby/atrium-docs`](../../packages/docs/README.md) | Dokumentation aus Markdown, mit Versionen und Suche |
 | [`alveby/atrium-backup`](../../packages/backup/README.md) | Backups der Datenbanken und Dateien, Wiederherstellung im Admin-Bereich |

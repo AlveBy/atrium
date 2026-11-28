@@ -364,6 +364,8 @@ A template is data, not code: it is installed without Composer and can be shared
 
 ## Level 2. One language: formulas, rules and plugins
 
+**Built so far:** the IR, formulas with their function registry and the interpreter with limits ([Formulas](language.md)). The rest follows [the table below](#when-each-part-comes).
+
 ### Why a language of our own
 
 The first version of this design took Symfony ExpressionLanguage for formulas and left scripts for later, in Lua or JavaScript inside a sandbox. What is now asked of formulas does not fit that:
